@@ -1,0 +1,434 @@
+﻿
+@model dynamic
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>checkout</title>
+</head>
+<body>
+    <div>
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+
+            <!-- Header -->
+            @RenderPage("~/Views/Shared/_NAVBARDOCTOR.cshtml")
+            <!-- /Header -->
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-bar" style="margin-top:54px;background-color:transparent">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 col-12">
+                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                <ol class="breadcrumb">
+                                    @*<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>*@
+                                </ol>
+                            </nav>
+                            <h2 class="breadcrumb-title" style="text-align:center;color:black">Checkout</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Breadcrumb -->
+            <!-- Page Content -->
+            <div class="content success-page-cont">
+                <div class="container-fluid">
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+
+                            @{
+
+
+
+
+                                string slots = Session["btnValues"].ToString();
+
+
+                                string[] tableslots = slots.Split(',');
+
+                                string[] datee = new string[tableslots.Length];
+                                string[] hourre = new string[tableslots.Length];
+
+                                for (int i = 0; i < tableslots.Length; i++)
+                                {
+                                    if (tableslots[i].Contains('/'))
+                                    {
+
+
+                                        hourre[i] = (tableslots[i].ToString()).Substring(0, 8).TrimEnd('1').TrimEnd('0');
+
+                                        datee[i] = (tableslots[i].ToString()).Substring(tableslots[i].Length - 5);
+
+                                    }
+
+
+
+                                }
+
+                            }
+
+
+                            @*@for (int i = 0; i < tableslots.Length; i++)
+                                {
+                                    <li>@datee[i] <span>@hourre[i]</span></li>
+                                }*@
+
+
+                            @{
+
+
+
+
+                                List<string> reservedSlotsList = new List<string>();
+                                foreach (var item in Model.appointcurrentpatient)
+                                {
+                                    string reservedSlot = item.endtime;
+                                    reservedSlotsList.Add(reservedSlot);
+                                    ViewBag.slotdatabase += reservedSlot + ',';
+                                }
+
+                                string[] reservedSlotsArray = reservedSlotsList.ToArray();
+
+
+
+
+
+
+
+
+
+                                for (int i = 0; i < reservedSlotsArray.Length; i++)
+                                {
+                                    string slot = reservedSlotsArray[i];
+                                    if (!string.IsNullOrEmpty(slot))
+                                    {
+
+                                        string reserveddate = slot.Substring(slot.Length - 5);
+
+
+                                        string timereserved = slot.Substring(0, slot.Length - 5);
+                                        @*<h1>@timereserved</h1>*@
+
+                                    }
+
+
+
+                                }
+
+
+
+
+                            }
+
+
+
+
+                            <!-- Success Card -->
+                            <div class="card success-card">
+                                <div class="card-body">
+                                    <div class="success-cont">
+                                        <i class="fas fa-check"></i>
+                                        <h3>Appointment booked Successfully!</h3>
+                                        <p>
+                                            Appointment booked with <strong>@Model.doctor[0].doctorName</strong><br>
+
+                                            @for (int i = 0; i < tableslots.Length - 1; i++)
+                                            {
+                                                @*<li>@datee[i] <span>@hourre[i]</span></li>*@
+
+
+
+                                                <strong>
+                                                    on @datee[i]
+                                                    /@DateTime.Now.Year from @hourre[i] to
+
+
+                                                    @if (!string.IsNullOrEmpty(@hourre[i]))
+                                                    {
+
+                                                        string lastfourr = hourre[i].ToString();
+
+                                                        string lasstfourstring = lastfourr.Substring(lastfourr.Length - 6);
+
+
+                                                        int firstn = Convert.ToInt16(lastfourr.Substring(0, lastfourr.Length - 6)) + 1;
+
+                                                        if (firstn == 13)
+                                                        {
+
+                                                            string firsttstring = firstn.ToString().Replace("13", "1");
+                                                            ViewBag.lastvalue = firsttstring + lasstfourstring;
+                                                            @ViewBag.lastvalue;
+                                                        }
+                                                        else if (firstn == 12)
+                                                        {
+                                                            string lasstfourstringrepl = lasstfourstring.Replace("A", "P");
+
+                                                            ViewBag.lastvalue = firstn + lasstfourstringrepl;
+                                                            @ViewBag.lastvalue;
+
+
+                                                        }
+                                                        else if (firstn != 13 && firstn != 12)
+                                                        {
+                                                            ViewBag.lastvalue = firstn + lasstfourstring;
+
+                                                            @ViewBag.lastvalue;
+
+                                                        }
+
+
+                                                    }
+
+
+                                                </strong>
+                                            }
+                                        </p>
+                                        <a href="patientProfile" class="btn btn-primary view-inv-btn">View Invoice</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Success Card -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Page Content -->
+            <!-- Footer -->
+            <footer class="footer" style="background-color:#20BBBD">
+
+                <!-- Footer Top -->
+                <div class="footer-top">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+
+                                <!-- Footer Widget -->
+                                <div class="footer-widget footer-about">
+                                    <div class="footer-logo">
+                                        <img src="assets/img/footer-logo.png" alt="logo">
+                                    </div>
+                                    <div class="footer-about-content">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                            incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                        <div class="social-icon">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Footer Widget -->
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+
+                                <!-- Footer Widget -->
+                                <div class="footer-widget footer-menu">
+                                    <h2 class="footer-title">For Patients</h2>
+                                    <ul>
+                                        <li>
+                                            <a href="search.html">
+                                                <i class="fas fa-angle-double-right"></i> Search for
+                                                Doctors
+                                            </a>
+                                        </li>
+                                        <li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+                                        <li>
+                                            <a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a>
+                                        </li>
+                                        <li>
+                                            <a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a>
+                                        </li>
+                                        <li>
+                                            <a href="patient-dashboard.html">
+                                                <i class="fas fa-angle-double-right"></i>
+                                                Patient Dashboard
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /Footer Widget -->
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+
+                                <!-- Footer Widget -->
+                                <div class="footer-widget footer-menu">
+                                    <h2 class="footer-title">For Doctors</h2>
+                                    <ul>
+                                        <li>
+                                            <a href="appointments.html">
+                                                <i class="fas fa-angle-double-right"></i>
+                                                Appointments
+                                            </a>
+                                        </li>
+                                        <li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
+                                        <li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+                                        <li>
+                                            <a href="doctor-register.html">
+                                                <i class="fas fa-angle-double-right"></i>
+                                                Register
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="doctor-dashboard.html">
+                                                <i class="fas fa-angle-double-right"></i> Doctor
+                                                Dashboard
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /Footer Widget -->
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+
+                                <!-- Footer Widget -->
+                                <div class="footer-widget footer-contact">
+                                    <h2 class="footer-title">Contact Us</h2>
+                                    <div class="footer-contact-info">
+                                        <div class="footer-address">
+                                            <span><i class="fas fa-map-marker-alt"></i></span>
+                                            <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                        </div>
+                                        <p>
+                                            <i class="fas fa-phone-alt"></i>
+                                            +1 315 369 5943
+                                        </p>
+                                        <p class="mb-0">
+                                            <i class="fas fa-envelope"></i>
+                                            doccure@example.com
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- /Footer Widget -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /Footer Top -->
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="container-fluid">
+
+                        <!-- Copyright -->
+                        <div class="copyright">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="copyright-text">
+                                        <p class="mb-0"><a href="https://jambasangsang.com">Laratech Templates</a></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+
+                                    <!-- Copyright Menu -->
+                                    <div class="copyright-menu">
+                                        <ul class="policy-menu">
+                                            <li><a href="term-condition.html">Terms and Conditions</a></li>
+                                            <li><a href="privacy-policy.html">Policy</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- /Copyright Menu -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Copyright -->
+
+                    </div>
+                </div>
+                <!-- /Footer Bottom -->
+
+            </footer>
+            <!-- /Footer -->
+
+        </div>
+        <!-- /Main Wrapper -->
+        <!-- jQuery -->
+        <script src="~/doc/assets/js/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JS -->
+        <script src="~/doc/assets/js/popper.min.js"></script>
+        <script src="~/doc/assets/js/bootstrap.min.js"></script>
+
+        <!-- Sticky Sidebar JS -->
+        <script src="~/doc/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+        <script src="~/doc/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+        <!-- Custom JS -->
+        <script src="~/doc/assets/js/script.js"></script>
+    </div>
+
+
+ 
+    <script>
+
+
+
+                    //function handleSearchInput(input) {
+                    //    console.log(input);
+                    //    if (input.value.length > 19) {
+                    //        input.value = input.value.slice(0, 19);
+                    //    }
+                    //}
+
+
+                    //function handleexpireInput(input) {
+                    //    console.log(input);
+                    //    if (input.value.length > 2) {
+                    //        input.value = input.value.slice(0, 2);
+                    //    }
+                    //}
+
+                    //function handlecvv(input) {
+                    //    console.log(input);
+                    //    if (input.value.length > 3) {
+                    //        input.value = input.value.slice(0, 3);
+                    //    }
+                    //}
+
+                    //function CardName(input) {
+                    //    console.log(input);
+                    //    if (input.value.length > 9) {
+                    //        input.value = input.value.slice(0, 9);
+                    //    }
+                    //}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,436 @@
+﻿@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.specialization>>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/mainLayout.cshtml";
+}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+<div class="page-wrapper">
+    <!--slider-->
+    <div class="landing class1" id="slide">
+        <div class="left">
+            <i class="fa-solid fa-chevron-right" id="rightt"></i>
+        </div>
+        <input type="submit" value="Get Started" id="s" class="rightt" />
+        <div style="color: white" class="alll">
+
+            <div class="mad">
+
+                <p class="KNOWLEDGE" id="KNOWLEDGE">We connect you with licensed therapists, we provide online consultation for  those of you who want  to consult but want to   stay at home </p>
+
+
+
+
+            </div>
+
+        </div>
+        <div class="right">
+            <i class="fa-solid fa-chevron-left" id="leftt"></i>
+        </div>
+        <div class="onlcon">
+            <p><span class="online">online</span><span class="con">consultion</span></p>
+        </div>
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+                <a href="~/Account/Login"> <input type="submit" value="Get Started" id="start" class="rightt" name="INFO" /></a>
+
+
+            }
+            else
+            {
+                <a href="~/Account/Login">
+                    <input type="submit" value="Get Started" id="start" class="rightt" name="INFO" />
+                </a>
+            }
+
+        }
+
+        <div class="started">
+
+            <asp:Button ID="started" runat="server" Text="Get Started" />
+            <div class="calling ">
+                <p class="priv ">online private session</p>
+
+                <div class="icon">
+                    <a href="#">   <i class="fa-solid fa-video"></i><span id="video"> video</span></a>
+
+                    <a href="#">  <i class="fa-solid fa-microphone"></i><span id="Audio"> Audio</span></a>
+                </div>
+
+
+            </div>
+            <div class="callingphone ">
+                <p class="priv " style="margin-bottom:60px"></p>
+
+                <div class="iconphone">
+                    <a href="#">   <i class="fa-solid fa-video"></i><span id="videophone"> video</span></a>
+
+                    <a href="#">  <i class="fa-solid fa-microphone"></i><span id="Audiophone"> Audio</span></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--slider-->
+    <!--====  End of Page Slider  ====-->
+    @*explore
+    *@
+    <div class="explore ">
+        <div class="first"><p class="ff">explore our website and learn more about Services</p></div>
+        <div class="sec"><p> and resources we offer, and we look forward to supporting you on your journey to better mental health and well-being,we are here to help you.</p></div>
+
+
+    </div>
+
+    @*explore*@
+
+
+    @*startservice*@
+    <div class="kind">
+
+        @foreach (var item in Model.Item2)
+        {
+            <div class="box1">
+                <img src="~/Content/images/@item.picturespecialization" width="200" alt="covering" />
+                <h2>@item.namespecialization</h2>
+                <p>
+
+                    @item.descriptionspecialization
+                </p>
+                <input type="submit" value="Get Started" class="startt" />
+
+            </div>
+        }
+
+
+
+
+    </div>
+
+    @*finishservice*@
+
+    @*doctors*@
+
+
+    <div class="explore ">
+        <div class="first"><p class="ff">we are proud to connect you with a team of </p></div>
+        <div class="sec"><p>highly qualified and experienced  therapists who are dedicated to helping people reach their full potential. Our therapists are skilled in a variety of areas, including Some common forms of psychotherapy include:Interpersonal therapy (IPT),Dialectical behavior therapy (DBT) and Humanistic therapies..etc</p></div>
+
+
+    </div>
+
+    @*try*@
+
+    @RenderPage("~/Views/Shared/tryme.cshtml")
+
+    @*try*@
+
+
+
+
+
+
+
+
+
+
+
+
+    @*doctors*@
+
+    @*why us*@
+
+    <div class="explore " style="margin-top:50px;">
+        <div class="first"><p class="ff">How "Finding peace" Works?</p></div>
+
+    </div>
+
+
+    <div class="about " style="margin-bottom:50px;">
+        <div class="word ">
+
+            <div class="txtabout ">
+                <span class="numb">1</span><p class="main">create an account and fill out a confidential intake</p>
+                <p class="secondery">form with information about their mental health history and current concerns.</p>
+            </div>
+            <div class="txtabout ">
+                <span class="numb">2</span><p class="main">Browse through a list of qualified psychologists</p>
+                <p class="secondery">read their profiles and reviews, and select one that aligns with their needs and preferences.</p>
+            </div>
+            <div class="txtabout ">
+                <span class="numb">3</span><p class="main">schedule and pay for sessions through the website</p>
+                <p class="secondery">During the sessions, users can communicate with their psychologist through a secure video..</p>
+            </div>
+
+            <img src="~/Content/images/step.png" width="450" />
+        </div>
+        <div class="picture">
+            <img src="~/Content/images/lab.png" width="500" height="500" />
+        </div>
+    </div>
+
+    @* finish why us*@
+
+    <section class="testimonial-section" style="background: url(~/Content/images/testimonials/1.jpg); margin-top: 150px; ">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>
+                    What Our
+                    <span>Patients Says</span>
+                </h3>
+            </div>
+            <div class="testimonial-carousel">
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/jad.jpg" alt="">
+                            </figure>
+                        </div>
+                        <h6>Adam Rose</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/testimonials/2.png" alt="">
+                            </figure>
+                        </div>
+                        <h6>David Warner</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/testimonials/3.png" alt="">
+                            </figure>
+                        </div>
+                        <h6>Amy Adams</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/testimonials/1.png" alt="">
+                            </figure>
+                        </div>
+                        <h6>Adam Rose</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/testimonials/2.png" alt="">
+                            </figure>
+                        </div>
+                        <h6>David Warner</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/testimonials/3.png" alt="">
+                            </figure>
+                        </div>
+                        <h6>Amy Adams</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/testimonials/1.png" alt="">
+                            </figure>
+                        </div>
+                        <h6>Adam Rose</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                <div class="slide-item">
+                    <div class="inner-box text-center">
+                        <div class="image-box">
+                            <figure>
+                                <img src="~/Content/images/testimonials/2.png" alt="">
+                            </figure>
+                        </div>
+                        <h6>David Warner</h6>
+                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                    </div>
+                </div>
+                <!--Slide Item-->
+                @*<div class="slide-item">
+                        <div class="inner-box text-center">
+                            <div class="~/Content/image-box">
+                                <figure>
+                                    <img src="~/Content/images/testimonials/3.png" alt="">
+                                </figure>
+                            </div>
+                            <h6>Amy Adams</h6>
+                            <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </section>
+    <!--End testimonial-section-->
+    <!-- Contact Section -->
+    <section class="appoinment-section section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="accordion-section">
+                        <div class="section-title">
+                            <h3 style="margin-bottom:40px">Add FeedBack</h3>
+                        </div>
+                        @using (Html.BeginForm("FeedBackWEBsite", "mainHome", FormMethod.Post))
+                        {
+                            <textarea class="form-control rounded border-color-#20BBBD shadow-sm bg-light" name="massage"></textarea>
+                            <input type="submit" name="add" class="btn btn-primary" style="background-color: #20BBBD;margin:20PX" value="Add"/>
+                            @*<button type="submit" class="btn btn-primary" style="background-color: #20BBBD;margin:20PX" name="add">ADD</button>*@
+                        }
+
+
+                        @*<div class="accordion-holder">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Why Should I choose Medical Health
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                            non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                            helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+                            heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                               aria-controls="collapseTwo">
+                                What are the Centre’s visiting hours?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                            non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                            helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+                            heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                               aria-controls="collapseThree">
+                                How many visitors are allowed?
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                            non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                            sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                            helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                            vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
+                            heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End Contact Section -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+@if (TempData["swal_message"] != null && TempData["notUser"]?.ToString() != null && TempData["notUser"].ToString() != "")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+            window.location.href = "@Url.Action("Login", "Account")";
+        });
+    </script>
+}
+
+@if (TempData["swal_message"] == "Thank You for your feedback")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+       window.location.href = window.location.pathname;
+        });
+    </script>
+}
+
+
+@if (TempData["swal_message"] == "please Add Feedback before submit")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+            window.location.href =  "@Url.Action("Index", "mainHome")";;
+        });
+    </script>
+}

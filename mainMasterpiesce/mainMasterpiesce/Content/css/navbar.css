@@ -1,0 +1,134 @@
+﻿/*slide*/
+
+.navbar {
+    background-color: #20BBBD !important;
+    opacity: .8 !important;
+    position: fixed !important;
+    width: 100%;
+    z-index: 2;
+}
+
+.heea {
+    display: flex;
+    justify-content: space-between;
+    display: none !important;
+}
+
+
+
+#start {
+    background-color: #20BBBD;
+    position: absolute;
+    left: 40%;
+    bottom: 30%;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 25px;
+    padding: 5px 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+/*    font-weight: bold;*/
+    text-transform: uppercase;
+}
+
+.nav1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    background-color: #20BBBD;
+    opacity: .8;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.logo {
+    font-size: 1rem;
+    color: white;
+    padding-left: 20px;
+}
+
+.hamburger {
+    padding-right: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+    .hamburger .line {
+        display: block;
+        width: 40px;
+        height: 5px;
+        margin-bottom: 10px;
+        background-color: white;
+    }
+
+.nav__link {
+    position: fixed;
+    width: 100%;
+    top: 5.8rem;
+    left: 0px;
+    background-color: #20BBBD;
+    opacity: .8;
+}
+
+    .nav__link a {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+        .nav__link a:hover {
+            background-color: lightcoral;
+        }
+
+.hide {
+    display: none;
+}
+
+
+@media screen and (min-width: 1150px) {
+    .nav__link {
+        display: block;
+        position: static;
+        width: auto;
+        margin-right: 20px;
+        background: none;
+    }
+
+        .nav__link a {
+            display: inline-block;
+            padding: 5px 20px;
+        }
+
+    .hamburger {
+        display: none;
+    }
+}
+
+  .nav1 a{
+    color:black!important;
+    text-decoration:none;
+}
+.nav1 a:hover {
+  
+    text-decoration: none;
+}
+
+/*try*/

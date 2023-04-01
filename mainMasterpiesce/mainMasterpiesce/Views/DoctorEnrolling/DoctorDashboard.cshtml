@@ -1,0 +1,594 @@
+﻿@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.appointment>, List<mainMasterpiesce.Models.feedback>>
+
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "DoctorDashboard";
+    Layout = "~/Views/Shared/_DoctorDashboard.cshtml";
+}
+
+
+
+
+
+@{
+    string zoomLink = Session["link"] as string;
+}
+
+
+
+<div class="col-md-7 col-lg-8 col-xl-9">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card dash-card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4" style="">
+                            <div class="dash-widget dct-border-rht">
+                                <div class="circle-bar circle-bar1">
+                                    <img src="~/doc/assets/img/icon-01.png" class="img-fluid"
+                                         alt="patient">
+
+                                </div>
+
+
+
+                                <div class="dash-widget-info">
+                                    <h6>Total Patient</h6>
+
+                                    <h3>
+                                        @if (!string.IsNullOrEmpty(zoomLink))
+                                        {
+                                            <a href="@zoomLink" target="_blank">Join Zoom Meeting</a>
+                                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        @ViewBag.patientcount
+                                    </h3>
+
+                                    <p class="text-muted">Till Today</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget dct-border-rht">
+                                <div class="circle-bar ">
+                                    <img src="~/doc/assets/img/icon-02.png" class="img-fluid"
+                                         alt="Patient">
+                                    <div class="circle-graph2" data-percent="65">
+
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Today Patient</h6>
+                                    <h3>2</h3>
+                                    <p class="text-muted">06, Nov 2019</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-4">
+                            <div class="dash-widget">
+                                <div class="circle-bar ">
+                                    <img src="~/doc/assets/img/icon-03.png" class="img-fluid"
+                                         alt="Patient">
+                                    <div class="circle-graph3" data-percent="50">
+
+                                    </div>
+                                </div>
+                                <div class="dash-widget-info">
+                                    <h6>Appoinments</h6>
+                                    <h3>@ViewBag.appointmentcount</h3>
+                                    <p class="text-muted">06, Apr 2019</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-4">Patient Appoinment</h4>
+            <div class="appointment-tab">
+
+                <!-- Appointment Tab -->
+                <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#upcoming-appointments"
+                           data-toggle="tab">Upcoming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#PREVIOUS-appointments" data-toggle="tab">Previous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Right-Now" data-toggle="tab" id="rightNow">Right Now</a>
+                    </li>
+                </ul>
+
+
+                <!-- /Appointment Tab -->
+
+
+                @{
+
+                    if (Model.Item2.Count > 0)
+                    {
+
+
+
+                        DateTime storedDateTime = DateTime.ParseExact(Model.Item2[0].starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+
+                        if (DateTime.Now < storedDateTime)
+                        {
+                            // Output "Pending"
+
+                            <span class="badge badge-pill bg-danger-light">Pending</span>
+                        }
+                        else
+                        {
+                            // Output "Confirm"
+                            <span class="badge badge-pill bg-success-light">Confirm</span>
+                        }
+
+
+                    }
+
+
+                }
+
+
+
+                <div class="tab-content">
+
+                    <!-- Upcoming Appointment Tab -->
+                    <div class="tab-pane show active" id="upcoming-appointments">
+                        <div class="card card-table mb-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    @{
+                                        int t = 0;
+
+
+                                    }
+
+                                    <table class="table table-hover table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>#appointment</th>
+                                                <th>Patient Name</th>
+                                                <th>Appt Date</th>
+                                                <th>Patient Age</th>
+                                                <th>Gender</th>
+                                                <th class="text-center">Paid Amount</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Item2.Count > 0)
+                                            {
+
+
+
+                                                foreach (var item in Model.Item2)
+                                                {
+
+                                                    DateTime storedDatt = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                                    string monthDay = storedDatt.ToString("MM/dd");
+                                                    string todayMonthDay = DateTime.Today.ToString("MM/dd");
+
+                                                    int storedHour = storedDatt.Hour;
+                                                    int currentHour = DateTime.Now.Hour;
+
+
+
+                                                    if (storedDatt > DateTime.Now)
+                                                    {
+                                                        t++;
+
+                                                        <tr>
+                                                            <td>@t</td>
+                                                            <td>
+                                                                <h2 class="table-avatar">
+                                                                    <a href="patient-profile.html"
+                                                                       class="avatar avatar-sm mr-2">
+                                                                        <img class="avatar-img rounded-circle"
+                                                                             src="~/Content/images/@item.patient.picpatient"
+                                                                             alt="User Image">
+                                                                    </a>
+                                                                    <a href="patient-profile.html">
+                                                                        @item.patient.patientName <span>#PT0016</span>
+                                                                    </a>
+                                                                </h2>
+                                                            </td>
+                                                            <td>
+                                                                @item.starttime.ToString().Substring(item.starttime.Length - 5)/@DateTime.Now.Year<span class="d-block text-info">@item.starttime.ToString().Substring(0, item.starttime.Length - 5)</span>
+                                                            </td>
+                                                            <td>General</td>
+                                                            <td>New Patient</td>
+                                                            <td class="text-center">$@item.apointmentprice</td>
+                                                            <td class="text-right">
+                                                                <div class="table-action">
+
+                                                                    @if (todayMonthDay == monthDay)
+                                                                    {
+
+
+
+
+                                                                        if (currentHour < storedHour)
+                                                                        {
+
+
+                                                                            <a href="@Url.Action("Waiting", "DoctorEnrolling")"
+                                                                               class="btn btn-sm" style="color: white; background-color:#20BBBD">
+                                                                                Waiting Soon
+                                                                            </a>
+
+
+                                                                        }
+                                                                        else if (currentHour == storedHour)
+                                                                        {
+
+
+
+
+
+
+
+                                                                            <a href="@Url.Action("beforeGetStart", "DoctorEnrolling")"
+                                                                               class="btn btn-sm" style="color: white; background-color:#20BBBD">
+                                                                                Get Start Now
+                                                                            </a>
+
+
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+
+                                                                        <span class="badge badge-pill bg-danger-light">Pending</span>
+
+                                                                    }
+
+
+
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                    }
+
+                                                }
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Upcoming Appointment Tab -->
+                    <!-- Today Appointment Tab -->
+                    <div class="tab-pane" id="PREVIOUS-appointments">
+                        <div class="card card-table mb-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>#appointment</th>
+                                                <th>Patient Name</th>
+                                                <th>Appt Date</th>
+                                                <th>PatientAge</th>
+                                                <th>Gender</th>
+                                                <th class="text-center">Paid Amount</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+
+                                                int orevv = 0;
+                                            }
+                                            @foreach (var item in Model.Item2)
+                                            {
+                                                orevv++;
+                                                DateTime storedDatt = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+                                                int storedHour = storedDatt.Hour;
+                                                int currentHour = DateTime.Now.Hour;
+
+
+
+                                                if (storedDatt < DateTime.Now)
+                                                {
+
+
+                                                    <tr>
+                                                        <td>@orevv</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="patient-profile.html"
+                                                                   class="avatar avatar-sm mr-2">
+                                                                    <img class="avatar-img rounded-circle"
+                                                                         src="~/Content/images/@item.patient.picpatient"
+                                                                         alt="User Image">
+                                                                </a>
+                                                                <a href="patient-profile.html">
+                                                                    @item.patient.patientName <span>@storedDatt.ToString("MM/dd") </span>
+                                                                </a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            @item.starttime.ToString().Substring(item.starttime.Length - 5)/@DateTime.Now.Year<span class="d-block text-info">@item.starttime.ToString().Substring(0, item.starttime.Length - 5)</span>
+                                                        </td>
+                                                        <td>General</td>
+                                                        @{
+                                                            string gender = "";
+                                                            if (item.patient.Gender == true)
+                                                            {
+                                                                gender = "male";
+                                                            }
+                                                            else
+                                                            {
+                                                                gender = "female";
+                                                            }
+                                                        }
+                                                        <td>@gender </td>
+                                                        <td class="text-center">$@item.apointmentprice</td>
+                                                        <td class="text-right">
+                                                            <div class="table-action">
+
+
+                                                                <span class="badge badge-pill bg-success-light">Confirm</span>
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                }
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Today Appointment Tab -->
+                    <!-- /Upcoming Appointment Tab -->
+                    <!-- Today Appointment Tab -->
+                    <div class="tab-pane" id="Right-Now">
+                        <div class="card card-table mb-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-center mb-0">
+                                        @{
+
+                                            int temp = 0;
+                                        }
+                                        <thead>
+                                            <tr>
+
+                                                <th>Patient Name</th>
+                                                <th>Appt Date</th>
+                                                <th>PatientAge</th>
+                                                <th>Gender</th>
+                                                <th class="text-center">Paid Amount</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{int rightnow = 0; }
+
+
+
+                                            @foreach (var item in Model.Item2.OrderByDescending(c => DateTime.ParseExact(c.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture)))
+                                            {
+                                                DateTime.Now.ToString("MM/dd");
+
+
+                                                DateTime storedDatt = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+                                                int storedHour = storedDatt.Hour;
+                                                int currentHour = DateTime.Now.Hour;
+
+
+
+
+
+                                                if (DateTime.Now.ToString("MM/dd") == storedDatt.ToString("MM/dd") && storedHour == currentHour)
+                                                {
+
+                                                    rightnow++;
+
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="patient-profile.html"
+                                                                   class="avatar avatar-sm mr-2">
+                                                                    <img class="avatar-img rounded-circle"
+                                                                         src="~/Content/images/@item.patient.picpatient"
+                                                                         alt="User Image">
+                                                                </a>
+                                                                <a href="patient-profile.html">
+                                                                    @item.patient.patientName <span>@storedDatt.ToString("MM/dd") </span>
+                                                                </a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            @item.starttime.ToString().Substring(item.starttime.Length - 5)/@DateTime.Now.Year<span class="d-block text-info">@item.starttime.ToString().Substring(0, item.starttime.Length - 5)</span>
+                                                        </td>
+                                                        <td>General</td>
+                                                        @{
+                                                            string gender = "";
+                                                            if (item.patient.Gender == true)
+                                                            {
+                                                                gender = "male";
+                                                            }
+                                                            else
+                                                            {
+                                                                gender = "female";
+                                                            }
+                                                        }
+                                                        <td>@gender </td>
+                                                        <td class="text-center">$@item.apointmentprice</td>
+                                                        <td class="text-right">
+                                                            <div class="table-action">
+
+
+                                                                <a href="@Url.Action("beforeGetStart", "DoctorEnrolling")"
+                                                                   class="btn btn-sm" style="color: white; background-color:#20BBBD">
+                                                                    Get Start Now
+
+                                                                </a>
+
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Today Appointment Tab -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- /Page Content -->
+<!-- Footer -->
+<!-- /Footer -->
+<!-- /Main Wrapper -->
+<!-- jQuery -->
+<script src="~/doc/assets/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JS -->
+<script src="~/doc/assets/js/popper.min.js"></script>
+<script src="~/doc/assets/js/bootstrap.min.js"></script>
+
+<!-- Sticky Sidebar JS -->
+<script src="~/doc/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+<script src="~/doc/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+<!-- Circle Progress JS -->
+<script src="~/doc/assets/js/circle-progress.min.js"></script>
+
+<!-- Custom JS -->
+<script src="~/doc/assets/js/script.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+@if (TempData["swal_message"] != null && TempData["welcome"].ToString() == "wait")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "/DoctorEnrolling/DoctorDashboard";
+
+        });;
+
+
+
+
+
+
+
+    </script>
+}
+
+
+@if (TempData["swal_message"] != null && TempData["welcome"].ToString() == "GetStart")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "/DoctorEnrolling/GetStart";
+
+        });;
+
+
+
+
+
+
+
+    </script>
+}
+<script>
+    var rightNow = @rightnow; // get the value of the rightnow variable from the server-side code
+    setInterval(function () {
+        var rightNowElement = document.getElementById("rightNow");
+
+        if (rightNow >= 1) {
+
+
+
+
+            if (rightNow % 2 == 0) {
+                // Change the color and boldness every 2 seconds
+                rightNowElement.style.color = "red";
+                rightNowElement.style.fontWeight = "bold";
+                rightNowElement.style.fontSize = "30px";
+            } else {
+                // Remove the color and boldness every 1 second
+                rightNowElement.style.color = "";
+                rightNowElement.style.fontWeight = "normal";
+                rightNowElement.style.fontSize = "20px";
+            }
+            rightNow++;
+        }
+        }, 1000);
+</script>
+
+
+

@@ -1,0 +1,663 @@
+﻿@using System.Text.RegularExpressions;
+
+@using System.Web.Mvc;
+
+@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.specialization>>
+@{
+    Layout = null;
+}
+
+
+
+
+
+
+
+
+<style>
+    .uu {
+        background-color: black;
+    }
+    body{
+     
+    }
+</style>
+
+
+
+
+
+
+
+
+<html>
+<head>
+    <link href="~/Content/css/navbar.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>singledoctor</title>
+    <script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="~/Content/css/alldoctors.css" rel="stylesheet" />
+    <style>
+        .me .card {
+            margin-bottom: 35px;
+        }
+
+        .me input[type="checkbox"]:checked + .check {
+            background-color: #20BBBD !important;
+        }
+
+        .me input[type="radio"]:checked + .check {
+            background-color: #20BBBD !important;
+        }
+
+        .me input[type="checkbox"]:checked + .check::before {
+            color: #20BBBD !important;
+        }
+
+        .me input[type="checkbox"]:checked + .check {
+            background-color: #20BBBD !important;
+        }
+
+        .me input[type="checkbox"] + .check::before {
+            color: #20BBBD !important;
+        }
+
+        input[type="radio"]:checked + .checkmark {
+            background-color: #20BBBD !important;
+        }
+
+        .me .form-control::-ms-expand {
+            display: none;
+        }
+
+        .me .form-control {
+            border: 1px solid #20BBBD;
+            border-radius: 4px;
+        }
+
+            .me .form-control:focus {
+                border-color: #20BBBD;
+                box-shadow: none;
+            }
+
+            .me .form-control::-webkit-scrollbar-thumb {
+                background-color: #20BBBD;
+            }
+    </style>
+</head>
+<body>
+    @{
+        string[] nameParts = Regex.Split(User.Identity.Name, @"\P{L}");
+
+        string firstName = nameParts[0];
+
+
+
+    }
+    @*nav*@
+
+    <div>
+
+        <!--Main Header-->
+        <header>
+
+            <nav class="nav1" id="navbar">
+
+                @*<img src="~/Content/images/logo.png" width="0" alt="logo" style="padding:0px !important;margin-left:50px !important" />*@
+                <div class="empty" style="height:50px">
+                    <img src="~/Content/images/logo.png" style="height: 50px; padding: 0; margin: 0;" />
+                </div>
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+
+                <div class="nav__link hide">
+                    <a href="~/mainHome/index">home</a>
+                    <a href="~/mainHome/About">about</a>
+                    <a href="~/mainHome/ConTact">contact</a>
+                    <a href="alldoctors">therapist list</a>
+                    <a href="#">psycologist list</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        @Html.ActionLink("Hello " + firstName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    }
+                    else
+                    {
+
+                        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                    }
+                    @*<a href="#">log out</a>*@
+
+                    @if (User.IsInRole("patient"))
+                    {
+                        <a href="#"><i class="fa-solid fa-user"></i></a>
+
+                    }
+
+                </div>
+                @Html.Partial("_LoginPartial")
+            </nav>
+        </header>
+        <!--End Main Header -->
+
+
+    </div>
+
+    @*nav*@
+
+
+    <div>
+        <div class="wrapper me" style="margin-top:100px;background-color:white" >
+            <div class="d-md-flex align-items-md-center">
+                <div class="h3">All therapists</div>
+                @{
+                    var accepteddoctor = 0;
+                }
+                @foreach (var item in Model.Item1)
+                {
+                    if (item.statedoctor == 1)
+                    {
+                        accepteddoctor++;
+                    }
+
+                }
+
+                <div class="ml-auto d-flex align-items-center views"> <span class="btn " style="color: #20BBBD"> <span class="fas fa-th px-md-2 px-1"></span><span style="color:black">Grid view</span> </span> <span class="btn"> <span class="fas fa-list-ul"></span><span class="px-md-2 px-1" style="color:black">List view</span> </span> <span class="green-label px-md-2 px-1" style="font-size:25px">@accepteddoctor</span> <span class="text-muted" style="font-size:25px">therapists</span> </div>
+            </div>
+
+            <div class="dis">
+
+                <div class="d-lg-flex align-items-lg-center pt-2" style="display:flex;justify-content:space-evenly;flex-wrap:wrap">
+                    @{
+                        var desc = Request.Form["desc"];
+                    }
+
+                    <form method="post">
+                        <div class="form-inline d-flex align-items-center my-2 mr-lg-2 radio bg-light border" style="">
+                            <label class="options">highest rated <input type="radio" name="desc" id="highest" value="highest" @(desc == "highest" ? "checked" : "")> <span class="checkmark"></span> </label> <label class="options">Lowest Price <input type="radio" name="desc" id="lowest" value="lowest" @(desc == "lowest" ? "checked" : "")> <span class="checkmark"></span> </label>
+
+                            <input type="submit" value="Filter" onclick="saveChecked()" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />
+                        </div>
+                    </form>
+                    <form method="post">
+                        <div class="form-group pt-2 mb--2" style="; text-align: center">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="therapistName" name="therapistName" style="width: 300px;" placeholder="therapist name">
+                                <div class="input-group-append">
+
+                                    <input type="submit" value="Search" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    @*nnnnnn*@
+
+                    @*nnnnn*@
+
+
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-sm-center pt-2 clear">
+                <div class="text-muted filter-label">Filters</div>
+                <form>
+                    <div class="text-muted filter-label" style="margin-left:60px;"><input type="submit" value="clear filter" class="no-border-bg"></div>
+                </form>
+
+            </div>
+            <div class="filters"> <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#mobile-filter" aria-expanded="true" aria-controls="mobile-filter">Filter<span class="px-1 fas fa-filter"></span></button> </div>
+            <div id="mobile-filter">
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Therapy Type</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category"> Individual therapy <span class="badge badge-primary badge-pill">328</span> </li>
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category"> Family therapy <span class="badge badge-primary badge-pill">112</span> </li>
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category"> Couple therapy<span class="badge badge-primary badge-pill">32</span> </li>
+                        <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center category"> Conselling therapy <span class="badge badge-primary badge-pill">48</span> </li>
+                    </ul>
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Therapy Type</h5>
+                    @*<form class="brand">
+                            <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Individual therapy  <input type="checkbox"> <span class="check"></span> </label> </div>
+                            <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Family therapy <input type="checkbox" checked> <span class="check"></span> </label> </div>
+
+                            <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Couple therapy <input type="checkbox"> <span class="check"></span> </label> </div>
+                            <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Conselling therapy <input type="checkbox"> <span class="check"></span> </label> </div>
+                        </form>*@
+                </div>
+                <div class="py-3">
+                    <h5 class="font-weight-bold">Rating</h5>
+                    <form class="rating">
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span class="check"></span> </label> </div>
+                    </form>
+                </div>
+            </div>
+            <div class="container">
+                <span id="rateMe2" class="empty-stars"></span>
+            </div>
+            <div class="content py-md-0 py-3">
+                <section id="sidebar" style="background-color:white">
+
+
+                    <!--<div class="py-3">
+                    <h5 class="font-weight-bold">Availability & Duration</h5>-->
+                    @*<ul class="list-group">*@
+
+                    @*<p>Please select your favorite Web language:</p>*@
+                    <!--<input type="radio" id="html" name="fav_language" value="HTML">
+                    <label for="html">Online</label>
+                    <br>
+                    <input type="radio" id="css" name="fav_language" value="CSS">
+                    <label for="css">Today</label>
+                    <br>
+                    <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                    <label for="javascript">this week</label>-->
+                    @*<div class="form-inline d-flex align-items-center py-1"> <label class="tick">online <input type="checkbox"> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">today <input type="checkbox" checked> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">this week <input type="checkbox" checked> <span class="check"></span> </label> </div>
+                        <div class="form-inline d-flex align-items-center py-1"> <label class="tick">Couple therapy <input type="checkbox"> <span class="check"></span> </label> </div>*@
+                    @*</ul>*@
+                    <!--</div>-->
+                    @{
+                        var therapytype = Request.Form["therapytype"];
+                    }
+
+                    <form class="brand">
+                        <div class="py-3">
+                            <h5 class="font-weight-bold">Therapy Type</h5>
+
+                            <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="individual" name="therapytype" value="1" @(therapytype == "1" ? "checked" : "")> <label for="individual">     Individual therapy  </label> </div>
+                            <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="family" name="therapytype" value="2" @(therapytype == "2" ? "checked" : "")><label for="family"> Family therapy  </label> </div>
+                            <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="couple" name="therapytype" value="3" @(therapytype == "3" ? "checked" : "")> <label for="couple">     Couple therapy  </label> </div>
+                            <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="Counselling" name="therapytype" value="4" @(therapytype == "4" ? "checked" : "")><label for="Counselling"> Counselling therapy </label> </div>
+
+                        </div>
+
+
+                        <h5 class="font-weight-bold">Gender</h5>
+                        <input type="radio" id="Male" name="Male" value="1">
+                        <label for="Male">Male</label>
+                        <input type="radio" id="Female" name="Male" value="0">
+                        <label for="Female">Female</label><br>
+                        @*<input type="submit" value="filtering" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />*@
+
+
+
+                        <!-- rating.js file -->
+
+                        <div class="py-3">
+                            <h5 class="font-weight-bold">Rating</h5>
+
+                            <div class="form-inline d-flex align-items-center py-2"> <input type="radio" id="Rating5" name="rating" value="5"> <label for="Rating5"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </label> </div>
+                            <div class="form-inline d-flex align-items-center py-2"> <input type="radio" id="Rating4" name="rating" value="4"><label for="Rating4">  <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> </label> </div>
+                            <div class="form-inline d-flex align-items-center py-2"><input type="radio" id="Rating3" name="rating" value="3"><label for="Rating3">  <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span></label> </div>
+                            <div class="form-inline d-flex align-items-center py-2"><input type="radio" id="Rating2" name="rating" value="2"> <label for="Rating2"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span></label>  </div>
+                            <div class="form-inline d-flex align-items-center py-2"><input type="radio" id="Rating1" name="rating" value="1"> <label for="Rating1"> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> </label> </div>
+                            <input type="submit" value="filtering" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />
+
+
+                        </div>
+                    </form>
+                </section> <!-- doctors Section -->
+
+
+                <section id="products" style="background-color:white">
+                    <div class="container py-3">
+                        <div class="row">
+                            @{
+                                var X = 0;
+                            }
+
+                            @foreach (var item in Model.Item1)
+                            {
+                                X++;
+
+
+
+
+                                if (item.statedoctor == 1)
+                                {
+
+
+
+                                    <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1" style="background-color:">
+                                        <div class="card">
+                                            <div style="align-items:center;margin:0 auto">
+
+                                                <img style="border-radius: 50%; width: 100%" src="~/Content/images/dr2.png" />
+
+
+                                            </div>
+                                            <div class="card-body">
+                                                <h6 class="font-weight-bold pt-1" style="margin-bottom:20px">   DR-@item.doctorName</h6>
+                                                <h6 class="font-weight-bold pt-1">Specialize in @item.specialization1.namespecialization</h6>
+
+                                                <div class="text-muted description">@item.infodoctor</div>
+
+                                                @*int integerPart = (int)Math.Floor(number);*@
+
+                                                <h6 style="margin-bottom:10px">Rating:@item.ratingdoctor</h6>
+
+                                                <div class="d-flex align-items-center product">
+
+
+                                                    @{
+                                                        Decimal ratingdecimal = Convert.ToDecimal(item.ratingdoctor);
+
+                                                        int ratingint = Convert.ToInt32(Math.Truncate(ratingdecimal));
+
+
+                                                        string splitrating = Convert.ToString(item.ratingdoctor);
+                                                        string[] secondsectionrating = splitrating.Split('.');
+
+
+
+
+                                                        for (int i = 0; i < ratingint; i++)
+                                                        {
+                                                            <span class="fas fa-star" style=" color: gold;"> </span>
+                                                        }
+
+
+
+
+
+                                                        int secondrating = Convert.ToInt32(secondsectionrating[1]);
+
+
+                                                        if (secondrating <= 9)
+                                                        {
+
+                                                            int secondfinal = secondrating * 10;
+
+
+
+
+
+
+                                                            if (secondfinal >= 25 && secondrating <= 50)
+                                                            {
+
+
+
+                                                                <span class="fas fa-star-half-alt" style="color: gold;"></span>
+                                                            }
+                                                            else if (secondfinal > 50)
+                                                            {
+
+                                                                <span class="fas fa-star" style=" color: gold;"> </span>
+                                                            }
+
+
+                                                        }
+                                                        else if (secondrating > 9)
+                                                        {
+                                                            if (secondrating >= 25 && secondrating <= 50)
+                                                            {
+
+
+
+                                                                <span class="fas fa-star-half-alt" style="color: gold;"></span>
+                                                            }
+                                                            if (secondrating > 50 && secondrating <= 75)
+                                                            {
+
+                                                                <span class="fas fa-star" style=" color: gold;"> </span>
+                                                            }
+
+                                                            if (secondrating > 75)
+                                                            {
+
+                                                                <span class="fas fa-star" style=" color: gold;"> </span>
+                                                            }
+
+
+                                                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    }
+
+
+
+
+
+
+                                                    <!--<span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span>--> @*<span class="far fa-star"></span>*@
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-between pt-3" style="background-color:white">
+                                                    <div class="d-flex flex-column">
+                                                        <div class="h6 font-weight-bold">@item.pricePerHour JD/30Mins</div>
+                                                        @*<div class="text-muted rebate">48.56</div>*@
+                                                    </div>
+                                                    <a href="singledoctor?id=@item.doctorId"> <div class="btn " style="color: white; background-color: #20BBBD">Book Now</div></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    //if (X == 9)
+                                    //{
+                                    //    break;
+                                    //}
+                                }
+
+                            }
+
+
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <footer class="footer" style="background-color: #15767D ">
+
+        <!-- Footer Top -->
+        <div class="footer-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+
+                        <!-- Footer Widget -->
+                        <div class="footer-widget footer-about">
+                            <div class="footer-logo">
+                                <img src="assets/img/footer-logo.png" alt="logo">
+                            </div>
+                            <div class="footer-about-content">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                </p>
+                                <div class="social-icon">
+                                    <ul>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Footer Widget -->
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+
+                        <!-- Footer Widget -->
+                        <div class="footer-widget footer-menu">
+                            <h2 class="footer-title">For Patients</h2>
+                            <ul>
+                                <li><a href="~/mainHome/Index"><i class="fas fa-angle-double-right"></i> Home page</a></li>
+                                <li>
+                                    <a href="~/mainHome/About">
+                                        <i class="fas fa-angle-double-right"></i> About Us
+                                    </a>
+                                </li>
+                                <li><a href="~/mainHome/ConTact"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
+                                <li>
+                                    <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
+                                </li>
+                                <li>
+                                    <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
+                                </li>
+                                <li>
+                                    <a href="~/Account/Login">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        Log in
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /Footer Widget -->
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+
+                        <h2 class="footer-title">Add FeedBack</h2>
+
+
+                        @using (Html.BeginForm("FeedBackWEBsite", "DoctorsInfo", FormMethod.Post))
+                        {
+                            <textarea class="form-control rounded border-color-#20BBBD shadow-sm bg-light" name="massage"></textarea>
+                            <input type="submit" name="add" class="btn btn-primary" style="background-color: #20BBBD;margin:20PX" />
+                            @*<button type="submit" class="btn btn-primary" style="background-color: #20BBBD;margin:20PX" name="add">ADD</button>*@
+                        }
+
+
+
+
+
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+
+                        <!-- Footer Widget -->
+                        <div class="footer-widget footer-contact">
+                            <h2 class="footer-title">Contact Us</h2>
+                            <div class="footer-contact-info">
+                                <div class="footer-address">
+                                    <span><i class="fas fa-map-marker-alt"></i></span>
+                                    <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                </div>
+                                <p>
+                                    <i class="fas fa-phone-alt"></i>
+                                    +1 315 369 5943
+                                </p>
+                                <p class="mb-0">
+                                    <i class="fas fa-envelope"></i>
+                                    doccure@example.com
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /Footer Widget -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Footer Top -->
+        <!-- Footer Bottom -->
+        <!-- /Footer Bottom -->
+
+    </footer>
+
+
+
+
+
+
+    <script>
+
+        // Restore the selected value
+
+
+
+
+        // Rating Initialization
+        $(document).ready(function () {
+            $('#rateMe2').mdbRate();
+        });
+
+
+
+        const selectElement = document.querySelector("#specialization");
+
+        const dropdownArrow = selectElement.parentElement.querySelector(".fa-caret-down");
+        dropdownArrow.style.color = "#20BBBD";
+
+        console.log("ppp")
+    </script>
+    <script src="js/addons/rating.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+
+
+        
+ 
+</body>
+
+
+
+</html>

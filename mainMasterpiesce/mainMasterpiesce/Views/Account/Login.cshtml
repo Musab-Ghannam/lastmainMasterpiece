@@ -1,0 +1,141 @@
+﻿@using mainMasterpiesce.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>signin</title>
+    <link href="~/Content/css/Signin.css" rel="stylesheet" />
+    <style>
+
+
+        .boxes .box .info .myclass {
+            width: 100%;
+            align-items: center;
+            height: 50px;
+            padding-top: 10px;
+            border: 2px solid #0C1673;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+
+
+
+
+<div>
+
+    @RenderPage("~/Views/Shared/_navbar.cshtml")
+
+    <div class="containerr">
+
+
+        <div class="sign-in">
+
+            <div class="opacity">
+
+
+
+
+                <div class="groups">
+                    <div class="empty-rowww">
+
+                    </div>
+
+                    <div class="boxes">
+                        <div class="log-shape" style="margin-top:-200px;">
+                            <img src="~/Content/images/logo.png" />
+
+                            @*<img src="~/Content/images/Sign.png" alt="sign-up">*@
+
+
+                        </div>
+
+                        <div class="log-shape" style="margin-top:-200px;display:none">
+                            <img src="~/Content/images/logo.png" />
+
+                            @*<img src="~/Content/images/Sign.png" alt="sign-up">*@
+
+
+                        </div>
+                        @*<div class="log-shape">
+
+
+
+                            </div>*@
+
+                        <div class="box" style="margin-top:150px">
+
+                            <p id="title-sign">Sign in </p>
+
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="rowww">
+                                    <div class="info">
+                                        <label>E-mail:</label>
+                                        <div class="lock">
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "myclass" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                            @*<input type="email" id="email">*@
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="info">
+                                        <label>password:</label>
+                                        <div class="lock">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "myclass" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            @*<input type="password" id="password">*@
+                                            <i class="fa-solid fa-unlock"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="forget">
+                                        <p id="notcorrect">Password is incorrect. Please try again.</p>
+                                        <a href="#">forget password?</a>
+
+                                    </div>
+                                </div>
+
+                                <div class="sub">
+                                    <input type="submit" id="loginButton" value="login">
+                                </div>
+                                <div class="or-sign-up">
+                                    <p style="color: #20BBBD;">Follow in</p>
+
+                                </div>
+
+
+                                <div class="social">
+
+                                    <a href="https://www.instagram.com/" id="inst"><img src="~/Content/images/insta-login.jpeg"> </a>
+                                    <a href="https://www.facebook.com/"><i class="fa-brands fa-square-facebook"></i></a>
+                                    <a href="mailto:moathbdur@gmail.com" id="ema"><img src="~/Content/images/gmail-login.jpeg"></a>
+
+
+
+                                </div>
+                                <div class="remember">
+                                    <p>don't have acount?<a href="Register">Sign up</a> </p>
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

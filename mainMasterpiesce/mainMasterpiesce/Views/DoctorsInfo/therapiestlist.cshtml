@@ -1,0 +1,514 @@
+﻿@using System.Text.RegularExpressions;
+
+@using System.Web.Mvc;
+
+@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.specialization>>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<style>
+
+    .view-pro-btn:hover {
+        background-color: #15767D !important;
+        color: white !important;
+    }
+
+    .view-pro-btn {
+        color: #15767D !important;
+        border: solid 1px #15767D !important;
+    }
+</style>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Doccure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    <!-- Favicons -->
+    <link href="~/doc/assets/img/favicon.png" rel="icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/doc/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/doc/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Datetimepicker CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/bootstrap-datetimepicker.min.css">
+
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="~/doc/assets/plugins/select2/css/select2.min.css">
+
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="~/doc/assets/plugins/fancybox/jquery.fancybox.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/style.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        @RenderPage("~/Views/Shared/_NAVBARDOCTOR.cshtml")
+        <!-- /Header -->
+        <!-- Breadcrumb -->
+        @{
+            var accepteddoctor = 0;
+        }
+        @foreach (var item in Model.Item1)
+        {
+            if (item.statedoctor == 1)
+            {
+                accepteddoctor++;
+            }
+
+        }
+        <div class="breadcrumb-bar" style="margin-top:64px; background-color:transparent">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-8 col-12">
+                        <nav aria-label="breadcrumb" class="page-breadcrumb">
+                            <ol class="breadcrumb">
+                            </ol>
+                        </nav>
+                        <h2 class="breadcrumb-title" style="color:black">@accepteddoctor matches found for : finding piece</h2>
+
+
+                    </div>
+                    <div class="col-md-4 col-12 d-md-block d-none">
+
+                        <form method="post">
+                            <div class="form-group pt-2 mb--2" style=" text-align: center">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="therapistName" name="therapistName" style="width: 300px;" placeholder="therapist name">
+                                    <div class="input-group-append">
+
+                                        <input type="submit" value="Search" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /Breadcrumb -->
+        <!-- Page Content -->
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+
+                    <div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+                        @{
+                            var therapytype = Request.Form["therapytype"];
+                        }
+                        <!-- Search Filter -->
+
+                        @{
+                            var desc = Request.Form["desc"];
+                        }
+
+                        <div class="d-lg-flex align-items-lg-center pt-2" style="display:flex;justify-content:space-evenly;flex-wrap:wrap;width:300px">
+
+                            <form method="post">
+                                <div class="form-inline d-flex align-items-center my-2 mr-lg-2 radio bg-light border" style="">
+                                    <label class="options">highest rated <input type="radio" name="desc" id="highest" value="highest" @(desc == "highest" ? "checked" : "")> <span class="checkmark"></span> </label> <label class="options">Lowest Price <input type="radio" name="desc" id="lowest" value="lowest" @(desc == "lowest" ? "checked" : "")> <span class="checkmark"></span> </label>
+
+                                    <input type="submit" value="Filter" onclick="saveChecked()" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card search-filter">
+
+                            <div class="card-header">
+                                <h4 class="card-title mb-0">Search Filter</h4>
+
+                            </div>
+
+                            <div class="card-body">
+                                <form>
+                                    <input type="submit" value="clear Filtering" style="background-color: #15767D; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />
+                                </form>
+                                <form class="brand">
+                                    <div class="py-3">
+                                        <h5 class="font-weight-bold">Therapy Type</h5>
+
+                                        <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="individual" name="therapytype" value="1" @(therapytype == "1" ? "checked" : "")> <label for="individual">     Individual therapy  </label> </div>
+                                        <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="family" name="therapytype" value="2" @(therapytype == "2" ? "checked" : "")><label for="family"> Family therapy  </label> </div>
+                                        <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="couple" name="therapytype" value="3" @(therapytype == "3" ? "checked" : "")> <label for="couple">     Couple therapy  </label> </div>
+                                        <div class="form-inline d-flex align-items-center py-1"><input type="radio" id="Counselling" name="therapytype" value="4" @(therapytype == "4" ? "checked" : "")><label for="Counselling"> Counselling therapy </label> </div>
+
+                                    </div>
+
+
+                                    <h5 class="font-weight-bold">Gender</h5>
+                                    <input type="radio" id="Male" name="Male" value="1">
+                                    <label for="Male">Male</label>
+                                    <input type="radio" id="Female" name="Male" value="0">
+                                    <label for="Female">Female</label><br>
+                                    @*<input type="submit" value="filtering" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />*@
+
+
+
+                                    <!-- rating.js file -->
+
+                                    <div class="py-3">
+                                        <h5 class="font-weight-bold">Rating</h5>
+
+                                        <div class="form-inline d-flex align-items-center py-2"> <input type="radio" id="Rating5" name="rating" value="5"> <label for="Rating5"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </label> </div>
+                                        <div class="form-inline d-flex align-items-center py-2"> <input type="radio" id="Rating4" name="rating" value="4"><label for="Rating4">  <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> </label> </div>
+                                        <div class="form-inline d-flex align-items-center py-2"><input type="radio" id="Rating3" name="rating" value="3"><label for="Rating3">  <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span></label> </div>
+                                        <div class="form-inline d-flex align-items-center py-2"><input type="radio" id="Rating2" name="rating" value="2"> <label for="Rating2"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span></label>  </div>
+                                        <div class="form-inline d-flex align-items-center py-2"><input type="radio" id="Rating1" name="rating" value="1"> <label for="Rating1"> <span class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> <span class="far fa-star px-1 text-muted"></span> </label> </div>
+                                        <input type="submit" value="filtering" style="background-color: #20BBBD; border: none; color: white; padding: 2px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 4px; cursor: pointer;" />
+
+
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+                        <!-- /Search Filter -->
+
+                    </div>
+
+                    <div class="col-md-12 col-lg-8 col-xl-9">
+
+                        <!-- Doctor Widget -->
+
+                        @{
+                            var X = 0;
+                        }
+
+                        @foreach (var item in Model.Item1)
+                        {
+                            X++;
+
+
+
+
+                            if (item.statedoctor == 1)
+                            {
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="doctor-widget">
+                                            <div class="doc-info-left">
+                                                <div class="doctor-img">
+                                                    <a href="doctor-profile.html">
+                                                        <img src="@Url.Content(@item.picdoctor)" class="img-fluid"
+                                                             alt="@item.picdoctor">
+                                                    </a>
+                                                </div>
+                                                <div class="doc-info-cont">
+                                                    <h4 class="doc-name"><a href="doctor-profile.html">Dr. @item.doctorName</a></h4>
+                                                    <p class="doc-speciality">
+                                                        Specialize in @item.specialization1.namespecialization
+                                                    </p>
+                                                    <h5 class="doc-department" style="color:black">
+                                                        @item.infodoctor
+                                                    </h5>
+                                                    <div class="rating">
+                                                        @for (int i = 0; i < item.ratingint; i++)
+                                                        {
+                                                            <i class="fas fa-star filled"></i>
+
+                                                        }
+
+                                                        @*<i class="fas fa-star filled"></i>
+                                                            <i class="fas fa-star filled"></i>
+                                                            <i class="fas fa-star filled"></i>
+                                                            <i class="fas fa-star filled"></i>*@
+
+                                                        @for (int i = 0; i < 5 - item.ratingint; i++)
+                                                        {
+                                                            <i class="fas fa-star"></i>
+                                                        }
+
+                                                        <span class="d-inline-block average-rating">(@item.ratingint)</span>
+                                                    </div>
+                                                    @{
+                                                        var Location = Model.Item1[0].locationdoctor;
+
+                                                        string[] locationname = Location.Split('_');
+
+                                                        var regionName = locationname[0];
+                                                        var locationlink = locationname[1];
+
+                                                    }
+                                                    <div class="clinic-details">
+                                                        <p class="doc-location">
+                                                            <a href="@item.locationdoctor.Split('_')[1]"><i class="fas fa-map-marker-alt"></i></a>  @item.locationdoctor.Split('_')[0]
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="clinic-services">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="doc-info-right">
+                                                <div class="clini-infos">
+                                                    <ul>
+                                                        @*<li><i class="far fa-thumbs-up"></i> 98%</li>*@
+                                                        <li><i class="far fa-comment"></i> @item.feedbacks.Where(c => c.doctorId == item.doctorId).Count() Feedback</li>
+                                                        <li><i class="fas fa-map-marker-alt"></i>  @item.locationdoctor.Split('_')[0]</li>
+                                                        <li>
+                                                            <i class="far fa-money-bill-alt"></i> @item.pricePerHour JD
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="clinic-booking">
+                                                    <a class="view-pro-btn" href="singledoctor?id=@item.doctorId">View Profile</a>
+                                                    <a class="apt-btn" href="booking?id=@item.doctorId" style="background-color: #20BBBD; border: #15767D ">Book Appointment</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>}
+                        }
+                        <!-- /Doctor Widget -->
+                        <!-- Doctor Widget -->
+
+
+                        <div class="load-more text-center">
+                            <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /Page Content -->
+        <!-- Footer -->
+        <footer class="footer" style="background-color: #15767D ">
+
+            <!-- Footer Top -->
+            <div class="footer-top">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-about">
+                                <div class="footer-logo">
+                                    <img src="assets/img/footer-logo.png" alt="logo">
+                                </div>
+                                <div class="footer-about-content">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua.
+                                    </p>
+                                    <div class="social-icon">
+                                        <ul>
+                                            <li>
+                                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Footer Widget -->
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h2 class="footer-title">For Patients</h2>
+                                <ul>
+                                    <li><a href="~/mainHome/Index"><i class="fas fa-angle-double-right"></i> Home page</a></li>
+                                    <li>
+                                        <a href="~/mainHome/About">
+                                            <i class="fas fa-angle-double-right"></i> About Us
+                                        </a>
+                                    </li>
+                                    <li><a href="~/mainHome/ConTact"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
+                                    <li>
+                                        <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Account/Login">
+                                            <i class="fas fa-angle-double-right"></i>
+                                            Log in
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+
+                        </div>
+                        @{
+
+
+                            string url = Request.Url.AbsoluteUri;
+                            ViewBag.url = url;// get the absolute URL of the current request
+                            string[] segments = url.Split('/'); // split the URL into segments
+                            string lastSegment = segments[segments.Length - 1];
+                            string beforlast = segments[segments.Length - 2];
+                            ViewBag.Last = lastSegment;
+                            ViewBag.befLast = beforlast;
+
+                        }
+                        <div class="col-lg-3 col-md-6">
+
+                            <h2 class="footer-title">Add FeedBack</h2>
+
+
+                            @using (Html.BeginForm("FeedBackWEBsite", "DoctorsInfo", FormMethod.Post))
+                            {
+                                <textarea class="form-control rounded border-color-#20BBBD shadow-sm bg-light" name="massage"></textarea>
+                                <input type="submit" name="add" class="btn btn-primary" style="background-color: #20BBBD;margin:20PX" />
+                                @*<button type="submit" class="btn btn-primary" style="background-color: #20BBBD;margin:20PX" name="add">ADD</button>*@
+                            }
+
+
+
+
+
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-contact">
+                                <h2 class="footer-title">Contact Us</h2>
+                                <div class="footer-contact-info">
+                                    <div class="footer-address">
+                                        <span><i class="fas fa-map-marker-alt"></i></span>
+                                        <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                    </div>
+                                    <p>
+                                        <i class="fas fa-phone-alt"></i>
+                                        +1 315 369 5943
+                                    </p>
+                                    <p class="mb-0">
+                                        <i class="fas fa-envelope"></i>
+                                        doccure@example.com
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- /Footer Widget -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /Footer Top -->
+            <!-- Footer Bottom -->
+            <!-- /Footer Bottom -->
+
+        </footer>
+        <!-- /Footer -->
+
+    </div>
+    <!-- /Main Wrapper -->
+    <!-- jQuery -->
+    <script src="~/doc/assets/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/doc/assets/js/popper.min.js"></script>
+    <script src="~/doc/assets/js/bootstrap.min.js"></script>
+
+    <!-- Sticky Sidebar JS -->
+    <script src="~/doc/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+    <script src="~/doc/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="~/doc/assets/plugins/select2/js/select2.min.js"></script>
+
+    <!-- Datetimepicker JS -->
+    <script src="~/doc/assets/js/moment.min.js"></script>
+    <script src="~/doc/assets/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- Fancybox JS -->
+    <script src="~/doc/assets/plugins/fancybox/jquery.fancybox.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/doc/assets/js/script.js"></script>
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+@if (TempData["swal_message"] != null && TempData["notUser"]?.ToString() != null && TempData["notUser"].ToString() != "")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+            window.location.href = "@Url.Action("Login", "Account")";
+        });
+    </script>
+}
+
+@if (TempData["swal_message"] == "Thank You for your feedback")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+       window.location.href = window.location.pathname;
+        });
+    </script>
+}
+
+
+@if (TempData["swal_message"] == "please Add Feedback before submit")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+       window.location.href = window.location.pathname;
+        });
+    </script>
+}

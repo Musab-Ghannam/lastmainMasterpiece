@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_completedoctor</title>
+</head>
+<body>
+    <div>
+        <div class="form-group">
+            <label for="specializationsearch">Specialization</label>
+            <select class="form-control" id="specializationsearch" name="specializationsearch">
+                <option value="">-- Select a specialization --</option>
+                @foreach (var specialization in Model.Specializations)
+                {
+                    <option value="@specialization.specializationId">@specialization.namespecialization</option>
+                }
+
+
+           
+            </select>
+        </div>
+
+    </div>
+</body>
+</html>

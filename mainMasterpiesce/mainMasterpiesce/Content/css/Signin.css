@@ -1,0 +1,303 @@
+﻿* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.sign-in {
+    background-image: url('../images/s11.png');
+   
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+
+
+
+
+@media(min-device-width:0px) and (max-device-width:480px) {
+    .box{
+        margin-top:100px !important;
+    }
+    .info {
+        position: relative;
+    }
+
+        .info .lock i {
+            position: absolute;
+            right: 10px;
+            top: 100%;
+            font-size: 15px;
+        }
+/*    .sign-in {
+        background-image: ur l(../Image/backGround-login-phone.jpg);
+        height: 120vh;
+    }*/
+}
+
+
+@media(min-device-width:481px) and (max-device-width:768px) {
+
+   
+  /*  .sign-in {
+        background-image: url(../Image/backGround-login-tablet.jpg);
+    }*/
+}
+
+@media(min-device-width:481px) and (max-device-width:880px) {
+
+    .log-shape {
+        display: none;
+    }
+
+    
+}
+
+.sign-in .opacity::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: #20BBBD;
+    opacity: .4;
+}
+
+
+.groups {
+    display: grid;
+    grid-template-rows: 0px auto;
+}
+
+.icon {
+    z-index: 3;
+}
+
+.sign-in nav img {
+    transform: rotate(-50deg);
+    width: 80px;
+}
+
+.sign-in .rowww {
+    display: grid;
+    grid-template-rows: 100px 100px;
+}
+
+
+
+
+.boxes .sign-shape img {
+    width: 300px;
+}
+
+.boxes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.log-shape {
+    transform: rotate(0deg);
+}
+
+    .log-shape img {
+        width:400px;
+    }
+
+
+.boxes .box {
+    background-color: white;
+    padding: 5px 15px 10px;
+    width: 470px;
+    z-index: 5;
+    position: relative;
+    border: 2px solid #20BBBD;
+    border-radius: 10px;
+}
+
+
+    .boxes .box label {
+        font-size: 13px;
+        color: #20BBBD;
+    }
+
+
+    .boxes .box p {
+        text-align: center;
+        margin-bottom: 10px;
+        color: #0C1673;
+    }
+
+#title-sign {
+    font-weight: bold;
+    font-size: 30px;
+    color: #20BBBD;
+}
+
+
+.boxes .box form .info {
+    margin-bottom: 20px;
+}
+
+    .boxes .box form .info input {
+        width:100%;
+        
+        align-items: center;
+        height: 50px;
+        padding-top: 10px;
+        border: 2px solid #0C1673;
+        border-radius: 10px;
+    }
+
+
+
+
+
+@media(min-device-width:0px) and (max-device-width:750px) {
+    
+    .boxes {
+        display: flex;
+        flex-direction: column-reverse;
+        margin-top: 10px;
+    }
+
+    .sign-in .rowww {
+        grid-template-rows: 4px 100px;
+    }
+
+
+    .log-shape img {
+        width: 245px;
+    }
+
+    .groups {
+        grid-template-rows: 1px auto;
+    }
+
+
+
+  
+
+    #title-sign {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .boxes .box form .info input {
+       /* width: 100%;
+        height: 50px;
+        padding-top: 10px;
+        border: 2px solid #0C1673;*/
+    }
+
+    .sign-in .rowww {
+        grid-template-rows: 100px 100px;
+    }
+}
+
+
+.box .forget {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+    .box .forget a {
+        text-decoration: none;
+        color: #20BBBD;
+    }
+
+.boxes .sub {
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+}
+
+
+    .boxes .sub a {
+        text-decoration: none;
+        background-color: #0C1673;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 3px;
+        font-size: 20px;
+    }
+/* .boxes .agree{
+    text-align: center;
+    padding-top: 20px;
+   }
+   .agree #blue{
+    color: #1115BB;
+    font-weight: bold;
+    font-size: 14px;
+   } */
+.info {
+    position: relative;
+}
+
+    .info .lock i {
+        position: absolute;
+        right: 10px;
+        top: 60%;
+        font-size: 15px;
+    }
+
+.or-sign-up {
+    font-size: 15px;
+    padding-top: 15px;
+    color: #20BBBD;
+}
+    .or-sign-up p {
+        color: #20BBBD;
+    }
+    .box .social {
+        display: flex;
+        justify-content: center;
+    }
+
+
+
+    .box .social i {
+        font-size: 23px;
+        padding-left: 10px;
+        padding-right: 10px;
+        align-items:center;
+    }
+
+#inst img {
+    width: 23px;
+    border-radius: 2px;
+}
+
+#ema img {
+    color: wheat;
+    width: 26px;
+    border-radius: 2px;
+}
+
+.remember a {
+    text-decoration: none;
+    color: #20BBBD;
+}
+
+.remember p {
+    color: #20BBBD;
+}
+
+#loginButton {
+    background-color: #20BBBD;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#notcorrect {
+    color: red;
+    font-size: 10px;
+    display: none;
+}

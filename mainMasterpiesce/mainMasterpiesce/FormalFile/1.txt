@@ -1,0 +1,39 @@
+<body>
+    <form id="form1" runat="server">
+       <div class="container">
+<div class="row ng-scope">
+    <div class="col-md-3 col-md-push-9">
+        <h4>Results <span class="fw-semi-bold">Filtering</span></h4>
+        <p class="text-muted fs-mini">You can filter your results here</p><br />
+<asp:Label ID="Label1" runat="server" ></asp:Label>
+       search <br /><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox><br />
+        sort by price: <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+           <asp:ListItem Value="no">not matter</asp:ListItem>
+         <asp:ListItem Value="DESC"> DESC</asp:ListItem>
+       <asp:ListItem Value="ASC"> ASC</asp:ListItem>
+        </asp:RadioButtonList><br />
+         <asp:CheckBox ID="CheckBox1" Text="choos a specific category" runat="server" AutoPostBack="true"  OnCheckedChanged="CheckBox1_CheckedChanged" /> 
+           <asp:DropDownList runat="server" Enabled="false"   ID="cat">
+           </asp:DropDownList> 
+        <br /><br />
+    <asp:CheckBox ID="CheckBox2" Text="choos a specific auther" runat="server" AutoPostBack="true"  OnCheckedChanged="CheckBox2_CheckedChanged" /> 
+  <br /> 
+           <asp:DropDownList  Enabled="false" runat="server" ID="auth">
+
+           </asp:DropDownList> <br /><br />
+       specify min price <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="true"  OnTextChanged="TextBox1_TextChanged" TextMode="Number"></asp:TextBox><br />
+    <asp:Label ID="Label2" runat="server" ></asp:Label><br />
+        specify max price<asp:TextBox ID="TextBox2" runat="server" AutoPostBack="true" OnTextChanged="TextBox2_TextChanged"  TextMode="Number"></asp:TextBox><br /><asp:Label ID="Label3" runat="server" ></asp:Label><br />
+<br />
+        <asp:Button ID="Button1"   runat="server" Text="apply filters" OnClick="Button1_Click" /><br /><br />
+            <asp:HyperLink ID="HyperLink1" NavigateUrl="http://localhost:56508/EXAMPLE.aspx" runat="server">Back to home page</asp:HyperLink>
+
+    </div>
+    <div class="col-md-9 col-md-pull-3" id="mydiv" runat="server"/>
+
+      
+      
+    </div>
+</div>
+    </form>
+</body>

@@ -1,0 +1,94 @@
+﻿@model mainMasterpiesce.Models.specialization
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+
+<style>
+    .specialization-description {
+        width: 10px;
+ 
+    }
+</style>
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Appointments</h3></a>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item" id="prev"><a href="#" onclick="toggleDisplay('previous-appointments')">Previous Appointment</a></li>
+                        <li class="breadcrumb-item" id="upc"><a href="#" onclick="toggleDisplay('upcoming-appointments')">upcoming-appointments</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="upcoming-appointments" class="appointments">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.namespecialization)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.namespecialization)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.descriptionspecialization)
+                                    </dt>
+                                    <dd>
+                                
+                                        <p class="specialization-description" style="width: 10px !important;">
+                                            @*@Html.DisplayFor(model => model.descriptionspecialization)*@
+                                            @ViewBag.desc
+                                            <br />
+                                            @ViewBag.desc2
+                                        </p>
+                              
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.picturespecialization)
+                                    </dt>
+                        
+                                    <dd>
+                                 
+                                        <img src=" ~/Content/images/@Html.DisplayFor(model => model.picturespecialization)" alt="@Html.DisplayFor(model => model.picturespecialization)"  width="100"/>
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.videospecializaion)
+                                    </dt>
+
+                                    <dd>
+
+                                        <iframe width="560" height="315" src="@Model.videospecializaion"
+                                                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    
+                                    </dd>
+
+                                </dl>
+                            </div>
+                            <p>
+                                @Html.ActionLink("Edit", "Edit", new { id = Model.specializationId }) |
+                                @Html.ActionLink("Back to List", "Index")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,1313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FindingpeaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="appointments">
+          <Key>
+            <PropertyRef Name="apointmentId" />
+          </Key>
+          <Property Name="apointmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patientId" Type="int" />
+          <Property Name="doctorId" Type="int" />
+          <Property Name="starttime" Type="varchar(max)" />
+          <Property Name="endtime" Type="varchar(max)" />
+          <Property Name="doctornotes" Type="varchar(max)" />
+          <Property Name="patientnotes" Type="varchar(max)" />
+          <Property Name="apointmentprice" Type="int" />
+          <Property Name="rating" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BookingDate" Type="date" />
+          <Property Name="dosage" Type="varchar" MaxLength="255" />
+          <Property Name="dosagefrequency" Type="varchar" MaxLength="255" />
+          <Property Name="medicationinstructions" Type="varchar(max)" />
+          <Property Name="confirmappointment" Type="int" />
+          <Property Name="JoinUrl" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="notes" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="doctors">
+          <Key>
+            <PropertyRef Name="doctorId" />
+          </Key>
+          <Property Name="doctorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="locationdoctor" Type="varchar(max)" />
+          <Property Name="doctorName" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="150" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="100" />
+          <Property Name="qualiification" Type="text" />
+          <Property Name="specialization" Type="varchar" MaxLength="250" />
+          <Property Name="startedate" Type="datetime" />
+          <Property Name="idCardfile" Type="varchar(max)" />
+          <Property Name="picdoctor" Type="varchar" MaxLength="250" />
+          <Property Name="certificationfile" Type="varchar(max)" />
+          <Property Name="birthfile" Type="varchar(max)" />
+          <Property Name="specializationId" Type="int" />
+          <Property Name="statedoctor" Type="int" />
+          <Property Name="earningDoctortotal" Type="float" />
+          <Property Name="AmountsDue" Type="float" />
+          <Property Name="IBAN" Type="varchar(max)" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="infodoctor" Type="text" />
+          <Property Name="pricePerHour" Type="float" />
+          <Property Name="ratingdoctor" Type="float" />
+          <Property Name="ratingint" Type="int" />
+          <Property Name="experience" Type="varchar(max)" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="addresss" Type="varchar(max)" />
+          <Property Name="educationdetails" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="feedbackId" />
+          </Key>
+          <Property Name="feedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctorId" Type="int" />
+          <Property Name="patientId" Type="int" />
+          <Property Name="rating" Type="int" />
+          <Property Name="comment" Type="text" />
+          <Property Name="title" Type="text" />
+          <Property Name="statefeedback" Type="int" />
+          <Property Name="feedbacktime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="feedbackwebsite">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patientId" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="message" Type="varchar(max)" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="statee" Type="int" />
+        </EntityType>
+        <EntityType Name="NotAvailableTime">
+          <Key>
+            <PropertyRef Name="notavailableId" />
+          </Key>
+          <Property Name="notavailableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctorId" Type="int" />
+          <Property Name="timenotavailble" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="patient_favorite_doctors">
+          <Key>
+            <PropertyRef Name="patientid" />
+            <PropertyRef Name="doctorid" />
+          </Key>
+          <Property Name="patientid" Type="int" Nullable="false" />
+          <Property Name="doctorid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="patients">
+          <Key>
+            <PropertyRef Name="PatiantId" />
+          </Key>
+          <Property Name="PatiantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="locationpatent" Type="varchar(max)" />
+          <Property Name="picpatient" Type="varchar" MaxLength="250" />
+          <Property Name="patientName" Type="varchar" MaxLength="100" />
+          <Property Name="patientemail" Type="varchar" MaxLength="250" />
+          <Property Name="startedate" Type="datetime" />
+          <Property Name="wallet" Type="float" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="locationdetails" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="specializations">
+          <Key>
+            <PropertyRef Name="specializationId" />
+          </Key>
+          <Property Name="specializationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="namespecialization" Type="varchar" MaxLength="250" />
+          <Property Name="descriptionspecialization" Type="varchar(max)" />
+          <Property Name="picturespecialization" Type="varchar(max)" />
+          <Property Name="videospecializaion" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="transactionsdoctor">
+          <Key>
+            <PropertyRef Name="transDoctorId" />
+          </Key>
+          <Property Name="transDoctorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctorId" Type="int" />
+          <Property Name="transactiontype" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="float" />
+          <Property Name="paymentmethod" Type="varchar" MaxLength="250" />
+          <Property Name="transactionDate" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="Tansactiontime" Type="datetime" />
+          <Property Name="DOctorName" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="transactionspatient">
+          <Key>
+            <PropertyRef Name="transcpatientId" />
+          </Key>
+          <Property Name="transcpatientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatiantId" Type="int" />
+          <Property Name="transpatienttiontype" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="float" />
+          <Property Name="paymentmethod" Type="varchar" MaxLength="250" />
+          <Property Name="transactionDate" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="text" />
+          <Property Name="Tansactiontime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__appointme__docto__7C4F7684">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="0..1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__appointme__patie__7B5B524B">
+          <End Role="patients" Type="Self.patients" Multiplicity="0..1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__doctors__Id__778AC167">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="doctors" Type="Self.doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="doctors">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__doctors__special__787EE5A0">
+          <End Role="specializations" Type="Self.specializations" Multiplicity="0..1" />
+          <End Role="doctors" Type="Self.doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specializations">
+              <PropertyRef Name="specializationId" />
+            </Principal>
+            <Dependent Role="doctors">
+              <PropertyRef Name="specializationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedback__doctor__339FAB6E">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="0..1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedback__patien__3493CFA7">
+          <End Role="patients" Type="Self.patients" Multiplicity="0..1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedbackw__patie__2610A626">
+          <End Role="patients" Type="Self.patients" Multiplicity="0..1" />
+          <End Role="feedbackwebsite" Type="Self.feedbackwebsite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="feedbackwebsite">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NotAvaila__docto__6166761E">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="0..1" />
+          <End Role="NotAvailableTime" Type="Self.NotAvailableTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="NotAvailableTime">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__patient_f__docto__07C12930">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="1" />
+          <End Role="patient_favorite_doctors" Type="Self.patient_favorite_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="patient_favorite_doctors">
+              <PropertyRef Name="doctorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__patient_f__patie__06CD04F7">
+          <End Role="patients" Type="Self.patients" Multiplicity="1" />
+          <End Role="patient_favorite_doctors" Type="Self.patient_favorite_doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="patient_favorite_doctors">
+              <PropertyRef Name="patientid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__patients__Id__70DDC3D8">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="patients" Type="Self.patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="patients">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacti__docto__03F0984C">
+          <End Role="doctors" Type="Self.doctors" Multiplicity="0..1" />
+          <End Role="transactionsdoctor" Type="Self.transactionsdoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctors">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="transactionsdoctor">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacti__Patia__00200768">
+          <End Role="patients" Type="Self.patients" Multiplicity="0..1" />
+          <End Role="transactionspatient" Type="Self.transactionspatient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patients">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="transactionspatient">
+              <PropertyRef Name="PatiantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FindingpeaceModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctors" EntityType="Self.doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedbackwebsite" EntityType="Self.feedbackwebsite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotAvailableTime" EntityType="Self.NotAvailableTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patient_favorite_doctors" EntityType="Self.patient_favorite_doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patients" EntityType="Self.patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="specializations" EntityType="Self.specializations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactionsdoctor" EntityType="Self.transactionsdoctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactionspatient" EntityType="Self.transactionspatient" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__appointme__docto__7C4F7684" Association="Self.FK__appointme__docto__7C4F7684">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__appointme__patie__7B5B524B" Association="Self.FK__appointme__patie__7B5B524B">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__doctors__Id__778AC167" Association="Self.FK__doctors__Id__778AC167">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="doctors" EntitySet="doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__doctors__special__787EE5A0" Association="Self.FK__doctors__special__787EE5A0">
+            <End Role="specializations" EntitySet="specializations" />
+            <End Role="doctors" EntitySet="doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedback__doctor__339FAB6E" Association="Self.FK__feedback__doctor__339FAB6E">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedback__patien__3493CFA7" Association="Self.FK__feedback__patien__3493CFA7">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedbackw__patie__2610A626" Association="Self.FK__feedbackw__patie__2610A626">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="feedbackwebsite" EntitySet="feedbackwebsite" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NotAvaila__docto__6166761E" Association="Self.FK__NotAvaila__docto__6166761E">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="NotAvailableTime" EntitySet="NotAvailableTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK__patient_f__docto__07C12930" Association="Self.FK__patient_f__docto__07C12930">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="patient_favorite_doctors" EntitySet="patient_favorite_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__patient_f__patie__06CD04F7" Association="Self.FK__patient_f__patie__06CD04F7">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="patient_favorite_doctors" EntitySet="patient_favorite_doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__patients__Id__70DDC3D8" Association="Self.FK__patients__Id__70DDC3D8">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="patients" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacti__docto__03F0984C" Association="Self.FK__transacti__docto__03F0984C">
+            <End Role="doctors" EntitySet="doctors" />
+            <End Role="transactionsdoctor" EntitySet="transactionsdoctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacti__Patia__00200768" Association="Self.FK__transacti__Patia__00200768">
+            <End Role="patients" EntitySet="patients" />
+            <End Role="transactionspatient" EntitySet="transactionspatient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FindingpeaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FindingpeaceEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="FindingpeaceModel.C__MigrationHistory" />
+          <EntitySet Name="appointments" EntityType="FindingpeaceModel.appointment" />
+          <EntitySet Name="AspNetRoles" EntityType="FindingpeaceModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="FindingpeaceModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="FindingpeaceModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUserRoles" EntityType="FindingpeaceModel.AspNetUserRole" />
+          <EntitySet Name="AspNetUsers" EntityType="FindingpeaceModel.AspNetUser" />
+          <EntitySet Name="doctors" EntityType="FindingpeaceModel.doctor" />
+          <EntitySet Name="feedbacks" EntityType="FindingpeaceModel.feedback" />
+          <EntitySet Name="feedbackwebsites" EntityType="FindingpeaceModel.feedbackwebsite" />
+          <EntitySet Name="NotAvailableTimes" EntityType="FindingpeaceModel.NotAvailableTime" />
+          <EntitySet Name="patients" EntityType="FindingpeaceModel.patient" />
+          <EntitySet Name="specializations" EntityType="FindingpeaceModel.specialization" />
+          <EntitySet Name="sysdiagrams" EntityType="FindingpeaceModel.sysdiagram" />
+          <EntitySet Name="transactionsdoctors" EntityType="FindingpeaceModel.transactionsdoctor" />
+          <EntitySet Name="transactionspatients" EntityType="FindingpeaceModel.transactionspatient" />
+          <AssociationSet Name="FK__appointme__docto__7C4F7684" Association="FindingpeaceModel.FK__appointme__docto__7C4F7684">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="appointment" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__appointme__patie__7B5B524B" Association="FindingpeaceModel.FK__appointme__patie__7B5B524B">
+            <End Role="patient" EntitySet="patients" />
+            <End Role="appointment" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="FindingpeaceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="FindingpeaceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__doctors__Id__778AC167" Association="FindingpeaceModel.FK__doctors__Id__778AC167">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="doctor" EntitySet="doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__patients__Id__70DDC3D8" Association="FindingpeaceModel.FK__patients__Id__70DDC3D8">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="patient" EntitySet="patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__doctors__special__787EE5A0" Association="FindingpeaceModel.FK__doctors__special__787EE5A0">
+            <End Role="specialization" EntitySet="specializations" />
+            <End Role="doctor" EntitySet="doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedback__doctor__339FAB6E" Association="FindingpeaceModel.FK__feedback__doctor__339FAB6E">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="feedback" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NotAvaila__docto__6166761E" Association="FindingpeaceModel.FK__NotAvaila__docto__6166761E">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="NotAvailableTime" EntitySet="NotAvailableTimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacti__docto__03F0984C" Association="FindingpeaceModel.FK__transacti__docto__03F0984C">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="transactionsdoctor" EntitySet="transactionsdoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedback__patien__3493CFA7" Association="FindingpeaceModel.FK__feedback__patien__3493CFA7">
+            <End Role="patient" EntitySet="patients" />
+            <End Role="feedback" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feedbackw__patie__2610A626" Association="FindingpeaceModel.FK__feedbackw__patie__2610A626">
+            <End Role="patient" EntitySet="patients" />
+            <End Role="feedbackwebsite" EntitySet="feedbackwebsites" />
+          </AssociationSet>
+          <AssociationSet Name="FK__transacti__Patia__00200768" Association="FindingpeaceModel.FK__transacti__Patia__00200768">
+            <End Role="patient" EntitySet="patients" />
+            <End Role="transactionspatient" EntitySet="transactionspatients" />
+          </AssociationSet>
+          <AssociationSet Name="patient_favorite_doctors" Association="FindingpeaceModel.patient_favorite_doctors">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="patient" EntitySet="patients" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="appointment">
+          <Key>
+            <PropertyRef Name="apointmentId" />
+          </Key>
+          <Property Name="apointmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patientId" Type="Int32" />
+          <Property Name="doctorId" Type="Int32" />
+          <Property Name="starttime" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="endtime" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="doctornotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="patientnotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="apointmentprice" Type="Int32" />
+          <Property Name="rating" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BookingDate" Type="DateTime" Precision="0" />
+          <Property Name="dosage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dosagefrequency" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="medicationinstructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="confirmappointment" Type="Int32" />
+          <Property Name="JoinUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="doctor" Relationship="FindingpeaceModel.FK__appointme__docto__7C4F7684" FromRole="appointment" ToRole="doctor" />
+          <NavigationProperty Name="patient" Relationship="FindingpeaceModel.FK__appointme__patie__7B5B524B" FromRole="appointment" ToRole="patient" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRole" ToRole="AspNetUserRole" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="FindingpeaceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="FindingpeaceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetRole" Relationship="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRole" ToRole="AspNetRole" />
+          <NavigationProperty Name="AspNetUser" Relationship="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="FindingpeaceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="FindingpeaceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserRole" />
+          <NavigationProperty Name="doctors" Relationship="FindingpeaceModel.FK__doctors__Id__778AC167" FromRole="AspNetUser" ToRole="doctor" />
+          <NavigationProperty Name="patients" Relationship="FindingpeaceModel.FK__patients__Id__70DDC3D8" FromRole="AspNetUser" ToRole="patient" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="doctorId" />
+          </Key>
+          <Property Name="doctorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="locationdoctor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="doctorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qualiification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="specialization" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="startedate" Type="DateTime" Precision="3" />
+          <Property Name="idCardfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="picdoctor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="certificationfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="birthfile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="specializationId" Type="Int32" />
+          <Property Name="statedoctor" Type="Int32" />
+          <Property Name="earningDoctortotal" Type="Double" />
+          <Property Name="AmountsDue" Type="Double" />
+          <Property Name="IBAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="infodoctor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="pricePerHour" Type="Double" />
+          <Property Name="ratingdoctor" Type="Double" />
+          <Property Name="ratingint" Type="Int32" />
+          <Property Name="experience" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="addresss" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="educationdetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="appointments" Relationship="FindingpeaceModel.FK__appointme__docto__7C4F7684" FromRole="doctor" ToRole="appointment" />
+          <NavigationProperty Name="AspNetUser" Relationship="FindingpeaceModel.FK__doctors__Id__778AC167" FromRole="doctor" ToRole="AspNetUser" />
+          <NavigationProperty Name="specialization1" Relationship="FindingpeaceModel.FK__doctors__special__787EE5A0" FromRole="doctor" ToRole="specialization" />
+          <NavigationProperty Name="feedbacks" Relationship="FindingpeaceModel.FK__feedback__doctor__339FAB6E" FromRole="doctor" ToRole="feedback" />
+          <NavigationProperty Name="NotAvailableTimes" Relationship="FindingpeaceModel.FK__NotAvaila__docto__6166761E" FromRole="doctor" ToRole="NotAvailableTime" />
+          <NavigationProperty Name="transactionsdoctors" Relationship="FindingpeaceModel.FK__transacti__docto__03F0984C" FromRole="doctor" ToRole="transactionsdoctor" />
+          <NavigationProperty Name="patients" Relationship="FindingpeaceModel.patient_favorite_doctors" FromRole="doctor" ToRole="patient" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="feedbackId" />
+          </Key>
+          <Property Name="feedbackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctorId" Type="Int32" />
+          <Property Name="patientId" Type="Int32" />
+          <Property Name="rating" Type="Int32" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="statefeedback" Type="Int32" />
+          <Property Name="feedbacktime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="doctor" Relationship="FindingpeaceModel.FK__feedback__doctor__339FAB6E" FromRole="feedback" ToRole="doctor" />
+          <NavigationProperty Name="patient" Relationship="FindingpeaceModel.FK__feedback__patien__3493CFA7" FromRole="feedback" ToRole="patient" />
+        </EntityType>
+        <EntityType Name="feedbackwebsite">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patientId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="statee" Type="Int32" />
+          <NavigationProperty Name="patient" Relationship="FindingpeaceModel.FK__feedbackw__patie__2610A626" FromRole="feedbackwebsite" ToRole="patient" />
+        </EntityType>
+        <EntityType Name="NotAvailableTime">
+          <Key>
+            <PropertyRef Name="notavailableId" />
+          </Key>
+          <Property Name="notavailableId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctorId" Type="Int32" />
+          <Property Name="timenotavailble" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="doctor" Relationship="FindingpeaceModel.FK__NotAvaila__docto__6166761E" FromRole="NotAvailableTime" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="patient">
+          <Key>
+            <PropertyRef Name="PatiantId" />
+          </Key>
+          <Property Name="PatiantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="locationpatent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="picpatient" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="patientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="patientemail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="startedate" Type="DateTime" Precision="3" />
+          <Property Name="wallet" Type="Double" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="locationdetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="appointments" Relationship="FindingpeaceModel.FK__appointme__patie__7B5B524B" FromRole="patient" ToRole="appointment" />
+          <NavigationProperty Name="AspNetUser" Relationship="FindingpeaceModel.FK__patients__Id__70DDC3D8" FromRole="patient" ToRole="AspNetUser" />
+          <NavigationProperty Name="feedbacks" Relationship="FindingpeaceModel.FK__feedback__patien__3493CFA7" FromRole="patient" ToRole="feedback" />
+          <NavigationProperty Name="feedbackwebsites" Relationship="FindingpeaceModel.FK__feedbackw__patie__2610A626" FromRole="patient" ToRole="feedbackwebsite" />
+          <NavigationProperty Name="transactionspatients" Relationship="FindingpeaceModel.FK__transacti__Patia__00200768" FromRole="patient" ToRole="transactionspatient" />
+          <NavigationProperty Name="doctors" Relationship="FindingpeaceModel.patient_favorite_doctors" FromRole="patient" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="specialization">
+          <Key>
+            <PropertyRef Name="specializationId" />
+          </Key>
+          <Property Name="specializationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="namespecialization" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="descriptionspecialization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="picturespecialization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="videospecializaion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="doctors" Relationship="FindingpeaceModel.FK__doctors__special__787EE5A0" FromRole="specialization" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="transactionsdoctor">
+          <Key>
+            <PropertyRef Name="transDoctorId" />
+          </Key>
+          <Property Name="transDoctorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctorId" Type="Int32" />
+          <Property Name="transactiontype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="paymentmethod" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="transactionDate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tansactiontime" Type="DateTime" Precision="3" />
+          <Property Name="DOctorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="doctor" Relationship="FindingpeaceModel.FK__transacti__docto__03F0984C" FromRole="transactionsdoctor" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="transactionspatient">
+          <Key>
+            <PropertyRef Name="transcpatientId" />
+          </Key>
+          <Property Name="transcpatientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatiantId" Type="Int32" />
+          <Property Name="transpatienttiontype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="paymentmethod" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="transactionDate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tansactiontime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="patient" Relationship="FindingpeaceModel.FK__transacti__Patia__00200768" FromRole="transactionspatient" ToRole="patient" />
+        </EntityType>
+        <Association Name="FK__appointme__docto__7C4F7684">
+          <End Type="FindingpeaceModel.doctor" Role="doctor" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.appointment" Role="appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__appointme__patie__7B5B524B">
+          <End Type="FindingpeaceModel.patient" Role="patient" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.appointment" Role="appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Type="FindingpeaceModel.AspNetRole" Role="AspNetRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FindingpeaceModel.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="FindingpeaceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FindingpeaceModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="FindingpeaceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FindingpeaceModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Type="FindingpeaceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FindingpeaceModel.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__doctors__Id__778AC167">
+          <End Type="FindingpeaceModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.doctor" Role="doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__patients__Id__70DDC3D8">
+          <End Type="FindingpeaceModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.patient" Role="patient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="patient">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__doctors__special__787EE5A0">
+          <End Type="FindingpeaceModel.specialization" Role="specialization" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.doctor" Role="doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="specialization">
+              <PropertyRef Name="specializationId" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="specializationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedback__doctor__339FAB6E">
+          <End Type="FindingpeaceModel.doctor" Role="doctor" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.feedback" Role="feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NotAvaila__docto__6166761E">
+          <End Type="FindingpeaceModel.doctor" Role="doctor" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.NotAvailableTime" Role="NotAvailableTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="NotAvailableTime">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacti__docto__03F0984C">
+          <End Type="FindingpeaceModel.doctor" Role="doctor" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.transactionsdoctor" Role="transactionsdoctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="doctorId" />
+            </Principal>
+            <Dependent Role="transactionsdoctor">
+              <PropertyRef Name="doctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedback__patien__3493CFA7">
+          <End Type="FindingpeaceModel.patient" Role="patient" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.feedback" Role="feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feedbackw__patie__2610A626">
+          <End Type="FindingpeaceModel.patient" Role="patient" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.feedbackwebsite" Role="feedbackwebsite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="feedbackwebsite">
+              <PropertyRef Name="patientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__transacti__Patia__00200768">
+          <End Type="FindingpeaceModel.patient" Role="patient" Multiplicity="0..1" />
+          <End Type="FindingpeaceModel.transactionspatient" Role="transactionspatient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="PatiantId" />
+            </Principal>
+            <Dependent Role="transactionspatient">
+              <PropertyRef Name="PatiantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="patient_favorite_doctors">
+          <End Type="FindingpeaceModel.doctor" Role="doctor" Multiplicity="*" />
+          <End Type="FindingpeaceModel.patient" Role="patient" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FindingpeaceModelStoreContainer" CdmEntityContainer="FindingpeaceEntities1">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="FindingpeaceModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="FindingpeaceModel.appointment">
+              <MappingFragment StoreEntitySet="appointments">
+                <ScalarProperty Name="JoinUrl" ColumnName="JoinUrl" />
+                <ScalarProperty Name="confirmappointment" ColumnName="confirmappointment" />
+                <ScalarProperty Name="medicationinstructions" ColumnName="medicationinstructions" />
+                <ScalarProperty Name="dosagefrequency" ColumnName="dosagefrequency" />
+                <ScalarProperty Name="dosage" ColumnName="dosage" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="apointmentprice" ColumnName="apointmentprice" />
+                <ScalarProperty Name="patientnotes" ColumnName="patientnotes" />
+                <ScalarProperty Name="doctornotes" ColumnName="doctornotes" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="apointmentId" ColumnName="apointmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="FindingpeaceModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRoles">
+            <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUserRole">
+              <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctors">
+            <EntityTypeMapping TypeName="FindingpeaceModel.doctor">
+              <MappingFragment StoreEntitySet="doctors">
+                <ScalarProperty Name="educationdetails" ColumnName="educationdetails" />
+                <ScalarProperty Name="addresss" ColumnName="addresss" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="ratingint" ColumnName="ratingint" />
+                <ScalarProperty Name="ratingdoctor" ColumnName="ratingdoctor" />
+                <ScalarProperty Name="pricePerHour" ColumnName="pricePerHour" />
+                <ScalarProperty Name="infodoctor" ColumnName="infodoctor" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="AmountsDue" ColumnName="AmountsDue" />
+                <ScalarProperty Name="earningDoctortotal" ColumnName="earningDoctortotal" />
+                <ScalarProperty Name="statedoctor" ColumnName="statedoctor" />
+                <ScalarProperty Name="specializationId" ColumnName="specializationId" />
+                <ScalarProperty Name="birthfile" ColumnName="birthfile" />
+                <ScalarProperty Name="certificationfile" ColumnName="certificationfile" />
+                <ScalarProperty Name="picdoctor" ColumnName="picdoctor" />
+                <ScalarProperty Name="idCardfile" ColumnName="idCardfile" />
+                <ScalarProperty Name="startedate" ColumnName="startedate" />
+                <ScalarProperty Name="specialization" ColumnName="specialization" />
+                <ScalarProperty Name="qualiification" ColumnName="qualiification" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="doctorName" ColumnName="doctorName" />
+                <ScalarProperty Name="locationdoctor" ColumnName="locationdoctor" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedbacks">
+            <EntityTypeMapping TypeName="FindingpeaceModel.feedback">
+              <MappingFragment StoreEntitySet="feedback">
+                <ScalarProperty Name="feedbacktime" ColumnName="feedbacktime" />
+                <ScalarProperty Name="statefeedback" ColumnName="statefeedback" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="feedbackId" ColumnName="feedbackId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedbackwebsites">
+            <EntityTypeMapping TypeName="FindingpeaceModel.feedbackwebsite">
+              <MappingFragment StoreEntitySet="feedbackwebsite">
+                <ScalarProperty Name="statee" ColumnName="statee" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="patientId" ColumnName="patientId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotAvailableTimes">
+            <EntityTypeMapping TypeName="FindingpeaceModel.NotAvailableTime">
+              <MappingFragment StoreEntitySet="NotAvailableTime">
+                <ScalarProperty Name="timenotavailble" ColumnName="timenotavailble" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="notavailableId" ColumnName="notavailableId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patients">
+            <EntityTypeMapping TypeName="FindingpeaceModel.patient">
+              <MappingFragment StoreEntitySet="patients">
+                <ScalarProperty Name="locationdetails" ColumnName="locationdetails" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="wallet" ColumnName="wallet" />
+                <ScalarProperty Name="startedate" ColumnName="startedate" />
+                <ScalarProperty Name="patientemail" ColumnName="patientemail" />
+                <ScalarProperty Name="patientName" ColumnName="patientName" />
+                <ScalarProperty Name="picpatient" ColumnName="picpatient" />
+                <ScalarProperty Name="locationpatent" ColumnName="locationpatent" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PatiantId" ColumnName="PatiantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="specializations">
+            <EntityTypeMapping TypeName="FindingpeaceModel.specialization">
+              <MappingFragment StoreEntitySet="specializations">
+                <ScalarProperty Name="videospecializaion" ColumnName="videospecializaion" />
+                <ScalarProperty Name="picturespecialization" ColumnName="picturespecialization" />
+                <ScalarProperty Name="descriptionspecialization" ColumnName="descriptionspecialization" />
+                <ScalarProperty Name="namespecialization" ColumnName="namespecialization" />
+                <ScalarProperty Name="specializationId" ColumnName="specializationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FindingpeaceModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactionsdoctors">
+            <EntityTypeMapping TypeName="FindingpeaceModel.transactionsdoctor">
+              <MappingFragment StoreEntitySet="transactionsdoctor">
+                <ScalarProperty Name="DOctorName" ColumnName="DOctorName" />
+                <ScalarProperty Name="Tansactiontime" ColumnName="Tansactiontime" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+                <ScalarProperty Name="paymentmethod" ColumnName="paymentmethod" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="transactiontype" ColumnName="transactiontype" />
+                <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+                <ScalarProperty Name="transDoctorId" ColumnName="transDoctorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactionspatients">
+            <EntityTypeMapping TypeName="FindingpeaceModel.transactionspatient">
+              <MappingFragment StoreEntitySet="transactionspatient">
+                <ScalarProperty Name="Tansactiontime" ColumnName="Tansactiontime" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+                <ScalarProperty Name="paymentmethod" ColumnName="paymentmethod" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="transpatienttiontype" ColumnName="transpatienttiontype" />
+                <ScalarProperty Name="PatiantId" ColumnName="PatiantId" />
+                <ScalarProperty Name="transcpatientId" ColumnName="transcpatientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="patient_favorite_doctors" TypeName="FindingpeaceModel.patient_favorite_doctors" StoreEntitySet="patient_favorite_doctors">
+            <EndProperty Name="patient">
+              <ScalarProperty Name="PatiantId" ColumnName="patientid" />
+            </EndProperty>
+            <EndProperty Name="doctor">
+              <ScalarProperty Name="doctorId" ColumnName="doctorid" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

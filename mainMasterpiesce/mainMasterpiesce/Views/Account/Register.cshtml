@@ -1,0 +1,401 @@
+﻿@model mainMasterpiesce.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>signup</title>
+    <script src="https://kit.fontawesome.com/cd43dd9542.js" crossorigin="anonymous"></script>
+    <link href="~/Content/css/signup.css" rel="stylesheet" />
+    <style>
+
+        #navbar {
+            z-index: 1000000;
+        }
+
+        .boxes .box form .info .Email-address {
+            padding: 10px;
+            border: 2px solid #20BBBD;
+            border-radius: 10px;
+            width: 250px !important
+        }
+
+        .now {
+            width: 250px !important;
+            align-items: center;
+        }
+
+        .text-danger {
+            /*  margin-top:-50px;*/
+        }
+
+        .info label {
+            color: black;
+        }
+
+
+        /*try*/
+        .prof {
+            font-size: 17px;
+        }
+
+        #radios label {
+            cursor: pointer;
+            position: relative;
+        }
+
+            #radios label + label {
+                margin-left: 15px;
+            }
+
+        #radios input[type="radio"] {
+            opacity: 0; /* hidden but still tabable */
+            position: absolute;
+        }
+
+            #radios input[type="radio"] + span {
+                font-family: 'Material Icons';
+                color: black;
+                border-radius: 50%;
+                padding: 12px;
+                transition: all 0.4s;
+                -webkit-transition: all 0.4s;
+            }
+
+        input[type="radio"]:checked + span {
+            color: #20BBBD;
+            background-color: #20BBBD;
+        }
+
+        input[type="radio"]:focus + span {
+            color: #fff;
+        }
+
+        /* ================ TOOLTIPS ================= */
+
+        #radios label:hover::before {
+            content: attr(for);
+            font-family: Roboto, -apple-system, sans-serif;
+            text-transform: capitalize;
+            font-size: 11px;
+            position: absolute;
+            top: 170%;
+            left: 0;
+            right: 0;
+            opacity: 0.75;
+            background-color: #323232;
+            color: #fff;
+            padding: 4px;
+            border-radius: 3px;
+            display: block;
+        }
+        /*try*/
+    </style>
+</head>
+
+
+
+
+
+@RenderPage("~/Views/Shared/_navbar.cshtml")
+
+
+
+
+
+
+<div>
+
+    <div class="containerr">
+
+
+        <div class="sign-up">
+
+            <div class="opacity">
+
+
+
+
+                <div class="groups">
+                    <div class="empty-row"></div>
+
+                    <div class="boxes">
+
+                        @*SignUpBoxes*@
+                        <div class="box" style="margin-top:80px">
+
+                            @*@using (Html.BeginForm("Edit", "DoctorsInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+
+
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                <div class="container" style="text-align:center;">
+                                    <p>Sign up as</p>
+                                    <div id="radios" style="margin-right:75px">
+                                        <label for="user" class="material-icons">
+                                            <input type="radio" name="Isuser" id="user" value="visitor" checked />
+                                            <span><i class="fa-solid fa-user prof"></i></span>
+                                        </label>
+                                        <label for="doctor" class="material-icons">
+                                            <input type="radio" name="Isuser" id="doctor" value="doctor" />
+                                            <span><i class="fa-solid fa-user-doctor prof"></i></span>
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="info">
+                                    <label>Your Name</label>
+                                    <input type="text" id="lname" name="lname" required class="now">
+
+                                </div>
+
+                                <div class="info">
+
+                                    <label>E-mail Address</label>
+
+                                    <div class="lock">
+                                        @Html.TextBoxFor(m => m.Email, "emailHelper", new { @class = "Email-address", name = "emailHelper" })
+
+
+
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                <div class="info">
+                                    <label>phone Number</label>
+                                    <div class="lock">
+                                        <input type="text" id="phone" name="phone" class="now">
+                                        <i class="fa-solid fa-mobile-screen"></i>
+                                    </div>
+                                </div>
+                                <div class="info">
+                                    <label>Password</label>
+
+                                    <div class="lock">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "Email-address" })
+
+
+                                        <i class="fa-solid fa-unlock"></i>
+                                    </div>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <div class="info">
+                                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = " control-label" })
+
+                                    <div class="lock">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "Email-address" })
+
+                                        <i class="fa-solid fa-unlock"></i>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="info">
+                                    <label>Birthday</label>
+
+                                    <div class="lock">
+                                        <input type="date" class="Email-address" id="birthdate" name="birthdate" />
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="info">
+                                    <label>Country</label>
+
+                                    <div class="lock">
+                                     
+
+                                        <select id="countriesDropdown" class="Email-address" name="country"></select>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="info">
+                                    <label>City</label>
+
+                                    <div class="lock">
+                                        <input type="text" class="Email-address" id="city" name="city" placeholder="" />
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+
+
+                                <div class="info">
+                                    <div>
+                                        <label>Gender: </label>
+
+                                        <div class="lock">
+                                            <input type="radio" id="male" name="male" value="male">
+                                            <label for="male">Male</label>
+                                            <input type="radio" id="female" name="male" value="female">
+                                            <label for="female">Female</label>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="lock">
+                                        <input type="file" name="pic" style="border:none" id="pic" />
+
+
+
+                                    </div>
+                                </div>
+
+
+
+                                @*<div class="info">
+                <div>
+                    <label>Gender: </label>
+
+                    <div class="lock">
+                        <input type="radio" id="male" name="male" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="male" value="female">
+                        <label for="female">Female</label>
+                    </div>
+
+
+                </div>
+
+                <input type="file" name="pic" style="border:none" />
+
+            </div>*@
+
+
+                                <div class="sub" style="margin-top:-30px">
+                                    <input type="submit" class="btn btn-default" value="Register" id="reg">
+
+
+                                </div>
+                            }
+
+                            <div class="already">
+                                already have an acount?<a href="Login" id="whats">  Login</a>
+                            </div>
+                            <p id="already-registered">you already registered</p>
+        
+
+
+                        </div>
+                        @*finishSignUpBoxes*@
+
+                        <div class="sign-shape">
+                            <img src="~/Content/images/logo.png">
+                            @*<img src="~/Content/images/online.png" />*@
+                            @*<img src="~/Content/images/logo.png" alt="sign-up">*@
+
+                            <!--<a>-->  @*<input type="submit" value="Registration" id="regpic"></a>*@
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+
+<script>
+    // Set up the API URL for retrieving countries
+    const countriesApiUrl = 'https://api.teleport.org/api/countries/';
+    const citiesApiUrlPrefix = 'https://api.teleport.org/api/cities/';
+
+    // Get references to the dropdown list elements
+    const countriesDropdown = document.getElementById('countriesDropdown');
+    const citiesDropdown = document.getElementById('citiesDropdown');
+
+
+    fetch(countriesApiUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Loop through the list of countries and add each country name to the dropdown list
+            data._links['country:items'].forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.href;
+                option.text = country.name;
+                if (country.name === "Jordan") {
+                    option.selected = true;
+                }
+                countriesDropdown.appendChild(option);
+            });
+        })
+        .catch(error => console.error(error));
+
+    // Set up an event listener for when the user changes the selection in the countries dropdown list
+    countriesDropdown.addEventListener('change', event => {
+        const selectedCountryHref = event.target.value;
+
+        // Clear the cities dropdown list
+        citiesDropdown.innerHTML = '<option value="">--Select City--</option>';
+
+        if (selectedCountryHref) {
+            // Populate the cities dropdown list for the selected country
+         fetch(selectedCountryHref + 'cities/')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // log the data to the console
+    // Loop through the list of cities and add each city name to the dropdown list
+    data._embedded['city:search-results'].forEach(city => {
+      const option = document.createElement('option');
+      option.value = city.href;
+      option.text = city.name;
+      citiesDropdown.appendChild(option);
+    });
+  })
+  .catch(error => console.error(error));
+        }
+    });
+
+
+    
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

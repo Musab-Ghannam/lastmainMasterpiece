@@ -1,0 +1,354 @@
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.dll.config
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.pdb
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.exe
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.exe.config
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.rsp
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.exe
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.exe.config
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.rsp
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.AppContext.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Console.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.Compression.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Net.Http.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Net.Sockets.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.ValueTuple.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XPath.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.exe
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.exe.config
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.rsp
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\VBCSCompiler.exe
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Antlr3.Runtime.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.SqlServer.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Newtonsoft.Json.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Owin.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Helpers.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Mvc.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Optimization.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Razor.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Deployment.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Razor.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\WebGrease.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Helpers.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Mvc.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Optimization.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Razor.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Deployment.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Razor.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Newtonsoft.Json.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Antlr3.Runtime.pdb
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.SqlServer.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.AssemblyReference.cache
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.CoreCompileInputs.cache
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.CopyComplete
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.dll
+C:\Users\dell\source\repos\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.pdb
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.dll.config
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.pdb
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.exe
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.exe.config
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.rsp
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.exe
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.exe.config
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.rsp
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.AppContext.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Console.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.Compression.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Net.Http.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Net.Sockets.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.ValueTuple.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XPath.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.exe
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.exe.config
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.rsp
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\VBCSCompiler.exe
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Antlr3.Runtime.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.SqlServer.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Newtonsoft.Json.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Owin.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Helpers.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Mvc.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Optimization.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Razor.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Deployment.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Razor.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\WebGrease.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Helpers.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Mvc.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Optimization.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Razor.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Deployment.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Razor.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Newtonsoft.Json.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Antlr3.Runtime.pdb
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.SqlServer.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.AssemblyReference.cache
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.CoreCompileInputs.cache
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.CopyComplete
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.dll
+C:\Users\dell\masterpiece\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.pdb
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.AssemblyReference.cache
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.CoreCompileInputs.cache
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.pdb
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.dll.config
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\mainMasterpiesce.pdb
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.exe
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.exe.config
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csc.rsp
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.exe
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.exe.config
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\csi.rsp
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.AppContext.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Console.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.Compression.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Net.Http.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Net.Sockets.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.ValueTuple.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XPath.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.exe
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.exe.config
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\vbc.rsp
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\VBCSCompiler.exe
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Antlr3.Runtime.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.SqlServer.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Newtonsoft.Json.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Owin.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Helpers.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Mvc.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Optimization.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Razor.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Deployment.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Razor.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\WebGrease.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Helpers.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Mvc.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Optimization.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.Razor.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Deployment.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Web.WebPages.Razor.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Newtonsoft.Json.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Antlr3.Runtime.pdb
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\EntityFramework.SqlServer.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.CopyComplete
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Buffers.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Memory.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Numerics.Vectors.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Text.Encodings.Web.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Text.Json.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.ValueTuple.dll
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.Abstractions.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Buffers.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Memory.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Numerics.Vectors.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Text.Encodings.Web.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Text.Json.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\System.ValueTuple.xml
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\obj\Debug\mainMasterpiesce.csproj.SuggestedBindingRedirects.cache
+C:\Users\dell\OneDrive\Desktop\template\18 3 2023\mainMasterpiesce\mainMasterpiesce\bin\Microsoft.VisualStudio.CodeCoverage.Shim.dll

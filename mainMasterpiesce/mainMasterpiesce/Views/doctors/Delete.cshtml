@@ -1,0 +1,233 @@
+﻿@model mainMasterpiesce.Models.doctor
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>doctor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.locationdoctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.locationdoctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.doctorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.doctorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qualiification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qualiification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specialization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specialization)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startedate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startedate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idCardfile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idCardfile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.picdoctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.picdoctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.certificationfile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.certificationfile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthfile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthfile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statedoctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statedoctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.earningDoctortotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.earningDoctortotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountsDue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmountsDue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IBAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IBAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.infodoctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.infodoctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pricePerHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pricePerHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ratingdoctor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ratingdoctor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ratingint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ratingint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.experience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.addresss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.addresss)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.educationdetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.educationdetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.specialization1.namespecialization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specialization1.namespecialization)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

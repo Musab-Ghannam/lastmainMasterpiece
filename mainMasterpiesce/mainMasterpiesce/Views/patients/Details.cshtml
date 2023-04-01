@@ -1,0 +1,166 @@
+﻿@model mainMasterpiesce.Models.patient
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Patients</h3></a>
+                    <ul class="breadcrumb">
+                        @*<li class="breadcrumb-item" id="prev"><a href="#" onclick="toggleDisplay('previous-appointments')">Previous Appointment</a></li>
+                        <li class="breadcrumb-item" id="upc"><a href="#" onclick="toggleDisplay('upcoming-appointments')">upcoming-appointments</a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="upcoming-appointments" class="appointments">
+                                <dl class="dl-horizontal">
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.patientName)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.patientName)
+                                    </dd>
+
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.picpatient)
+                                    </dt>
+
+                                    <dd>
+                                        <img src="~/Content/images/@Html.DisplayFor(model => model.picpatient)" width="70" alt="@Html.DisplayFor(model => model.picpatient)" />
+
+                                    </dd>
+
+
+
+                                
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.startedate)
+                                    </dt>
+
+                                    <dd>
+                                     
+
+
+                                        @{
+                                            if (Model.startedate != null)
+                                            {
+                                                @Model.startedate.Value.ToString("yyyy-MM-dd")
+                                            }
+                                        }
+                                    </dd>
+
+                          
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Gender)
+
+                                    </dt>
+
+                                    <dd>
+                                        @{
+                                            if (Html.DisplayFor(modelItem => Model.Gender) != null)
+                                            {
+
+                                                if (Model.Gender == true)
+                                                {
+
+
+
+                                                    <p>Male</p>
+                                                }
+                                                else
+                                                {
+
+                                                    <p>Female</p>
+                                                }
+
+
+                                            }
+                                            else
+                                            {
+                                                <p>Male</p>
+                                            }
+
+                                        }
+                                    </dd>
+
+                                    <dt>
+                                  <span>No# of appointments</span>
+                                    </dt>
+
+                                    <dd>
+                                        @{
+
+                                            string url = Request.Url.AbsoluteUri; // get the absolute URL of the current request
+                                            string[] segments = url.Split('/'); // split the URL into segments
+                                           int lastSegment = Convert.ToInt32(segments[segments.Length - 1]); }
+                                        @Model.appointments.Where(c => c.patientId == lastSegment).Count()
+                                    </dd>
+
+                                    <dt>
+                                        <span>age </span>
+                                    </dt>
+
+                                    <dd>
+                                        @if (Model.birthday.HasValue)
+                                        {
+                                            @(DateTime.Now.Year - Model.birthday.Value.Year)
+                                        }
+                                        else
+                                        {
+
+                                            <span>27</span>
+                                        }
+
+                                        <span>Year</span>
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.locationdetails)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.locationdetails)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.AspNetUser.Email)
+                                    </dd>
+
+                                </dl>
+                            </div>
+                            <p>
+                                @Html.ActionLink("Back to List", "patientDashboard", null, new { @class = "btn btn-secondary" })
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

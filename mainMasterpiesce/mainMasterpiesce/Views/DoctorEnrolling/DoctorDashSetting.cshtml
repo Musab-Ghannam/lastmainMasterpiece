@@ -1,0 +1,287 @@
+﻿@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.appointment>, List<mainMasterpiesce.Models.feedback>>
+@{
+    ViewBag.Title = "DoctorDashSetting";
+    Layout = "~/Views/Shared/_DoctorDashboard.cshtml";
+}
+
+
+
+<!-- Page Content -->
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+<div class="col-md-7 col-lg-8 col-xl-9">
+
+
+    @using (Html.BeginForm("EditDoctor", "DoctorEnrolling", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+
+        <!-- Basic Information -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Basic Information</h4>
+                <div class="row form-row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="change-avatar">
+                                <div class="profile-img">
+                                    <img src="~/Content/images/@Model.Item1[0].picdoctor" alt="User Image">
+
+                                </div>
+                                <div class="upload-img">
+                                    <div class="change-photo-btn">
+                                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                        <input type="file" class="upload" name="profpic">
+                                    </div>
+                                    <small class="form-text text-muted">
+                                        Allowed JPG, GIF or PNG. Max
+                                        size of 2MB
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Username <span class="text-danger">*</span></label>
+
+                            <input type="text" class="form-control" name="docname" value="@Model.Item1[0].doctorName">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" name="email" value="@Model.Item1[0].AspNetUser.Email">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone Number <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="phonenumb" value="@Model.Item1[0].AspNetUser.PhoneNumber">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Date Of Birth <span class="text-danger">*</span></label>
+                            <input type="datetime" class="form-control" name="birth" value="@Model.Item1[0].birthday">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select class="form-control select" name="gender">
+                                <option>Select</option>
+
+                                <option value="Male" @(Model.Item1[0].Gender == true ? "selected" : "")>Male</option>
+                                <option value="Female" @(Model.Item1[0].Gender == false ? "selected" : "")>Female</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label>IBAN</label>
+                            <input type="text" name="Iban" class="form-control" value="@Model.Item1[0].IBAN">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Basic Information -->
+        <!-- About Me -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">About Me</h4>
+                <div class="form-group mb-0">
+                    <label>Biography</label>
+                    <textarea class="form-control" rows="5" name="info" value="@Model.Item1[0].infodoctor">@Model.Item1[0].infodoctor</textarea>
+                </div>
+            </div>
+        </div>
+        <!-- /About Me -->
+        <!-- Clinic Info -->
+        <!-- /Clinic Info -->
+        <!-- Contact Details -->
+        <div class="card contact-card">
+            <div class="card-body">
+                <h4 class="card-title">Contact Details</h4>
+                <div class="row form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Address </label>
+                            <input type="text" class="form-control" name="address" value="@Model.Item1[0].addresss">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Lcation Link</label>
+                            <input type="text" class="form-control" name="locationLink" value="@Model.Item1[0].locationdoctor.Split('_')[1]">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">City</label>
+                            <input type="text" class="form-control" name="city" value="@Model.Item1[0].locationdoctor.Split('_')[0].Split(',')[0]">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">State / Province</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Country</label>
+                            <input type="text" class="form-control" name="country" value="@Model.Item1[0].locationdoctor.Split('_')[0].Split(',')[1]">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Postal Code</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Contact Details -->
+        <!-- Pricing -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Price per hour</h4>
+
+                <div class="form-group mb-0">
+                    <div id="pricing_select">
+                        <div class="custom-control custom-radio custom-control-inline">
+
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="text" class="form-control" name="price" value="@Model.Item1[0].pricePerHour">
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row custom_price_cont" id="custom_price_cont" style="display: none;">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="custom_rating_input"
+                               name="custom_rating_count" value="" placeholder="20">
+                        <small class="form-text text-muted">Custom price you can add</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /Pricing -->
+        <!-- Services and Specialization -->
+        <div class="card services-card">
+            <div class="card-body">
+                <h4 class="card-title"> Specialization</h4>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label>Specialization </label>
+                        <select class="form-control select" name="special">
+                            <option>Select</option>
+
+                            <option value="1" @(Model.Item1[0].specialization1.namespecialization == "Individual therapy" ? "selected" : "")>Individual therapy</option>
+                            <option value="2" @(Model.Item1[0].specialization1.namespecialization == "Family therapy" ? "selected" : "")>Family therapy</option>
+                            <option value="3" @(Model.Item1[0].specialization1.namespecialization == "Couple therapy" ? "selected" : "")>Couple therapy</option>
+
+
+
+                            <option value="4" @(Model.Item1[0].specialization1.namespecialization == "Conselling therapy" ? "selected" : "")>Conselling therapy</option>
+
+
+
+
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- /Services and Specialization -->
+        <!-- Education -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Education</h4>
+                <div class="education-info">
+                    <div class="row form-row education-cont">
+                        <div class="col-12 col-md-10 col-lg-11">
+                            <div class="row form-row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label>Degree</label>
+                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[0]">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label>College/Institute</label>
+                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[1]">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label>Year of Completion</label>
+                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[2]">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-more">
+                    <a href="javascript:void(0);" class="add-education">
+                        <i class="fa fa-plus-circle"></i> Add More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="submit-section submit-btn-bottom">
+            @*<button type="submit" class="btn btn-primary submit-btn">Save Changes</button>*@
+            <input type="submit" class="btn btn-primary submit-btn" value="Save Changes" />
+
+        </div>
+    }
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+@if (TempData["swal_message"] != null)
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "DoctorDashSetting";
+
+        });;
+    </script>
+}
+
+
+
+<!-- /Page Content -->

@@ -1,0 +1,324 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.me .wrapper {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+.me .h3 {
+    font-weight: 900;
+}
+.me .views {
+    font-size: 0.85rem;
+}
+.me .btn {
+    color: #20BBBD;
+    font-size: 0.85rem;
+}
+    .me .btn:hover {
+        color: #20BBBD;
+    }
+.me .green-label {
+    color: #20BBBD;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    margin: 0 3px;
+}
+.me .radio, .checkbox {
+    padding: 6px 10px;
+}
+.me .border {
+    border-radius: 12px;
+}
+.me .options {
+    position: relative;
+    padding-left: 25px;
+}
+.me .radio label,
+.checkbox label {
+    display: block;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0;
+}
+.me .options input {
+    opacity: 0;
+}
+.me .checkmark {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+}
+.me .options input:checked ~ .checkmark:after {
+    display: block;
+}
+.me .options .checkmark:after {
+    content: "";
+    width: 9px;
+    height: 9px;
+    display: block;
+    background: white;
+    position: absolute;
+    top: 52%;
+    left: 51%;
+    border-radius: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    transition: 300ms ease-in-out 0s;
+}
+.me .options input[type="radio"]:checked ~ .checkmark {
+    background: #61b15a;
+    transition: 300ms ease-in-out 0s;
+}
+    .me .options input[type="radio"]:checked ~ .checkmark:after {
+        transform: translate(-50%,-50%) scale(1);
+    }
+.me .count {
+    font-size: 0.8rem;
+}
+.me label {
+    cursor: pointer;
+}
+.me .tick {
+    display: block;
+    position: relative;
+    padding-left: 23px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin: 0;
+}
+.me.tick input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.me .check {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.me .tick:hover input ~ .check {
+    background-color: #f3f3f3;
+}
+.me .tick input:checked ~ .check {
+    background-color: #61b15a;
+}
+.me .check:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.me .tick input:checked ~ .check:after {
+    display: block;
+    transform: rotate(45deg) scale(1);
+}
+.me .tick .check:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg) scale(2);
+}
+.me #country {
+    font-size: 0.8rem;
+    border: none;
+    border-left: 1px solid #ccc;
+    padding: 0px 10px;
+    outline: none;
+    font-weight: 900;
+}
+.me .close {
+    font-size: 1.2rem;
+}
+.me div.text-muted {
+    font-size: 0.85rem;
+}
+.me #sidebar {
+    width: 25%;
+    float: left;
+}
+.me .category {
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.me .list-group-item {
+    border: none;
+    padding: 0.3rem 0.4rem 0.3rem 0rem;
+}
+.me .badge-primary {
+    background-color: #20BBBD;
+    color: #48b83e
+}
+.me .brand .check {
+    background-color: #fff;
+    top: 3px;
+    border: 1px solid #666;
+}
+.me .brand .tick {
+    font-size: 1rem;
+    padding-left: 25px;
+}
+.me .rating .check {
+    background-color: #fff;
+    border: 1px solid #666;
+    top: 0;
+}
+.me .rating .tick {
+    font-size: 0.9rem;
+    padding-left: 25px;
+}
+.me .rating .fas.fa-star {
+    color: #ffbb00;
+    padding: 0px 3px;
+}
+.me .brand .tick:hover input ~ .check,
+.rating .tick:hover input ~ .check {
+    background-color: #f9f9f9;
+}
+.me .brand .tick input:checked ~ .check,
+.rating .tick input:checked ~ .check {
+    background-color: #61b15a;
+}
+.me #products {
+    width: 75%;
+    padding-left: 30px;
+    margin: 0;
+    float: right;
+}
+
+.me .card:hover {
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+.me.card-body {
+    padding: 0.5rem;
+}
+    .me .card-body .description {
+        font-size: 0.78rem;
+        padding-bottom: 8px;
+    }
+.me div.h6, h6 {
+    margin: 0;
+}
+.me .product .fa-star {
+    font-size: 0.9rem;
+}
+.me .rebate {
+    font-size: 0.9rem;
+}
+.me .btn.btn-primary {
+    background-color: #48b83e;
+    color: #fff;
+    border: 1px solid #008000;
+    border-radius: 10px;
+    font-weight: 800;
+}
+    .me .btn.btn-primary:hover {
+        background-color: #48b83ee8;
+    }
+.me img {
+    width: 192px;
+    height: 132px;
+    object-fit: contain;
+}
+
+.me .clear {
+    clear: both;
+}
+.me .btn.btn-success {
+    visibility: hidden;
+}
+@media(min-width:992px){
+    .me.filter, #mobile-filter {
+        display: none;
+    }
+}
+@media(min-width:768px) and (max-width:991px){
+    .me .radio, .checkbox {
+        padding: 6px 10px;
+        width: 49%;
+        float: left;
+        margin: 5px 5px 5px 0px;
+    }
+    .me .filter, #mobile-filter {
+        display: none;
+    }
+}
+@media(min-width:576px) and (max-width:767px){
+    .me #sidebar {
+        width: 35%;
+    }
+    .me #products {
+        width: 65%;
+    }
+    .me .filter, #mobile-filter {
+        display: none;
+    }
+    .me .h3 + .ml-auto {
+        margin: 0;
+    }
+}
+@media(max-width:575px){
+    .me .wrapper {
+        padding: 10px;
+    }
+    .me .h3 {
+        font-size: 1.3rem;
+    }
+    .me #sidebar {
+        display: none;
+    }
+    .me #products {
+        width: 100%;
+        float: none;
+    }
+    .me #products {
+        padding: 0;
+    }
+    .me .clear {
+        float: left;
+        width: 80%;
+    }
+    .me .btn.btn-success {
+        visibility: visible;
+        margin: 10px 0px;
+        color: #fff;
+        padding: 0.2rem 0.1rem;
+        width: 20%;
+    }
+    .me .green-label {
+        width: 50%;
+    }
+    .me .btn.text-success {
+        padding: 0;
+    }
+    .me .content, #mobile-filter {
+        clear: both;
+    }
+}
+.me .no-border-bg {
+    border: none;
+    background: none;
+}
+.me .card {
+    margin-bottom: 30px;
+}

@@ -1,0 +1,113 @@
+﻿@model mainMasterpiesce.Models.patient
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>patient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.locationpatent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.locationpatent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.picpatient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.picpatient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.patientName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patientName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.patientemail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patientemail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startedate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startedate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.wallet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wallet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.locationdetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.locationdetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

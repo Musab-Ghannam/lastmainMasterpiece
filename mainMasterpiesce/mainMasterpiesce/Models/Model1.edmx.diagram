@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e52fc69b4e334d8793c437e7bbd47ca0" Name="Diagram1" ZoomLevel="17">
+        <EntityTypeShape EntityType="FindingpeaceModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FindingpeaceModel.appointment" Width="1.5" PointX="13.5" PointY="14.875" />
+        <EntityTypeShape EntityType="FindingpeaceModel.AspNetRole" Width="1.5" PointX="0.75" PointY="12.25" />
+        <EntityTypeShape EntityType="FindingpeaceModel.AspNetUserClaim" Width="1.5" PointX="3" PointY="28.25" />
+        <EntityTypeShape EntityType="FindingpeaceModel.AspNetUserLogin" Width="1.5" PointX="3" PointY="25.75" />
+        <EntityTypeShape EntityType="FindingpeaceModel.AspNetUserRole" Width="1.5" PointX="3" PointY="16" />
+        <EntityTypeShape EntityType="FindingpeaceModel.AspNetUser" Width="1.5" PointX="0.75" PointY="14.875" />
+        <EntityTypeShape EntityType="FindingpeaceModel.doctor" Width="1.5" PointX="6" PointY="13.25" />
+        <EntityTypeShape EntityType="FindingpeaceModel.feedback" Width="1.5" PointX="8.25" PointY="15.5" />
+        <EntityTypeShape EntityType="FindingpeaceModel.feedbackwebsite" Width="1.5" PointX="13.5" PointY="10.875" />
+        <EntityTypeShape EntityType="FindingpeaceModel.NotAvailableTime" Width="1.5" PointX="8.25" PointY="33.75" />
+        <EntityTypeShape EntityType="FindingpeaceModel.patient" Width="1.5" PointX="11.25" PointY="14.75" />
+        <EntityTypeShape EntityType="FindingpeaceModel.specialization" Width="1.5" PointX="3.75" PointY="12.875" />
+        <EntityTypeShape EntityType="FindingpeaceModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FindingpeaceModel.transactionsdoctor" Width="1.5" PointX="8.25" PointY="29.875" />
+        <EntityTypeShape EntityType="FindingpeaceModel.transactionspatient" Width="1.5" PointX="13.5" PointY="20.125" />
+        <AssociationConnector Association="FindingpeaceModel.FK__appointme__docto__7C4F7684" />
+        <AssociationConnector Association="FindingpeaceModel.FK__appointme__patie__7B5B524B" />
+        <AssociationConnector Association="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" />
+        <AssociationConnector Association="FindingpeaceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="FindingpeaceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="FindingpeaceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="FindingpeaceModel.FK__doctors__Id__778AC167" />
+        <AssociationConnector Association="FindingpeaceModel.FK__patients__Id__70DDC3D8" />
+        <AssociationConnector Association="FindingpeaceModel.FK__doctors__special__787EE5A0" />
+        <AssociationConnector Association="FindingpeaceModel.FK__feedback__doctor__339FAB6E" />
+        <AssociationConnector Association="FindingpeaceModel.FK__NotAvaila__docto__6166761E" />
+        <AssociationConnector Association="FindingpeaceModel.FK__transacti__docto__03F0984C" />
+        <AssociationConnector Association="FindingpeaceModel.FK__feedback__patien__3493CFA7" />
+        <AssociationConnector Association="FindingpeaceModel.FK__feedbackw__patie__2610A626" />
+        <AssociationConnector Association="FindingpeaceModel.FK__transacti__Patia__00200768" />
+        <AssociationConnector Association="FindingpeaceModel.patient_favorite_doctors" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

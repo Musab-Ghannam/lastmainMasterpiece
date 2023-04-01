@@ -1,0 +1,367 @@
+﻿@model IEnumerable<mainMasterpiesce.Models.appointment>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+<style>
+    #upcoming-appointments {
+        display: none;
+    }
+
+    #previous-appointments {
+        display: block;
+    }
+    #prev{
+        color:red;
+        font-weight:bold;
+      font-size:25px;
+    }
+</style>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Appointments</h3></a>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item" id="prev"><a href="#" onclick="toggleDisplay('previous-appointments')">Previous Appointment</a></li>
+                        <li class="breadcrumb-item" id="upc"><a href="#" onclick="toggleDisplay('upcoming-appointments')">upcoming-appointments</a></li>
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+        @{ 
+          
+        }
+        <table class="table striped">
+            <thead>
+                <tr>
+                    <th>Total of transaction</th>
+                    <th>Transaction for Doctor</th>
+                    <th>Website dues</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>   @ViewBag.Sum JD</td>
+                    <td></td>
+                    <td>@ViewBag.webdue JD </td>
+                </tr>
+             
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="upcoming-appointments" class="appointments">
+                                <table class="datatable table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Doctor Name</th>
+                                            <th>Booking Date</th>
+                                            <th>Patient Name</th>
+                                            <th>Apointment Time</th>
+                                            <th>Status</th>
+                                            <th class="text-right">Amount</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model.OrderByDescending(x => DateTime.ParseExact(x.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture)))
+                                        {
+
+                                            // Parse the appointment time from the database
+                                            DateTime appointmentTime = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                            // Compare the appointment time with the current time
+                                            if (appointmentTime >= DateTime.Now)
+                                            {
+
+
+
+
+
+
+                                                <tr>
+
+                                                    <td>
+                                                        <h2 class="table-avatar">
+                                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="@Url.Content(item.doctor.picdoctor)" alt="@item.doctor.picdoctor"></a>
+                                                            <a href="profile.html">@item.doctor.doctorName</a>
+                                                        </h2>
+                                                        <p style="color:gray;font-size:15px;margin:10px">@item.doctor.specialization1.namespecialization</p>
+                                                    </td>
+
+                                                    <td>@item.BookingDate.Value.ToString("dd-MM-yyyy")</td>
+                                                    <td>
+                                                        <h2 class="table-avatar">
+                                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/Content/images/@Url.Content(item.patient.picpatient)" alt="@item.patient.picpatient"></a>
+                                                            <a href="profile.html">@item.patient.patientName</a>
+                                                        </h2>
+                                                    </td>
+                                                    @if (item.starttime != null)
+                                                    {
+                                                        DateTime storedDateTime = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                                        string result = item.starttime.Substring(0, item.starttime.Length - 5);
+
+
+
+                                                        // Add one hour to the DateTime object
+                                                        DateTime endTime = storedDateTime.AddHours(1);
+
+                                                        // Format the DateTime object back into a string
+                                                        string endTimeString = endTime.ToString("h:mm ttMM/dd", CultureInfo.InvariantCulture);
+                                                        string resultend = endTimeString.Substring(0, endTimeString.Length - 5);
+
+                                                        // Output the result
+                                                        Console.WriteLine("End time: " + endTimeString); // Output: "End time: 6:00 AM04/03"
+
+
+                                                        <td>@item.starttime.Substring(item.starttime.Length - 5, 5)/2023<span class="text-primary d-block">@result _ @resultend  </span></td>
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <td>1212</td>
+                                                    }
+
+
+                                                    <td>
+
+
+                                                        <span class="badge badge-pill bg-danger-light">Pending</span>
+
+                                                        @*<div class="status-toggle">
+                                                            <input type="checkbox" id="status_1" class="check" checked>
+                                                            <label for="status_1" class="checktoggle">checkbox</label>
+                                                        </div>*@
+                                                    </td>
+                                                    <td class="text-right">
+                                                        @item.doctor.pricePerHour JD
+                                                    </td>
+                                                    <td>@Html.ActionLink("Details", "Details", new { id = item.apointmentId }, new { @class = "my-link-class btn btn-primary" })</td>
+
+
+                                                </tr>
+
+
+
+
+
+
+
+                                            }
+
+
+
+
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+
+
+
+
+
+
+                            <div id="previous-appointments" class="appointments">
+                                <table class="datatable table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Doctor Name</th>
+                                            <th>Booking Date</th>
+                                            <th>Patient Name</th>
+                                            <th>Apointment Time</th>
+                                            <th>Status</th>
+                                            <th class="text-right">Amount</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @foreach (var item in Model.OrderByDescending(x => DateTime.ParseExact(x.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture)))
+                                        {
+                                            DateTime appointmentTime = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                            // Compare the appointment time with the current time
+                                            if (appointmentTime < DateTime.Now)
+                                            {
+
+
+
+
+
+                                                <tr>
+
+                                                    <td>
+                                                        <h2 class="table-avatar">
+                                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="@Url.Content(item.doctor.picdoctor)" alt="@item.doctor.picdoctor"></a>
+                                                            <a href="profile.html">@item.doctor.doctorName</a>
+                                                        </h2>
+                                                        <p style="color:gray;font-size:15px;margin:10px">@item.doctor.specialization1.namespecialization</p>
+                                                    </td>
+
+                                                    <td>
+
+
+
+                                                        @if (item.BookingDate.HasValue)
+                                                        {
+                                                            @item.BookingDate.Value.ToString("dd-MM-yyyy")
+
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <h2 class="table-avatar">
+                                                            <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/Content/images/@Url.Content(item.patient.picpatient)" alt="@item.patient.picpatient"></a>
+                                                            <a href="profile.html">@item.patient.patientName</a>
+                                                        </h2>
+
+                                                    </td>
+                                                    @if (item.starttime != null)
+                                                    {
+                                                        DateTime storedDateTime = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                                        string result = item.starttime.Substring(0, item.starttime.Length - 5);
+
+
+
+                                                        // Add one hour to the DateTime object
+                                                        DateTime endTime = storedDateTime.AddHours(1);
+
+                                                        // Format the DateTime object back into a string
+                                                        string endTimeString = endTime.ToString("h:mm ttMM/dd", CultureInfo.InvariantCulture);
+                                                        string resultend = endTimeString.Substring(0, endTimeString.Length - 5);
+
+                                                        // Output the result
+                                                        Console.WriteLine("End time: " + endTimeString); // Output: "End time: 6:00 AM04/03"
+
+
+                                                        <td>@item.starttime.Substring(item.starttime.Length - 5, 5)/2023<span class="text-primary d-block">@result _ @resultend  </span></td>
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <td>1212</td>
+                                                    }
+
+
+                                                    <td>
+                                                        <span class="badge badge-pill bg-success-light">Confirm</span>
+                                                        @*<div class="status-toggle">
+                                                            <input type="checkbox" id="status_1" class="check" checked>
+                                                            <label for="status_1" class="checktoggle">checkbox</label>
+                                                        </div>*@
+                                                    </td>
+                                                    <td class="text-right">
+                                                        @item.doctor.pricePerHour JD
+                                                    </td>
+                                                    <td>@Html.ActionLink("Details", "Details", new { id = item.apointmentId }, new { @class = "my-link-class btn btn-primary" })</td>
+                                                </tr>
+
+
+
+
+
+                                            }
+
+                                        }
+
+
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /Recent Orders -->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleDisplay(idToShow) {
+        var allElements = document.getElementsByClassName("appointments");
+        for (var i = 0; i < allElements.length; i++) {
+            var element = allElements[i];
+            if (element.id === idToShow) {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        // Apply styling to first link
+        var firstLink = document.getElementById("prev");
+        if (idToShow === "previous-appointments") {
+            firstLink.style.fontWeight = "bold";
+            firstLink.style.color = "red";
+            firstLink.style.fontSize = "25px";
+        } else {
+            firstLink.style.fontWeight = "normal";
+            firstLink.style.color = "inherit";
+            firstLink.style.fontSize = "15px";
+        }
+
+
+
+
+        var sec = document.getElementById("upc");
+        if (idToShow === "upcoming-appointments") {
+            sec.style.fontWeight = "bold";
+            sec.style.color = "red";
+            sec.style.fontSize = "25px";
+        } else {
+            sec.style.fontWeight = "normal";
+            sec.style.color = "inherit";
+            sec.style.fontSize = "15px";
+        }
+
+
+
+
+
+
+    }
+
+ 
+  
+
+</script>

@@ -1,0 +1,158 @@
+﻿@model mainMasterpiesce.Models.appointment
+@using System.Globalization;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>appointment</h4>
+    <hr />
+
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Appointments</h3></a>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item" id="prev"><a href="#" onclick="toggleDisplay('previous-appointments')">Previous Appointment</a></li>
+                            <li class="breadcrumb-item" id="upc"><a href="#" onclick="toggleDisplay('upcoming-appointments')">upcoming-appointments</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <!-- Recent Orders -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div id="upcoming-appointments" class="appointments">
+                                    <dl class="dl-horizontal">
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.starttime)
+                                        </dt>
+
+                                        <dd>
+@{ 
+
+
+    DateTime storedDateTime = DateTime.ParseExact(Model.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+}
+
+                                            @storedDateTime
+                                            @*@Html.DisplayFor(model => model.starttime)*@
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.endtime)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.endtime)
+                                        </dd>
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.apointmentprice)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.apointmentprice)
+                                        </dd>
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.BookingDate)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.BookingDate)
+                                        </dd>
+
+
+
+
+
+                                        <dt>
+
+                                            @Html.DisplayNameFor(model => model.confirmappointment)
+                                        </dt>
+
+                                        <dd>
+                                            @{
+
+
+//DateTime storedDateTime = DateTime.ParseExact(Model.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                            }
+                                            @*@storedDateTime*@
+
+                                            @if (storedDateTime > DateTime.Now)
+                                            {
+
+                                                <span class="badge badge-pill bg-danger-light">Pending</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-pill bg-success-light">Confirm</span>
+
+                                            }
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.JoinUrl)
+                                        </dt>
+
+                                        <dd>
+                                            @if (String.IsNullOrEmpty(Html.DisplayFor(model => model.JoinUrl)?.ToString()))
+                                            {
+                                                <p>Waiting for user</p>
+                                            }
+                                            else
+                                            {
+
+                                                @Html.DisplayFor(model => model.JoinUrl)
+
+                                            }
+
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.doctor.Id)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.doctor.Id)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.patient.Id)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.patient.Id)
+                                        </dd>
+
+                                    </dl>
+                                </div>
+                                <p>
+                                    @*@Html.ActionLink("Edit", "Edit", new { id = Model.apointmentId }) |*@
+                                    @Html.ActionLink("Back to List", "Index")
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

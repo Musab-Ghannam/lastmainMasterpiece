@@ -1,0 +1,117 @@
+﻿@model IEnumerable<mainMasterpiesce.Models.transactionsdoctor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Doctor Transactions</h3></a>
+                    <ul class="breadcrumb">
+              
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-body">
+                        @if (ViewBag.DoctorNames != null)
+                        {
+                            foreach (var name in ViewBag.DoctorNames.Split(','))
+                            {
+                               <p>@name</p> 
+                            }
+                        }
+                        <div class="table-responsive">
+                            <div id="upcoming-appointments" class="appointments">
+                                <table class="datatable table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice Number</th>
+                                            <th>Doctor ID</th>
+                                            <th>Doctor Name</th>
+                                            <th>Total Amount</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Transaction Time</th>
+                                            <th class="text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+
+
+                                        <tr>
+                                            <td><a href="invoice.html">#IN00 @item.transDoctorId</td>
+                                            <td>#PT00 @item.doctorId</td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="@Url.Content(@item.doctor.picdoctor)" alt="@item.doctor.picdoctor"></a>
+                                                    <a href="profile.html">@item.doctor.doctorName</a>
+                                                </h2>
+                                            </td>
+                                            <td>@item.amount JD</td>
+                                        
+                                            <td class="text-center">
+
+                                                @if (item.status == "1")
+                                                {
+
+
+                                                    <span class="badge badge-pill bg-danger-light">Pending</span>
+                                                }
+                                                else if (item.status == "2")
+                                                {
+
+                                                    <span class="badge badge-pill bg-success inv-badge">Paid</span>
+                                                }
+
+                                            </td>
+                                            <td>
+
+                                                @if (item.Tansactiontime.HasValue)
+                                                {
+
+                                                    @item.Tansactiontime.Value.ToString("dd-MM-yyyy")
+
+                                                }
+
+                                            </td>
+                                            <td class="text-right">
+                                                <div class="actions">
+
+
+                                                    @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
+                                            
+                                        
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

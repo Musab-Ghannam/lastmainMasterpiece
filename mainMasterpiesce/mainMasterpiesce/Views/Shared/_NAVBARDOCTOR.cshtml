@@ -1,0 +1,94 @@
+﻿@*@model Tuple<List<mainMasterpiesce.Models.patient>, List<mainMasterpiesce.Models.appointment>>*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/css/navbar.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>NAV</title>
+    <script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/doc/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/doc/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/style.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+<body>
+    @*nav*@
+    @{
+        string[] nameParts = User.Identity.Name.Split('@');
+        string firstName = nameParts[0];
+
+
+
+    }
+    <div>
+
+        <!--Main Header-->
+        <header>
+
+            <nav class="nav1" id="navbar">
+
+                <a href="/" class=""><img src="~/Content/images/logo.png" width="80" alt="logo" style="padding:0px !important;margin-left:50px !important" /></a>
+
+                <div class="hamburger">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+
+                <div class="nav__link hide">
+                    <a href="https://localhost:44388/mainHome/Index">home</a>
+                    <a href="https://localhost:44388/mainHome/Aboutt">about</a>
+                    <a href="https://localhost:44388/mainHome/ConTact">contact</a>
+                    <a href="https://localhost:44388/Doctors/singledoctor">therapist list</a>
+
+                    <a href="#">psycologist list</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        @Html.ActionLink("Hello " + firstName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    }
+                    else
+                    {
+
+                        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                    }
+
+                    @*<a href="https://localhost:44388/myAccount/signin">log out</a>
+                        <a href="#"><i class="fa-solid fa-user"></i></a>*@
+
+                </div>
+                <div>
+
+                </div>
+                @Html.Partial("_LoginPartial")
+            </nav>
+        </header>
+        <!--End Main Header -->
+
+
+    </div>
+
+    @*nav*@
+</body>
+</html>

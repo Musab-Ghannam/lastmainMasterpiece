@@ -1,0 +1,1040 @@
+﻿@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.appointment>, List<mainMasterpiesce.Models.feedback>>
+
+@{
+    ViewBag.Title = "NotAvailable";
+    Layout = "~/Views/Shared/_DoctorDashboard.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+
+<style>
+
+
+
+    .days {
+        background-color: transparent;
+        border: none;
+        display: block;
+        margin-left: 30px;
+        font-weight: bold;
+        padding: 10px;
+    }
+</style>
+<div class="col-md-7 col-lg-8 col-xl-9">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Schedule Timings</h4>
+                    <div class="profile-box">
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Timing Slot Duration</label>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card schedule-widget mb-0">
+
+                                    <!-- Schedule Header -->
+                                    <!--<div class="schedule-header">-->
+                                    <!-- Schedule Nav -->
+                                    <!-- /Schedule Nav -->
+                                    <!--</div>-->
+                                    <!-- /Schedule Header -->
+                                    <!-- Schedule Widget -->
+                                    <div class="card booking-schedule schedule-widget">
+
+                                        <!-- Schedule Header -->
+                                        @{
+
+                                            List<string> enabledButtons = new List<string>();
+                                        }
+
+
+
+
+                                        @using (Html.BeginForm("NotAvailable", "DoctorEnrolling", FormMethod.Post))
+                                        {
+                                            <div class="schedule-header">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+                                                        <!-- Day Slot -->
+                                                        <div class="day-slot">
+                                                            <ul>
+                                                                <li class="left-arrow">
+                                                                    <input type="hidden" name="arrow" />
+                                                                    <a href="@Url.Action("minusWeek", "DoctorEnrolling", new { arrow = "left" })">
+                                                                        <i class="fa fa-chevron-left"></i>
+                                                                    </a>
+
+
+                                                                    @for (int i = ViewBag.weeks; i < ViewBag.weeks + 7; i++)
+                                                                    {
+                                                                        if (i < 0)
+                                                                        {
+                                                                            break;
+                                                                        }
+
+
+
+                                                                    <li>
+
+                                                                        @if (ViewBag.currentday == @DateTime.Now.AddDays(i).ToString("dd/MM/yy"))
+                                                                        {
+                                                                            <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dddd")" style="@ViewBag.InputStyle" /> @*<span >@DateTime.Now.AddDays(i).ToString("dddd")</span>*@
+                                                                            @*<span class="slot-date">@DateTime.Now.AddDays(i).ToString("dd/MM/yy")</span>*@
+                                                                            <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dd/MM/yy")" style="@ViewBag.InputStyle" />
+
+                                                                        }
+                                                                        else
+                                                                        {
+
+
+                                                                            <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dddd")" /> @*<span >@DateTime.Now.AddDays(i).ToString("dddd")</span>*@
+                                                                            @*<span class="slot-date">@DateTime.Now.AddDays(i).ToString("dd/MM/yy")</span>*@
+                                                                            <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dd/MM/yy")" />
+
+
+                                                                        }
+
+
+
+                                                                        @*</a>*@
+
+                                                                    </li>
+
+                                                                }
+
+                                                                    <li class="right-arrow">
+
+                                                                        <a href="@Url.Action("plusweeks", "DoctorEnrolling", new { arrow = "left" })">
+                                                                            <i class="fa fa-chevron-right"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <!-- /Day Slot -->
+
+                                                        </div>
+                                                    </div>
+                                                </div>}
+                                        <!-- /Schedule Header -->
+                                        <!-- Schedule Content -->
+                                        <div class="schedule-cont">
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <!-- Time Slot -->
+                                                    <div class="time-slot">
+                                                        <ul class="clearfix">
+
+
+                                                            @{
+
+
+
+
+                                                                List<string> reservedSlotsList = new List<string>();
+                                                                foreach (var item in Model.Item2)
+                                                                {
+                                                                    string reservedSlot = item.starttime;
+                                                                    reservedSlotsList.Add(reservedSlot);
+                                                                    ViewBag.slotdatabase += reservedSlot + ',';
+                                                                }
+
+                                                                string[] reservedSlotsArray = reservedSlotsList.ToArray();
+
+
+
+
+
+
+
+
+
+                                                                for (int i = 0; i < reservedSlotsArray.Length; i++)
+                                                                {
+                                                                    string slot = reservedSlotsArray[i];
+                                                                    if (!string.IsNullOrEmpty(slot))
+                                                                    {
+
+                                                                        string reserveddate = slot.Substring(slot.Length - 5);
+
+
+                                                                        string timereserved = slot.Substring(0, slot.Length - 5);
+
+
+                                                                    }
+
+
+
+                                                                }
+
+
+
+
+                                                            }
+
+
+
+
+                                                            @using (Html.BeginForm("NotAvailable", "DoctorEnrolling", FormMethod.Post))
+                                                            {
+
+
+                                                                {
+                                                                    if (ViewBag.flag)
+                                                                    {
+
+
+
+
+                                                                        for (int hour = 8; hour <= 17; hour++)
+                                                                        {
+                                                                            DateTime dateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0);
+
+
+                                                                            if (DateTime.Now.ToString("dd/MM/yy") == ViewBag.currentday)
+                                                                            {
+
+
+                                                                                if (DateTime.Now.TimeOfDay <= TimeSpan.FromHours(23))
+                                                                                {
+                                                                                    int inc = 0;
+                                                                                    for (int i = DateTime.Now.Hour; i < 23; i++)
+                                                                                    {
+                                                                                        inc++;
+                                                                                        DateTime dateTimtoday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, @DateTime.Now.AddHours(inc).Hour, 0, 0);
+                                                                                        string formm = dateTimtoday.ToString("h:mm tt");
+                                                                                        string datt = dateTimtoday.ToString("dd/MM//yy");
+
+                                                                                        if (formm == "2:00 PM")
+                                                                                        {
+                                                                                            formm = formm.Replace("PM", "pm");
+
+
+                                                                                        }
+
+
+
+
+                                                                                        <li>
+
+
+
+
+                                                                                            <span>
+
+
+
+
+                                                                                                @{
+
+
+                                                                                                    if (ViewBag.btn != null && ViewBag.slotdatabase != null)
+                                                                                                    {
+
+
+                                                                                                        if (!string.IsNullOrEmpty(ViewBag.slotdatabase))
+                                                                                                        {
+
+                                                                                                            if (ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                            {
+                                                                                                                <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: red;color:white" disabled />
+
+                                                                                                            }
+
+
+                                                                                                        }
+
+
+                                                                                                        if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
+                                                                                                        {
+                                                                                                            if (!ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                            {
+
+
+
+
+                                                                                                                <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #B0BEC5; color: white " disabled />
+
+
+
+
+                                                                                                            }
+                                                                                                        }
+
+
+
+                                                                                                        if (ViewBag.fulldisplay == null)
+                                                                                                        {
+                                                                                                            ViewBag.fulldisplay = "";
+
+                                                                                                        }
+
+
+
+
+                                                                                                        if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') || ViewBag.fulldisplay.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.fulldisplay.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                        {
+
+
+                                                                                                            <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #20BBBD;color:white" disabled />
+                                                                                                        }
+
+
+
+
+
+                                                                                                        else if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                        {
+
+
+                                                                                                            <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX " />
+
+                                                                                                            enabledButtons.Add(formm + ViewBag.currentday.Substring(0, 5));
+                                                                                                        }
+
+
+
+
+
+
+
+
+
+
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+
+
+                                                                                                        <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX" />
+                                                                                                        enabledButtons.Add(formm + ViewBag.currentday.Substring(0, 5));
+
+
+                                                                                                    }
+
+
+
+
+                                                                                                    ViewBag.EnabledButtons = enabledButtons;
+                                                                                                    string enabledButtonsString = string.Join(".", enabledButtons);
+                                                                                                    ViewBag.EnabledButtonsString = enabledButtonsString;
+
+
+
+
+
+
+                                                                                                }
+
+
+
+
+
+
+
+
+
+
+                                                                                            </span>
+
+
+                                                                                        </li>
+
+
+                                                                                    }
+                                                                                    break;
+                                                                                }
+
+
+                                                                            }
+                                                                            else
+                                                                            {
+
+
+
+                                                                                string datt = dateTime.ToString("dd/MM//yy");
+
+                                                                                string formattedTime = dateTime.ToString("h:mm tt");
+
+
+
+
+                                                                                if (formattedTime == "2:00 PM")
+                                                                                {
+                                                                                    formattedTime = formattedTime.Replace("PM", "pm");
+
+
+                                                                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                <li>
+
+
+
+                                                                                    @{ bool isClicked = false;
+                                                                                        if (!string.IsNullOrEmpty(Request.Form["btnn"]))
+                                                                                        {
+                                                                                            isClicked = true;
+                                                                                        }}
+
+                                                                                    <span>
+
+
+                                                                                        @{
+                                                                                            if (ViewBag.btn != null && ViewBag.slotdatabase != null)
+                                                                                            {
+
+
+                                                                                                if (!string.IsNullOrEmpty(ViewBag.slotdatabase))
+                                                                                                {
+                                                                                                    if (ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                    {
+
+
+
+
+                                                                                                        <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: red;color:white" disabled />
+
+
+                                                                                                    }
+                                                                                                }
+
+                                                                                                bool available = true;
+
+                                                                                                if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
+                                                                                                {
+                                                                                                    if (!ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                    {
+
+
+
+
+                                                                                                        <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #B0BEC5; color: white " disabled />
+
+
+                                                                                                        available = false;
+
+                                                                                                    }
+                                                                                                }
+
+
+
+
+
+                                                                                                if (ViewBag.fulldisplay == null)
+                                                                                                {
+                                                                                                    ViewBag.fulldisplay = "";
+
+                                                                                                }
+
+
+
+
+                                                                                                if (!ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') && ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') || ViewBag.fulldisplay.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.fulldisplay.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                {
+
+
+
+
+
+
+
+                                                                                                    <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #20BBBD;color:white" disabled />
+                                                                                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                else if (!ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.'))
+                                                                                                {
+
+
+
+                                                                                                    <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top:20PX" />
+
+                                                                                                    enabledButtons.Add(formattedTime + ViewBag.currentday.Substring(0, 5));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                }
+
+
+
+
+
+
+
+
+
+
+                                                                                            }
+                                                                                            else
+                                                                                            {
+
+
+                                                                                                <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top:20PX" />
+                                                                                                enabledButtons.Add(formattedTime + ViewBag.currentday.Substring(0, 5));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                            }
+
+
+
+
+
+                                                                                            ViewBag.EnabledButtons = enabledButtons;
+                                                                                            string enabledButtonsString = string.Join(".", enabledButtons);
+                                                                                            ViewBag.EnabledButtonsString = enabledButtonsString;
+
+
+
+                                                                                        }
+
+                                                                                    </span>
+
+
+
+
+                                                                                </li>
+
+
+
+                                                                            }
+
+
+
+
+                                                                        }
+                                                                    }
+
+
+                                                                }
+
+
+
+
+                                                            }
+
+
+
+
+
+                                                        </ul>
+
+
+                                                    </div>
+                                                    <!-- /Time Slot -->
+
+                                                </div>
+                                            </div>
+                                            <div>
+
+                                                @{
+
+
+
+
+
+
+                                                    int fullcountter = Convert.ToInt32(Session["fullcount"]);
+
+                                                    int countter = Convert.ToInt32(Session["count"]);
+
+
+
+                                                }
+
+                                                @fullcountter
+
+                                                @if (!string.IsNullOrEmpty(ViewBag.fulldisplay))
+                                                {
+
+
+                                                    var btnValues = ViewBag.fulldisplay.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                                    using (Html.BeginForm("fullday", "DoctorEnrolling", FormMethod.Post))
+                                                    {
+
+
+
+
+                                                        <div style="display:flex;justify-content:space-between;flex-wrap:wrap">
+
+
+                                                            @for (int i = 0; i < fullcountter && i < btnValues.Length; i++)
+                                                            {
+
+
+
+
+                                                                <div style="position:relative;">
+
+
+
+
+                                                                    @if (btnValues[i].Length > 15 && !string.IsNullOrEmpty(ViewBag.fulldisplay))
+                                                                    {
+
+
+                                                                        <input type="hidden" value="@btnValues[i]" name="valueToRemove" class="days timing new fa fa-times" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                                        <button style="font-size:17px;border:none;position:absolute;right:0px;top:17px;background-color:transparent;color:white">X</button>
+
+
+
+
+                                                                        <input type="hidden" value="@btnValues[i]" name="storedata" class="days timing new fa fa-times" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                                        <input type="submit" value="Full DAY(@btnValues[i].Substring(btnValues[i].Length - 5))" name="index" class="days timing new danger" style="@ViewBag.ButtonStyle;background-color:#d9534f;color:white;border-radius:5px;" />
+
+
+                                                                    }
+
+
+
+
+
+
+                                                                </div>
+
+
+                                                            }
+
+
+
+                                                        </div>
+
+                                                    }
+
+
+                                                }
+
+
+
+
+
+                                                @if (Session["fulldisplay"] != null)
+                                                {
+                                                    string[] fulldays = Session["fulldisplay"].ToString().Split(',');
+
+                                                    for (int i = 0; i < fulldays.Length; i++)
+                                                    {
+
+                                                        <input type="hidden" value="@fulldays[i]," name="valueToRemove" class="days timing new fa fa-times" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                        <button style="font-size:17px;border:none;position:absolute;right:0px;top:17px;background-color:transparent;color:white">X</button>
+
+
+                                                    }
+
+
+
+                                                }
+
+                                            </div>
+
+                                            <h4 style="align-items:center;text-align:center;margin-top:50PX"><span style="background-color: #20BBBD; padding: 2px 7px; border-radius: 70%; margin-right: 7px">@Session["count"]</span>Slot is selected</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            @using (Html.BeginForm("fullday", "DoctorEnrolling", FormMethod.Post))
+                                            {
+
+
+                                                if (ViewBag.fulldisplay == null)
+                                                {
+                                                    ViewBag.fulldisplay = "";
+
+                                                }
+
+                                                if (ViewBag.EnabledButtonsString == null)
+                                                {
+                                                    ViewBag.EnabledButtonsString = "";
+
+                                                }
+
+                                                if (ViewBag.fulldisplay.Contains(ViewBag.EnabledButtonsString))
+                                                {
+
+
+                                                    <input type="hidden" value="@ViewBag.EnabledButtonsString" name="wholeday" class="days timing new fa fa-times" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                    @*<button style="background-color: #d9534f; color: white; border-radius: 5px;border:none" class="btn btn-primary submit-btn" name="btnn">Full Day(@ViewBag.currentday)</button>*@
+
+                                                    <input style="background-color: #d9534f; color: white; border-radius: 5px;border:none" class="btn btn-primary submit-btn" type="submit" name="wholeday" value="Full Day(@ViewBag.currentday)" disabled />
+
+
+
+                                                }
+                                                else
+                                                {
+
+
+                                                    <input type="hidden" value="@ViewBag.EnabledButtonsString" name="wholeday" class="days timing new fa fa-times" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                    @*<button style="background-color: #d9534f; color: white; border-radius: 5px;border:none" class="btn btn-primary submit-btn" name="btnn">Full Day(@ViewBag.currentday)</button>*@
+
+                                                    <input style="background-color: #d9534f; color: white; border-radius: 5px;border:none" class="btn btn-primary submit-btn" type="submit" name="wholeday" value="Full Day(@ViewBag.currentday)" />
+
+
+                                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            }
+                                        </div>
+                                        <!-- /Schedule Content -->
+
+                                    </div>
+                                    <!-- /Schedule Widget -->
+                                    <!-- Submit Section -->
+                                    <div class="submit-section proceed-btn text-right">
+
+
+                                        @{ if (@Convert.ToInt32(Session["fullcount"]) == 0 && @Convert.ToInt32(Session["count"]) == 0)
+                                            {
+
+                                                using (Html.BeginForm("NotAvailable", "DoctorEnrolling", FormMethod.Post))
+                                                {
+
+
+
+
+
+
+
+
+
+                                                    <button class="btn btn-primary " name="selectnotavailabale" value="empty">Not Available</button>}
+
+
+
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-primary" onclick="showAlert()" name="senddata">Not Available</button>
+
+
+
+
+                                            }
+                                        }
+
+                                    </div>
+                                    <!-- /Submit Section -->
+                                    <!-- Schedule Content -->
+                                    <div class="tab-content schedule-cont">
+
+                                        <!-- Sunday Slot -->
+                                        <div id="slot_sunday" class="tab-pane fade">
+                                            <h4 class="card-title d-flex justify-content-between">
+                                                <span>Time Slots</span>
+                                                <a class="edit-link" data-toggle="modal"
+                                                   href="#add_time_slot">
+                                                    <i class="fa fa-plus-circle"></i> Add Slot
+                                                </a>
+                                            </h4>
+                                            <p class="text-muted mb-0">Not Available </p>
+                                        </div>
+                                        <!-- /Sunday Slot -->
+                                        <!-- Monday Slot -->
+                                        <div id="slot_monday" class="tab-pane fade show active">
+                                            <h4 class="card-title d-flex justify-content-between">
+                                                <span>Time Slots </span>
+                                                <a class="edit-link" data-toggle="modal"
+                                                   href="#edit_time_slot">
+                                                    <i class="fa fa-edit mr-1"></i>Edit
+                                                </a>
+                                            </h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            <!-- Slot List -->
+                                            <div class="doc-times">
+                                                <div class="">
+
+                                                    @if (!string.IsNullOrEmpty(ViewBag.btn))
+                                                    {
+
+                                                        var btnValues = ViewBag.btn.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                                        using (Html.BeginForm("NotAvailable", "DoctorEnrolling", FormMethod.Post))
+                                                        {
+
+
+
+
+                                                            <div style="display:flex;justify-content:space-between;flex-wrap:wrap">
+
+
+                                                                @for (int i = 0; i < countter; i++)
+                                                                {
+
+
+
+
+                                                                    <div style="position:relative;">
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                        @if (btnValues[i].Length > 50 && !string.IsNullOrEmpty(ViewBag.EnabledButtonsString))
+                                                                        {
+
+
+                                                                            <input type="hidden" value="@ViewBag.EnabledButtonsString," name="valueToRemove" class="days timing new fa fa-times" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                                            <button style="font-size:17px;border:none;position:absolute;right:0px;top:17px;background-color:transparent;color:white">X</button>
+
+                                                                            <input type="submit" value="@ViewBag.EnabledButtonsString.Substring(@ViewBag.EnabledButtonsString.Length - 5)" name="index" class="days timing new danger" style="@ViewBag.ButtonStyle;background-color:#d9534f;color:white;border-radius:5px;" />
+
+
+                                                                        }
+                                                                        @if (btnValues[i].Length < 15)
+                                                                        {
+
+
+                                                                            <input type="hidden" value="@btnValues[i]," name="valueToRemove" class="days timing new fa fa-times" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                                            <button style="font-size:17px;border:none;position:absolute;right:0px;top:17px;background-color:transparent;color:white">X</button>
+
+                                                                            <input type="submit" value="@btnValues[i]" name="index" class="days timing new danger" style="@ViewBag.ButtonStyle;background-color:#d9534f;color:white;border-radius:5px;" />
+
+
+
+                                                                        }
+
+
+
+
+
+                                                                    </div>
+
+
+                                                                }
+
+
+
+                                                            </div>
+
+                                                        }
+
+
+                                                    }
+
+
+
+                                                </div>
+
+
+                                            </div>
+                                            <!-- /Slot List -->
+
+                                        </div>
+                                        <!-- /Monday Slot -->
+
+
+                                    </div>
+                                    <!-- /Schedule Content -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/vcard-personal-portfolio-master/assets/js/script.js"></script>
+<!--
+  - ionicon link
+-->
+-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function showAlert() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Are you sure you want to make yourself unavailable during this time slot? This action cannot be reversed.!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, I am sure'
+
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Not Available',
+                    'You have made yourself unavailable during this time slot.',
+                    'success'
+
+                );
+
+                // Perform the action here
+                window.location = "SendNotAvailable";
+            }
+        });
+
+
+    }
+
+
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+@if (TempData["swal_message"] != null)
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "NotAvailable";
+
+        });;
+    </script>
+}
+

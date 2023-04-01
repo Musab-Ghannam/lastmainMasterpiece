@@ -1,0 +1,1483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.props')" />
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9CDB4BD1-D76F-45A3-A2AB-87442E1D9C15}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mainMasterpiesce</RootNamespace>
+    <AssemblyName>mainMasterpiesce</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44332</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.27.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.27.0\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.27.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.27.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.27.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.27.0\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.27.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.27.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.CodeCoverage.Shim, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeCoverage.17.5.0\lib\net462\Microsoft.VisualStudio.CodeCoverage.Shim.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.27.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.27.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.7.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.2.2\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.2.2\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.2.2\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.2.2\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.2.2\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\appointmentsController.cs" />
+    <Compile Include="Controllers\DoctorEnrollingController.cs" />
+    <Compile Include="Controllers\doctorsController.cs" />
+    <Compile Include="Controllers\DoctorsInfoController.cs" />
+    <Compile Include="Controllers\feedbacksController.cs" />
+    <Compile Include="Controllers\feedbackwebsitesController.cs" />
+    <Compile Include="Controllers\GraphServiceClient.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\mainHmeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\patientsController.cs" />
+    <Compile Include="Controllers\specializationsController.cs" />
+    <Compile Include="Controllers\transactionsdoctorsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\appointment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\doctor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\feedback.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\feedbackwebsite.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NotAvailableTime.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\patient.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\specialization.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\transactionsdoctor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\transactionspatient.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\ABOUT.css" />
+    <Content Include="Content\css\alldoctors.css" />
+    <Content Include="Content\css\layout.css" />
+    <Content Include="Content\css\navbar.css" />
+    <Content Include="Content\css\Signin.css" />
+    <Content Include="Content\css\signup.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\hom1.css" />
+    <Content Include="Content\images\1665390796770.jfif" />
+    <Content Include="Content\images\about\1.jpg" />
+    <Content Include="Content\images\backfinal.jpeg" />
+    <Content Include="Content\images\background.jpeg" />
+    <Content Include="Content\images\background\3.jpg" />
+    <Content Include="Content\images\background\appoinment.jpg" />
+    <Content Include="Content\images\background\promo-video.jpg" />
+    <Content Include="Content\images\blog\1.png" />
+    <Content Include="Content\images\blog\2.png" />
+    <Content Include="Content\images\blog\3.png" />
+    <Content Include="Content\images\blog\5.jpg" />
+    <Content Include="Content\images\blog\6.jpg" />
+    <Content Include="Content\images\blog\7.jpg" />
+    <Content Include="Content\images\blog\8.jpg" />
+    <Content Include="Content\images\blog\post-thumb-small.jpg" />
+    <Content Include="Content\images\COVER-1.jpg" />
+    <Content Include="Content\images\COVER-2.jpg" />
+    <Content Include="Content\images\COVER-3.jpg" />
+    <Content Include="Content\images\cover-5.jpg" />
+    <Content Include="Content\images\dr.png" />
+    <Content Include="Content\images\dr2.png" />
+    <Content Include="Content\images\dr3.png" />
+    <Content Include="Content\images\dr4.png" />
+    <Content Include="Content\images\dr6.png" />
+    <Content Include="Content\images\dralaa.png" />
+    <Content Include="Content\images\drhiba.png" />
+    <Content Include="Content\images\fin.jpeg" />
+    <Content Include="Content\images\fin1.jpeg" />
+    <Content Include="Content\images\gallery\1.jpg" />
+    <Content Include="Content\images\gallery\2.jpg" />
+    <Content Include="Content\images\gallery\3.jpg" />
+    <Content Include="Content\images\gallery\gallery-01.jpg" />
+    <Content Include="Content\images\gallery\gallery-02.jpg" />
+    <Content Include="Content\images\gallery\gallery-03.jpg" />
+    <Content Include="Content\images\gallery\gallery-04.jpg" />
+    <Content Include="Content\images\gallery\gallery-05.jpg" />
+    <Content Include="Content\images\gallery\gallery-06.jpg" />
+    <Content Include="Content\images\gallery\video-thumb-01.jpg" />
+    <Content Include="Content\images\gallery\video-thumb-02.jpg" />
+    <Content Include="Content\images\gallery\video-thumb-03.jpg" />
+    <Content Include="Content\images\gallery\video-thumb-04.jpg" />
+    <Content Include="Content\images\gmail-login.jpeg" />
+    <Content Include="Content\images\h.jpeg" />
+    <Content Include="Content\images\icons\icon-select.png" />
+    <Content Include="Content\images\icons\preloader.gif" />
+    <Content Include="Content\images\insta-login.jpeg" />
+    <Content Include="Content\images\jad.jpg" />
+    <Content Include="Content\images\lab.png" />
+    <Content Include="Content\images\logo-2.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\m1.png" />
+    <Content Include="Content\images\m2.png" />
+    <Content Include="Content\images\m3.png" />
+    <Content Include="Content\images\m4.png" />
+    <Content Include="Content\images\ml.png" />
+    <Content Include="Content\images\moath.jfif" />
+    <Content Include="Content\images\online-removebg-preview.png" />
+    <Content Include="Content\images\online.png" />
+    <Content Include="Content\images\p.png" />
+    <Content Include="Content\images\PHONE.png" />
+    <Content Include="Content\images\pp.png" />
+    <Content Include="Content\images\psych11.png" />
+    <Content Include="Content\images\psych12.png" />
+    <Content Include="Content\images\psych3.png" />
+    <Content Include="Content\images\psych4.png" />
+    <Content Include="Content\images\psych5.png" />
+    <Content Include="Content\images\psycool.png" />
+    <Content Include="Content\images\resource\1.png" />
+    <Content Include="Content\images\resource\2.png" />
+    <Content Include="Content\images\resource\3.png" />
+    <Content Include="Content\images\resource\4.png" />
+    <Content Include="Content\images\s11.png" />
+    <Content Include="Content\images\s12.png" />
+    <Content Include="Content\images\s13.png" />
+    <Content Include="Content\images\SEAR.png" />
+    <Content Include="Content\images\services\service-five.jpg" />
+    <Content Include="Content\images\services\service-four.jpg" />
+    <Content Include="Content\images\services\service-one.jpg" />
+    <Content Include="Content\images\services\service-three.jpg" />
+    <Content Include="Content\images\services\service-two.jpg" />
+    <Content Include="Content\images\Sign.png" />
+    <Content Include="Content\images\slider\slider-bg-1.jpg" />
+    <Content Include="Content\images\slider\slider-bg-2.jpg" />
+    <Content Include="Content\images\slider\slider-bg-3.jpg" />
+    <Content Include="Content\images\step.png" />
+    <Content Include="Content\images\team\doctor-1.jpg" />
+    <Content Include="Content\images\team\doctor-2.jpg" />
+    <Content Include="Content\images\team\doctor-3.jpg" />
+    <Content Include="Content\images\team\doctor-lab-1.jpg" />
+    <Content Include="Content\images\team\doctor-lab-2.jpg" />
+    <Content Include="Content\images\team\doctor-lab-3.jpg" />
+    <Content Include="Content\images\team\event-1.jpg" />
+    <Content Include="Content\images\team\event-2.jpg" />
+    <Content Include="Content\images\team\event-3.jpg" />
+    <Content Include="Content\images\testimonials\1.jpg" />
+    <Content Include="Content\images\testimonials\1.png" />
+    <Content Include="Content\images\testimonials\2.png" />
+    <Content Include="Content\images\testimonials\3.png" />
+    <Content Include="Content\images\this.png" />
+    <Content Include="Content\images\yazeed.jfif" />
+    <Content Include="doc\add-billing.html" />
+    <Content Include="doc\add-prescription.html" />
+    <Content Include="doc\admin\appointment-list.html" />
+    <Content Include="doc\admin\assets\css\bootstrap.min.css" />
+    <Content Include="doc\admin\assets\css\feathericon.min.css" />
+    <Content Include="doc\admin\assets\css\font-awesome.min.css" />
+    <Content Include="doc\admin\assets\css\select2.min.css" />
+    <Content Include="doc\admin\assets\css\style.css" />
+    <Content Include="doc\admin\assets\fonts\feathericon.svg" />
+    <Content Include="doc\admin\assets\fonts\fontawesome-webfont3e6e.html" />
+    <Content Include="doc\admin\assets\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="doc\admin\assets\fonts\MaterialIcons-Regular.html" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-01.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-02.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-03.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-04.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-05.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-06.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-07.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-08.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-09.jpg" />
+    <Content Include="doc\admin\assets\img\doctors\doctor-thumb-10.jpg" />
+    <Content Include="doc\admin\assets\img\favicon.png" />
+    <Content Include="doc\admin\assets\img\img-01.jpg" />
+    <Content Include="doc\admin\assets\img\logo-small.png" />
+    <Content Include="doc\admin\assets\img\logo-white.png" />
+    <Content Include="doc\admin\assets\img\logo.png" />
+    <Content Include="doc\admin\assets\img\patients\patient1.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient10.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient11.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient12.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient13.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient14.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient15.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient2.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient3.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient4.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient5.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient6.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient7.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient8.jpg" />
+    <Content Include="doc\admin\assets\img\patients\patient9.jpg" />
+    <Content Include="doc\admin\assets\img\profiles\avatar-01.jpg" />
+    <Content Include="doc\admin\assets\img\profiles\avatar-02.jpg" />
+    <Content Include="doc\admin\assets\img\profiles\avatar-03.jpg" />
+    <Content Include="doc\admin\assets\img\profiles\avatar-04.jpg" />
+    <Content Include="doc\admin\assets\img\specialities\specialities-01.png" />
+    <Content Include="doc\admin\assets\img\specialities\specialities-02.png" />
+    <Content Include="doc\admin\assets\img\specialities\specialities-03.png" />
+    <Content Include="doc\admin\assets\img\specialities\specialities-04.png" />
+    <Content Include="doc\admin\assets\img\specialities\specialities-05.png" />
+    <Content Include="doc\admin\assets\js\bootstrap.min.js" />
+    <Content Include="doc\admin\assets\js\chart.morris.js" />
+    <Content Include="doc\admin\assets\js\form-validation.js" />
+    <Content Include="doc\admin\assets\js\jquery-3.2.1.min.js" />
+    <Content Include="doc\admin\assets\js\jquery.maskedinput.min.js" />
+    <Content Include="doc\admin\assets\js\mask.js" />
+    <Content Include="doc\admin\assets\js\popper.min.js" />
+    <Content Include="doc\admin\assets\js\script.js" />
+    <Content Include="doc\admin\assets\js\select2.min.js" />
+    <Content Include="doc\admin\assets\plugins\datatables\datatables.min.css" />
+    <Content Include="doc\admin\assets\plugins\datatables\datatables.min.js" />
+    <Content Include="doc\admin\assets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="doc\admin\assets\plugins\morris\morris.css" />
+    <Content Include="doc\admin\assets\plugins\morris\morris.min.js" />
+    <Content Include="doc\admin\assets\plugins\raphael\raphael.min.js" />
+    <Content Include="doc\admin\assets\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="doc\admin\blank-page.html" />
+    <Content Include="doc\admin\components.html" />
+    <Content Include="doc\admin\data-tables.html" />
+    <Content Include="doc\admin\doctor-list.html" />
+    <Content Include="doc\admin\error-404.html" />
+    <Content Include="doc\admin\error-500.html" />
+    <Content Include="doc\admin\forgot-password.html" />
+    <Content Include="doc\admin\form-basic-inputs.html" />
+    <Content Include="doc\admin\form-horizontal.html" />
+    <Content Include="doc\admin\form-input-groups.html" />
+    <Content Include="doc\admin\form-mask.html" />
+    <Content Include="doc\admin\form-validation.html" />
+    <Content Include="doc\admin\form-vertical.html" />
+    <Content Include="doc\admin\index.html" />
+    <Content Include="doc\admin\invoice-report.html" />
+    <Content Include="doc\admin\invoice.html" />
+    <Content Include="doc\admin\lock-screen.html" />
+    <Content Include="doc\admin\login.html" />
+    <Content Include="doc\admin\patient-list.html" />
+    <Content Include="doc\admin\profile.html" />
+    <Content Include="doc\admin\register.html" />
+    <Content Include="doc\admin\reviews.html" />
+    <Content Include="doc\admin\settings.html" />
+    <Content Include="doc\admin\specialities.html" />
+    <Content Include="doc\admin\tables-basic.html" />
+    <Content Include="doc\admin\transactions-list.html" />
+    <Content Include="doc\appointments.html" />
+    <Content Include="doc\assets\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="doc\assets\css\bootstrap.min.css" />
+    <Content Include="doc\assets\css\style.css" />
+    <Content Include="doc\assets\fonts\MaterialIcons-Regular.html" />
+    <Content Include="doc\assets\img\doctors\doctor-01.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-02.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-03.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-04.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-05.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-06.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-07.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-08.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-09.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-10.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-11.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-12.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-01.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-02.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-03.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-04.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-05.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-06.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-07.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-08.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-09.jpg" />
+    <Content Include="doc\assets\img\doctors\doctor-thumb-10.jpg" />
+    <Content Include="doc\assets\img\favicon.png" />
+    <Content Include="doc\assets\img\features\feature-01.jpg" />
+    <Content Include="doc\assets\img\features\feature-02.jpg" />
+    <Content Include="doc\assets\img\features\feature-03.jpg" />
+    <Content Include="doc\assets\img\features\feature-04.jpg" />
+    <Content Include="doc\assets\img\features\feature-05.jpg" />
+    <Content Include="doc\assets\img\features\feature-06.jpg" />
+    <Content Include="doc\assets\img\features\feature.png" />
+    <Content Include="doc\assets\img\footer-logo.png" />
+    <Content Include="doc\assets\img\icon-01.png" />
+    <Content Include="doc\assets\img\icon-02.png" />
+    <Content Include="doc\assets\img\icon-03.png" />
+    <Content Include="doc\assets\img\img-01.jpg" />
+    <Content Include="doc\assets\img\img-02.jpg" />
+    <Content Include="doc\assets\img\img-03.jpg" />
+    <Content Include="doc\assets\img\img-04.jpg" />
+    <Content Include="doc\assets\img\location.png" />
+    <Content Include="doc\assets\img\login-banner.png" />
+    <Content Include="doc\assets\img\logo.png" />
+    <Content Include="doc\assets\img\patients\patient.jpg" />
+    <Content Include="doc\assets\img\patients\patient1.jpg" />
+    <Content Include="doc\assets\img\patients\patient10.jpg" />
+    <Content Include="doc\assets\img\patients\patient11.jpg" />
+    <Content Include="doc\assets\img\patients\patient2.jpg" />
+    <Content Include="doc\assets\img\patients\patient3.jpg" />
+    <Content Include="doc\assets\img\patients\patient4.jpg" />
+    <Content Include="doc\assets\img\patients\patient5.jpg" />
+    <Content Include="doc\assets\img\patients\patient6.jpg" />
+    <Content Include="doc\assets\img\patients\patient7.jpg" />
+    <Content Include="doc\assets\img\patients\patient8.jpg" />
+    <Content Include="doc\assets\img\patients\patient9.jpg" />
+    <Content Include="doc\assets\img\search-bg.png" />
+    <Content Include="doc\assets\img\search.png" />
+    <Content Include="doc\assets\img\specialities\specialities-01.png" />
+    <Content Include="doc\assets\img\specialities\specialities-02.png" />
+    <Content Include="doc\assets\img\specialities\specialities-03.png" />
+    <Content Include="doc\assets\img\specialities\specialities-04.png" />
+    <Content Include="doc\assets\img\specialities\specialities-05.png" />
+    <Content Include="doc\assets\img\video-call.jpg" />
+    <Content Include="doc\assets\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="doc\assets\js\bootstrap.min.js" />
+    <Content Include="doc\assets\js\circle-progress.min.js" />
+    <Content Include="doc\assets\js\jquery.min.js" />
+    <Content Include="doc\assets\js\moment.min.js" />
+    <Content Include="doc\assets\js\popper.min.js" />
+    <Content Include="doc\assets\js\profile-settings.js" />
+    <Content Include="doc\assets\js\script.js" />
+    <Content Include="doc\assets\js\slick.js" />
+    <Content Include="doc\assets\plugins\bootstrap-tagsinput\css\bootstrap-tagsinput.css" />
+    <Content Include="doc\assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.js" />
+    <Content Include="doc\assets\plugins\dropzone\dropzone.min.css" />
+    <Content Include="doc\assets\plugins\dropzone\dropzone.min.js" />
+    <Content Include="doc\assets\plugins\fancybox\jquery.fancybox.min.css" />
+    <Content Include="doc\assets\plugins\fancybox\jquery.fancybox.min.js" />
+    <Content Include="doc\assets\plugins\fontawesome\css\all.min.css" />
+    <Content Include="doc\assets\plugins\fontawesome\css\fontawesome.min.css" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-brands-400.html" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-regular-400.html" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-solid-900.html" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="doc\assets\plugins\fullcalendar\fullcalendar.min.css" />
+    <Content Include="doc\assets\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="doc\assets\plugins\fullcalendar\jquery.fullcalendar.js" />
+    <Content Include="doc\assets\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="doc\assets\plugins\select2\css\select2.min.css" />
+    <Content Include="doc\assets\plugins\select2\js\select2.min.js" />
+    <Content Include="doc\assets\plugins\theia-sticky-sidebar\ResizeSensor.js" />
+    <Content Include="doc\assets\plugins\theia-sticky-sidebar\theia-sticky-sidebar.js" />
+    <Content Include="doc\blank-page.html" />
+    <Content Include="doc\booking-success.html" />
+    <Content Include="doc\booking.html" />
+    <Content Include="doc\calendar.html" />
+    <Content Include="doc\change-password.html" />
+    <Content Include="doc\chat-doctor.html" />
+    <Content Include="doc\chat.html" />
+    <Content Include="doc\checkout.html" />
+    <Content Include="doc\components.html" />
+    <Content Include="doc\doctor-change-password.html" />
+    <Content Include="doc\doctor-dashboard.html" />
+    <Content Include="doc\doctor-profile-settings.html" />
+    <Content Include="doc\doctor-profile.html" />
+    <Content Include="doc\doctor-register.html" />
+    <Content Include="doc\edit-billing.html" />
+    <Content Include="doc\edit-prescription.html" />
+    <Content Include="doc\favourites.html" />
+    <Content Include="doc\forgot-password.html" />
+    <Content Include="doc\index-2.html" />
+    <Content Include="doc\index.html" />
+    <Content Include="doc\invoice-view.html" />
+    <Content Include="doc\invoices.html" />
+    <Content Include="doc\login.html" />
+    <Content Include="doc\my-patients.html" />
+    <Content Include="doc\patient-dashboard.html" />
+    <Content Include="doc\patient-profile.html" />
+    <Content Include="doc\privacy-policy.html" />
+    <Content Include="doc\profile-settings.html" />
+    <Content Include="doc\register.html" />
+    <Content Include="doc\reviews.html" />
+    <Content Include="doc\schedule-timings.html" />
+    <Content Include="doc\search.html" />
+    <Content Include="doc\social-media.html" />
+    <Content Include="doc\term-condition.html" />
+    <Content Include="doc\video-call.html" />
+    <Content Include="doc\voice-call.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\css\maps\style.css.map" />
+    <Content Include="doc\admin\assets\fonts\feathericon.eot" />
+    <Content Include="doc\admin\assets\fonts\feathericon.ttf" />
+    <Content Include="doc\admin\assets\fonts\feathericon.woff" />
+    <Content Include="doc\admin\assets\fonts\feathericond41d.eot" />
+    <Content Include="doc\admin\assets\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="doc\admin\assets\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="doc\admin\assets\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="doc\admin\assets\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="doc\admin\assets\fonts\MaterialIcons-Regular.eot" />
+    <Content Include="doc\admin\assets\fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="doc\admin\assets\fonts\MaterialIcons-Regular.woff" />
+    <Content Include="doc\assets\fonts\MaterialIcons-Regular.eot" />
+    <Content Include="doc\assets\fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="doc\assets\fonts\MaterialIcons-Regular.woff" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-brands-400d41d.eot" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-regular-400d41d.eot" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="doc\assets\plugins\fontawesome\webfonts\fa-solid-900d41d.eot" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\home.js" />
+    <Content Include="Scripts\js\script.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\plugins\animate.min.css" />
+    <Content Include="Scripts\plugins\bootstrap-select.min.css" />
+    <Content Include="Scripts\plugins\bootstrap-select.min.js" />
+    <Content Include="Scripts\plugins\bootstrap.min.css" />
+    <Content Include="Scripts\plugins\bootstrap.min.js" />
+    <Content Include="Scripts\plugins\fancybox\jquery.fancybox.min.css" />
+    <Content Include="Scripts\plugins\fancybox\jquery.fancybox.min.js" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\plugins\google-map\gmap.js" />
+    <Content Include="Scripts\plugins\google-map\images\marker.png" />
+    <Content Include="Scripts\plugins\jquery-ui.js" />
+    <Content Include="Scripts\plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Scripts\plugins\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Scripts\plugins\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Scripts\plugins\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\plugins\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\plugins\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\plugins\jquery-ui\jquery-ui.css" />
+    <Content Include="Scripts\plugins\jquery.appear.js" />
+    <Content Include="Scripts\plugins\jquery.js" />
+    <Content Include="Scripts\plugins\slick\ajax-loader.gif" />
+    <Content Include="Scripts\plugins\slick\fonts\slick.svg" />
+    <Content Include="Scripts\plugins\slick\slick-theme.css" />
+    <Content Include="Scripts\plugins\slick\slick.css" />
+    <Content Include="Scripts\plugins\slick\slick.js" />
+    <Content Include="Scripts\plugins\slick\slick.min.js" />
+    <Content Include="Scripts\plugins\timePicker.css" />
+    <Content Include="Scripts\plugins\timePicker.js" />
+    <Content Include="Scripts\plugins\validate.js" />
+    <Content Include="Scripts\plugins\wow.js" />
+    <Content Include="temp\lawride-master\about.html" />
+    <Content Include="temp\lawride-master\blog-details.html" />
+    <Content Include="temp\lawride-master\blog.html" />
+    <Content Include="temp\lawride-master\contact.html" />
+    <Content Include="temp\lawride-master\css\style.css" />
+    <Content Include="temp\lawride-master\img\banner\hero-banner.png" />
+    <Content Include="temp\lawride-master\img\blog\add.jpg" />
+    <Content Include="temp\lawride-master\img\blog\author.png" />
+    <Content Include="temp\lawride-master\img\blog\blog1.png" />
+    <Content Include="temp\lawride-master\img\blog\blog2.png" />
+    <Content Include="temp\lawride-master\img\blog\blog3.png" />
+    <Content Include="temp\lawride-master\img\blog\c1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\c2.jpg" />
+    <Content Include="temp\lawride-master\img\blog\c3.jpg" />
+    <Content Include="temp\lawride-master\img\blog\c4.jpg" />
+    <Content Include="temp\lawride-master\img\blog\c5.jpg" />
+    <Content Include="temp\lawride-master\img\blog\c6.jpg" />
+    <Content Include="temp\lawride-master\img\blog\cat-post\cat-post-1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\cat-post\cat-post-2.jpg" />
+    <Content Include="temp\lawride-master\img\blog\cat-post\cat-post-3.jpg" />
+    <Content Include="temp\lawride-master\img\blog\causes\causes-1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\causes\causes-2.jpg" />
+    <Content Include="temp\lawride-master\img\blog\causes\causes-3.jpg" />
+    <Content Include="temp\lawride-master\img\blog\feature-img1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\latest-post\l-post-1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\latest-post\l-post-2.jpg" />
+    <Content Include="temp\lawride-master\img\blog\latest-post\l-post-3.jpg" />
+    <Content Include="temp\lawride-master\img\blog\latest-post\l-post-4.jpg" />
+    <Content Include="temp\lawride-master\img\blog\main-blog\m-blog-1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\main-blog\m-blog-2.jpg" />
+    <Content Include="temp\lawride-master\img\blog\main-blog\m-blog-3.jpg" />
+    <Content Include="temp\lawride-master\img\blog\main-blog\m-blog-4.jpg" />
+    <Content Include="temp\lawride-master\img\blog\main-blog\m-blog-5.jpg" />
+    <Content Include="temp\lawride-master\img\blog\next.jpg" />
+    <Content Include="temp\lawride-master\img\blog\popular-post\post1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\popular-post\post2.jpg" />
+    <Content Include="temp\lawride-master\img\blog\popular-post\post3.jpg" />
+    <Content Include="temp\lawride-master\img\blog\popular-post\post4.jpg" />
+    <Content Include="temp\lawride-master\img\blog\post-img1.jpg" />
+    <Content Include="temp\lawride-master\img\blog\post-img2.jpg" />
+    <Content Include="temp\lawride-master\img\blog\prev.jpg" />
+    <Content Include="temp\lawride-master\img\clients-logo\c-logo-1.png" />
+    <Content Include="temp\lawride-master\img\clients-logo\c-logo-2.png" />
+    <Content Include="temp\lawride-master\img\clients-logo\c-logo-3.png" />
+    <Content Include="temp\lawride-master\img\clients-logo\c-logo-4.png" />
+    <Content Include="temp\lawride-master\img\clients-logo\c-logo-5.png" />
+    <Content Include="temp\lawride-master\img\Fevicon.png" />
+    <Content Include="temp\lawride-master\img\home\blog1.png" />
+    <Content Include="temp\lawride-master\img\home\blog2.png" />
+    <Content Include="temp\lawride-master\img\home\blog3.png" />
+    <Content Include="temp\lawride-master\img\home\counters-bg.png" />
+    <Content Include="temp\lawride-master\img\home\cta-bg.png" />
+    <Content Include="temp\lawride-master\img\home\hover-icon.png" />
+    <Content Include="temp\lawride-master\img\home\subject-1.png" />
+    <Content Include="temp\lawride-master\img\home\subject-2.png" />
+    <Content Include="temp\lawride-master\img\home\subject-3.png" />
+    <Content Include="temp\lawride-master\img\home\subject-4.png" />
+    <Content Include="temp\lawride-master\img\home\team1.png" />
+    <Content Include="temp\lawride-master\img\home\team2.png" />
+    <Content Include="temp\lawride-master\img\home\team3.png" />
+    <Content Include="temp\lawride-master\img\home\team4.png" />
+    <Content Include="temp\lawride-master\img\home\video-bg.png" />
+    <Content Include="temp\lawride-master\img\instagram\i1.jpg" />
+    <Content Include="temp\lawride-master\img\instagram\i2.jpg" />
+    <Content Include="temp\lawride-master\img\instagram\i3.jpg" />
+    <Content Include="temp\lawride-master\img\instagram\i4.jpg" />
+    <Content Include="temp\lawride-master\img\instagram\i5.jpg" />
+    <Content Include="temp\lawride-master\img\instagram\i6.jpg" />
+    <Content Include="temp\lawride-master\img\instagram\i7.jpg" />
+    <Content Include="temp\lawride-master\img\instagram\i8.jpg" />
+    <Content Include="temp\lawride-master\img\logo.png" />
+    <Content Include="temp\lawride-master\img\testimonial\testimonial1.png" />
+    <Content Include="temp\lawride-master\index.html" />
+    <Content Include="temp\lawride-master\js\contact.js" />
+    <Content Include="temp\lawride-master\js\jquery.ajaxchimp.min.js" />
+    <Content Include="temp\lawride-master\js\jquery.form.js" />
+    <Content Include="temp\lawride-master\js\jquery.validate.min.js" />
+    <Content Include="temp\lawride-master\js\mail-script.js" />
+    <Content Include="temp\lawride-master\js\main.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\css\font-awesome.min.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\css\main.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\css\normalize.min.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\fonts\fontawesome-webfont.svg" />
+    <Content Include="temp\lawride-master\Parason Software -doc\img\logo.png" />
+    <Content Include="temp\lawride-master\Parason Software -doc\index.html" />
+    <Content Include="temp\lawride-master\Parason Software -doc\js\custom.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\js\jquery-1.11.0.min.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\js\jquery.nav.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shAutoloader.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushAppleScript.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushAS3.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushBash.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushColdFusion.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushCpp.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushCSharp.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushCss.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushDelphi.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushDiff.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushErlang.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushGroovy.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushJava.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushJavaFX.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushJScript.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushPerl.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushPhp.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushPlain.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushPowerShell.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushPython.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushRuby.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushSass.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushScala.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushSql.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushVb.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shBrushXml.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shCore.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\scripts\shLegacy.js" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCore.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreDefault.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreDjango.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreEclipse.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreEmacs.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreFadeToGrey.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreMDUltra.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreMidnight.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shCoreRDark.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeDefault.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeDjango.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeEclipse.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeEmacs.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeFadeToGrey.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeMDUltra.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeMidnight.css" />
+    <Content Include="temp\lawride-master\Parason Software -doc\syntax-highlighter\styles\shThemeRDark.css" />
+    <Content Include="temp\lawride-master\services.html" />
+    <Content Include="temp\lawride-master\vendors\bootstrap\bootstrap.bundle.min.js" />
+    <Content Include="temp\lawride-master\vendors\bootstrap\bootstrap.min.css" />
+    <Content Include="temp\lawride-master\vendors\contact.js" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\bootstrap.bundle.min.js" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\bootstrap.min.css" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\css\all.min.css" />
+    <Content Include="temp\lawride-master\vendors\jquery.ajaxchimp.min.js" />
+    <Content Include="temp\lawride-master\vendors\jquery.form.js" />
+    <Content Include="temp\lawride-master\vendors\jquery.validate.min.js" />
+    <Content Include="temp\lawride-master\vendors\jquery\jquery-3.2.1.min.js" />
+    <Content Include="temp\lawride-master\vendors\linericon\fonts\Linearicons-Free.svg" />
+    <Content Include="temp\lawride-master\vendors\linericon\style.css" />
+    <Content Include="temp\lawride-master\vendors\Magnific-Popup\jquery.magnific-popup.min.js" />
+    <Content Include="temp\lawride-master\vendors\Magnific-Popup\magnific-popup.css" />
+    <Content Include="temp\lawride-master\vendors\mail-script.js" />
+    <Content Include="temp\lawride-master\vendors\nice-select\jquery.nice-select.min.js" />
+    <Content Include="temp\lawride-master\vendors\nice-select\nice-select.css" />
+    <Content Include="temp\lawride-master\vendors\nouislider\nouislider.min.css" />
+    <Content Include="temp\lawride-master\vendors\nouislider\nouislider.min.js" />
+    <Content Include="temp\lawride-master\vendors\owl-carousel\owl.carousel.min.css" />
+    <Content Include="temp\lawride-master\vendors\owl-carousel\owl.carousel.min.js" />
+    <Content Include="temp\lawride-master\vendors\owl-carousel\owl.theme.default.min.css" />
+    <Content Include="temp\lawride-master\vendors\skrollr.min.js" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\demo-files\demo.css" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\fonts\themify.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\ie7\ie7.css" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\ie7\ie7.js" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\index.html" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\readme.txt" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\agenda.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\alarm-clock.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\alert.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\align-center.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\align-justify.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\align-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\align-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\anchor.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\android.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-double-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-double-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-double-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-double-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\angle-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\announcement.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\apple.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\archive.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-circle-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-circle-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-circle-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-circle-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-top-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-top-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrow.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrows-corner.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrows-horizontal.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\arrows-vertical.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\back-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\back-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bag.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bar-chart-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bar-chart.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\basketball.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bell.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\blackboard.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bolt-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bolt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\book.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bookmark-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\bookmark.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\briefcase.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\brush-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\brush.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\calendar.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\camera.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\car.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\check-box.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\check.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\clip.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\clipboard.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\close.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\cloud-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\cloud-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\cloud.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\comment-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\comment.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\comments-smiley.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\comments.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-backward.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-eject.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-forward.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-pause.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-play.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-record.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-shuffle.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-skip-backward.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-skip-forward.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\control-stop.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\credit-card.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\crown.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\css3.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\cup.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\cut.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\dashboard.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\desktop.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\direction-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\direction.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\download.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\dribbble.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\dropbox-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\dropbox.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\drupal.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\email.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\envelope.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\eraser.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\exchange-vertical.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\export.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\eye.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\face-sad.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\face-smile.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\facebook.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\file.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\files.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\filter.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\flag-alt-2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\flag-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\flag.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\flickr-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\flickr.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\folder.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\fullscreen.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\gallery.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\game.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\gift.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\github.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\google.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hand-drag.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hand-open.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hand-point-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hand-point-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hand-point-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hand-point-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hand-stop.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\harddrive.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\harddrives.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\headphone-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\headphone.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\heart-broken.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\heart.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\help-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\help.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\home.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\html5.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\hummer.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\id-badge.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\image.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\import.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\infinite.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\info-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\info.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\ink-pen.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\instagram.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\Italic.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\joomla.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\jsfiddle.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\key.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layers-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layers.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-accordion-list.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-accordion-merged.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-accordion-separated.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-column2-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-column2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-column3-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-column3.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-column4-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-column4.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-cta-btn-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-cta-btn-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-cta-center.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-cta-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-cta-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-grid2-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-grid2-thumb.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-grid2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-grid3-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-grid3.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-grid4-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-grid4.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-line-solid.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-list-large-image.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-list-post.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-list-thumb-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-list-thumb.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-center-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-center.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-left-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-overlay-alt-2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-overlay-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-overlay.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-right-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-media-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-menu-full.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-menu-separated.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-menu-v.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-menu.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-placeholder.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-sidebar-2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-sidebar-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-sidebar-none.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-sidebar-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-slider-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-slider.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-tab-min.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-tab-v.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-tab-window.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-tab.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-width-default-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-width-default.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout-width-full.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\layout.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\light-bulb.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\line-dashed.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\line-dotted.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\line-double.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\link.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\linkedin.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\linux.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\list-ol.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\list.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\location-arrow.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\location-pin.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\lock.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\loop.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\magnet.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\map-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\map.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\marker-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\marker.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\medall-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\medall.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\menu-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\menu.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\microphone-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\microphone.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\microsoft-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\microsoft.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\minus.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\mobile.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\money.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\more-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\more.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\mouse-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\mouse.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\music-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\music.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\na.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\new-window.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\notepad.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\package.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\paint-bucket.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\paint-roller.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\palette.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\panel.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\paragraph.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pencil-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pencil-alt2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pencil.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pie-chart.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pin-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pin.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pin2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pinterest-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pinterest.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\plug.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\plus.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\power-off.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\printer.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\pulse.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\quote-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\quote-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\receipt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\reddit.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\reload.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\rocket.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\rss-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\rss.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\ruler-alt-2.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\ruler-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\ruler-pencil.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\ruler.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\save-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\save.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\search.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\server.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\settings.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\share-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\share.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\sharethis-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\sharethis.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shield.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shift-left-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shift-left.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shift-right-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shift-right.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shine.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shopping-cart-full.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shopping-cart.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\shortcode.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\signal.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\skype.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\slice.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\smallcap.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\soundcloud.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\split-h.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\split-v-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\split-v.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\spray.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\stack-overflow.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\stamp.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\star.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\stats-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\stats-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\support.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\tablet.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\tag.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\target.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\text.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\themify-favicon-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\themify-favicon.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\themify-logo.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\thought.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\thumb-down.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\thumb-up.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\ticket.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\time.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\timer.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\trash.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\trello.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\truck.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\tumblr-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\tumblr.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\twitter-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\twitter.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\underline.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\unlink.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\unlock.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\upload.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\uppercase.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\user.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\vector.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\video-camera.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\video-clapper.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\view-grid.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\view-list-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\view-list.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\vimeo-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\vimeo.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\volume.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\wallet.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\wand.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\wheelchair.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\widget-alt.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\widget.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\widgetized.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\window.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\wordpress.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\world.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\write.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\yahoo.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\youtube.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\zip.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\zoom-in.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\SVG\zoom-out.svg" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\themify-icons.css" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\mainLayout.cshtml" />
+    <Content Include="Views\Shared\_navbar.cshtml" />
+    <Content Include="Views\mainHome\Index.cshtml" />
+    <Content Include="Views\Shared\tryme.cshtml" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\plugins\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Scripts\plugins\slick\config.rb" />
+    <Content Include="Scripts\plugins\slick\fonts\slick.eot" />
+    <Content Include="Scripts\plugins\slick\fonts\slick.ttf" />
+    <Content Include="Scripts\plugins\slick\fonts\slick.woff" />
+    <Content Include="Scripts\plugins\slick\slick-theme.less" />
+    <Content Include="Scripts\plugins\slick\slick-theme.scss" />
+    <Content Include="Scripts\plugins\slick\slick.less" />
+    <Content Include="Scripts\plugins\slick\slick.scss" />
+    <Content Include="Views\DoctorEnrolling\EnrollDoctor.cshtml" />
+    <Content Include="Views\DoctorsInfo\alldoctors.cshtml" />
+    <Content Include="Views\DoctorsInfo\singledoctor.cshtml" />
+    <Content Include="Views\Shared\_NAVBARDOCTOR.cshtml" />
+    <Content Include="Views\DoctorsInfo\_comment.cshtml" />
+    <Content Include="Views\DoctorsInfo\booking.cshtml" />
+    <Content Include="Views\DoctorsInfo\checkout.cshtml" />
+    <Content Include="Views\DoctorsInfo\succefullyBooking.cshtml" />
+    <Content Include="Views\mainHome\About.cshtml" />
+    <Content Include="Views\Shared\_about.cshtml" />
+    <Content Include="Views\Shared\_Section.cshtml" />
+    <Content Include="Views\mainHome\ConTact.cshtml" />
+    <Content Include="Views\Shared\_covercontact.cshtml" />
+    <Content Include="temp\lawride-master\img\blog\.DS_Store" />
+    <Content Include="temp\lawride-master\img\clients-logo\.DS_Store" />
+    <Content Include="temp\lawride-master\Parason Software -doc\fonts\fontawesome-webfont.eot" />
+    <Content Include="temp\lawride-master\Parason Software -doc\fonts\fontawesome-webfont.ttf" />
+    <Content Include="temp\lawride-master\Parason Software -doc\fonts\fontawesome-webfont.woff" />
+    <Content Include="temp\lawride-master\Parason Software -doc\fonts\FontAwesome.otf" />
+    <Content Include="temp\lawride-master\Parason Software -doc\img\Thumbs.db" />
+    <Content Include="temp\lawride-master\scss\style.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_banner.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_blog.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_btn.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_contact.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_footer.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_header.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_home.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_mixins.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_reset.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_responsive.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_section-intro.scss" />
+    <Content Include="temp\lawride-master\scss\theme\_variables.scss" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="temp\lawride-master\vendors\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="temp\lawride-master\vendors\linericon\.DS_Store" />
+    <Content Include="temp\lawride-master\vendors\linericon\fonts\Linearicons-Free.eot" />
+    <Content Include="temp\lawride-master\vendors\linericon\fonts\Linearicons-Free.ttf" />
+    <Content Include="temp\lawride-master\vendors\linericon\fonts\Linearicons-Free.woff" />
+    <Content Include="temp\lawride-master\vendors\linericon\fonts\Linearicons-Free.woff2" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\fonts\themify.eot" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\fonts\themify.ttf" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\fonts\themify.woff" />
+    <Content Include="temp\lawride-master\vendors\themify-icons\Themify IconFonts 5-23-2014.json" />
+    <Content Include="Views\Shared\_completedoctor.cshtml" />
+    <Content Include="Views\DoctorsInfo\patientProfile.cshtml" />
+    <Content Include="Views\Shared\_patientprofile.cshtml" />
+    <Content Include="Views\DoctorsInfo\Profilesetting.cshtml" />
+    <Content Include="Views\DoctorEnrolling\DoctorDashboard.cshtml" />
+    <Content Include="Views\Shared\_DoctorDashboard.cshtml" />
+    <Content Include="Views\DoctorEnrolling\MyPatient.cshtml" />
+    <Content Include="Views\DoctorEnrolling\NotAvailable.cshtml" />
+    <Content Include="Views\DoctorEnrolling\DoctorDashSetting.cshtml" />
+    <Content Include="Views\Shared\_AdminDashBoard.cshtml" />
+    <Content Include="Views\appointments\Create.cshtml" />
+    <Content Include="Views\appointments\Delete.cshtml" />
+    <Content Include="Views\appointments\Details.cshtml" />
+    <Content Include="Views\appointments\Edit.cshtml" />
+    <Content Include="Views\appointments\Index.cshtml" />
+    <Content Include="Views\specializations\Create.cshtml" />
+    <Content Include="Views\specializations\Delete.cshtml" />
+    <Content Include="Views\specializations\Details.cshtml" />
+    <Content Include="Views\specializations\Edit.cshtml" />
+    <Content Include="Views\specializations\Index.cshtml" />
+    <Content Include="Views\patients\Create.cshtml" />
+    <Content Include="Views\patients\Delete.cshtml" />
+    <Content Include="Views\patients\Details.cshtml" />
+    <Content Include="Views\patients\Edit.cshtml" />
+    <Content Include="Views\patients\patientDashboard.cshtml" />
+    <Content Include="Views\doctors\Create.cshtml" />
+    <Content Include="Views\doctors\Delete.cshtml" />
+    <Content Include="Views\doctors\Details.cshtml" />
+    <Content Include="Views\doctors\Edit.cshtml" />
+    <Content Include="Views\doctors\AdminDoctor.cshtml" />
+    <Content Include="Views\transactionsdoctors\Create.cshtml" />
+    <Content Include="Views\transactionsdoctors\Delete.cshtml" />
+    <Content Include="Views\transactionsdoctors\Details.cshtml" />
+    <Content Include="Views\transactionsdoctors\Edit.cshtml" />
+    <Content Include="Views\transactionsdoctors\DoctorTransaction.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Shared\_allDocFOOter.cshtml" />
+    <Content Include="Views\DoctorsInfo\therapiestlist.cshtml" />
+    <Content Include="Views\feedbackwebsites\Create.cshtml" />
+    <Content Include="Views\feedbackwebsites\Delete.cshtml" />
+    <Content Include="Views\feedbackwebsites\Details.cshtml" />
+    <Content Include="Views\feedbackwebsites\Edit.cshtml" />
+    <Content Include="Views\feedbackwebsites\feedbackweb.cshtml" />
+    <Content Include="Views\feedbacks\Create.cshtml" />
+    <Content Include="Views\feedbacks\Delete.cshtml" />
+    <Content Include="Views\feedbacks\Details.cshtml" />
+    <Content Include="Views\feedbacks\Edit.cshtml" />
+    <Content Include="Views\feedbacks\Review.cshtml" />
+    <Content Include="Views\DoctorEnrolling\MyReviews.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="FormalFile\" />
+    <Folder Include="img\" />
+    <Folder Include="Views\mainHme\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58711</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44332/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('..\packages\Microsoft.CodeCoverage.17.5.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+  <Import Project="..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.17.5.0\build\net462\Microsoft.NET.Test.Sdk.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

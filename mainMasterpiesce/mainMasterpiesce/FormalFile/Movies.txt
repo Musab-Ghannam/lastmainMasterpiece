@@ -1,0 +1,187 @@
+<div class="col-lg-4 col-md-6 wow fadeInUp bigg" data-wow-delay="0.1s" id="bigg">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded small">
+                            <img class="img-fluid " src="img/show1.jpg" alt="">
+
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3 small" id="small">
+                                <img class="img-fluid iconfilm" src="img/show1.jpg" alt="Icon" style="border-radius:50%" >
+                            </div>
+                            <div class="desc">
+                            <h4 class="mb-3">Landscaping</h4>
+                            <p class="mb-4 " style="text-align:center;align-items:center">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                                </div>
+                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+<%--film2--%>
+                  <div class="col-lg-4 col-md-6 wow fadeInUp bigg" data-wow-delay="0.1s" id="bigg">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded small">
+                            <img class="img-fluid " src="img/show2.jpeg" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3 small" id="small">
+                                <img class="img-fluid iconfilm" src="img/icon/show22.jpeg" alt="Icon" style="border-radius:50%" >
+                            </div>
+                            <div class="desc">
+                            <h4 class="mb-3">Landscaping</h4>
+                            <p class="mb-4 " style="text-align:center;align-items:center">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                                </div>
+                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                     <%--film3--%>
+                  <div class="col-lg-4 col-md-6 wow fadeInUp bigg" data-wow-delay="0.1s" id="bigg">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded small">
+                            <img class="img-fluid " src="img/show33.jpg" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3 small" id="small">
+                                <img class="img-fluid iconfilm" src="img/show33.jpg" alt="Icon" style="border-radius:50%" >
+                            </div>
+                            <div class="desc">
+                            <h4 class="mb-3">Landscaping</h4>
+                            <p class="mb-4 " style="text-align:center;align-items:center">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                                </div>
+                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                     <%--film4--%>
+                   <div class="col-lg-4 col-md-6 wow fadeInUp bigg" data-wow-delay="0.1s" id="bigg">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded small">
+                            <img class="img-fluid " src="img/show44.jpg" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3 small" id="small">
+                                <img class="img-fluid iconfilm" src="img/show442.jpg" alt="Icon" style="border-radius:50%" >
+                            </div>
+                            <div class="desc">
+                            <h4 class="mb-3">Landscaping</h4>
+                            <p class="mb-4 " style="text-align:center;align-items:center">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                                </div>
+                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                     <%--film5--%>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp bigg" data-wow-delay="0.1s" id="bigg">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded small">
+                            <img class="img-fluid " src="img/show55.jpg" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3 small" id="small">
+                                <img class="img-fluid iconfilm" src="img/show55.jpg" alt="Icon" style="border-radius:50%" >
+                            </div>
+                            <div class="desc">
+                            <h4 class="mb-3">Landscaping</h4>
+                            <p class="mb-4 " style="text-align:center;align-items:center">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                                </div>
+                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                           <%--film6--%>
+            <div class="col-lg-4 col-md-6 wow fadeInUp bigg" data-wow-delay="0.1s" id="bigg">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded small">
+                            <img class="img-fluid " src="img/show66.jpg" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3 small" id="small">
+                                <img class="img-fluid iconfilm" src="img/show6last.jpg" alt="Icon" style="border-radius:50%" >
+                            </div>
+                            <div class="desc">
+                            <h4 class="mb-3">Landscaping</h4>
+                            <p class="mb-4 " style="text-align:center;align-items:center">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                                </div>
+                            <a class="btn btn-sm" href="#"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+two>>>>
+<div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="img/soon.jfif" alt="">
+                        <div class="portfolio-text">
+                            <h4 class="text-white mb-4">Avatar 3</h4>
+
+                            <div class="d-flex">
+
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/soon.jfif" data-lightbox="portfolio" > <i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="https://www.imdb.com/title/tt1757678/?ref_=ttls_li_i"><i class="fa fa-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="portfolio-inner rounded" >
+                        <img class="img-fluid" src="img/ssoon2.jpg" alt="" height="150">
+                        <div class="portfolio-text">
+                            <h4 class="text-white mb-4">Wicked</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/ssoon2.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="https://www.imdb.com/title/tt1262426/?ref_=ttls_li_i"><i class="fa fa-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="img/ssoon32.jpg" alt="">
+                        <div class="portfolio-text">
+                            <h4 class="text-white mb-4">Captain America</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/ssoon32.jpg" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="https://www.imdb.com/title/tt1262426/?ref_=ttls_li_i"><i class="fa fa-link"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+    
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="fs-5 fw-bold text-white">Testimonial</p>
+                    <h1 class="display-5 mb-5" style="color:white">What Our Clients Say About Us!</h1>
+                    <p class="mb-4" style="color:white">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+                    <a class="btn btn-primary py-3 px-4" href="" style="background-color:darkred;border:none">See More</a>
+                </div>
+                <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="testimonial-item">
+                            <img class="img-fluid rounded mb-3" src="img/testimonial-1.jpg" alt="">
+                            <p class="fs-5" style="color:white">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
+                            <h4 style="color:darkred">Client Name</h4>
+                          
+                        </div>
+                        <div class="testimonial-item">
+                            <img class="img-fluid rounded mb-3" src="img/testimonial-2.jpg" alt="">
+                            <p class="fs-5" style="color:white"></p>
+                            <h4 style="color:darkred">Client Name</h4>
+                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+  <div id="feedback" runat="server"></div>

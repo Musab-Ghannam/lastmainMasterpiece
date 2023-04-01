@@ -1,0 +1,189 @@
+﻿@model Tuple<List<mainMasterpiesce.Models.patient>, List<mainMasterpiesce.Models.appointment>>
+
+
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <style>
+        a {
+            font-weight: normal !important;
+        }
+    </style>
+    <meta charset="utf-8">
+    <title>Doccure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+    <!-- Favicons -->
+    <link href="~/doc/assets/img/favicon.png" rel="icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/doc/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/style.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body>
+    <div>
+        <div class="main-wrapper">
+
+
+            @RenderPage("~/Views/Shared/_NAVBARDOCTOR.cshtml")
+            <div class="breadcrumb-bar" style="background-color:transparent;text-align:center">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 col-12">
+                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                <ol class="breadcrumb">
+                                    @*<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>*@
+                                    @*<li class="breadcrumb-item " aria-current="page">Dashboard</li>*@
+                                </ol>
+                            </nav>
+                  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Breadcrumb -->
+            <!-- Page Content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Profile Sidebar -->
+                        <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+                            <div class="profile-sidebar">
+                                <div class="widget-profile pro-widget-content">
+                                    <div class="profile-info-widget">
+                                        <a href="#" class="booking-doc-img">
+
+                                            <img src="~/Content/images/@Url.Content(Model.Item1[0].picpatient)" alt="User Image">
+                                        </a>
+                             
+
+                                        <div class="profile-det-info">
+                                      @{
+                                          if (Model.Item1[0].birthday.HasValue)
+                                          {
+
+                                              var age = DateTime.Now.Year - Model.Item1[0].birthday.Value.Year;
+
+                                          }
+
+
+
+
+
+                                      }
+
+
+                                            <h3> @Model.Item1[0].patientName   </h3>
+                                            <div class="patient-details">
+
+                                                @if (Model.Item1[0].birthday.HasValue)
+                                                {
+                                                    var birthday = @Model.Item1[0].birthday.ToString().Split(' ');
+
+
+                                                    var age = DateTime.Now.Year - Model.Item1[0].birthday.Value.Year;
+                                                    <h5><i class="fas fa-birthday-cake"></i>    @Convert.ToDateTime(birthday[0]).ToString("dd/MM/yyyy")  , @age years</h5>
+                                                }
+
+
+                                                <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i>@Model.Item1[0].locationdetails</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dashboard-widget">
+                                    @{ 
+
+
+                                        string url = Request.Url.AbsoluteUri; // get the absolute URL of the current request
+                                        string[] segments = url.Split('/'); // split the URL into segments
+                                        string lastSegment = segments[segments.Length - 1]; 
+                                    }
+                                    <nav class="dashboard-menu">
+                                        <ul>
+                                            <li class="@(lastSegment == "patientProfile" ? "active" : "")" id="Appointment">
+                                                <a href="patientProfile">
+                                                    <i class="fas fa-columns"></i>
+                                                    <span>Appointments</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="favourites.html">
+                                                    <i class="fas fa-bookmark"></i>
+                                                    <span>Favourites</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="chat.html">
+                                                    <i class="fas fa-comments"></i>
+                                                    <span>Message</span>
+                                                    <small class="unread-msg">23</small>
+                                                </a>
+                                            </li>
+                                            <li class="@(lastSegment == "Profilesetting" ? "active" : "")">
+                                                <a href="Profilesetting" id="setting">
+                                                    <i class="fas fa-user-cog"></i>
+                                                    <span>Profile Settings</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="change-password.html">
+                                                    <i class="fas fa-lock"></i>
+                                                    <span>Change Password</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("LogOfff", "Account")">
+                                                    <i class="fas fa-sign-out-alt"></i>
+                                                    <span>Logout</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- / Profile Sidebar -->
+
+                        @RenderBody()
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- /Main Wrapper -->
+            <!-- jQuery -->
+            <script src="~/doc/assets/js/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JS -->
+            <script src="~/doc/assets/js/popper.min.js"></script>
+            <script src="~/doc/assets/js/bootstrap.min.js"></script>
+
+            <!-- Sticky Sidebar JS -->
+            <script src="~/doc/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+            <script src="~/doc/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+            <!-- Custom JS -->
+            <script src="assets/js/script.js"></script>
+       
+</body>
+</html>

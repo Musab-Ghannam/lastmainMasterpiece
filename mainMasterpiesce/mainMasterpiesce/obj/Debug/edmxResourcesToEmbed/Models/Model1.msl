@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FindingpeaceModelStoreContainer" CdmEntityContainer="FindingpeaceEntities1">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="FindingpeaceModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="appointments">
+      <EntityTypeMapping TypeName="FindingpeaceModel.appointment">
+        <MappingFragment StoreEntitySet="appointments">
+          <ScalarProperty Name="JoinUrl" ColumnName="JoinUrl" />
+          <ScalarProperty Name="confirmappointment" ColumnName="confirmappointment" />
+          <ScalarProperty Name="medicationinstructions" ColumnName="medicationinstructions" />
+          <ScalarProperty Name="dosagefrequency" ColumnName="dosagefrequency" />
+          <ScalarProperty Name="dosage" ColumnName="dosage" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="apointmentprice" ColumnName="apointmentprice" />
+          <ScalarProperty Name="patientnotes" ColumnName="patientnotes" />
+          <ScalarProperty Name="doctornotes" ColumnName="doctornotes" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="apointmentId" ColumnName="apointmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="FindingpeaceModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserRoles">
+      <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUserRole">
+        <MappingFragment StoreEntitySet="AspNetUserRoles">
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="FindingpeaceModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doctors">
+      <EntityTypeMapping TypeName="FindingpeaceModel.doctor">
+        <MappingFragment StoreEntitySet="doctors">
+          <ScalarProperty Name="educationdetails" ColumnName="educationdetails" />
+          <ScalarProperty Name="addresss" ColumnName="addresss" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="ratingint" ColumnName="ratingint" />
+          <ScalarProperty Name="ratingdoctor" ColumnName="ratingdoctor" />
+          <ScalarProperty Name="pricePerHour" ColumnName="pricePerHour" />
+          <ScalarProperty Name="infodoctor" ColumnName="infodoctor" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="AmountsDue" ColumnName="AmountsDue" />
+          <ScalarProperty Name="earningDoctortotal" ColumnName="earningDoctortotal" />
+          <ScalarProperty Name="statedoctor" ColumnName="statedoctor" />
+          <ScalarProperty Name="specializationId" ColumnName="specializationId" />
+          <ScalarProperty Name="birthfile" ColumnName="birthfile" />
+          <ScalarProperty Name="certificationfile" ColumnName="certificationfile" />
+          <ScalarProperty Name="picdoctor" ColumnName="picdoctor" />
+          <ScalarProperty Name="idCardfile" ColumnName="idCardfile" />
+          <ScalarProperty Name="startedate" ColumnName="startedate" />
+          <ScalarProperty Name="specialization" ColumnName="specialization" />
+          <ScalarProperty Name="qualiification" ColumnName="qualiification" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="doctorName" ColumnName="doctorName" />
+          <ScalarProperty Name="locationdoctor" ColumnName="locationdoctor" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="feedbacks">
+      <EntityTypeMapping TypeName="FindingpeaceModel.feedback">
+        <MappingFragment StoreEntitySet="feedback">
+          <ScalarProperty Name="feedbacktime" ColumnName="feedbacktime" />
+          <ScalarProperty Name="statefeedback" ColumnName="statefeedback" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="feedbackId" ColumnName="feedbackId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="feedbackwebsites">
+      <EntityTypeMapping TypeName="FindingpeaceModel.feedbackwebsite">
+        <MappingFragment StoreEntitySet="feedbackwebsite">
+          <ScalarProperty Name="statee" ColumnName="statee" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patientId" ColumnName="patientId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotAvailableTimes">
+      <EntityTypeMapping TypeName="FindingpeaceModel.NotAvailableTime">
+        <MappingFragment StoreEntitySet="NotAvailableTime">
+          <ScalarProperty Name="timenotavailble" ColumnName="timenotavailble" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="notavailableId" ColumnName="notavailableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patients">
+      <EntityTypeMapping TypeName="FindingpeaceModel.patient">
+        <MappingFragment StoreEntitySet="patients">
+          <ScalarProperty Name="locationdetails" ColumnName="locationdetails" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="wallet" ColumnName="wallet" />
+          <ScalarProperty Name="startedate" ColumnName="startedate" />
+          <ScalarProperty Name="patientemail" ColumnName="patientemail" />
+          <ScalarProperty Name="patientName" ColumnName="patientName" />
+          <ScalarProperty Name="picpatient" ColumnName="picpatient" />
+          <ScalarProperty Name="locationpatent" ColumnName="locationpatent" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PatiantId" ColumnName="PatiantId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="specializations">
+      <EntityTypeMapping TypeName="FindingpeaceModel.specialization">
+        <MappingFragment StoreEntitySet="specializations">
+          <ScalarProperty Name="videospecializaion" ColumnName="videospecializaion" />
+          <ScalarProperty Name="picturespecialization" ColumnName="picturespecialization" />
+          <ScalarProperty Name="descriptionspecialization" ColumnName="descriptionspecialization" />
+          <ScalarProperty Name="namespecialization" ColumnName="namespecialization" />
+          <ScalarProperty Name="specializationId" ColumnName="specializationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FindingpeaceModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionsdoctors">
+      <EntityTypeMapping TypeName="FindingpeaceModel.transactionsdoctor">
+        <MappingFragment StoreEntitySet="transactionsdoctor">
+          <ScalarProperty Name="DOctorName" ColumnName="DOctorName" />
+          <ScalarProperty Name="Tansactiontime" ColumnName="Tansactiontime" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="paymentmethod" ColumnName="paymentmethod" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="transactiontype" ColumnName="transactiontype" />
+          <ScalarProperty Name="doctorId" ColumnName="doctorId" />
+          <ScalarProperty Name="transDoctorId" ColumnName="transDoctorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactionspatients">
+      <EntityTypeMapping TypeName="FindingpeaceModel.transactionspatient">
+        <MappingFragment StoreEntitySet="transactionspatient">
+          <ScalarProperty Name="Tansactiontime" ColumnName="Tansactiontime" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="paymentmethod" ColumnName="paymentmethod" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="transpatienttiontype" ColumnName="transpatienttiontype" />
+          <ScalarProperty Name="PatiantId" ColumnName="PatiantId" />
+          <ScalarProperty Name="transcpatientId" ColumnName="transcpatientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="patient_favorite_doctors" TypeName="FindingpeaceModel.patient_favorite_doctors" StoreEntitySet="patient_favorite_doctors">
+      <EndProperty Name="patient">
+        <ScalarProperty Name="PatiantId" ColumnName="patientid" />
+      </EndProperty>
+      <EndProperty Name="doctor">
+        <ScalarProperty Name="doctorId" ColumnName="doctorid" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

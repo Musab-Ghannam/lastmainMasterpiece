@@ -1,0 +1,168 @@
+﻿@model IEnumerable<mainMasterpiesce.Models.patient>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-7 col-auto">
+                    <h3 class="page-title">Specialities</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Patients</li>
+                    </ul>
+                </div>
+                <div class="col-sm-5 col">
+
+                    @*@Html.ActionLink("Create New", "Create")*@
+                    @*@Html.ActionLink("Add", "Create", null, new { @class = "btn btn-primary float-right mt-2" })*@
+
+                    @*<a href="~/specializations/Create" data-toggle="modal" class="btn btn-primary float-right mt-2">Add</a>*@
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <div class="table-responsive">
+                                                    <table class="datatable table table-hover table-center mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Patient ID</th>
+                                                                <th>Patient Name</th>
+                                                                <th>No.#appoint</th>
+                                                                <th>Age</th>
+                                                                <th>Gender</th>
+
+                                                                <th>Phone</th>
+                                                                <th>Start Date</th>
+
+                                                               
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in Model.OrderBy(c => c.startedate))
+                                                            {
+                                                                <tr>
+                                                                    <td>#PT00 @item.PatiantId</td>
+                                                                    <td>
+                                                                        <h2 class="table-avatar">
+                                                                            <a href="profile.html" class="avatar avatar-sm "><img class="avatar-img rounded-circle" src="~/Content/images/@item.picpatient" alt="User Image"></a>
+                                                                            <a href="profile.html">@item.patientName</a>
+                                                                        </h2>
+                                                                    </td>
+                                                                    <td>
+
+                                                                        @item.appointments.Where(c => c.patientId == item.PatiantId).Count()
+
+
+
+
+
+
+
+
+                                                                        appointments
+                                                                    </td>
+                                                                    <td>
+                                                                        @if (item.birthday.HasValue)
+                                                                        {
+                                                                            @(DateTime.Now.Year - item.birthday.Value.Year)
+                                                                        }
+                                                                        else
+                                                                        {
+
+                                                                            <span>27</span>
+                                                                        }
+
+                                                                        <span>Year</span>
+
+
+                                                                    </td>
+                                                                    <td>
+
+
+                                                                        @{
+                                                                            if (Html.DisplayFor(modelItem => item.Gender) != null)
+                                                                            {
+
+                                                                                if (item.Gender == true)
+                                                                                {
+
+
+
+                                                                                    <p>Male</p>
+                                                                                }
+                                                                                else
+                                                                                {
+
+                                                                                    <p>Female</p>
+                                                                                }
+
+
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <p>Male</p>
+                                                                            }
+
+                                                                        }
+                                                                    </td>
+
+                                                                    <td>
+                                                                        @if (item.AspNetUser != null && !string.IsNullOrEmpty(item.AspNetUser.PhoneNumber))
+                                                                        {
+                                                                            @item.AspNetUser.PhoneNumber
+                                                                        }
+
+                                                                    </td>
+                                                                    <td>
+                                                                        @{
+                                                                            if (item.startedate != null)
+                                                                            {
+                                                                                @item.startedate.Value.ToString("yyyy-MM-dd")
+                                                                            }
+                                                                        }
+
+                                                                    </td>
+                                                                    <td class="text-right">      @Html.ActionLink("Details", "Details", new { id = item.PatiantId }, new { @class = "btn btn-info" })</td>
+                                                                </tr>
+                                                            }
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*him*@
+                   
+                            @*him*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+                    </div>

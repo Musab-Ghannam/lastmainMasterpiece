@@ -1,0 +1,144 @@
+﻿@model mainMasterpiesce.Models.feedbackwebsite
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Doctors</h3></a>
+                    <ul class="breadcrumb">
+                        @*<li class="breadcrumb-item" id="prev"><a href="#" onclick="toggleDisplay('previous-appointments')">Previous Appointment</a></li>
+                            <li class="breadcrumb-item" id="upc"><a href="#" onclick="toggleDisplay('upcoming-appointments')">upcoming-appointments</a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div id="upcoming-appointments" class="appointments">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.name)
+                                    </dt>
+
+                                    <dd>
+                                        @Model.patient.patientName
+                                    </dd>
+
+
+
+                                    <dt>
+                                        Photo
+                                    </dt>
+
+                                    <dd>
+                                        <img src="~/Content/images/@Url.Content(Model.patient.picpatient)" alt="@Model.patient.picpatient" width="100" />
+                                    </dd>
+
+
+
+
+
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.email)
+                                    </dt>
+
+
+
+
+
+
+
+
+
+                                    <dd>
+                                        @Model.patient.AspNetUser.Email
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.message)
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.message)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.created_at)
+                                    </dt>
+
+                                    <dd>
+                                        @if (Model.created_at.HasValue)
+                                        {
+
+                                            @Model.created_at.Value.ToString("dd-MM-yyyy");
+                                        }
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.statee)
+                                    </dt>
+
+                                    <dd>
+                                        @if (Model.statee == 1)
+                                        {
+
+                                            <span class="badge badge-pill bg-success-light">Confirm</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-pill bg-danger-light">Pending</span>
+
+
+                                        }
+                                    </dd>
+
+
+
+                                </dl>
+                            </div>
+                            <p>
+
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+                                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                                    @Html.ActionLink("Back to List", "feedbackweb", null, new { @class = "btn btn-secondary" })
+                                </div>
+                                }
+
+
+
+
+
+
+
+
+                             
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

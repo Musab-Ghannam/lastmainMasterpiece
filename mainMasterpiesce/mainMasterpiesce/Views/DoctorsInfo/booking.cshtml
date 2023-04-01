@@ -1,0 +1,1052 @@
+﻿@using System.Diagnostics;
+
+
+@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>Booking</title>
+    <!-- Favicons -->
+    @*<link href="~/doc/assets/img/favicon.png" rel="icon">*@
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/doc/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/doc/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/doc/assets/css/style.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+    <style>
+
+
+        .days {
+            background-color: transparent;
+            border: none;
+            display: block;
+            margin-left: 30px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .new {
+            font-size: 17px !important;
+            padding: 2px 20px !important;
+        }
+
+        .active {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+
+        <div class="main-wrapper">
+
+            <!-- Header -->
+            @RenderPage("~/Views/Shared/_NAVBARDOCTOR.cshtml")
+            <!-- /Header -->
+            <!-- Breadcrumb -->
+            @*@var doctor = Model.doctor.FirstOrDefault();*@
+            <div class="breadcrumb-bar" style="background-color: transparent;margin-top:50px">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 col-12">
+                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                <ol class="breadcrumb">
+                                    @*<li class="breadcrumb-item"><a href="https://localhost:44388/mainHome/Index">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Doctor Profile</li>*@
+                                </ol>
+                            </nav>
+                            <h2 class="breadcrumb-title" style="color:black;text-align:center"> Boocking</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content">
+                <div class="container">
+
+                    <div class="row">
+                        @{
+                            if (Model.doctor[0].locationdoctor != null)
+                            {
+
+                                var Location = Model.doctor[0].locationdoctor;
+
+                                string[] locationname = Location.Split('_');
+
+                                var regionName = locationname[0];
+                                var locationlink = locationname[1];
+                            }
+
+
+                        }
+                        <div class="col-12">
+                            @if (Model.doctor != null && Model.doctor.Count > 0)
+                            {
+                                var doctor = Model.doctor[0];
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="booking-doc-info">
+                                            <a href="doctor-profile.html" class="booking-doc-img">
+                                                <img src="~/Content/images/dr2.png" alt="User Image">
+                                            </a>
+
+                                            <div class="booking-info">
+                                                <h4><a href="doctor-profile.html">@doctor.doctorName </a></h4>
+                                                <div class="rating">
+
+                                                    @{
+                                                        Decimal ratingdecimal = Convert.ToDecimal(Model.doctor[0].ratingdoctor);
+
+                                                        int ratingint = Convert.ToInt32(Math.Truncate(ratingdecimal));
+
+
+                                                        string splitrating = Convert.ToString(@Model.doctor[0].ratingdoctor);
+                                                        string[] secondsectionrating = splitrating.Split('.');
+
+
+
+
+                                                        for (int i = 0; i < ratingint; i++)
+                                                        {
+                                                            <span class="fas fa-star" style=" color: gold;"> </span>
+                                                        }
+
+
+
+
+
+                                                        int secondrating = Convert.ToInt32(secondsectionrating[1]);
+
+
+                                                        if (secondrating <= 9)
+                                                        {
+
+                                                            int secondfinal = secondrating * 10;
+
+
+
+
+
+
+                                                            if (secondfinal >= 25 && secondrating <= 50)
+                                                            {
+
+
+
+                                                                <span class="fas fa-star-half-alt" style="color: gold;"></span>
+                                                            }
+                                                            else if (secondfinal > 50)
+                                                            {
+
+                                                                <span class="fas fa-star" style=" color: gold;"> </span>
+                                                            }
+
+
+                                                        }
+                                                        else if (secondrating > 9)
+                                                        {
+                                                            if (secondrating >= 25 && secondrating <= 50)
+                                                            {
+
+
+
+                                                                <span class="fas fa-star-half-alt" style="color: gold;"></span>
+                                                            }
+                                                            if (secondrating > 50 && secondrating <= 75)
+                                                            {
+
+                                                                <span class="fas fa-star" style=" color: gold;"> </span>
+                                                            }
+
+                                                            if (secondrating > 75)
+                                                            {
+
+                                                                <span class="fas fa-star" style=" color: gold;"> </span>
+                                                            }
+
+
+                                                        }
+                                                    }
+
+
+
+
+
+
+
+
+
+
+
+
+                                                    <span class="d-inline-block average-rating">@Model.doctor[0].ratingdoctor</span>
+                                                </div>
+                                                <p class="text-muted mb-0">
+                                                    <i class="fas fa-map-marker-alt"></i>
+
+                                                    @if (Model.doctor[0].locationdoctor != null)
+                                                    {
+                                                        var Location = Model.doctor[0].locationdoctor;
+
+                                                        string[] locationname = Location.Split('_');
+
+                                                        var regionName = locationname[0];
+                                                        var locationlink = locationname[1];
+
+
+
+                                                        @regionName
+
+                                                    }
+
+
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            <!-- Schedule Widget -->
+                            <div class="card booking-schedule schedule-widget">
+
+                                <!-- Schedule Header -->
+                                @using (Html.BeginForm("booking", "DoctorsInfo", new { id = Model.doctor[0].doctorId }, FormMethod.Post))
+                                {
+                                    <div class="schedule-header">
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+
+
+
+
+
+                                                <!-- Day Slot -->
+                                                <div class="day-slot">
+
+                                                    <ul>
+                                                        <li class="left-arrow">
+                                                            <input type="hidden" name="arrow" />
+                                                            <a href="@Url.Action("minusWeek", "DoctorsInfo", new { doctorId = Model.doctor[0].doctorId, arrow = "left" })">
+                                                                <i class="fa fa-chevron-left"></i>
+                                                            </a>
+                                                            @{
+
+                                                                //int count = 0;
+                                                            }
+                                                            @for (int i = ViewBag.weeks; i < ViewBag.weeks + 7; i++)
+                                                            {
+                                                                if (i < 0)
+                                                                {
+                                                                    break;
+                                                                }
+
+
+
+                                                                //if (ViewBag.flagsession) {
+
+                                                                //    ViewBag.currentday = Session["day"];
+                                                                //}
+                                                            <li>
+                                                                @*<a href="@Url.Action("determinday", "DoctorsInfo", new { doctorId = Model.doctor[0].doctorId })">*@
+                                                                @*<a href="determinday?doctorId=@Model.doctor[0].doctorId">*@
+                                                                @*ViewBag.currentday == @DateTime.Now.AddDays(i).ToString("dddd")&&*@
+                                                                @if (ViewBag.currentday == @DateTime.Now.AddDays(i).ToString("dd/MM/yy"))
+                                                                {
+                                                                    <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dddd")" style="@ViewBag.InputStyle" /> @*<span >@DateTime.Now.AddDays(i).ToString("dddd")</span>*@
+                                                                    @*<span class="slot-date">@DateTime.Now.AddDays(i).ToString("dd/MM/yy")</span>*@
+                                                                    <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dd/MM/yy")" style="@ViewBag.InputStyle" />
+
+                                                                }
+                                                                else
+                                                                {
+
+
+                                                                    <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dddd")" /> @*<span >@DateTime.Now.AddDays(i).ToString("dddd")</span>*@
+                                                                    @*<span class="slot-date">@DateTime.Now.AddDays(i).ToString("dd/MM/yy")</span>*@
+                                                                    <input class="days" type="submit" name="day" value="@DateTime.Now.AddDays(i).ToString("dd/MM/yy")" />
+
+
+                                                                }
+
+
+
+                                                                @*</a>*@
+
+                                                            </li>
+
+                                                        }
+
+                                                            <li class="right-arrow">
+
+                                                                <a href="@Url.Action("plusweeks", "DoctorsInfo", new { doctorId = Model.doctor[0].doctorId, arrow = "left" })">
+                                                                    <i class="fa fa-chevron-right"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- /Day Slot -->
+
+                                                </div>
+                                            </div>
+                                        </div>}
+                                <!-- /Schedule Header -->
+                                <!-- Schedule Content -->
+
+                                <div class="schedule-cont">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            <!-- Time Slot -->
+                                            <div class="time-slot">
+
+
+                                                <ul class="clearfix">
+
+
+
+
+
+
+                                                    @{
+
+
+
+
+                                                        List<string> reservedSlotsList = new List<string>();
+                                                        foreach (var item in Model.appoint)
+                                                        {
+                                                            string reservedSlot = item.starttime;
+                                                            reservedSlotsList.Add(reservedSlot);
+                                                            ViewBag.slotdatabase += reservedSlot + ',';
+                                                        }
+
+                                                        string[] reservedSlotsArray = reservedSlotsList.ToArray();
+
+
+
+
+
+
+
+
+
+                                                        for (int i = 0; i < reservedSlotsArray.Length; i++)
+                                                        {
+                                                            string slot = reservedSlotsArray[i];
+                                                            if (!string.IsNullOrEmpty(slot))
+                                                            {
+
+                                                                string reserveddate = slot.Substring(slot.Length - 5);
+
+
+                                                                string timereserved = slot.Substring(0, slot.Length - 5);
+                                                                @*<h1>@reserveddate,@timereserved</h1>*@
+
+                                                            }
+
+
+
+                                                        }
+
+
+
+
+                                                    }
+
+
+
+
+                                                    @using (Html.BeginForm("booking", "DoctorsInfo", new { id = Model.doctor[0].doctorId }, FormMethod.Post))
+                                                    {
+
+
+                                                        {
+                                                            if (ViewBag.flag)
+                                                            {
+
+
+
+
+                                                                for (int hour = 8; hour <= 17; hour++)
+                                                                {
+                                                                    DateTime dateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0);
+
+
+                                                                    if (DateTime.Now.ToString("dd/MM/yy") == ViewBag.currentday)
+                                                                    {
+
+
+                                                                        if (DateTime.Now.TimeOfDay <= TimeSpan.FromHours(23))
+                                                                        {
+                                                                            int inc = 0;
+                                                                            for (int i = DateTime.Now.Hour; i < 23; i++)
+                                                                            {
+                                                                                inc++;
+                                                                                DateTime dateTimtoday = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, @DateTime.Now.AddHours(inc).Hour, 0, 0);
+                                                                                string formm = dateTimtoday.ToString("h:mm tt");
+                                                                                string datt = dateTimtoday.ToString("dd/MM//yy");
+
+                                                                                if (formm == "2:00 PM")
+                                                                                {
+                                                                                    formm = formm.Replace("PM", "pm");
+
+
+                                                                                }
+
+
+
+
+                                                                                <li>
+
+
+
+
+                                                                                    <span>
+
+
+
+
+                                                                                        @{
+
+
+                                                                                            if (ViewBag.btn != null && ViewBag.slotdatabase != null)
+                                                                                            {
+
+
+                                                                                                if (!string.IsNullOrEmpty(ViewBag.slotdatabase))
+                                                                                                {
+
+                                                                                                    if (ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                    {
+                                                                                                        <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: red;color:white" disabled />
+
+                                                                                                    }
+
+
+                                                                                                }
+
+
+
+                                                                                                if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
+                                                                                                {
+                                                                                                    if (!ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                    {
+
+
+
+
+                                                                                                        <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #B0BEC5; color: white " disabled />
+
+
+
+
+                                                                                                    }
+                                                                                                }
+
+
+
+
+
+
+                                                                                                if (ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                {
+
+
+                                                                                                    <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #20BBBD;color:white" disabled />
+                                                                                                }
+
+
+
+
+
+                                                                                                else if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !User.IsInRole("doctor"))
+                                                                                                {
+
+
+                                                                                                    <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX " />
+                                                                                                }
+
+
+
+                                                                                                else if (!ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && User.IsInRole("doctor"))
+                                                                                                {
+
+
+                                                                                                    <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX " disabled />
+                                                                                                }
+
+
+
+
+
+
+
+                                                                                            }
+                                                                                            else if (!User.IsInRole("doctor"))
+                                                                                            {
+
+
+                                                                                                <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX" />
+
+
+                                                                                            }
+                                                                                            else if (User.IsInRole("doctor"))
+                                                                                            {
+                                                                                                <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX" disabled />
+                                                                                            }
+
+
+
+
+
+
+
+
+
+                                                                                        }
+
+
+
+
+
+
+
+
+
+
+                                                                                    </span>
+
+
+                                                                                </li>
+
+
+                                                                            }
+                                                                            break;
+                                                                        }
+
+
+                                                                    }
+                                                                    else
+                                                                    {
+
+
+
+                                                                        string datt = dateTime.ToString("dd/MM//yy");
+                                                                        //DateTime dateTim = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+                                                                        string formattedTime = dateTime.ToString("h:mm tt");
+                                                                        //DateTime time = DateTime.ParseExact(formattedTime, "h:mm tt", CultureInfo.InvariantCulture);
+
+
+
+                                                                        if (formattedTime == "2:00 PM")
+                                                                        {
+                                                                            formattedTime = formattedTime.Replace("PM", "pm");
+
+
+                                                                        }
+
+
+
+
+                                                                        //return Content(formattedTime);
+                                                                        <li>
+
+
+
+                                                                            @{ bool isClicked = false;
+                                                                                if (!string.IsNullOrEmpty(Request.Form["btnn"]))
+                                                                                {
+                                                                                    isClicked = true;
+                                                                                }}
+
+                                                                            <span>
+                                                                                @*<input type="submit" value="@formattedTime" name="btnn" class="days timing new  " style="margin-top:20PX " />*@
+
+                                                                                @*<input type="submit" value="@formattedTime" name="btnn" class="days timing new" style="margin-top:20PX; background-color: @(isClicked ? "red" : "white"); pointer-events: @(isClicked ? "none" : "auto");" />*@
+
+                                                                                @{
+                                                                                    if (ViewBag.btn != null && ViewBag.slotdatabase != null)
+                                                                                    {
+
+
+                                                                                        if (!string.IsNullOrEmpty(ViewBag.slotdatabase))
+                                                                                        {
+                                                                                            if (ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                            {
+
+
+
+
+                                                                                                <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: red;color:white" disabled />
+
+
+                                                                                            }
+                                                                                        }
+
+
+
+                                                                                        if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
+                                                                                        {
+                                                                                            if (!ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                            {
+
+
+
+
+                                                                                                <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #B0BEC5; color: white " disabled />
+
+
+
+
+                                                                                            }
+                                                                                        }
+
+
+
+
+                                                                                        if (!ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') && ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                        {
+
+
+
+
+
+
+
+
+                                                                                            <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #20BBBD;color:white" disabled />
+                                                                                        }
+
+
+
+
+                                                                                        else if (!ViewBag.notavailabletile.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !User.IsInRole("doctor"))
+                                                                                        {
+
+
+
+                                                                                            <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top:20PX" />
+
+
+
+
+
+
+
+                                                                                        }
+
+                                                                                        else if (!ViewBag.btn.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formattedTime + ViewBag.currentday.Substring(0, 5) + ',') && User.IsInRole("doctor"))
+                                                                                        {
+
+
+                                                                                            <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top:20PX" disabled />
+                                                                                        }
+
+
+
+
+                                                                                    }
+                                                                                    else if (!User.IsInRole("doctor"))
+                                                                                    {
+                                                                                        <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top:20PX" />
+
+                                                                                    }
+
+                                                                                    else if (User.IsInRole("doctor"))
+                                                                                    {
+                                                                                        <input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top:20PX" disabled />
+
+                                                                                    }
+
+
+
+
+
+                                                                                }
+                                                                                @*<input type="submit" value="@formattedTime" name="btnn" id="myInput" class="days timing new" style="margin-top:20PX;" />*@
+                                                                            </span>
+
+
+
+
+                                                                        </li>
+
+
+
+
+                                                                    }
+
+
+
+
+                                                                }
+                                                            }
+
+
+                                                        }
+
+                                                    }
+
+                                                    @*;;;;*@
+
+
+
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <h4 style="align-items:center;text-align:center;margin-top:50PX"><span style="background-color: #20BBBD; padding: 2px 7px; border-radius: 70%; margin-right: 7px">@Session["count"]</span>Slot is selected</h4>
+
+
+
+                                    <span>
+
+
+                                        @{
+
+
+
+
+
+
+                                            int countter = Convert.ToInt32(Session["count"]);
+
+
+                                        }
+
+
+
+
+
+                                        @if (!string.IsNullOrEmpty(ViewBag.btn))
+                                        {
+                                            var btnValues = ViewBag.btn.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                                            using (Html.BeginForm("booking", "DoctorsInfo", new { id = Model.doctor[0].doctorId }, FormMethod.Post))
+                                            {
+
+
+
+
+                                                <div style="display:flex;justify-content:space-between;flex-wrap:wrap">
+
+
+                                                    @for (int i = 0; i < countter; i++)
+                                                    {
+                                                        <div style="position:relative;">
+
+
+
+
+
+
+
+
+                                                            <input type="hidden" value="@btnValues[i]," name="valueToRemove" class="days timing new" style="font-size: 12px; border: none; position: absolute; right: -20px; top: 5px; background-color: transparent" />
+                                                            <button style="font-size:17px;border:none;position:absolute;right:0px;top:17px;background-color:transparent">X</button>
+
+                                                            <input type="submit" value="@btnValues[i]" name="index" class="days timing new" style="@ViewBag.ButtonStyle" />
+
+                                                        </div>
+
+
+                                                    }
+
+
+
+                                                </div>
+
+                                            }
+
+
+                                        }
+
+
+                                    </span>
+
+                                </div>
+                                <!-- /Schedule Content -->
+                                <!-- /Schedule Widget -->
+                                <!-- Submit Section -->
+                                <div class="submit-section proceed-btn text-right">
+                                    <a href="~/DoctorsInfo/checkout?id=@Model.doctor[0].doctorId" class="btn btn-primary submit-btn" style="background-color:#20BBBD">@Session["allprice"]$ Proceed to Pay</a>
+
+                                    @*<h1>@ViewBag.youhaveit</h1>
+                                        <h1>"FFF"</h1>*@
+                                </div>
+                                <!-- /Submit Section -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                @*<h1>@ViewBag.slotdatabase</h1>
+                    <h1>"ggggggggggggggggggggggggggggg"</h1>
+                    <h2>@ViewBag.btn</h2>*@
+
+
+
+
+                <!-- /Page Content -->
+                <!-- Footer -->
+            <footer class="footer" style="background-color: #15767D ">
+
+                <!-- Footer Top -->
+                <div class="footer-top">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6">
+
+                                <!-- Footer Widget -->
+                                <div class="footer-widget footer-about">
+                                    <div class="footer-logo">
+                                        <img src="assets/img/footer-logo.png" alt="logo">
+                                    </div>
+                                    <div class="footer-about-content">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                            incididunt ut labore et dolore magna aliqua.
+                                        </p>
+                                        <div class="social-icon">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Footer Widget -->
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 footer-widget footer-about-content ">
+
+                                <!-- Footer Widget -->
+                                <div class="footer-widget footer-menu">
+                                    <h2 class="footer-title">For Patients</h2>
+
+                                    <ul>
+                                        <li><a href="~/mainHome/Index"><i class="fas fa-angle-double-right"></i> Home page</a></li>
+                                        <li>
+                                            <a href="~/mainHome/About">
+                                                <i class="fas fa-angle-double-right"></i> About Us
+                                            </a>
+                                        </li>
+                                        <li><a href="~/mainHome/ConTact"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
+
+                                    </ul>
+                                </div>
+                                <!-- /Footer Widget -->
+
+                            </div>
+                            <div class="col-lg-3 col-md-6 footer-menu footer-widget">
+
+                                <h2 class="footer-title">Links</h2>
+
+                                <ul>
+                                    <li style="">
+                                        <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
+                                    </li>
+                                    <li style="">
+                                        <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Account/Login">
+                                            <i class="fas fa-angle-double-right"></i>
+                                            Log in
+                                        </a>
+                                    </li>
+                                </ul>
+
+
+
+
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-6">
+
+                                <!-- Footer Widget -->
+                                <div class="footer-widget footer-contact">
+                                    <h2 class="footer-title">Contact Us</h2>
+                                    <div class="footer-contact-info">
+                                        <div class="footer-address">
+                                            <span><i class="fas fa-map-marker-alt"></i></span>
+                                            <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                        </div>
+                                        <p>
+                                            <i class="fas fa-phone-alt"></i>
+                                            +1 315 369 5943
+                                        </p>
+                                        <p class="mb-0">
+                                            <i class="fas fa-envelope"></i>
+                                            doccure@example.com
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- /Footer Widget -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /Footer Top -->
+                <!-- Footer Bottom -->
+                <!-- /Footer Bottom -->
+
+            </footer>
+                <!-- /Footer -->
+
+            </div>
+            <!-- /Main Wrapper -->
+            <!-- jQuery -->
+            <script src="~/doc/assets/js/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JS -->
+            <script src="~/doc/assets/js/popper.min.js"></script>
+            <script src="~/doc/assets/js/bootstrap.min.js"></script>
+
+            <!-- Custom JS -->
+            <script src="~/doc/assets/js/script.js"></script>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+        @if (TempData["swal_message"] != null&& TempData["swal_message"] != "Thank You for your feedback"&& TempData["swal_message"] != "please Add Feedback before submit")
+        {
+            <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+         window.location.href = "/DoctorsInfo/booking?id=@Model.doctor[0].doctorId";
+
+        });;
+            </script>
+        }
+        <script>
+
+            @*function removeButton(element) {
+    var inputValue = $(element).prev().val(); // get the input value
+    var currentButtons = '@ViewBag.btn'; // get the current buttons string from ViewBag
+    var newButtons = currentButtons.replace(inputValue + ',', ''); // remove the input value
+    '@ViewBag.btn' = newButtons; // update the ViewBag
+    $(element).prev().remove(); // remove the input element
+    $(element).remove(); // remove the close icon element
+}*@
+
+
+        </script>
+
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+@if (TempData["swal_message"] != null && TempData["notUser"]?.ToString() != null && TempData["notUser"].ToString() != "")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+            window.location.href = "@Url.Action("Login", "Account")";
+        });
+    </script>
+}
+
+@if (TempData["swal_message"] == "Thank You for your feedback")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+       window.location.href = window.location.pathname;
+        });
+    </script>
+}
+
+
+@if (TempData["swal_message"] == "please Add Feedback before submit")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+            window.location.href =  "@Url.Action("booking", "DoctorsInfo")";;
+        });
+    </script>
+}

@@ -37,29 +37,44 @@
                             <div class="table-responsive">
                                 <div id="upcoming-appointments" class="appointments">
                                     <dl class="dl-horizontal">
+
+                                        <dt>
+                                            Doctor Name
+                                        </dt>
+                                        <dd>
+                                            @Model.doctor.doctorName
+                                            <br />
+                                            <img src="@Url.Content(Model.doctor.picdoctor)" width="130" />
+                                        </dd>
+                                        <dt>
+                                            Patient Name
+                                        </dt>
+                                    
+                                        <dd>
+                                            @Model.patient.patientName
+                                            <br />
+                                            <img src="~/Content/images/@Url.Content(Model.patient.picpatient)" width="130" />
+                                        </dd>
+
                                         <dt>
                                             @Html.DisplayNameFor(model => model.starttime)
                                         </dt>
 
                                         <dd>
-@{ 
+                                            @{
 
 
-    DateTime storedDateTime = DateTime.ParseExact(Model.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+                                                DateTime storedDateTime = DateTime.ParseExact(Model.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
 
-}
+                                            }
 
-                                            @storedDateTime
+                                            @storedDateTime.ToString("dd/MM/yyyy")
+                                            <br />
+                                          @Model.starttime.Substring(  0,(Model.starttime.Length-5))
                                             @*@Html.DisplayFor(model => model.starttime)*@
                                         </dd>
 
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.endtime)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.endtime)
-                                        </dd>
+                                    
 
 
 
@@ -78,7 +93,14 @@
                                         </dt>
 
                                         <dd>
-                                            @Html.DisplayFor(model => model.BookingDate)
+                                       @if (Model.BookingDate.HasValue)
+            {
+                @Model.BookingDate.Value.ToString("dd/MM/yyy")
+            }
+
+
+
+
                                         </dd>
 
 
@@ -94,7 +116,7 @@
                                             @{
 
 
-//DateTime storedDateTime = DateTime.ParseExact(Model.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+                                                //DateTime storedDateTime = DateTime.ParseExact(Model.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
 
                                             }
                                             @*@storedDateTime*@
@@ -129,27 +151,15 @@
 
                                         </dd>
 
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.doctor.Id)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.doctor.Id)
-                                        </dd>
-
-                                        <dt>
-                                            @Html.DisplayNameFor(model => model.patient.Id)
-                                        </dt>
-
-                                        <dd>
-                                            @Html.DisplayFor(model => model.patient.Id)
-                                        </dd>
+                                  
 
                                     </dl>
                                 </div>
                                 <p>
                                     @*@Html.ActionLink("Edit", "Edit", new { id = Model.apointmentId }) |*@
-                                    @Html.ActionLink("Back to List", "Index")
+                                 
+
+                                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
                                 </p>
                             </div>
                         </div>

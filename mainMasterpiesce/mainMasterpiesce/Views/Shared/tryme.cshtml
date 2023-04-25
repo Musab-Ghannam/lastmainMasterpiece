@@ -1,4 +1,4 @@
-﻿@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.specialization>>
+﻿@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.specialization>, List<mainMasterpiesce.Models.feedbackwebsite>>
 @{
     Layout = null;
 }
@@ -16,37 +16,10 @@
 <body>
 
     <div class="owl-carousel owl-theme mt-5">
-        <div class="owl-item">
-            <div class="card">
-                <div class="img-card">
-                    <img src="~/Content/images/dr.png"
-                         alt="" />
-                    <div class="rating">
-
-                        <i class="fa-sharp fa-solid fa-star"></i>
-                        <p>4.85</p>
-
-                    </div>
-
-                </div>
-                <div class="testimonial mt-4 mb-2">
-                    Shatha Abdeljaleel holds a Bachelor's degree in Psychological Counseling and Mental Health from the University of Jordan, and she completed her Master's degree in the same field from the Arab University of Jordan.
-                </div>
-                <div class="name" style="font-size:15px">
-                    DR-Shatha Abd AL-Jaleel
-                </div>
-            </div>
-        </div>
-        @{ var x=0;
-        }
-        @foreach (var item in Model.Item1)
-                { x++;
-
-
-<div class="owl-item">
+        @*<div class="owl-item">
                 <div class="card">
                     <div class="img-card">
-                        <img src="~/Content/images/dr2.png"
+                        <img src="~/Content/images/dr.png"
                              alt="" />
                         <div class="rating">
 
@@ -54,13 +27,42 @@
                             <p>4.85</p>
 
                         </div>
-                    </div>
-                    <div class="testimonial mt-4 mb-2">
-                        Dr. Omar Ali Alqam is a psychiatric and addiction specialist who holds a Jordanian board in psychiatry and is a member of the Jordanian Psychiatric Association.
 
                     </div>
+                    <div class="testimonial mt-4 mb-2">
+                        Shatha Abdeljaleel holds a Bachelor's degree in Psychological Counseling and Mental Health from the University of Jordan, and she completed her Master's degree in the same field from the Arab University of Jordan.
+                    </div>
                     <div class="name" style="font-size:15px">
-                        <a href="">  DR-Omar ALI-alqam</a>
+                        DR-Shatha Abd AL-Jaleel
+                    </div>
+                </div>
+            </div>*@
+        @{ var x = 0;
+        }
+        @foreach (var item in Model.Item1.OrderByDescending(c => c.ratingint))
+        {
+            x++;
+
+
+            <div class="owl-item">
+                <div class="card">
+
+                    <div class="img-card">
+                        <img src="@Url.Content(@item.picdoctor)"
+                             alt="@item.picdoctor" />
+                        <div class="rating">
+
+                            <i class="fa-sharp fa-solid fa-star"></i>
+                            <p>@item.ratingint</p>
+
+                        </div>
+                    </div>
+                    <div class="testimonial mt-4 mb-2">
+                        @*Dr. Omar Ali Alqam is a psychiatric and addiction specialist who holds a Jordanian board in psychiatry and is a member of the Jordanian Psychiatric Association.*@
+                        @item.infodoctor
+                    </div>
+                    <div class="name" style="font-size:15px">
+                        <a href="~/DoctorsInfo/singledoctor?id=@item.doctorId">  DR-@item.doctorName</a>
                     </div>
                 </div>
             </div>
@@ -75,115 +77,32 @@
 
 
 
-        @*<div class="owl-item">
-                    <div class="card">
-                        <div class="img-card">
-                            <img src="~/Content/images/dr3.png"
-                                 alt="" />
-                            <div class="rating">
 
-                                <i class="fa-sharp fa-solid fa-star"></i>
-                                <p>4.85</p>
-
-                            </div>
-                        </div>
-                        <div class="testimonial mt-4 mb-2">
-                            Dr. Ahmed Al-Dabaas is a psychiatric and addiction specialist who received his medical degree from Mutah University and was one of the founders of IFMSA-Jo/Mutah,
-                            and later a member of the supervisory board.
-                        </div>
-                        <div class="name">
-                            DR-Ahmad AL-Dabbas
-                        </div>
-                    </div>
-                </div>
-                <div class="owl-item">
-                    <div class="card">
-                        <div class="img-card">
-                            <img src="~/Content/images/dr6.png"
-                                 alt="" />
-                            <div class="rating">
-
-                                <i class="fa-sharp fa-solid fa-star"></i>
-                                <p>4.85</p>
-
-                            </div>
-                        </div>
-                        <div class="testimonial mt-4 mb-2">
-                            Dr. Maan Al-Abki is a psychiatric and addiction specialist who holds both the Jordanian and the Arab Board in Psychiatry.
-
-                        </div>
-                        <div class="name">
-                            DR-maen Al-abki
-                        </div>
-                    </div>
-                </div>
-                <div class="owl-item">
-                    <div class="card">
-                        <div class="img-card">
-                            <img src="~/Content/images/dralaa.png"
-                                 alt="" />
-                            <div class="rating">
-
-                                <i class="fa-sharp fa-solid fa-star"></i>
-                                <p>4.85</p>
-
-                            </div>
-                        </div>
-                        <div class="testimonial mt-4 mb-2">
-                            Dr. Alaa Mohammed Zaid is a specialist in psychiatric disorders and addiction, holding a Bachelor of Medicine and Surgery degree from Hadhramout University of Science and Technology in Yemen in 2011.
-                            .
-                        </div>
-                        <div class="name">
-                            Dr. Alaa Mohammed Zaid
-                        </div>
-                    </div>
-                </div>
-                <div class="owl-item">
-                    <div class="card">
-                        <div class="img-card">
-                            <img src="~/Content/images/drhiba.png"
-                                 alt="" />
-                            <div class="rating">
-
-                                <i class="fa-sharp fa-solid fa-star"></i>
-                                <p>4.85</p>
-
-                            </div>
-                        </div>
-                        <div class="testimonial mt-4 mb-2">
-                            Hiba Al-Shakhshir is a psychological therapist who holds a Master's degree in Mental Health from Queen Mary University in London, and a Bachelor's degree in Psychology from the American
-                            University in Beirut..
-                        </div>
-                        <div class="name">
-                            DR-Hiba Al-Shakhshir
-                        </div>
-                    </div>
-                </div>*@
-            </div>
-        <script>
-            $(document).ready(function () {
-                var silder = $(".owl-carousel");
-                silder.owlCarousel({
-                    autoplay: true,
-                    autoplayTimeout: 3000,
-                    autoplayHoverPause: false,
-                    items: 1,
-                    stagePadding: 20,
-                    center: true,
-                    nav: false,
-                    margin: 50,
-                    dots: true,
-                    loop: true,
-                    responsive: {
-                        0: { items: 1 },
-                        480: { items: 2 },
-                        575: { items: 2 },
-                        768: { items: 2 },
-                        991: { items: 3 },
-                        1200: { items: 4 }
-                    }
-                });
+    </div>
+    <script>
+        $(document).ready(function () {
+            var silder = $(".owl-carousel");
+            silder.owlCarousel({
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: false,
+                items: 1,
+                stagePadding: 20,
+                center: true,
+                nav: false,
+                margin: 50,
+                dots: true,
+                loop: true,
+                responsive: {
+                    0: { items: 1 },
+                    480: { items: 2 },
+                    575: { items: 2 },
+                    768: { items: 2 },
+                    991: { items: 3 },
+                    1200: { items: 4 }
+                }
             });
-        </script>
+        });
+    </script>
 </body>
 </html>

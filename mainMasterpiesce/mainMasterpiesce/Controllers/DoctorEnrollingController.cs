@@ -23,10 +23,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
-
-
-
-
+using System.Net.Mail;
+using System.Net;
 
 namespace mainMasterpiesce.Controllers
 {
@@ -131,11 +129,48 @@ namespace mainMasterpiesce.Controllers
                 string[] nameParts = Regex.Replace(User.Identity.Name, "[^a-zA-Z]+", " ").Split(' ');
                 string firstName =nameParts[0];
 
+                var docemail = db.doctors.FirstOrDefault(c => c.Id == doctorId).email;
+                var docName= db.doctors.FirstOrDefault(c => c.Id == doctorId).doctorName;
+                //emaiiil
+
+
+                // Create a new MailMessage object
+                MailMessage mail = new MailMessage();
+
+                // Set the sender's email address
+                mail.From = new MailAddress("musab.ghannam@outlook.com");
+
+                // Set the recipient's email address
+
+                mail.To.Add(docemail);
+
+                // Set the subject of the email
+                mail.Subject = "New message from " + "Finding piece";
+
+                // Set the body of the email
+
+                mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-{docName}, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
+
+                // Set the body format to HTML
+                mail.IsBodyHtml = true;
+
+                // Create a new SmtpClient object
+                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
+                smtp.EnableSsl = true;
+
+                // Send the email
+                smtp.Send(mail);
+
+
+                //email
+
                 db.SaveChanges();
 
                 doctor.statedoctor = 0;
 
-                TempData["swal_message"] = $"Dr-{firstName}\tYour registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
+                TempData["swal_message"] = $"Dr-{docName}\tYour registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
                 ViewBag.title = "success";
                 ViewBag.icon = "success";
                 ViewBag.redirectUrl = Url.Action("Index", "mainHome");
@@ -162,7 +197,11 @@ namespace mainMasterpiesce.Controllers
         {
             string zoomLink = Session["link"] as string;
             var mainId = User.Identity.GetUserId();
+
+
+
             var doctorId = db.doctors.FirstOrDefault(x => x.Id == mainId).doctorId;
+
 
             var appointment = db.appointments.Where(c => c.doctorId == doctorId).ToList();
             var doct = db.doctors.Where(c => c.Id == mainId).ToList();
@@ -231,7 +270,11 @@ namespace mainMasterpiesce.Controllers
         {
          
             var mainId = User.Identity.GetUserId();
-            var doctorId = db.doctors.FirstOrDefault(x => x.Id == mainId).doctorId;
+
+
+           
+
+            var doctorId = db.doctors?.FirstOrDefault(x => x.Id == mainId)?.doctorId;
 
             var appointment = db.appointments.Where(c => c.doctorId == doctorId).ToList();
             var doct = db.doctors.Where(c => c.Id == mainId).ToList();
@@ -274,7 +317,7 @@ namespace mainMasterpiesce.Controllers
 
 
 
-            var feedback = db.feedbacks.ToList();
+            var feedback = db.feedbacks.Where(c=>c.doctorId==doctorId).ToList();
 
 
             var model = Tuple.Create(doct, appointment, feedback);
@@ -386,7 +429,94 @@ namespace mainMasterpiesce.Controllers
 
 
 
+        public ActionResult PendingReviews(int? id)
+        {
 
+            var mainId = User.Identity.GetUserId();
+            var doctorId = db.doctors.FirstOrDefault(x => x.Id == mainId).doctorId;
+
+            var appoint = db.appointments.Where(c => c.doctorId == doctorId).ToList();
+            var doct = db.doctors.Where(c => c.Id == mainId).ToList();
+
+
+            var patientcount = db.appointments.Where(c => c.doctorId == doctorId).Select(l => l.patientId).Distinct();
+
+
+            var appointmentcount = db.appointments.Where(c => c.doctorId == doctorId).ToList().Count();
+
+            ViewBag.appointmentcount = appointmentcount;
+
+
+            ViewBag.patientcount = patientcount;
+            var feedback = db.feedbacks.ToList();
+
+
+
+            if (TempData["IsAccept"] == "samestate")
+            {
+
+
+
+
+                TempData["swal_message"] = $"Yoy already in this state";
+                ViewBag.title = "warning";
+                ViewBag.icon = "warning";
+
+            }
+
+
+
+
+
+            if (TempData["IsAccept"] == "firstAccept")
+            {
+
+                // Define the sweet alert message and options
+                string sweetAlertMessage = "Are you sure you want to display this comment?";
+                string sweetAlertTitle = "Confirm Block";
+                string sweetAlertIcon = "warning";
+                string sweetAlertCancelButton = "Cancel";
+
+                // Update the TempData and ViewBag variables
+                TempData["swal_message"] = sweetAlertMessage;
+                ViewBag.title = sweetAlertTitle;
+                ViewBag.icon = sweetAlertIcon;
+                ViewBag.cancelButton = sweetAlertCancelButton;
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            var model = Tuple.Create(doct, appoint, feedback);
+
+            return View(model);
+
+
+
+        }
 
 
         public ActionResult MyReviews(int?id)
@@ -482,14 +612,14 @@ namespace mainMasterpiesce.Controllers
 
 
 
+         
 
 
 
 
 
 
-
-    var model = Tuple.Create(doct, appoint, feedback);
+            var model = Tuple.Create(doct, appoint, feedback);
 
             return View(model);
 
@@ -506,6 +636,16 @@ namespace mainMasterpiesce.Controllers
 
 
         }
+        public ActionResult samestatepending(int? id)
+        {
+            TempData["Id"] = Convert.ToInt16(id);
+            TempData["IsAccept"] = "samestate";
+
+            return RedirectToAction("PendingReviews");
+
+
+
+        }
 
 
         public ActionResult firstAccept(int?id)
@@ -513,7 +653,7 @@ namespace mainMasterpiesce.Controllers
             TempData["Id"] = Convert.ToInt16(id);
             TempData["IsAccept"] = "firstAccept";
 
-            return RedirectToAction("MyReviews");
+            return RedirectToAction("PendingReviews");
 
 
 
@@ -560,7 +700,7 @@ namespace mainMasterpiesce.Controllers
             db.Entry(feedback).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("MyReviews");
+            return RedirectToAction("PendingReviews");
 
 
 
@@ -568,99 +708,7 @@ namespace mainMasterpiesce.Controllers
         }
 
 
-        //public async Task<ActionResult> EditDoctor([Bind(Include = "doctorId,Id,locationdoctor,doctorName,email,phoneNumber,qualiification,specialization,startedate,earningDoctortotal,AmountsDue,IBAN,Gender,infodoctor,pricePerHour,ratingdoctor,ratingdoctor,ratingint,experience,birthday,addresss,educationdetails")] doctor doctor, string docname, string email, string phonenumb, string birth, string gender, string Iban, string info, string address, string locationLink, string city, string country, string price, string special, HttpPostedFileBase profpic)
-        //{
-        //    var AspId = User.Identity.GetUserId();
-        //    var doctorr = db.doctors.FirstOrDefault(c => c.Id == AspId);
-
-        //    doctorr.locationdoctor = city + ',' + country + '_' + locationLink;
-
-        //    doctorr.doctorName = docname;
-        //    DateTime.TryParse(birth, out DateTime parsedBirthday);
-        //    doctorr.birthday = parsedBirthday;
-        //    doctorr.pricePerHour = Convert.ToInt64(price);
-        //    doctorr.AspNetUser.PhoneNumber = phonenumb;
-        //    doctorr.IBAN = Iban;
-        //    doctorr.addresss = address;
-        //    doctorr.infodoctor = info;
-        //    doctorr.specializationId = Convert.ToInt16(special);
-        //    doctorr.AspNetUser.Email = email;
-        //    doctorr.email = email;
-
-        //    if (profpic != null)
-        //    {
-        //        string path = Server.MapPath("~/Content/images/") + profpic.FileName;
-        //        profpic.SaveAs(path);
-        //        doctorr.picdoctor = profpic.FileName;
-        //    }
-
-        //    db.Entry(doctorr).State = EntityState.Modified;
-
-        //    TempData["edit"] = "edit";
-
-        //    db.SaveChanges();
-
-        //    return RedirectToAction("DoctorDashSetting");
-        //}
-        //public async Task<ActionResult> EditDoctor( [Bind(Include = "doctorId,Id,locationdoctor,doctorName,email,phoneNumber,qualiification,specialization,startedate,earningDoctortotal,AmountsDue,IBAN,Gender,infodoctor,pricePerHour,ratingdoctor,ratingdoctor,ratingint,experience,birthday,addresss,educationdetails")] doctor doctor, string docname, string email, string phonenumb, string birth, string gender,string Iban,string info,string address,string locationLink,string city,string country,string price,string special, HttpPostedFileBase profpic)
-        //{
-
-        //    var AspId = User.Identity.GetUserId();
-        //    var doctorr = db.doctors.FirstOrDefault(c => c.Id == AspId);
-
-
-
-        //        doctorr.locationdoctor = city + ',' + country +'_'+ locationLink;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //    doctorr.doctorName = docname;
-        //    DateTime birthday;
-
-        //    //doctorr.birthday = birthday;
-        //    doctor.pricePerHour = Convert.ToInt64(price);
-        //    doctorr.IBAN = Iban;
-        //    doctorr.addresss = address;
-        //    doctorr.infodoctor = info;
-        //    //doctor.AspNetUser.PhoneNumber = phonenumb;
-
-
-        //    doctorr.specializationId = Convert.ToInt16(special);
-        //    doctorr.AspNetUser.Email = email;
-        //    doctorr.email = email;
-
-
-        //    if (profpic != null)
-        //    {
-        //        //string fileName = Path.GetFileName(image.FileName);
-        //        string path = Server.MapPath("~/Content/images/") + profpic.FileName;
-        //        profpic.SaveAs(path);
-        //      doctorr.picdoctor = profpic.FileName;
-        //    }
-
-
-
-
-
-
-        //   db.Entry(doctorr).State = EntityState.Modified;
-        //    db.SaveChanges();
-        //    // continue with the method logic
-        //    return RedirectToAction("DoctorDashSetting");
-
-        //}
+     
         public ActionResult MyPatient()
         {
             string zoomLink = Session["link"] as string;
@@ -1275,14 +1323,14 @@ namespace mainMasterpiesce.Controllers
 
                 }
             }
-       
-
-           
 
 
 
 
-            return View("NotAvailable", Tuple.Create(doct, appointment));
+
+            var feedback = db.feedbacks.ToList();
+
+            return View("NotAvailable", Tuple.Create(doct, appointment, feedback));
         }
 
 

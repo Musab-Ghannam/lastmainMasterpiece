@@ -15,8 +15,11 @@ namespace mainMasterpiesce.Controllers
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();
 
         // GET: appointments
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
+
+      
+
             var totalprice = db.appointments.ToList();
             int sum = 0;
      
@@ -32,7 +35,21 @@ namespace mainMasterpiesce.Controllers
             ViewBag.webdue= websitedue;
 
             var appointments = db.appointments.Include(a => a.doctor).Include(a => a.patient);
-            return View(appointments.ToList());
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchh = db.appointments.Where(c => c.doctor.doctorName.Contains(search) || c.patient.patientName.Contains(search)).ToList();
+
+                return View(searchh);
+
+            }
+            else
+            {
+                return View(appointments.ToList());
+
+            }
+
+       
         }
 
         // GET: appointments/Details/5

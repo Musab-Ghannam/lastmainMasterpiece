@@ -3,6 +3,8 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -71,7 +73,7 @@ namespace mainMasterpiesce.Controllers
 
 
 
-
+            var feedbacks = doct.feedbackwebsites.ToList();
 
 
 
@@ -88,55 +90,24 @@ namespace mainMasterpiesce.Controllers
                 Session["User"] = doctorId.doctorId;
             }
 
-            return View(Tuple.Create(doctors, specializations));
+            return View(Tuple.Create(doctors, specializations, feedbacks));
         }
 
 
 
         public ActionResult ConTact()
         {
-            string url = Request.Url.AbsoluteUri;
-            ViewBag.url = url;// get the absolute URL of the current request
-            string[] segments = url.Split('/'); // split the URL into segments
-            string lastSegment = segments[segments.Length - 1];
-            string beforlast = segments[segments.Length - 2];
-            ViewBag.Last = lastSegment;
-            ViewBag.befLast = beforlast;
-            TempData["lasrseg"] = "ConTact";
-            TempData["beforlast"] = beforlast;
+
 
             if (TempData["swal_message"] == "Thank You for your feedback")
             {
-                TempData["swal_message"] = "Thank You for your feedback";
+                TempData["swal_message"] = "Thank you for contacting us. We have received your message and will get back to you soon.";
                 ViewBag.title = "info";
                 ViewBag.icon = "success";
 
 
 
             }
-
-            if (TempData["swal_message"] == "Please log in to add Feedback.")
-            {
-
-                TempData["swal_message"] = "Please log in to add Feedback.";
-                ViewBag.title = "Warning";
-                ViewBag.icon = "warning";
-                ViewBag.redirectUrl = Url.Action("Login", "Account");
-
-            }
-
-
-            if (TempData["swal_message"] == "please Add Feedback before submit")
-            {
-                TempData["swal_message"] = "please Add Feedback before submit";
-                ViewBag.title = "Warning";
-                ViewBag.icon = "warning";
-                ViewBag.redirectUrl = Url.Action("Login", "Account");
-
-
-            }
-
-
 
 
 
@@ -145,50 +116,49 @@ namespace mainMasterpiesce.Controllers
 
             return View();
         }
+        // POST: Home/SendEmail
+        [HttpPost]
+        public ActionResult SendEmail(string name, string email, string phone, string message)
+        {
+            // Create a new MailMessage object
+            MailMessage mail = new MailMessage();
 
+            // Set the sender's email address
+            mail.From = new MailAddress("mosabg613@outlook.com");
+
+            // Set the recipient's email address
+
+            string emaill= "mosabg613@gmail.com";
+            mail.To.Add(emaill);
+
+            // Set the subject of the email
+            mail.Subject = "New message from " + name;
+
+            // Set the body of the email
+            mail.Body ="Email: "+email+ "<br><br>"+ "Phone: " + phone + "<br><br>" + message;
+
+            // Set the body format to HTML
+            mail.IsBodyHtml = true;
+
+            // Create a new SmtpClient object
+            SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("mosabg613@outlook.com", "124816326455@Mo");
+            smtp.EnableSsl = true;
+
+            // Send the email
+            smtp.Send(mail);
+            TempData["swal_message"] = "Thank You for your feedback";
+            // Redirect the user to a confirmation page
+            return RedirectToAction("ConTact");
+        }
+
+      
         public ActionResult About()
         {
-            string url = Request.Url.AbsoluteUri;
-            ViewBag.url = url;// get the absolute URL of the current request
-            string[] segments = url.Split('/'); // split the URL into segments
-            string lastSegment = segments[segments.Length - 1];
-            string beforlast = segments[segments.Length - 2];
-            ViewBag.Last = lastSegment;
-            ViewBag.befLast = beforlast;
-            TempData["lasrseg"] = "About";
-            TempData["beforlast"] = beforlast;
+     
 
-            if (TempData["swal_message"] == "Thank You for your feedback")
-            {
-                TempData["swal_message"] = "Thank You for your feedback";
-                ViewBag.title = "info";
-                ViewBag.icon = "success";
-
-
-
-            }
-
-            if (TempData["swal_message"] == "Please log in to add Feedback.")
-            {
-
-                TempData["swal_message"] = "Please log in to add Feedback.";
-                ViewBag.title = "Warning";
-                ViewBag.icon = "warning";
-                ViewBag.redirectUrl = Url.Action("Login", "Account");
-
-            }
-
-
-            if (TempData["swal_message"] == "please Add Feedback before submit")
-            {
-                TempData["swal_message"] = "please Add Feedback before submit";
-                ViewBag.title = "Warning";
-                ViewBag.icon = "warning";
-                ViewBag.redirectUrl = Url.Action("Login", "Account");
-
-
-            }
-
+       
 
 
 

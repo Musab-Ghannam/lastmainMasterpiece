@@ -7,21 +7,41 @@
 
 <script src="https://kit.fontawesome.com/cd43dd9542.js" crossorigin="anonymous"></script>
 <style>
-    /*
-    .review-listing .recommend-btn a{
+  #accept{
+      font-weight:bold;
+      font-size:17px;
 
-        background-color:forestgreen;
-        color:white
-    }*/
+  }
 </style>
+
+
+
 <div class="col-md-7 col-lg-8 col-xl-9">
-    <div class="doc-review review-listing">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <ul class="breadcrumb">
+                    <li id="accept"><a href="MyReviews">Accepted Reviews/</a></li>
+                    <li id="reject"><a href="PendingReviews">Pending Reviews</a></li>
+                </ul>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    @*start acceptreviews*@
+    <div class="doc-review review-listing appointments" id="previous-appointments">
 
         <!-- Review Listing -->
         <ul class="comments-list">
 
             <!-- Comment List -->
-            @foreach (var comment in Model.Item3)
+            @foreach (var comment in Model.Item3.Where(c => c.statefeedback == 1))
             {
 
 
@@ -87,7 +107,7 @@
                             </p>
                             <div class="comment-reply">
                                 <a class="comment-btn" href="#">
-                                    @*<i class="fas fa-reply"></i>*@
+
                                 </a>
                                 <p class="recommend-btn">
                                     <span>Accept?</span>
@@ -114,45 +134,25 @@
 
 
                                     }
-                                    else
-                                    {
-
-                                        <a href="~/DoctorEnrolling/firstAccept?id=@comment.feedbackId" class="like-btn">
-                                            <i class="far fa-thumbs-up"></i> Yes
-                                        </a>
-
-
-                                        <a href="~/DoctorEnrolling/samestate?id=@comment.feedbackId" class="dislike-btn" style="background-color:darkred;color:white">
-                                            <i class="far fa-thumbs-down"></i> No
-                                        </a>
-
-
-                                    }
+                      
 
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Comment Reply -->
-                    <!--<ul class="comments-reply">-->
-                    <!-- Comment Reply List -->
-                    <!-- /Comment Reply List -->
-                    <!--</ul>-->
-                    <!-- /Comment Reply -->
 
                 </li>
             }
-            <!-- /Comment List -->
-            <!-- Comment List -->
-            <!-- /Comment List -->
-            <!-- Comment List -->
-            <!-- /Comment List -->
+
 
         </ul>
-        <!-- /Comment List -->
+
 
     </div>
+
+    @*finish acceptreviews**@
+
 </div>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -247,3 +247,51 @@
         });;
     </script>
 }
+<script>
+    function toggleDisplay(idToShow) {
+        var allElements = document.getElementsByClassName("appointments");
+        for (var i = 0; i < allElements.length; i++) {
+            var element = allElements[i];
+            if (element.id === idToShow) {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+        // Apply styling to first link
+        var firstLink = document.getElementById("prev");
+        if (idToShow === "previous-appointments") {
+            firstLink.style.fontWeight = "bold";
+            firstLink.style.color = "red";
+            firstLink.style.fontSize = "25px";
+        } else {
+            firstLink.style.fontWeight = "normal";
+            firstLink.style.color = "inherit";
+            firstLink.style.fontSize = "15px";
+        }
+
+
+
+
+        var sec = document.getElementById("upc");
+        if (idToShow === "upcoming-appointments") {
+            sec.style.fontWeight = "bold";
+            sec.style.color = "red";
+            sec.style.fontSize = "25px";
+        } else {
+            sec.style.fontWeight = "normal";
+            sec.style.color = "inherit";
+            sec.style.fontSize = "15px";
+        }
+
+
+
+
+
+
+    }
+
+
+</script>
+

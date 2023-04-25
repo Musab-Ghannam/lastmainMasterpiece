@@ -5,229 +5,298 @@
     Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
 }
 
-<h2>Delete</h2>
+<script src="https://kit.fontawesome.com/cd43dd9542.js" crossorigin="anonymous"></script>
+<div class="page-wrapper">
+    <div class="content container-fluid">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>doctor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.locationdoctor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.locationdoctor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.doctorName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.doctorName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.phoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.qualiification)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.qualiification)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.specialization)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.specialization)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.startedate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.startedate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.idCardfile)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.idCardfile)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.picdoctor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.picdoctor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.certificationfile)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.certificationfile)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.birthfile)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.birthfile)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.statedoctor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.statedoctor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.earningDoctortotal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.earningDoctortotal)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AmountsDue)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AmountsDue)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IBAN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IBAN)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.infodoctor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.infodoctor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pricePerHour)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pricePerHour)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ratingdoctor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ratingdoctor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ratingint)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ratingint)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.experience)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.experience)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.birthday)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.birthday)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.addresss)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.addresss)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.educationdetails)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.educationdetails)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.specialization1.namespecialization)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.specialization1.namespecialization)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Doctors</h3></a>
+                    <ul class="breadcrumb">
+                        @*<li class="breadcrumb-item" id="prev"><a href="#" onclick="toggleDisplay('previous-appointments')">Previous Appointment</a></li>
+                            <li class="breadcrumb-item" id="upc"><a href="#" onclick="toggleDisplay('upcoming-appointments')">upcoming-appointments</a></li>*@
+                    </ul>
+                </div>
+            </div>
         </div>
-    }
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="card-body">
+
+                        @if (!ViewData.ModelState.IsValid)
+            {
+
+
+<div class="alert alert-danger">
+                                @foreach (var errors in ViewData.ModelState.Values.SelectMany(c=>c.Errors))
+                {
+                                    <span>@errors.ErrorMessage</span>
+
+                }
+
+
+                            </div>
+
+
+
+            }
+
+                        <div class="table-responsive">
+                            <div id="upcoming-appointments" class="appointments">
+                                <dl class="dl-horizontal">
+                                    <dl class="dl-horizontal">
+
+
+
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.doctorName)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.doctorName)
+                                        </dd>
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.specialization)
+                                        </dt>
+
+                                        <dd>
+                                            @if (@Model.specialization1 != null)
+                                            {
+                                                @Model.specialization1.namespecialization
+
+                                            }
+
+                                        </dd>
+
+
+
+
+
+                                        <dt>
+
+                                            @Html.DisplayNameFor(model => model.picdoctor)
+                                        </dt>
+
+                                        <dd>
+                                            <img src="@Url.Content(Model.picdoctor)" alt="@Html.DisplayFor(model => model.picdoctor)" width="100" />
+
+                                        </dd>
+                                        <dt>
+                                            Age
+                                        </dt>
+                                        <dd>
+
+                                            @{
+                                                int now = DateTime.Now.Year;
+                                                int? birthYear = Model?.birthday?.Year;
+
+                                                int age = birthYear.HasValue ? now - birthYear.Value : 0;
+                                            }
+
+                                            @age years old
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.startedate)
+                                        </dt>
+
+                                        <dd>
+                                            @Model.startedate.Value.ToString("yyyy-MM-dd")
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.statedoctor)
+                                        </dt>
+
+                                        <dd>
+                                            @if (Model.statedoctor == 1)
+                                            {
+
+
+
+
+
+                                                <span class="badge badge-pill bg-success-light">Confirm</span>
+
+
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-pill bg-danger-light">Pending</span>
+                                            }
+
+                                        </dd>
+
+                                        <dt>
+                                            ALL Documentations
+
+                                        </dt>
+
+
+                                        <dd>
+
+                                            <a href="~/doctors/DownloadAll?id=@Model.doctorId"><i class="fa-solid fa-file-zipper"></i></a>
+                                        </dd>
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.earningDoctortotal)
+                                        </dt>
+
+                                        <dd>
+
+                                            @{
+                                                int numm = 0;
+                                                foreach (var numb in Model.appointments)
+                                                {
+                                                    numm++;
+
+
+                                                }
+
+
+                                                var appointmentsByPatient = numm;
+
+                                                int totalprice = appointmentsByPatient * Convert.ToInt16(Model.pricePerHour);
+
+
+                                                double amountdoc = Convert.ToDouble(totalprice) * .95;
+                                            }
+
+                                            @amountdoc JD
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.AmountsDue)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.AmountsDue)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.IBAN)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.IBAN)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Gender)
+                                        </dt>
+
+                                        <dd>
+                                            @if (Model.Gender == true)
+                                            {
+
+
+                                                <p>Male</p>
+                                            }
+                                            else
+                                            {
+
+                                                <p>Female</p>
+                                            }
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.infodoctor)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.infodoctor)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.pricePerHour)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.pricePerHour)
+                                        </dd>
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.ratingint)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.ratingint)
+                                        </dd>
+
+
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.addresss)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.addresss)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.educationdetails)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.educationdetails)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                                        </dt>
+
+                                        <dd>
+                                            @if (Model.AspNetUser != null && Model.AspNetUser.Email != null)
+                                            {
+                                                @Html.DisplayFor(model => model.AspNetUser.Email)
+                                            }
+
+                                        </dd>
+
+
+
+                                    </dl>
+
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                <div class="form-actions no-color">
+
+
+                                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                                    @Html.ActionLink("Back to List", "AdminDoctor", null, new { @class = "btn btn-secondary" })
+                                </div>
+                                    }
 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -25,6 +25,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
 using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.Net;
+using System.Web.Helpers;
+using System.Web.Services.Description;
+using System.Xml.Linq;
 
 namespace mainMasterpiesce.Controllers
 {
@@ -264,6 +269,19 @@ namespace mainMasterpiesce.Controllers
 
             }
 
+            if (TempData["LoadMore"] == null)
+            {
+
+
+                TempData["more"] = 10;
+
+            }else if (TempData["LoadMore"] == "LoadMore")
+            {
+
+
+                TempData["more"] = 20;
+            }
+
 
             return View(Tuple.Create(alldoctors, specialization));
         }
@@ -272,7 +290,14 @@ namespace mainMasterpiesce.Controllers
 
 
 
+        public ActionResult LoadMore()
+        {
+            TempData["LoadMore"] = "LoadMore";
 
+     
+
+           return RedirectToAction("therapiestlist");
+        }
 
 
 
@@ -1211,7 +1236,7 @@ namespace mainMasterpiesce.Controllers
 
 
 
-
+            List<string> starttimeemaile = new List<string>();
 
             var AspId = User.Identity.GetUserId();
 
@@ -1237,6 +1262,9 @@ namespace mainMasterpiesce.Controllers
                 appoint.doctorId = id;
 
                 appoint.starttime = tableslots[i].ToString();
+                starttimeemaile.Add(appoint.starttime+"/2023");
+
+                string stringtimeemail = string.Join(";", starttimeemaile);
 
                 if (!string.IsNullOrEmpty(tableslots[i]))
                 {
@@ -1296,7 +1324,7 @@ namespace mainMasterpiesce.Controllers
 
                 var patientName = doc.patients.FirstOrDefault(c => c.Id == AspId).patientName;
 
-          
+                var patientemil = doc.patients.FirstOrDefault(c => c.Id == AspId).patientemail;
          
                 using (var db = new FindingpeaceEntities1())
                 {
@@ -1309,6 +1337,42 @@ namespace mainMasterpiesce.Controllers
                     ViewBag.title = "success";
                     ViewBag.icon = "success";
                     ViewBag.redirectUrl = Url.Action("successfullyBooking", new { id =id });
+
+                    //emaiiil
+
+
+                    // Create a new MailMessage object
+                    //MailMessage mail = new MailMessage();
+
+                    //// Set the sender's email address
+                    //mail.From = new MailAddress("mosabghannam@outlook.com");
+
+                    //// Set the recipient's email address
+
+                    //mail.To.Add(patientemil);
+
+                    //// Set the subject of the email
+                    //mail.Subject = "New message from " + "Finding piece";
+
+                    //// Set the body of the email
+
+                    //mail.Body = $"Dear-{patientName}, Your appointment(s) have been confirmed for the following time(s):{stringtimeemail} . We look forward to seeing you soon. In the meantime, feel free to explore our website and find ways to bring more peace into your life.";
+                    //// Set the body format to HTML
+                    //mail.IsBodyHtml = true;
+
+                    //// Create a new SmtpClient object
+                    //SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                    //smtp.UseDefaultCredentials = false;
+                    //smtp.Credentials = new NetworkCredential("mosabghannam@outlook.com", "124816326455@Mo");
+                    //smtp.EnableSsl = true;
+
+                    //// Send the email
+                    //smtp.Send(mail);
+
+
+                    //email
+
+
 
                     db.SaveChanges();
                 }

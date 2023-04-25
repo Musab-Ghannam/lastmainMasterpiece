@@ -1,11 +1,16 @@
 ﻿@model IEnumerable<mainMasterpiesce.Models.patient>
-
+@using System.Globalization;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
 }
 
-
+@section Content {
+    <form action="patientDashboard">
+        <input type="text" class="form-control" placeholder="Search here" name="search">
+        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+}
 <div class="page-wrapper">
     <div class="content container-fluid">
 
@@ -13,10 +18,8 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-7 col-auto">
-                    <h3 class="page-title">Specialities</h3>
+                    <h3 class="page-title">Patients</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Patients</li>
                     </ul>
                 </div>
                 <div class="col-sm-5 col">
@@ -53,7 +56,7 @@
                                                                 <th>Phone</th>
                                                                 <th>Start Date</th>
 
-                                                               
+
                                                                 <th>Action</th>
                                                             </tr>
                                                         </thead>
@@ -157,7 +160,7 @@
                             </div>
 
                             @*him*@
-                   
+
                             @*him*@
                         </div>
                     </div>
@@ -165,4 +168,4 @@
             </div>
 
         </div>
-                    </div>
+    </div>

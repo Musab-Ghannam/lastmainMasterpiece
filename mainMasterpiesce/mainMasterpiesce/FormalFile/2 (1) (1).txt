@@ -1,0 +1,5 @@
+create view , What is Razer engine, small practice using razor
+view bag, session
+create class Model, add data, pass data to view, desing you code using foreach with if statment
+create class EntityFramework, add data, pass data to view, desing you code using foreach with if statment
+

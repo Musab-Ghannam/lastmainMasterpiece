@@ -285,7 +285,7 @@ namespace mainMasterpiesce.Controllers
 
                             Id = user.Id,
                             startedate = DateTime.Now,
-
+                            statedoctor=0,
                             Gender = male == "male" ? true : false,
                             email= model.Email,
                             birthday = Convert.ToDateTime(birthdate),
@@ -298,7 +298,7 @@ namespace mainMasterpiesce.Controllers
                         {
                             string path = Server.MapPath("~/Content/images/") + pic.FileName;
                             pic.SaveAs(path);
-                            doctor.picdoctor = pic.FileName;
+                            doctor.picdoctor = "~/Content/images/"+pic.FileName;
 
 
                         }

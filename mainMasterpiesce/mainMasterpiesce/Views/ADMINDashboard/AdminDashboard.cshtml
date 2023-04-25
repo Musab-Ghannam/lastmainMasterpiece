@@ -1,0 +1,483 @@
+﻿@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.patient>, List<mainMasterpiesce.Models.appointment>>
+
+@using System.Globalization;
+@{
+    ViewBag.Title = "ADminDashboard";
+    Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
+}
+
+
+
+<div class="page-wrapper">
+
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Welcome Admin!</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon text-primary border-primary">
+                                <i class="fe fe-users"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>@Model.Item1.Count()</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+                            <h6 class="text-muted">Doctors</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-primary w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon text-success">
+                                <i class="fe fe-credit-card"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>@Model.Item2.Count()</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Patients</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-success w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon text-danger border-danger">
+                                <i class="fe fe-money"></i>
+                            </span>
+                            <div class="dash-count">
+                                <h3>@Model.Item3.Count()</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Appointment</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-danger w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="dash-widget-icon text-warning border-warning">
+                                <i class="fe fe-folder"></i>
+                            </span>
+                            <div class="dash-count">
+                                @{
+                                    var total = Model.Item3.Select(c => c.apointmentprice).Sum();
+                                    var income = total * .05;
+                                }
+
+
+                                <h3>@income</h3>
+                            </div>
+                        </div>
+                        <div class="dash-widget-info">
+
+                            <h6 class="text-muted">Revenue</h6>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning w-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12 d-flex">
+
+                <!-- Recent Orders -->
+                <div class="card card-table flex-fill">
+                    <div class="card-header">
+                        <div style="display:flex;justify-content:space-between">
+
+
+
+                            <h4 class="card-title">transaction List</h4>
+                            <a href="~/transactionsdoctors/DoctorTransaction" style="background-color: #1B5A90; color: white; padding: 2px 7px; border-radius: 2px ">View more details</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Total of transaction</th>
+                                        <th>Transaction for Doctor</th>
+                                        <th>Website dues</th>
+                                        @*<th></th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+
+                                    }
+                                    @for (int i = 0; i <1;i++)
+                                    {
+
+
+
+
+                                        <tr>
+                                            <td>
+                                                @ViewBag.Sum JD
+                                            </td>
+                                            <td>   @ViewBag.doctransac JD  </td>
+                                            <td>@ViewBag.webdue  JD</td>
+                                            @*<td>
+                                   
+
+                                            </td>*@
+                                        </tr>
+
+                                     
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Recent Orders -->
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6 d-flex">
+
+                <!-- Recent Orders -->
+                <div class="card card-table flex-fill">
+                    <div class="card-header">
+                        <div style="display:flex;justify-content:space-between">
+
+
+
+                            <h4 class="card-title">Doctors List</h4>
+                            <a href="~/doctors/AdminDoctor" style="background-color: #1B5A90; color: white; padding: 2px 7px; border-radius: 2px ">View All DOCTORS</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Doctor Name</th>
+                                        <th>Speciality</th>
+                                        <th>Earned</th>
+                                        <th>Reviews</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int doc = 0;
+                                    }
+                                    @foreach (var doctor in Model.Item1)
+                                    {
+                                        doc++;
+
+
+
+                                        <tr>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="~/doctors/Details/@doctor.doctorId" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="@Url.Content(doctor.picdoctor)" alt="@doctor.picdoctor"></a>
+                                                    <a href="~/doctors/Details/@doctor.doctorId">Dr.@doctor.doctorName</a>
+                                                </h2>
+                                            </td>
+                                            <td>@doctor.specialization1.namespecialization</td>
+                                            <td>@doctor.pricePerHour JD</td>
+                                            <td>
+                                                @for (int i = 0; i < doctor.ratingint; i++)
+                                                {<i class="fe fe-star text-warning"></i>
+                                                }
+                                                @for (int i = 0; i < 5 - doctor.ratingint; i++)
+                                                {
+
+                                                    <i class="fe fe-star-o text-secondary"></i>
+                                                }
+
+                                            </td>
+                                        </tr>
+
+                                        if (doc == 5)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Recent Orders -->
+
+            </div>
+            <div class="col-md-6 d-flex">
+
+                <!-- Feed Activity -->
+                <div class="card  card-table flex-fill">
+                    <div class="card-header">
+                        <div style="display:flex;justify-content:space-between">
+
+
+
+                            <h4 class="card-title">Patients List</h4>
+                            <a href="~/patients/patientDashboard" style="background-color: #1B5A90; color: white; padding: 2px 7px; border-radius: 2px ">View All Patients</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Patient Name</th>
+                                        <th>Phone</th>
+                                        <th>start Date</th>
+                                        <th>Gender</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int patientcount = 0; }
+                                    @foreach (var patient in Model.Item2)
+                                    {
+                                        patientcount++;
+
+
+
+                                        <tr>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    @if (patient.picpatient != null)
+                                                    {
+
+
+                                                        <a href="~/patients/Details/@patient.PatiantId" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/Content/images/@Url.Content(patient.picpatient)" alt="@patient.picpatient"></a>
+                                                        <a href="~/patients/Details/@patient.PatiantId">@patient.patientName </a>}
+                                                </h2>
+                                            </td>
+                                            <td>
+
+                                                @if (patient.AspNetUser?.PhoneNumber != null)
+                                                {
+
+                                                    @patient.AspNetUser.PhoneNumber
+                                                }
+                                                else
+                                                {
+
+                                                    <p>0780396098</p>
+                                                }
+
+                                            </td>
+
+                                            <td>
+                                                @if (patient.startedate.HasValue)
+                                                {
+                                                    @patient.startedate.Value.ToString("dd/mm/yyyy")
+                                                }
+
+                                            </td>
+                                            <td class="text-right">
+                                                @if (patient.Gender == true)
+                                                {
+
+
+
+                                                    <p>Male</p>
+                                                }
+                                                else
+                                                {
+
+                                                    <p>Female</p>
+                                                }
+
+
+                                            </td>
+                                        </tr>
+if (patientcount == 5)
+                                        {
+                                            break;
+                                        }
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Feed Activity -->
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- Recent Orders -->
+                <div class="card card-table">
+                    <div class="card-header">
+                        <div style="display:flex;justify-content:space-between">
+
+
+
+                            <h4 class="card-title">Appointment List</h4>
+                            <a href="~/appointments/Index" style="background-color: #1B5A90; color: white; padding: 2px 7px; border-radius: 2px ">View All appointments</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Doctor Name</th>
+                                        <th>Speciality</th>
+                                        <th>Patient Name</th>
+                                        <th>Apointment Time</th>
+                                        <th>Status</th>
+                                        <th class="text-right">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>@{ 
+                                    int appoint = 0;
+                                }
+                                    @foreach (var item in Model.Item3.OrderByDescending(c => c.BookingDate))
+                                    {
+                                        appoint++;
+
+
+                                        <tr>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="~/appointments/Details/@item.apointmentId" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="@Url.Content(item.doctor.picdoctor)" alt="@item.doctor.picdoctor"></a>
+                                                    <a href="~/appointments/Details/@item.apointmentId">Dr. @item.doctor.doctorName</a>
+                                                </h2>
+                                            </td>
+                                            <td>@item.doctor.specialization1.namespecialization</td>
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <a href="~/appointments/Details/@item.apointmentId" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="~/Content/images/@item.patient.picpatient" alt="User Image"></a>
+                                                    <a href="~/appointments/Details/@item.apointmentId">@item.patient.patientName </a>
+                                                </h2>
+                                            </td>
+
+                                            <td>
+
+
+                                                @if (item.BookingDate.HasValue)
+                                                {@item.BookingDate.Value.ToString("dd/MM/yyyy")
+                                            }
+
+                                                @{
+                                                    if (!string.IsNullOrEmpty(item.starttime) && !string.IsNullOrEmpty(item.endtime))
+                                                    {
+
+                                                        DateTime storedDateTime = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                                        string result = item.starttime.Substring(0, item.starttime.Length - 5);
+
+
+
+                                                        // Add one hour to the DateTime object
+                                                        DateTime endTime = storedDateTime.AddHours(1);
+
+                                                        // Format the DateTime object back into a string
+                                                        string endTimeString = endTime.ToString("h:mm ttMM/dd", CultureInfo.InvariantCulture);
+                                                        string resultend = endTimeString.Substring(0, endTimeString.Length - 5);
+
+
+
+
+                                                                                                <span class="text-primary d-block">@result _ @resultend </span>
+
+                                                    }
+
+
+
+                                                }
+
+                                            </td>
+                                            <td>
+                                                @{
+
+                                                    DateTime appointmentTime = DateTime.ParseExact(item.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture);
+
+                                                    // Compare the appointment time with the current time
+                                                    if (appointmentTime >= DateTime.Now)
+                                                    {
+
+
+
+
+                                                        <span class="badge badge-pill bg-danger-light">Pending</span>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <span class="badge badge-pill bg-success-light">Confirm</span>
+                                                    }
+
+
+                                                }
+
+                                            </td>
+                                            <td class="text-right">
+                                                @item.apointmentprice JD
+                                            </td>
+                                        </tr>
+
+                                                        if (appoint == 5)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Recent Orders -->
+
+            </div>
+        </div>
+
+    </div>
+</div>

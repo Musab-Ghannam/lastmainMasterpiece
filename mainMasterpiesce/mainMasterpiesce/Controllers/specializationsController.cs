@@ -15,9 +15,24 @@ namespace mainMasterpiesce.Controllers
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();
 
         // GET: specializations
-        public ActionResult Index()
+        public ActionResult Specialization(string search)
         {
-            return View(db.specializations.ToList());
+
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchh = db.specializations.Where(c=>c.namespecialization.Contains(search)).ToList();
+
+                return View(searchh);
+
+            }
+            else
+            {
+                return View(db.specializations.ToList());
+
+            }
+
+          
         }
 
         // GET: specializations/Details/5

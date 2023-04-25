@@ -12,33 +12,71 @@
 
 <style>
 
-    .fa-file-zipper{
+    .fa-file-zipper {
+        font-size: 40px;
+        text-align: center;
+        align-items: center;
+    }
+</style>
+@if (TempData["list"] != "Rejectlist")
+{
 
-        font-size:40px;
-        text-align:center;
-        align-items:center;
+
+    @section Content {
+        <form action="AdminDoctor">
+            <input type="text" class="form-control" placeholder="Search here" name="search">
+            <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
     }
 
-</style>
+}
+
+
+
+
 <div class="page-wrapper">
+
+
     <div class="content container-fluid">
 
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-7 col-auto">
-                    <h3 class="page-title">Doctors</h3>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Doctors</li>
-                    </ul>
+
+
+
+                    @if (TempData["list"] == "Rejectlist")
+                    {
+
+
+                        <h3 class="page-title">
+                            Pending Doctors
+                        </h3>
+
+                    }
+                    else
+                    {
+                        <h3 class="page-title">
+                            Accepted Doctors
+                        </h3>
+
+                    }
+
+
+
+
+
+
+
+
+
+
+                 
                 </div>
                 <div class="col-sm-5 col">
 
-                    @*@Html.ActionLink("Create New", "Create")*@
-                    @Html.ActionLink("Add", "Create", null, new { @class = "btn btn-primary float-right mt-2" })
 
-                    @*<a href="~/specializations/Create" data-toggle="modal" class="btn btn-primary float-right mt-2">Add</a>*@
                 </div>
             </div>
         </div>
@@ -49,6 +87,21 @@
                     <div class="card-body">
                         <div class="table-responsive">
 
+                            @{
+                                int test = 1;
+                            }
+
+
+                            @if (TempData["list"] == "Rejectlist")
+                            {
+
+                                test = 0;
+
+                            }
+                            else
+                            {
+                                test = 1;
+                            }
 
 
                             <table class="datatable table table-hover table-center mb-0">
@@ -66,9 +119,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+
+
+
+
+                                    @foreach (var item in Model.Where(c => c.statedoctor == test))
                                     {
-                                       
+
 
                                         <tr>
                                             <td>
@@ -78,9 +135,14 @@
 
 
                                                 </h2>
-                                                <p style="color:gray;margin-top:10px;font-size:15px">  @item.specialization1.namespecialization</p>
+                                                @if (item.specialization1 != null)
+                                                {
+                                                    <p style="color:gray;margin-top:10px;font-size:15px">  @item.specialization1.namespecialization</p>
+
+                                                }
+
                                             </td>
-                                   
+
                                             <td>
 
 
@@ -104,7 +166,7 @@
                                                 @{
                                                     int numm = 0;
 
-                                                    foreach (var numb in item.appointments.Where(c=>c.doctorId==item.doctorId&&c.confirmappointment==2))
+                                                    foreach (var numb in item.appointments.Where(c => c.doctorId == item.doctorId && c.confirmappointment == 2))
                                                     {
                                                         numm++;
 
@@ -114,7 +176,7 @@
 
 
 
-                                                    double totalprice = numm * Convert.ToInt16(item.pricePerHour)*.95;
+                                                    double totalprice = numm * Convert.ToInt16(item.pricePerHour) * .95;
 
 
                                                     //double amountdoc = Convert.ToDouble(totalprice) * .95;
@@ -130,9 +192,9 @@
 
                                             <td>
                                                 @*<div class="status-toggle">
-                <input type="checkbox" id="status_1" class="check" checked>
-                <label for="status_1" class="checktoggle">checkbox</label>
-            </div>*@
+                                                        <input type="checkbox" id="status_1" class="check" checked>
+                                                        <label for="status_1" class="checktoggle">checkbox</label>
+                                                    </div>*@
 
                                                 @if (item.statedoctor == 1)
                                                 {
@@ -157,22 +219,35 @@
                                                 @{
 
                                                     var ratt = item.ratingint;
+
+
                                                 }
-                                                @ratt
+
+                                                @if (ratt != null)
+                                                {
+
+                                                    @ratt
+
+}
+else
+                {
+                    <p>there is no rating yet</p>
+                }
+
 
 
                                             </td>
                                             <td>
-                                                @{ 
+                                                @{
                                                     int num = 0;
 
                                                 }
-                                             @foreach (var numb in item.appointments)
-                                             {
-                                                 num++;
+                                                @foreach (var numb in item.appointments)
+                                                {
+                                                    num++; 
 
 
-                                             }
+                                                }
 
                                                 @num
 
@@ -183,7 +258,7 @@
                                                 <td>
 
                                                     @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
-
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.doctorId }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this item?');" })
 
 
 

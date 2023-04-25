@@ -15,7 +15,7 @@ namespace mainMasterpiesce.Controllers
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();
 
         // GET: feedbackwebsites
-        public ActionResult feedbackweb(string Accept,string Block)
+        public ActionResult feedbackweb(string Accept,string Block,string search)
         {
             if (Accept != null)
             {
@@ -62,7 +62,20 @@ namespace mainMasterpiesce.Controllers
 
 
             var feedbackwebsites = db.feedbackwebsites.Include(f => f.patient);
-            return View(feedbackwebsites.ToList());
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchh = db.feedbackwebsites.Where(c =>  c.patient.patientName.Contains(search)).ToList();
+
+                return View(searchh);
+
+            }
+            else
+            {
+                return View(feedbackwebsites.ToList());
+
+            }
+        
         }
 
 

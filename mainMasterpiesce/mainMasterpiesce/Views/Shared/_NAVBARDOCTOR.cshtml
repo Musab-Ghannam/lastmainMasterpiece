@@ -30,6 +30,13 @@
 
 </head>
 <body>
+    <style>
+   /*     .activee {
+            background-color: #15767D;
+        }*/
+
+    </style>
+
     @*nav*@
     @{
         string[] nameParts = User.Identity.Name.Split('@');
@@ -38,28 +45,34 @@
 
 
     }
+
+    @{
+
+        string url = Request.Url.AbsoluteUri; // get the absolute URL of the current request
+        string[] segments = url.Split('/'); // split the URL into segments
+        string lastSegment = segments[segments.Length - 1]; }
     <div>
 
         <!--Main Header-->
         <header>
 
-            <nav class="nav1" id="navbar">
+            <nav class="nav1" id="navbar" style="position:relative">
 
                 <a href="/" class=""><img src="~/Content/images/logo.png" width="80" alt="logo" style="padding:0px !important;margin-left:50px !important" /></a>
 
-                <div class="hamburger">
+                <div class="hamburger" style="position:absolute;right:0">
                     <span class="line"></span>
                     <span class="line"></span>
                     <span class="line"></span>
                 </div>
 
                 <div class="nav__link hide">
-                    <a href="https://localhost:44388/mainHome/Index">home</a>
-                    <a href="https://localhost:44388/mainHome/Aboutt">about</a>
-                    <a href="https://localhost:44388/mainHome/ConTact">contact</a>
-                    <a href="https://localhost:44388/Doctors/singledoctor">therapist list</a>
+                    <a href="~/mainHome/Index" >home</a>
+                    <a href="~/mainHome/About">about</a>
+                    <a href="~/mainHome/ConTact">contact</a>
+                    <a href="therapiestlist" class="@(lastSegment == "therapiestlist" ? "active" : "")">therapist list</a>
 
-                    <a href="#">psycologist list</a>
+                    @*<a href="#">psycologist list</a>*@
                     @if (User.Identity.IsAuthenticated)
                     {
 

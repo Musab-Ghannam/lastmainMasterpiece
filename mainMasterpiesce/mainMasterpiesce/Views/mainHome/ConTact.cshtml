@@ -74,28 +74,33 @@
             <div class="col-md-8">
                 <div class="contact-form">
                     <!-- contact form start -->
-                    <form action="#" class="row">
+                    @using (Html.BeginForm("SendEmail", "mainHome", FormMethod.Post))
+                    {
+
+
+
                         <!-- name -->
                         <div class="col-md-6">
                             <input type="text" name="name" class="form-control main" placeholder="Name" required>
                         </div>
                         <!-- email -->
                         <div class="col-md-6">
-                            <input type="email" class="form-control main" placeholder="Email" required>
+                            <input type="email" name="email" class="form-control main" placeholder="Email" required>
                         </div>
                         <!-- phone -->
                         <div class="col-md-12">
-                            <input type="text" class="form-control main" placeholder="Phone" required>
+                            <input type="text" name="phone" class="form-control main" placeholder="Phone" required>
                         </div>
                         <!-- message -->
                         <div class="col-md-12">
                             <textarea name="message" rows="15" class="form-control main" placeholder="Your message"></textarea>
                         </div>
                         <!-- submit button -->
-                        <div class="col-md-12 text-right">
-                            <button class="btn btn-style-one" type="submit">Send Message</button>
-                        </div>
-                    </form>
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-style-one" type="submit">Send Message</button>
+                </div>
+                    }
+
                     <!-- contact form end -->
                 </div>
             </div>
@@ -114,23 +119,9 @@
 <!--====  End of Google Map  ====-->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-@if (TempData["swal_message"] != null && TempData["notUser"]?.ToString() != null && TempData["notUser"].ToString() != "")
-{
-    <script>
-        Swal.fire({
-            title: "@ViewBag.title",
-            text: "@TempData["swal_message"]",
-            icon: "@ViewBag.icon",
 
-            allowOutsideClick: false, // prevent clicking outside the dialog to close it
-            allowEscapeKey: false // prevent pressing the escape key to close it
-        }).then(function () {
-            window.location.href = "@Url.Action("Login", "Account")";
-        });
-    </script>
-}
 
-@if (TempData["swal_message"] == "Thank You for your feedback")
+@if (TempData["swal_message"] == "Thank you for contacting us. We have received your message and will get back to you soon.")
 {
     <script>
         Swal.fire({
@@ -147,18 +138,3 @@
 }
 
 
-@if (TempData["swal_message"] == "please Add Feedback before submit")
-{
-    <script>
-        Swal.fire({
-            title: "@ViewBag.title",
-            text: "@TempData["swal_message"]",
-            icon: "@ViewBag.icon",
-
-            allowOutsideClick: false, // prevent clicking outside the dialog to close it
-            allowEscapeKey: false // prevent pressing the escape key to close it
-        }).then(function () {
-            window.location.href =  "@Url.Action("Contact", "mainHome")";;
-        });
-    </script>
-}

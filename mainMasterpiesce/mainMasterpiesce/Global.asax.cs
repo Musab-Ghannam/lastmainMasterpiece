@@ -1,3 +1,4 @@
+using Hangfire;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,17 @@ namespace mainMasterpiesce
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
+          
+
+
+            string connectionString = "Data Source=DESKTOP-PND235Q\\SQLEXPRESS;Initial Catalog=Findingpeace;Integrated Security=True";
+
+            GlobalConfiguration.Configuration.UseSqlServerStorage(connectionString); // Configure Hangfire to use SQL Server storage with connection string
 
 
 
 
-
-
-
-
-
+            Startup.ConfigureHangfire();
 
 
         }

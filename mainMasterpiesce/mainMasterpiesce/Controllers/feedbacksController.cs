@@ -15,10 +15,23 @@ namespace mainMasterpiesce.Controllers
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();
 
         // GET: feedbacks
-        public ActionResult Review()
+        public ActionResult Review(string search)
         {
             var feedbacks = db.feedbacks.Include(f => f.doctor).Include(f => f.patient);
-            return View(feedbacks.ToList());
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchh = db.feedbacks.Where(c => c.doctor.doctorName.Contains(search) || c.patient.patientName.Contains(search)).ToList();
+
+                return View(searchh);
+
+            }
+            else
+            {
+                return View(feedbacks.ToList());
+
+            }
+        
         }
 
         // GET: feedbacks/Details/5

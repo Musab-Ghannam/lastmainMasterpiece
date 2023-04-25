@@ -9,20 +9,43 @@ using System.Web;
 using System.Web.Mvc;
 using mainMasterpiesce.Models;
 using Microsoft.Ajax.Utilities;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Hangfire;
+using Hangfire.SqlServer;
+using Lw.Data.Entity;
+using Lw.Data;
 
 namespace mainMasterpiesce.Controllers
 {
     public class transactionsdoctorsController : Controller
     {
+        public IDbContext DbContext { get; set; }
+
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();
 
         // GET: transactionsdoctors
-        public ActionResult DoctorTransaction()
+        [AllowAnonymous]
+        public ActionResult DoctorTransaction(string search,string Send)
         {
+            if (TempData["list"] == null)
+            {
+
+
+                TempData["list"] = "Acceptlist";
+            }
+
+
+
+
+
+
             //DateTime transcatedate = DateTime.ParseExact(DateTime.Now.ToString("h:mm ttdd/MM"), "h:mm ttdd/MM", CultureInfo.InvariantCulture);
 
             DateTime transactionDate = DateTime.Now;
-            if (transactionDate.DayOfWeek == DayOfWeek.Friday && transactionDate.Hour == 18)
+            //transactionDate.DayOfWeek == DayOfWeek.Monday && transactionDate.Hour == 18
+            if (true)
             {
           
        
@@ -32,23 +55,81 @@ namespace mainMasterpiesce.Controllers
     .Select(a => new { a.doctor.doctorId, a.doctor.doctorName })
     .DistinctBy(a => a.doctorId)
     .ToList();
-
+                var doctorAppointmentSum = db.appointments
+               .Where(a => a.confirmappointment == 0)
+               .GroupBy(a => a.doctorId)
+               .Select(g => new { DoctorId = g.Key, TotalAppointmentPrice = g.Sum(a => a.apointmentprice) })
+               .ToList();
 
                 //ViewBag.DoctorNames = string.Join(",", doctorNames);
 
+                var Isexist=db.transactionsdoctors.Where(c=>c.status!="2").ToList();
+                List<string> doctorIdExist = new List<string>();
+                string doctorIdExistString = "";
+                foreach (var item in Isexist)
+                {
+                    doctorIdExist.Add(item.doctorId.ToString());
+                    doctorIdExistString = string.Join(",", doctorIdExist);
+
+                }
+
+
+
+            
+
                 foreach (var doctor in doctorInfo)
                 {
-                    var transactionDoctor = new transactionsdoctor
+
+                    if (!doctorIdExist.Contains(doctor.doctorId.ToString()))
+                    {
+
+
+                 
+                      var transactionDoctor = new transactionsdoctor
                     {
                         DOctorName = doctor.doctorName,
                         doctorId = doctor.doctorId,
-                        status = "1"
-                        
-                    };
+                        amount=0,
+                        status = "1",
+                       
+
+                };
 
                     // Add the new transaction doctor to the database
                     db.transactionsdoctors.Add(transactionDoctor);
+              
+                db.SaveChanges();
+                    }
                 }
+                //var doctorr = db.doctors.FirstOrDefault(c => c.doctorId == docId);
+                //doctorr.statedoctor = 1;
+
+                //db.Entry(doctorr).State = EntityState.Modified;
+
+                foreach (var appointment in doctorAppointmentSum)
+                {
+
+
+                    var transactionDoctor = db.transactionsdoctors.FirstOrDefault(c => c.doctorId == appointment.DoctorId&&c.status!="2");
+
+                    transactionDoctor.amount = appointment.TotalAppointmentPrice * .95+ transactionDoctor.amount;
+                    db.Entry(transactionDoctor).State = EntityState.Modified;
+
+                    //    var transactionDoctor = new transactionsdoctor
+                    //    {
+                    //       amount=appointment.TotalAppointmentPrice*.95,
+
+
+
+                    //};
+
+                    // Add the new transaction doctor to the database
+                    //db.transactionsdoctors.Add(transactionDoctor);
+                }
+
+
+
+
 
                 var doc = db.appointments.Where(c => c.confirmappointment == 0).ToList();
 
@@ -68,13 +149,32 @@ namespace mainMasterpiesce.Controllers
 
 
             }
+            var checktime = db.transactionsdoctors.OrderBy(c=>c.Tansactiontime).FirstOrDefault();
 
-            if (transactionDate.DayOfWeek == DayOfWeek.Friday && transactionDate.Hour == 18)
+            if(checktime != null)
+            {
+
+                TimeSpan? timeDifference = DateTime.Now - checktime.Tansactiontime;
+                ViewBag.DEFER = timeDifference.Value.Days + timeDifference.Value.Hours / 24;
+            }
+if (ViewBag.DEFER >= 7)
+            {
+                ViewBag.welc = "ok";
+            }
+            else
+            {
+                ViewBag.welc = "No";
+
+            }
+
+
+
+                if (Send != null)
             {
 
 
 
-
+                int countapoint = 0;
 
 
                 var doctorAppointmentSum = db.appointments
@@ -85,12 +185,13 @@ namespace mainMasterpiesce.Controllers
 
                 foreach (var appointment in doctorAppointmentSum)
                 {
+                    countapoint++;
                     var transaction = db.transactionsdoctors
                         .SingleOrDefault(t => t.status == "1" && t.doctorId == appointment.DoctorId);
 
                     if (transaction != null)
                     {
-                        transaction.amount = appointment.TotalAppointmentPrice*.95;
+                        //transaction.amount = appointment.TotalAppointmentPrice*.95;
                         transaction.Tansactiontime = DateTime.Now;
                         transaction.status = "2";
                     }
@@ -105,8 +206,26 @@ namespace mainMasterpiesce.Controllers
 
 
                 }
+                if (countapoint > 0)
+                {
 
-                db.SaveChanges();
+                    TempData["swal_message"] = $" We are delighted to inform you that the transaction for the doctors has been successfully completed. Thank you for your cooperation and promptness in this process";
+
+                    ViewBag.title = "success";
+                    ViewBag.icon = "success";
+
+
+                    db.SaveChanges();
+                }
+                else
+                {
+                    TempData["swal_message"] = "We would like to inform you that there are no pending transactions to be sent at this time. If you have any questions or require further assistance, please do not hesitate to contact us. Thank you for your attention to this matter";
+                    ViewBag.title = "Warning";
+                    ViewBag.icon = "warning";
+
+                }
+
+           
 
             }
 
@@ -119,12 +238,60 @@ namespace mainMasterpiesce.Controllers
 
 
                 var transactionsdoctors = db.transactionsdoctors.Include(t => t.doctor);
-           
-          
 
-            return View(transactionsdoctors.ToList());
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchh = db.transactionsdoctors.Where(c => c.doctor.doctorName.Contains(search) ).ToList();
+
+                return View(searchh);
+
+            }
+            else
+            {
+                return View(transactionsdoctors.ToList());
+
+            }
+
+
+  
 
         }
+
+
+
+
+
+
+
+
+
+        public ActionResult Acceptlist([Bind(Include = "status")] transactionsdoctor transacytiondoc, string Accept)
+        {
+
+            TempData["list"] = "Acceptlist";
+
+            return RedirectToAction("DoctorTransaction", new { listType = "Acceptlist" });
+
+        }
+        public ActionResult Rejectlist([Bind(Include = "status")] transactionsdoctor transactiondoc, string Accept)
+        {
+
+            TempData["list"] = "Rejectlist";
+
+
+            return RedirectToAction("DoctorTransaction", new { listType = "rejectlist" });
+
+
+        }
+
+
+
+
+
+
+
+
+
 
         // GET: transactionsdoctors/Details/5
         public ActionResult Details(int? id)

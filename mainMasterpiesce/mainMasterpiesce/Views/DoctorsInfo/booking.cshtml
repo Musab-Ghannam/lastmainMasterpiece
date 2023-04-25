@@ -432,6 +432,21 @@
 
 
                                                                                         @{
+                                                                                            if (ViewBag.btn == null)
+                                                                                            {
+                                                                                                ViewBag.btn = " ";
+
+                                                                                            }
+                                                                                            if (ViewBag.slotdatabase == null)
+                                                                                            {
+                                                                                                ViewBag.slotdatabase = "";
+
+                                                                                            }
+                                                                                            if (ViewBag.notavailabletile == null)
+                                                                                            {
+                                                                                                ViewBag.notavailabletile = "";
+
+                                                                                            }
 
 
                                                                                             if (ViewBag.btn != null && ViewBag.slotdatabase != null)
@@ -448,14 +463,14 @@
                                                                                                     }
 
 
-                                                                                                }
+                                                                                            }
 
 
 
-                                                                                                if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
+                                                                                            if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
+                                                                                            {
+                                                                                                if (!ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
                                                                                                 {
-                                                                                                    if (!ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
-                                                                                                    {
 
 
 
@@ -474,7 +489,7 @@
 
 
                                                                                                 if (ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
-                                                                                                {
+                                                                                            {
 
 
                                                                                                     <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #20BBBD;color:white" disabled />
@@ -485,7 +500,7 @@
 
 
                                                                                                 else if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !User.IsInRole("doctor"))
-                                                                                                {
+                                                                                            {
 
 
                                                                                                     <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX " />
@@ -494,7 +509,7 @@
 
 
                                                                                                 else if (!ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && User.IsInRole("doctor"))
-                                                                                                {
+                                                                                            {
 
 
                                                                                                     <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX " disabled />
@@ -590,6 +605,23 @@
                                                                                 @*<input type="submit" value="@formattedTime" name="btnn" class="days timing new" style="margin-top:20PX; background-color: @(isClicked ? "red" : "white"); pointer-events: @(isClicked ? "none" : "auto");" />*@
 
                                                                                 @{
+                                                                                    if (ViewBag.btn == null)
+                                                                                    {
+                                                                                        ViewBag.btn = " ";
+
+                                                                                    }
+                                                                                    if (ViewBag.slotdatabase == null)
+                                                                                    {
+                                                                                        ViewBag.slotdatabase = " ";
+
+                                                                                    }
+                                                                                    if (ViewBag.notavailabletile == null)
+                                                                                    {
+                                                                                        ViewBag.notavailabletile = " ";
+
+                                                                                    }
+
+
                                                                                     if (ViewBag.btn != null && ViewBag.slotdatabase != null)
                                                                                     {
 

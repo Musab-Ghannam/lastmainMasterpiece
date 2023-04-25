@@ -72,10 +72,19 @@
             height: 100%;
             background: #DFF3F7 !important;
         }
+
+        .activee {
+            background-color:#15767D;
+        }
     </style>
 </head>
 <body>
     <div>
+        @{
+
+            string url = Request.Url.AbsoluteUri; // get the absolute URL of the current request
+            string[] segments = url.Split('/'); // split the URL into segments
+            string lastSegment = segments[segments.Length - 1]; }
 
         <!--Main Header-->
         <header>
@@ -87,23 +96,23 @@
 
             }
 
-            <nav class="nav1" id="navbar">
+            <nav class="nav1" id="navbar"style="position:relative">
 
-                <a href="/" class=""><img src="~/Content/images/logo.png" width="80" alt="logo" style="padding:0px !important;margin-left:50px !important" /></a>
+                <a href="~/mainHome/Index" class=""><img src="~/Content/images/logo.png" width="80" alt="logo" style="padding:0px !important;margin-left:50px !important" /></a>
 
-                <div class="hamburger">
+                <div class="hamburger" style="position:absolute;right:0">
                     <span class="line"></span>
                     <span class="line"></span>
                     <span class="line"></span>
                 </div>
 
                 <div class="nav__link hide">
-                    <a href="Index">home</a>
-                    <a href="About">about</a>
-                    <a href="ConTact">contact</a>
-                    <a href="~/DoctorsInfo/alldoctors">therapist list</a>
+                    <a href="~/mainHome/Index" class="@(lastSegment == "Index" ? "activee" : "")">home</a>
+                    <a href="~/mainHome/About" class="@(lastSegment == "About" ? "activee" : "")">about</a>
+                    <a href="~/mainHome/ConTact" class="@(lastSegment == "ConTact" ? "activee" : "")">contact</a>
+                    <a href="~/DoctorsInfo/therapiestlist">therapist list</a>
 
-                    <a href="#">psycologist list</a>
+                    @*<a href="#">psycologist list</a>*@
                     @if (User.Identity.IsAuthenticated)
                     {
 
@@ -164,7 +173,7 @@
                             <!-- Footer Widget -->
                             <div class="footer-widget footer-about">
                                 <div class="footer-logo">
-                                    <img src="assets/img/footer-logo.png" alt="logo">
+                                    <a href="~/mainHome/Index" class=""><img src="~/Content/images/logo.png" width="80" alt="logo" style="padding:0px !important;margin-left:50px !important" /></a>
                                 </div>
                                 <div class="footer-about-content">
                                     <p>
@@ -232,18 +241,18 @@
                             <h2 class="footer-title">Links</h2>
 
                             <ul>
-                            <li style="color:white;margin-bottom:20px">
-                                <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
-                            </li>
-                            <li style="color:white;margin-bottom:20px">
-                                <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
-                            </li>
-                            <li style="color:white;margin-bottom:20px">
-                                <a href="~/Account/Login">
-                                    <i class="fas fa-angle-double-right"></i>
-                                    Log in
-                                </a>
-                            </li>
+                                <li style="color:white;margin-bottom:20px">
+                                    <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
+                                </li>
+                                <li style="color:white;margin-bottom:20px">
+                                    <a href="~/DoctorsInfo/therapiestlist"><i class="fas fa-angle-double-right"></i> Therapist List</a>
+                                </li>
+                                <li style="color:white;margin-bottom:20px">
+                                    <a href="~/Account/Login">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        Log in
+                                    </a>
+                                </li>
                             </ul>
 
 
@@ -280,7 +289,6 @@
             </div>
             <!-- /Footer Top -->
             <!-- Footer Bottom -->
-
             <!-- /Footer Bottom -->
 
         </footer>

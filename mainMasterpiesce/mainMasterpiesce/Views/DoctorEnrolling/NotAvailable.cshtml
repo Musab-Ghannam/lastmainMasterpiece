@@ -233,6 +233,15 @@
 
                                                                                             <span>
 
+                                                                                                @if (ViewBag.slotdatabase == null)
+                                                                                                {
+                                                                                                    ViewBag.slotdatabase = "";
+                                                                                                }
+                                                                                                @if (ViewBag.btn == null)
+                                                                                                {
+                                                                                                    ViewBag.btn = "";
+                                                                                                }
+
 
 
 
@@ -279,11 +288,13 @@
                                                                                                             ViewBag.fulldisplay = "";
 
                                                                                                         }
+                                                                                                        if (ViewBag.notavailabletile == null)
+                                                                                                        {
+                                                                                                            ViewBag.notavailabletile = "";
 
+                                                                                                        }
 
-
-
-                                                                                                        if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') || ViewBag.fulldisplay.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.fulldisplay.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                        if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') || ViewBag.fulldisplay.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.fulldisplay.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
                                                                                                         {
 
 
@@ -294,7 +305,8 @@
 
 
 
-                                                                                                        else if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+
+                                                                                                        else if (!ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.'))
                                                                                                         {
 
 
@@ -410,6 +422,17 @@
                                                                                         }}
 
                                                                                     <span>
+                                                                                        @if (ViewBag.slotdatabase == null)
+                                                                                        {
+                                                                                            ViewBag.slotdatabase = "";
+                                                                                        }
+                                                                                        @if (ViewBag.btn == null)
+                                                                                        {
+                                                                                            ViewBag.btn = "";
+                                                                                        }
+
+                                                                                     
+
 
 
                                                                                         @{
@@ -453,9 +476,22 @@
 
 
 
+
+
+
+
+
+
                                                                                                 if (ViewBag.fulldisplay == null)
                                                                                                 {
                                                                                                     ViewBag.fulldisplay = "";
+
+                                                                                                }
+
+
+                                                                                                if (ViewBag.notavailabletile == null)
+                                                                                                {
+                                                                                                    ViewBag.notavailabletile = "";
 
                                                                                                 }
 

@@ -10,6 +10,8 @@ using System.Web.Mvc;
 using mainMasterpiesce.Models;
 using System.IO.Compression;
 using System.Web.Configuration;
+using Microsoft.AspNet.Identity;
+using System.Net.Mail;
 
 namespace mainMasterpiesce.Controllers
 {
@@ -19,10 +21,10 @@ namespace mainMasterpiesce.Controllers
 
         // GET: doctors
         public ActionResult 
-            AdminDoctor(string id, string Block,string Accept,string idaccep)
+            AdminDoctor(string id, string Block,string Accept,string idaccep,string search)
         {
             var appointmentsByPatient = db.appointments.GroupBy(c => c.doctorId).Count();
-
+         
             
             ViewBag.sumprice=appointmentsByPatient; 
             var doctors = db.doctors.Include(d => d.AspNetUser).Include(d => d.specialization1);
@@ -58,9 +60,9 @@ namespace mainMasterpiesce.Controllers
 
                 if (Block != null&& ViewBag.Block ==true)
             {
-
-                // Define the sweet alert message and options
-                string sweetAlertMessage = "Are you sure you want to block this doctor?";
+                    TempData["IdBLOCK"] = Convert.ToInt16(Block);
+                    // Define the sweet alert message and options
+                    string sweetAlertMessage = "Are you sure you want to block this doctor?";
                 string sweetAlertTitle = "Confirm Block";
                 string sweetAlertIcon = "warning";
                 string sweetAlertCancelButton = "Cancel";
@@ -110,48 +112,203 @@ namespace mainMasterpiesce.Controllers
                 ViewBag.icon = sweetAlertIcon;
                 ViewBag.cancelButton = sweetAlertCancelButton;
                 TempData["Id"] = Convert.ToInt16(Accept);
-              
-         
+                TempData["list"] = "Rejectlist";
 
+
+
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchh = db.doctors.Where(c => c.doctorName.Contains(search)).ToList();
+
+                return View(searchh);
+
+            }
+            else
+            {
+
+
+
+                return View(doctors.ToList());
             }
 
 
 
 
-
-            return View(doctors.ToList());
         }
-  
-        public ActionResult Acceptt([Bind(Include = "statedoctor")] doctor doctor, string Accept)
+
+        public ActionResult Acceptlist([Bind(Include = "statedoctor")] doctor doctor, string Accept)
         {
 
-          var doctorr=db.doctors.Find(TempData["Id"]);
+            TempData["list"] = "Acceptlist";
+
+            return RedirectToAction("AdminDoctor", new { listType = "Acceptlist" });
+
+        }
+        public ActionResult Rejectlist([Bind(Include = "statedoctor")] doctor doctor, string Accept)
+        {
+
+            TempData["list"] = "Rejectlist";
+
+
+            return RedirectToAction("AdminDoctor", new { listType = "rejectlist" });
+
+
+        }
+
+
+        public ActionResult Acceptt([Bind(Include = "statedoctor")] doctor doctor, string Accept)
+        {
+            int docId = Convert.ToInt32(TempData["Id"]);
+
+
+            var doctorr=db.doctors.FirstOrDefault(c=>c.doctorId== docId);
             doctorr.statedoctor = 1;
 
             db.Entry(doctorr).State = EntityState.Modified;
+
+            //emaiiil
+
+            var docName = db.doctors.FirstOrDefault(c => c.doctorId == docId).doctorName;
+            var docemail = db.doctors.FirstOrDefault(c => c.doctorId == docId).email;
+
+            // Create a new MailMessage object
+            MailMessage mail = new MailMessage();
+
+            // Set the sender's email address
+            mail.From = new MailAddress("musab.ghannam@outlook.com");
+
+            // Set the recipient's email address
+
+            mail.To.Add(docemail);
+
+            // Set the subject of the email
+            mail.Subject = "New message from " + "Finding piece";
+
+            // Set the body of the email
+            mail.Body = $@"<html>
+                  <body>
+                      <p>Dear<b> Dr. {docName}<b>,</p>
+                      <br/>
+                      <p>Welcome to Finding Peace! We are thrilled to have you as part of our community of healthcare professionals dedicated to improving mental health and wellbeing for all.</p>
+                      <br/>
+                      <p><b>Congratulations</b> on completing your registration! We appreciate your commitment to joining us in this important mission, and we look forward to supporting you in your journey.</p>
+                      <br/>
+                      <p>After reviewing your experience and qualifications, we are confident that you will be an excellent addition to our network of providers.</p>
+                      <br/>
+                      <p>As a registered member of Finding Peace, you will have access to a wealth of resources, including our online forum where you can connect with other healthcare providers and share best practices, our library of educational materials to help you stay up-to-date on the latest research and trends, and much more.</p>
+                      <br/>
+                      <p>We hope that your experience with Finding Peace will be rewarding and fulfilling, and that you will find it to be a valuable tool in your practice.</p>
+                      <br/>
+                      <p>If you have any questions or concerns, please don't hesitate to reach out to us at support@findingpeace.com.</p>
+                      <br/>
+                      <p>Best regards,</p>
+                      <p>The Finding Peace Team</p>
+                  </body>
+              </html>";
+
+
+            // Set the body format to HTML
+            mail.IsBodyHtml = true;
+
+            // Create a new SmtpClient object
+            SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
+            smtp.EnableSsl = true;
+
+            // Send the email
+            smtp.Send(mail);
+
+
+            //email
+
+
             db.SaveChanges();
-
+            TempData["list"] = "Rejectlist";
             return RedirectToAction("AdminDoctor");
+          
+          
 
-
-
-
+        
         }
 
-        public ActionResult Block(int id, [Bind(Include = "statedoctor")] doctor doctor, string Accept)
+        public ActionResult Block( [Bind(Include = "statedoctor")] doctor doctor, string Accept)
         {
-       
+
+          int docId = Convert.ToInt32(TempData["IdBLOCK"]);  
+
+                var doctorr = db.doctors.FirstOrDefault(c => c.doctorId == docId);
+                doctorr.statedoctor = 0;
+
+                db.Entry(doctorr).State = EntityState.Modified;
 
 
-            var doctorr = db.doctors.Find(TempData["IdBLOCK"]);
-            doctorr.statedoctor = 0;
 
-            db.Entry(doctorr).State = EntityState.Modified;
+
+            //emaiiil
+
+            var docName = db.doctors.FirstOrDefault(c => c.doctorId == docId).doctorName;
+            var docemail = db.doctors.FirstOrDefault(c => c.doctorId == docId).email;
+
+            // Create a new MailMessage object
+            MailMessage mail = new MailMessage();
+
+            // Set the sender's email address
+            mail.From = new MailAddress("musab.ghannam@outlook.com");
+
+            // Set the recipient's email address
+
+            mail.To.Add(docemail);
+
+            // Set the subject of the email
+            mail.Subject = "New message from " + "Finding piece";
+
+            // Set the body of the email
+            mail.Body = @"<html>
+                  <body>
+                      <p>Dear Dr. {docName},</p>
+                      <br/>
+                      <p>We regret to inform you that we will be unable to continue working with you on Finding Peace. Despite many appointments, we have received poor ratings from patients who have seen you, and as a result, we have decided to block your account on our platform.</p>
+                      <br/>
+                      <p>We value the quality of care that we provide to our patients, and we take their feedback seriously. While we appreciate your interest in our platform, we cannot compromise on our commitment to delivering the best possible care to those who rely on us for support.</p>
+                      <br/>
+                      <p>Thank you for your understanding. If you have any questions or concerns, please don't hesitate to reach out to us at support@findingpeace.com.</p>
+                      <br/>
+                      <p>Best regards,</p>
+                      <p>The Finding Peace Team</p>
+                  </body>
+              </html>";
+
+
+            // Set the body format to HTML
+            mail.IsBodyHtml = true;
+
+            // Create a new SmtpClient object
+            SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
+            smtp.EnableSsl = true;
+
+            // Send the email
+            smtp.Send(mail);
+
+
+            //email
+
+
+
+
+
             db.SaveChanges();
 
-            return RedirectToAction("AdminDoctor");
+                return RedirectToAction("AdminDoctor");
 
 
+
+
+    
 
 
         }
@@ -294,7 +451,7 @@ namespace mainMasterpiesce.Controllers
             {
                 db.Entry(doctor).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminDoctor");
             }
             ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", doctor.Id);
             ViewBag.specializationId = new SelectList(db.specializations, "specializationId", "namespecialization", doctor.specializationId);
@@ -308,7 +465,7 @@ namespace mainMasterpiesce.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            doctor doctor = db.doctors.Find(id);
+            doctor doctor = db.doctors.FirstOrDefault(c=>c.doctorId==id);
             if (doctor == null)
             {
                 return HttpNotFound();
@@ -322,9 +479,79 @@ namespace mainMasterpiesce.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             doctor doctor = db.doctors.Find(id);
+            var doctorappointment = db.appointments.Where(c => c.doctorId == id);
+            var doctornotavailable = db.NotAvailableTimes.Where(c => c.doctorId == id);
+
+                if (doctorappointment.Any())
+            {
+
+                ModelState.AddModelError("", "Cannot delete this doctor because there are patients associated with it.");
+                return View(doctor);
+
+            }
+            if (doctornotavailable.Any())
+            {
+
+                ModelState.AddModelError("", "Cannot delete this doctor because there are slots associated with it.");
+                return View(doctor);
+
+            }
+
             db.doctors.Remove(doctor);
+
+            //emaiiil
+
+            var docName = db.doctors.FirstOrDefault(c => c.doctorId == id).doctorName;
+            var docemail = db.doctors.FirstOrDefault(c => c.doctorId == id).email;
+
+            // Create a new MailMessage object
+            MailMessage mail = new MailMessage();
+
+            // Set the sender's email address
+            mail.From = new MailAddress("musab.ghannam@outlook.com");
+
+            // Set the recipient's email address
+
+            mail.To.Add(docemail);
+
+            // Set the subject of the email
+            mail.Subject = "New message from " + "Finding piece";
+
+            // Set the body of the email
+            mail.Body = $@"<html>
+                  <body>
+                      <p>Dear Dr. {docName},</p>
+                      <br/>
+                      <p>We regret to inform you that we will be unable to accept your submission to join Finding Peace. After reviewing your qualifications, we have determined that they do not meet our requirements for participating on our platform.</p>
+                      <br/>
+                      <p>We value the quality of care that we provide to our patients, and we take the qualifications of our healthcare providers seriously. While we appreciate your interest in our platform, we cannot compromise on our commitment to delivering the best possible care to those who rely on us for support.</p>
+                      <br/>
+                      <p>Thank you for your understanding. If you have any questions or concerns, please don't hesitate to reach out to us at support@findingpeace.com.</p>
+                      <br/>
+                      <p>Best regards,</p>
+                      <p>The Finding Peace Team</p>
+                  </body>
+              </html>";
+
+
+            // Set the body format to HTML
+            mail.IsBodyHtml = true;
+
+            // Create a new SmtpClient object
+            SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
+            smtp.EnableSsl = true;
+
+            // Send the email
+            smtp.Send(mail);
+
+
+            //email
+
+
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminDoctor");
         }
 
         protected override void Dispose(bool disposing)
@@ -335,5 +562,34 @@ namespace mainMasterpiesce.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
+        public ActionResult ADminDashboard()
+        {
+            var doctors=db.doctors.Where(c=>c.statedoctor==1).ToList();
+            var patients=db.patients.ToList();
+            var appointments=db.appointments.ToList();
+
+         
+
+
+
+
+
+
+
+            return View(Tuple.Create(doctors, appointments, patients));
+            //return View();
+        }
+
+
+
+
+
+
+
+
     }
 }

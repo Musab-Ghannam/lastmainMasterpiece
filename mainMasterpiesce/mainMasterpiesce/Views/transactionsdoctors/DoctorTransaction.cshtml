@@ -6,10 +6,34 @@
 }
 
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@section Content {
+    <form action="DoctorTransaction">
+        <input type="text" class="form-control" placeholder="Search here" name="search">
+        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+}
+
+
+
+@{
+    string test; }
+
+@if (TempData["list"] == "Acceptlist")
+{
+
+    test = "2";
+
+}
+else
+{
+    test = "1";
+}
+
 <div class="page-wrapper">
     <div class="content container-fluid">
 
@@ -19,7 +43,6 @@
                 <div class="col-sm-12">
                     <a> <h3 class="page-title" onclick="toggleDisplay('upcoming-appointments')"> Doctor Transactions</h3></a>
                     <ul class="breadcrumb">
-              
                     </ul>
 
 
@@ -39,7 +62,7 @@
                         {
                             foreach (var name in ViewBag.DoctorNames.Split(','))
                             {
-                               <p>@name</p> 
+                                <p>@name</p>
                             }
                         }
                         <div class="table-responsive">
@@ -57,61 +80,125 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Where(c => c.status == test))
                                         {
 
 
-                                        <tr>
-                                            <td><a href="invoice.html">#IN00 @item.transDoctorId</td>
-                                            <td>#PT00 @item.doctorId</td>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="@Url.Content(@item.doctor.picdoctor)" alt="@item.doctor.picdoctor"></a>
-                                                    <a href="profile.html">@item.doctor.doctorName</a>
-                                                </h2>
-                                            </td>
-                                            <td>@item.amount JD</td>
-                                        
-                                            <td class="text-center">
+                                            <tr>
+                                                <td><a href="invoice.html">#IN00 @item.transDoctorId</td>
+                                                <td>#PT00 @item.doctorId</td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="@Url.Content(@item.doctor.picdoctor)" alt="@item.doctor.picdoctor"></a>
+                                                        <a href="profile.html">@item.doctor.doctorName</a>
+                                                    </h2>
+                                                </td>
+                                                <td>@item.amount JD</td>
 
-                                                @if (item.status == "1")
-                                                {
+                                                <td class="text-center">
 
-
-                                                    <span class="badge badge-pill bg-danger-light">Pending</span>
-                                                }
-                                                else if (item.status == "2")
-                                                {
-
-                                                    <span class="badge badge-pill bg-success inv-badge">Paid</span>
-                                                }
-
-                                            </td>
-                                            <td>
-
-                                                @if (item.Tansactiontime.HasValue)
-                                                {
-
-                                                    @item.Tansactiontime.Value.ToString("dd-MM-yyyy")
-
-                                                }
-
-                                            </td>
-                                            <td class="text-right">
-                                                <div class="actions">
+                                                    @if (item.status == "1")
+                                                    {
 
 
-                                                    @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
-                                            
-                                        
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                        <span class="badge badge-pill bg-danger-light">Pending</span>
+                                                    }
+                                                    else if (item.status == "2")
+                                                    {
+
+                                                        <span class="badge badge-pill bg-success inv-badge">Paid</span>
+                                                    }
+
+                                                </td>
+                                                <td>
+
+                                                    @if (item.Tansactiontime.HasValue)
+                                                    {
+
+                                                        @item.Tansactiontime.Value.ToString("dd-MM-yyyy")
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>Not Sending Yet</p>
+                                                    }
+
+                                                </td>
+                                                <td class="text-right">
+                                                    <div class="actions">
+
+
+                                                        @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         }
                                     </tbody>
                                 </table>
+                      
+                                <p>     ccccc @ViewBag.welc     @ViewBag.DEFER</p>
+
+                                @using (Html.BeginForm("DoctorTransaction", "transactionsdoctors", FormMethod.Post))
+                                {
+
+
+                                    if (test == "1")
+                                    {
+                                        <input type="submit" name="Send" class="btn btn-info" value="Send" />
+
+                                    }
+
+
+
+                                }
+
+
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+            @if (TempData["swal_message"] == $" We are delighted to inform you that the transaction for the doctors has been successfully completed. Thank you for your cooperation and promptness in this process")
+            {
+                <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "/transactionsdoctors/DoctorTransaction";
+
+        });;
+                </script>
+            }
+
+
+
+
+            @if (TempData["swal_message"] == "We would like to inform you that there are no pending transactions to be sent at this time. If you have any questions or require further assistance, please do not hesitate to contact us. Thank you for your attention to this matter")
+            {
+                <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "/transactionsdoctors/DoctorTransaction";
+
+        });;
+                </script>
+            }

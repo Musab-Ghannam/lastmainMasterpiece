@@ -32,16 +32,29 @@ namespace mainMasterpiesce.Controllers
 
 
 
-        public ActionResult patientDashboard()
+        public ActionResult patientDashboard(string search)
         {
             var appointmentsByPatient = db.appointments.GroupBy(c => c.patientId).Count();
             ViewBag.ccount = appointmentsByPatient;
             var patients = db.patients
        .Include(p => p.AspNetUser).OrderBy(c=>c.startedate).ToList();
 
-           
-     
-            return View(patients);
+            if (!string.IsNullOrEmpty(search))
+            {
+                var searchh = db.patients.Where(c => c.patientName.Contains(search)).ToList();
+
+                return View(searchh);
+
+            }
+            else
+            {
+                return View(patients);
+
+            }
+
+
+
+         
         }
 
         // GET: patients/Details/5
@@ -56,6 +69,8 @@ namespace mainMasterpiesce.Controllers
             {
                 return HttpNotFound();
             }
+
+       
             return View(patient);
         }
 

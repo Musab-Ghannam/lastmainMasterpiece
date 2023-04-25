@@ -13,10 +13,11 @@
     #previous-appointments {
         display: block;
     }
-    #prev{
-        color:red;
-        font-weight:bold;
-      font-size:25px;
+
+    #prev {
+        color: red;
+        font-weight: bold;
+        font-size: 25px;
     }
 </style>
 
@@ -24,6 +25,17 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+
+
+@section Content {
+    <form action="Index">
+        <input type="text" class="form-control" placeholder="Search here" name="search">
+        <button class="btn" type="submit" ><i class="fa fa-search"></i></button>
+    </form>
+}
+
+
 
 <div class="page-wrapper">
     <div class="content container-fluid">
@@ -43,26 +55,10 @@
                 </div>
             </div>
         </div>
-        @{ 
-          
+        @{
+
         }
-        <table class="table striped">
-            <thead>
-                <tr>
-                    <th>Total of transaction</th>
-                    <th>Transaction for Doctor</th>
-                    <th>Website dues</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>   @ViewBag.Sum JD</td>
-                    <td></td>
-                    <td>@ViewBag.webdue JD </td>
-                </tr>
-             
-            </tbody>
-        </table>
+      
         <div class="row">
             <div class="col-md-12">
 
@@ -154,9 +150,9 @@
                                                         <span class="badge badge-pill bg-danger-light">Pending</span>
 
                                                         @*<div class="status-toggle">
-                                                            <input type="checkbox" id="status_1" class="check" checked>
-                                                            <label for="status_1" class="checktoggle">checkbox</label>
-                                                        </div>*@
+                                                                <input type="checkbox" id="status_1" class="check" checked>
+                                                                <label for="status_1" class="checktoggle">checkbox</label>
+                                                            </div>*@
                                                     </td>
                                                     <td class="text-right">
                                                         @item.doctor.pricePerHour JD
@@ -276,9 +272,9 @@
                                                     <td>
                                                         <span class="badge badge-pill bg-success-light">Confirm</span>
                                                         @*<div class="status-toggle">
-                                                            <input type="checkbox" id="status_1" class="check" checked>
-                                                            <label for="status_1" class="checktoggle">checkbox</label>
-                                                        </div>*@
+                                                                <input type="checkbox" id="status_1" class="check" checked>
+                                                                <label for="status_1" class="checktoggle">checkbox</label>
+                                                            </div>*@
                                                     </td>
                                                     <td class="text-right">
                                                         @item.doctor.pricePerHour JD
@@ -361,7 +357,7 @@
 
     }
 
- 
-  
+
+
 
 </script>

@@ -2,9 +2,14 @@
 
 <html>
 <head>
-    <title>Medic | Medical HTML Template</title>
+    <title>Finding Piece</title>
 
     <style>
+        .social-icon ul li {
+            display: inline-block;
+            margin-left:10px!important;
+        }
+
         .social-icon i {
             color: white !important;
         }
@@ -110,7 +115,38 @@
                     <a href="~/mainHome/Index" class="@(lastSegment == "Index" ? "activee" : "")">home</a>
                     <a href="~/mainHome/About" class="@(lastSegment == "About" ? "activee" : "")">about</a>
                     <a href="~/mainHome/ConTact" class="@(lastSegment == "ConTact" ? "activee" : "")">contact</a>
-                    <a href="~/DoctorsInfo/therapiestlist">therapist list</a>
+
+                   
+                 
+                   
+
+
+                    @if (User.IsInRole("doctor"))
+                    {
+                        <a href="~/DoctorEnrolling/NotAvailable">Schedual time</a>
+
+
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+
+
+                        <a href="~/ADMINDashboard/AdminDashboard">Admin Dashboard</a>
+
+                    }
+
+
+
+
+
+                    else
+                    {
+
+                        <a href="~/DoctorsInfo/therapiestlist">therapist list</a>
+
+                    }
+
+
 
                     @*<a href="#">psycologist list</a>*@
                     @if (User.Identity.IsAuthenticated)
@@ -138,7 +174,7 @@
                         <a href="~/DoctorsInfo/patientProfile" style="color:black"><i class="fa-solid fa-user"></i></a>
 
                     }
-                    else if (User.IsInRole("doctor"))
+                    else if (User.IsInRole("doctor") )
                     {
 
 
@@ -149,7 +185,7 @@
 
 
                     @*<a href="https://localhost:44388/myAccount/signin">log out</a>
-                    <a href="#"><i class="fa-solid fa-user"></i></a>*@
+        <a href="#"><i class="fa-solid fa-user"></i></a>*@
 
                 </div>
                 <div>
@@ -177,25 +213,24 @@
                                 </div>
                                 <div class="footer-about-content">
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.
+                                        Welcome to Finding Peace, a revolutionary psychological website .
                                     </p>
                                     <div class="social-icon">
                                         <ul>
                                             <li>
-                                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                                <a href="https://web.facebook.com/musab.alghannam.3" target="_blank"><i class="fab fa-facebook-f"></i> </a>
                                             </li>
                                             <li>
-                                                <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                                <a href="https://twitter.com/MusabGhann7856" target="_blank"><i class="fab fa-twitter"></i> </a>
                                             </li>
                                             <li>
-                                                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                                <a href="https://www.linkedin.com/in/musab-ghannam-0a8284253" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                             </li>
                                             <li>
-                                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                <a href="https://www.instagram.com/musab_ghannam/" target="_blank"><i class="fab fa-instagram"></i></a>
                                             </li>
                                             <li>
-                                                <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+                                                <a href="#" target="https://dribbble.com/musabghannam"><i class="fab fa-dribbble"></i> </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -218,18 +253,7 @@
                                         </a>
                                     </li>
                                     <li><a href="~/mainHome/ConTact"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
-                                    @*<li>
-                                        <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/Account/Login">
-                                            <i class="fas fa-angle-double-right"></i>
-                                            Log in
-                                        </a>
-                                    </li>*@
+                               
                                 </ul>
                             </div>
                             <!-- /Footer Widget -->

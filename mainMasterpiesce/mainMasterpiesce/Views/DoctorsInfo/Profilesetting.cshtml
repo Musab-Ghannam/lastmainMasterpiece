@@ -14,7 +14,7 @@
 
 
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
 
 <div class="col-md-7 col-lg-8 col-xl-9">
     <div class="card">
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <div class="change-avatar">
                                 <div class="profile-img">
-                                   
+
                                 </div>
                                 <div class="upload-img">
                                     <div class="change-photo-btn">
@@ -65,14 +65,14 @@
 
                             @{
 
-                                var birthday = @Model.Item1[0].birthday.ToString().Split(' ');
+                                var birthday = @Model.Item1[0].birthday;
 
                             }
-                            <input type="text" class="form-control" value=" @Convert.ToDateTime(birthday[0]).ToString("dd/mm/yyyy")" name="birthday" id="mainbirth">
+                            @*<input type="text" class="form-control" value=" @Convert.ToDateTime(birthday).ToString("dd-MM-yyyy")" name="birthday" id="mainbirth">*@
 
+                            <input type="text" class="form-control" value="@birthday.Value.ToString("dd/MM/yyyy")" name="birthday" />
 
-
-                       <input type="hidden" value="@Convert.ToDateTime(birthday[0]).ToString("dd/MM/yyyy")" id="inptbirth" />
+                            @*<input type="hidden" value="@Convert.ToDateTime(birthday).ToString("dd-MM-yyyy")" id="inptbirth" />*@
 
 
                         </div>
@@ -81,7 +81,7 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Phone No.</label>
-                            <input type="text" class="form-control" value="@Model.Item1[0].AspNetUser.PhoneNumber" name="phone">
+                            <input type="text" class="form-control" value="@Model.Item1[0].AspNetUser.PhoneNumber" name="phone" oninput="CardName(this)">
                         </div>
                     </div>
 
@@ -112,43 +112,7 @@
                             <input type="text" class="form-control" value="@locat[1]" name="city">
                         </div>
                     </div>
-                    @*<div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Mobile</label>
-                                    <input type="text" value="+1 202-555-0125" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control" value="806 Twin Willow Lane">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control" value="Old Forge">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label>State</label>
-                                    <input type="text" class="form-control" value="Newyork">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Zip Code</label>
-                                    <input type="text" class="form-control" value="13420">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Country</label>
-                                    <input type="text" class="form-control" value="United States">
-                                </div>
-                            </div>
-                        </div>*@
+
                     <div class="submit-section">
                         <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
                     </div>
@@ -158,6 +122,8 @@
                 </div>
             }
         </div>
+        <!-- Footer -->
+
 
         <script>
 
@@ -168,7 +134,17 @@
 
         </script>
     </div>
-    <script>
+
+
+</div>
+
+
+
+
+
+
+
+<script>
         var birth = document.getElementById("inptbirth").value
 
         document.getElementById("mainbirth").value=birth;
@@ -203,6 +179,47 @@
 
 
 
-    console.log("Ffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
 
+    function CardName(input) {
+
+        if (input.value.length > 17) {
+            input.value = input.value.slice(0, 17);
+        }
+        if (isNaN(input.value)) {
+            // Prevent non-numeric characters from being entered
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        if (input.value.length < 10) {
+            // Disable the submit button
+            document.getElementById("reg").disabled = true;
+            // Or display an error message
+            document.getElementById("error_phone").textContent = "this field should be at least 10 digits";
+        } else {
+            // Enable the submit button
+            document.getElementById("reg").disabled = false;
+            // Clear the error message
+            document.getElementById("error_phone").textContent = "";
+        }
+    }
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+@if (TempData["swal_message"] == "Your information has been updated successfully.")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "Profilesetting";
+
+        });;
     </script>
+}

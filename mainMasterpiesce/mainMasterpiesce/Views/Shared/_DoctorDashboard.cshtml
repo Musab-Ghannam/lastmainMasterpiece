@@ -87,7 +87,7 @@
                         <div class="widget-profile pro-widget-content">
                             <div class="profile-info-widget">
                                 <a href="#" class="booking-doc-img">
-                                    <img src="~/Content/images/@Model.Item1[0].picdoctor" alt="User Image">
+                                    <img src="@Url.Content(@Model.Item1[0].picdoctor)" alt="User Image">
                                 </a>
 
                                 <div class="profile-det-info">
@@ -150,8 +150,8 @@
                                         </a>
                                     </li>
 
-                                    <li>
-                                        <a href="doctor-change-password.html">
+                                    <li class="@(lastSegment == "changepassworddoctor" ? "active" : "")">
+                                        <a href="changepassworddoctor">
                                             <i class="fas fa-lock"></i>
                                             <span>Change Password</span>
                                         </a>
@@ -203,7 +203,7 @@
     </div>
 
 
-    <footer class="footer">
+    <footer class="footer" style="background-color: #15767D ">
 
         <!-- Footer Top -->
         <div class="footer-top">
@@ -214,29 +214,30 @@
                         <!-- Footer Widget -->
                         <div class="footer-widget footer-about">
                             <div class="footer-logo">
-                                <img src="assets/img/footer-logo.png" alt="logo">
+                                @*<img src="assets/img/footer-logo.png" alt="logo">*@
+
+                                <a href="~/mainHome/Index" class=""><img src="~/Content/images/logo.png" width="80" alt="logo" style="padding:0px !important;margin-left:50px !important" /></a>
                             </div>
                             <div class="footer-about-content">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
+                                    Welcome to Finding Peace, a revolutionary psychological website .
                                 </p>
                                 <div class="social-icon">
                                     <ul>
                                         <li>
-                                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                            <a href="https://web.facebook.com/musab.alghannam.3" target="_blank"><i class="fab fa-facebook-f"></i> </a>
                                         </li>
                                         <li>
-                                            <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                            <a href="https://twitter.com/MusabGhann7856" target="_blank"><i class="fab fa-twitter"></i> </a>
                                         </li>
                                         <li>
-                                            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                            <a href="https://www.linkedin.com/in/musab-ghannam-0a8284253" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                            <a href="https://www.instagram.com/musab_ghannam/" target="_blank"><i class="fab fa-instagram"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+                                            <a href="https://dribbble.com/musabghannam" target="_blank"><i class="fab fa-dribbble"></i> </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -251,26 +252,16 @@
                         <!-- Footer Widget -->
                         <div class="footer-widget footer-menu">
                             <h2 class="footer-title">For Patients</h2>
+
                             <ul>
+                                <li><a href="~/mainHome/Index"><i class="fas fa-angle-double-right"></i> Home page</a></li>
                                 <li>
-                                    <a href="search.html">
-                                        <i class="fas fa-angle-double-right"></i> Search for
-                                        Doctors
+                                    <a href="~/mainHome/About">
+                                        <i class="fas fa-angle-double-right"></i> About Us
                                     </a>
                                 </li>
-                                <li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-                                <li>
-                                    <a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a>
-                                </li>
-                                <li>
-                                    <a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a>
-                                </li>
-                                <li>
-                                    <a href="patient-dashboard.html">
-                                        <i class="fas fa-angle-double-right"></i>
-                                        Patient Dashboard
-                                    </a>
-                                </li>
+                                <li><a href="~/mainHome/ConTact"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
+
                             </ul>
                         </div>
                         <!-- /Footer Widget -->
@@ -281,26 +272,19 @@
 
                         <!-- Footer Widget -->
                         <div class="footer-widget footer-menu">
-                            <h2 class="footer-title">For Doctors</h2>
+                            <h2 class="footer-title">Links</h2>
+
                             <ul>
-                                <li>
-                                    <a href="appointments.html">
-                                        <i class="fas fa-angle-double-right"></i>
-                                        Appointments
-                                    </a>
+                                <li style="">
+                                    <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
                                 </li>
-                                <li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-                                <li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-                                <li>
-                                    <a href="doctor-register.html">
-                                        <i class="fas fa-angle-double-right"></i>
-                                        Register
-                                    </a>
+                                <li style="">
+                                    <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
                                 </li>
                                 <li>
-                                    <a href="doctor-dashboard.html">
-                                        <i class="fas fa-angle-double-right"></i> Doctor
-                                        Dashboard
+                                    <a href="~/Account/Login">
+                                        <i class="fas fa-angle-double-right"></i>
+                                        Log in
                                     </a>
                                 </li>
                             </ul>
@@ -321,7 +305,7 @@
                                 </div>
                                 <p>
                                     <i class="fas fa-phone-alt"></i>
-                                    +1 315 369 5943
+                                    +962780396098
                                 </p>
                                 <p class="mb-0">
                                     <i class="fas fa-envelope"></i>
@@ -338,35 +322,7 @@
         </div>
         <!-- /Footer Top -->
         <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container-fluid">
-
-                <!-- Copyright -->
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-6">
-                            <div class="copyright-text">
-                                <p class="mb-0"><a href="https://jambasangsang.com">Laratech Templates</a></p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-6">
-
-                            <!-- Copyright Menu -->
-                            <div class="copyright-menu">
-                                <ul class="policy-menu">
-                                    <li><a href="term-condition.html">Terms and Conditions</a></li>
-                                    <li><a href="privacy-policy.html">Policy</a></li>
-                                </ul>
-                            </div>
-                            <!-- /Copyright Menu -->
-
-                        </div>
-                    </div>
-                </div>
-                <!-- /Copyright -->
-
-            </div>
-        </div>
+   
         <!-- /Footer Bottom -->
 
     </footer>

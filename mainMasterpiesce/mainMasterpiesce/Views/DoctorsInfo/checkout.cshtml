@@ -51,6 +51,7 @@
 
                     @{
                         var Location = Model.doctor[0].locationdoctor;
+                        var patientName = Model.patientinfoo[0].patientName;
 
                         string[] locationname = Location.Split('_');
 
@@ -79,116 +80,117 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>First Name</label>
-                                                        <input class="form-control" type="text">
+                                                        <input class="form-control" type="text" value="@Model.patientinfoo[0].patientName" readonly style="text-align:center;align-items:center">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
-                                                        <label>Last Name</label>
-                                                        <input class="form-control" type="text">
+                                                        <label>start date</label>
+                                                        <input class="form-control" type="text" value="@Model.patientinfoo[0].startedate" readonly style="text-align:center;align-items:center">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Email</label>
-                                                        <input class="form-control" type="email">
+                                                        <input class="form-control" type="email" value="@Model.patientinfoo[0].patientemail" readonly style="text-align:center;align-items:center">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Phone</label>
-                                                        <input class="form-control" type="text">
+                                                        <input class="form-control" type="text" value=" @Model.asppatient[0].PhoneNumber" readonly style="text-align:center;align-items:center">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="exist-customer">
-                                                Existing Customer? <a href="https://localhost:44388/myAccount/signin" style="color: #20BBBD">
-                                                    Click here to
-                                                    login
-                                                </a>
-                                            </div>
+                                            @*<div class="exist-customer">
+                                                    Existing Customer? <a href="https://localhost:44388/myAccount/signin" style="color: #20BBBD">
+                                                        Click here to
+                                                        login
+                                                    </a>
+                                                </div>*@
                                         </div>
                                         <!-- /Personal Information -->
 
-                                        <div class="payment-widget">
-                                            <h4 class="card-title">Payment Method</h4>
+                                <div class="payment-widget">
+                                    <h4 class="card-title">Payment Method</h4>
 
-                                            <!-- Credit Card Payment -->
-                                            <div class="payment-list">
-                                                <label class="payment-radio credit-card-option">
-                                                    <input type="radio" name="radio" checked>
-                                                    <span class="checkmark"></span>
-                                                    Credit card
-                                                </label>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group card-label">
-                                                            <label for="card_name">Name on Card</label>
-                                                            <input class="form-control" id="card_name" type="text" required oninput="CardName(this)" name="card_name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group card-label">
-                                                            <label for="card_number">Card Number</label>
-                                                            <input class="form-control" id="card_number"
-                                                                   placeholder="1234  5678  9876  5432" type="text" required oninput="handleSearchInput(this)">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group card-label">
-                                                            <label for="expiry_month">Expiry Month</label>
-                                                            <input class="form-control" id="expiry_month" placeholder="MM"
-                                                                   type="text" required oninput="handleexpireInput(this)">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group card-label">
-                                                            <label for="expiry_year">Expiry Year</label>
-                                                            <input class="form-control" id="expiry_year" placeholder="YY"
-                                                                   type="text" required oninput="handleexpireInput(this)">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group card-label">
-                                                            <label for="cvv">CVV</label>
-                                                            <input class="form-control" id="cvv" type="text" required oninput="handlecvv(this)">
-                                                        </div>
-                                                    </div>
+                                    <!-- Credit Card Payment -->
+                                    <div class="payment-list">
+                                        @*<label class="payment-radio credit-card-option">
+                <input type="radio" name="radio" checked>
+                <span class="checkmark"></span>
+                Credit card
+            </label>*@
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group card-label">
+                                                    <label for="card_name">Name on Card</label>
+                                                    <input class="form-control" id="card_name" type="text" required oninput="CardName(this)" name="card_name">
                                                 </div>
                                             </div>
-                                            <!-- /Credit Card Payment -->
-                                            <!-- Paypal Payment -->
-                                            <div class="payment-list">
-                                                <label class="payment-radio paypal-option">
-                                                    <input type="radio" name="radio">
-                                                    <span class="checkmark"></span>
-                                                    Paypal
-                                                </label>
+                                            <div class="col-md-6">
+                                                <div class="form-group card-label">
+                                                    <label for="card_number">Card Number</label>
+                                                    <input class="form-control" id="card_number"
+                                                           placeholder="1234  5678  9876  5432" type="text" required oninput="handleSearchInput(this)">
+                                                </div>
+
                                             </div>
-                                            <!-- /Paypal Payment -->
-                                            <!-- Terms Accept -->
-                                            <div class="terms-accept">
-                                                <div class="custom-checkbox">
-                                                    <input type="checkbox" id="terms_accept">
-                                                    <label for="terms_accept">
-                                                        I have read and accept <a href="#">
-                                                            Terms &amp;
-                                                            Conditions
-                                                        </a>
-                                                    </label>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group card-label">
+                                                    <label for="expiry_month">Expiry Month</label>
+                                                    <input class="form-control" id="expiry_month" placeholder="MM"
+                                                           type="text" required oninput="handleexpireInput(this)">
                                                 </div>
                                             </div>
-                                            <!-- /Terms Accept -->
-                                            <!-- Submit Section -->
-                                            <div class="submit-section mt-4">
-                                                <button type="submit" class="btn btn-primary submit-btn" style="background-color:#20BBBD">
-                                                    Confirm and
-                                                    Pay
-                                                </button>
-                                            </div>
-                                            <!-- /Submit Section -->
 
+                                            <div class="col-md-4">
+                                                <div class="form-group card-label">
+                                                    <label for="expiry_year">Expiry Year</label>
+                                                    <input class="form-control" id="expiry_year" placeholder="YY"
+                                                           type="text" required oninput="handleexpireInput(this)">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group card-label">
+                                                    <label for="cvv">CVV</label>
+                                                    <input class="form-control" id="cvv" type="text" required oninput="handlecvv(this)">
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <!-- /Credit Card Payment -->
+                                    <!-- Paypal Payment -->
+                                    <p id="error_message" style="color:darkred"></p>
+                                    <p id="error_message1" style="color:darkred"></p>
+                                    <p id="error_message2" style="color:darkred"></p>
+                                    <p id="error_message3" style="color:darkred"></p>
+                                    <!-- /Paypal Payment -->
+                                    <!-- Terms Accept -->
+                                    <div class="terms-accept">
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="terms_accept" name="acceptt" value="acceptt">
+                                            <label for="terms_accept">
+                                                I have read and accept <a href="#">
+                                                    Terms &amp;
+                                                    Conditions
+                                                </a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- /Terms Accept -->
+                                    <!-- Submit Section -->
+                                    <div class="submit-section mt-4">
+
+                                        <button type="submit" class="btn btn-primary submit-btn" style="background-color:#20BBBD" id="submit_button">
+                                            Confirm and
+                                            Pay
+                                        </button>
+                                    </div>
+                                    <!-- /Submit Section -->
+
+                                </div>
                                     }
                                     <!-- /Checkout Form -->
 
@@ -330,10 +332,10 @@
 
                                                 //datee[i] = (tableslots[i].ToString()).Substring(8, Math.Min(13, tableslots[i].ToString().Length - 8));
 
+                                                int index = tableslots[i].IndexOf('M');
+                                                hourre[i] = (tableslots[i].ToString()).Substring(0, index + 1);
 
-                                                hourre[i] = (tableslots[i].ToString()).Substring(0, 8).TrimEnd('1').TrimEnd('0');
-
-                                                datee[i] = (tableslots[i].ToString()).Substring(tableslots[i].Length-5);
+                                                datee[i] = (tableslots[i].ToString()).Substring(tableslots[i].Length - 5);
 
 
 
@@ -365,7 +367,7 @@
                                                 <li style="color:black;font-weight:bold">Date <span style="color:black;font-weight:bold">Time</span> </li>
 
 
-                                                @*<li>Time <span>10:00 AM</span></li>*@
+
                                             </ul>
                                             <ul class="booking-fee">
 
@@ -374,15 +376,13 @@
                                                     <li>@datee[i] <span>@hourre[i]</span></li>
                                                 }
 
-                                                @for (int i = 0; i < tableslots.Length; i++)
-                                                {
-                                                    <li><span>@tableslots[i]</span></li>
-                                                }
+                                                @*@for (int i = 0; i < tableslots.Length; i++)
+                                                    {
+                                                        <li><span>@tableslots[i]</span></li>
+                                                    }*@
 
 
 
-                                                @*<li>Booking Fee <span>$10</span></li>
-                                                    <li>Video Call <span>$50</span></li>*@
                                             </ul>
                                             <div class="booking-total">
                                                 <ul class="booking-total-list">
@@ -556,7 +556,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-    @if (TempData["swal_message"] != null)
+    @if (TempData["swal_message"] != null && TempData["swal_message"] != "Please check the Terms and Conditions checkbox")
     {
         <script>
         Swal.fire({
@@ -574,40 +574,156 @@
         });;
         </script>
     }
-    <script>
+
+    @if (TempData["swal_message"] == "Please check the Terms and Conditions checkbox")
+    {
+        <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
 
 
-        function handleSearchInput(input) {
-            console.log(input);
-            if (input.value.length > 19) {
-                input.value = input.value.slice(0, 19);
-            }
+        }).then(function () {
+            window.location.href = window.location.pathname;
+
+        });;
+        </script>
+    }
+
+
+
+
+<script>
+
+    function handleSearchInput(input) {
+        if (input.value.length > 16) {
+            input.value = input.value.slice(0, 16);
         }
-
-
-        function handleexpireInput(input) {
-            console.log(input);
-            if (input.value.length > 2) {
-                input.value = input.value.slice(0, 2);
-            }
+        if (isNaN(input.value)) {
+            // Prevent non-numeric characters from being entered
+            input.value = input.value.replace(/[^0-9]/g, '');
         }
-
-        function handlecvv(input) {
-            console.log(input);
-            if (input.value.length > 3) {
-                input.value = input.value.slice(0, 3);
-            }
+        if (input.value.length < 12) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_message").textContent = "Card number should be at least 12 digits.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message").textContent = "";
         }
+    }
 
-        function CardName(input) {
-            console.log(input);
-            if (input.value.length > 9) {
-                input.value = input.value.slice(0, 9);
-            }
+
+    //function handleSearchInput(input) {
+    //    console.log(input);
+    //    if (input.value.length > 19) {
+    //        input.value = input.value.slice(0, 19);
+    //    }
+    //}
+
+
+    function handleexpireInput(input) {
+        if (input.value.length > 2) {
+            input.value = input.value.slice(0, 2);
         }
+        if (isNaN(input.value)) {
+            // Prevent non-numeric characters from being entered
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        if (input.value.length < 2) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_message1").textContent = "Expiration date should be at least 2 digits.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message1").textContent = "";
+        }
+    }
 
 
-    </script>
+
+
+    //function handleexpireInput(input) {
+    //    console.log(input);
+    //    if (input.value.length > 2) {
+    //        input.value = input.value.slice(0, 2);
+    //    }
+    //}
+    function handlecvv(input) {
+
+        if (input.value.length > 3) {
+            input.value = input.value.slice(0, 3);
+        }
+        if (isNaN(input.value)) {
+            // Prevent non-numeric characters from being entered
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        if (input.value.length < 3) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_message2").textContent = "CVV should be at least 3 digits.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message2").textContent = "";
+        }
+    }
+
+
+
+
+
+    //function handlecvv(input) {
+    //    console.log(input);
+    //    if (input.value.length > 3) {
+    //        input.value = input.value.slice(0, 3);
+    //    }
+    //}
+
+
+
+    function CardName(input) {
+
+        if (input.value.length > 9) {
+            input.value = input.value.slice(0, 9);
+        }
+        if (input.value.length < 5) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_message3").textContent = "Card Name should be at least 5 CHARACHTERS.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message3").textContent = "";
+        }
+    }
+
+
+
+
+    //function CardName(input) {
+    //    console.log(input);
+    //    if (input.value.length > 9) {
+    //        input.value = input.value.slice(0, 9);
+    //    }
+    //}
+
+
+</script>
 
 
 </body>

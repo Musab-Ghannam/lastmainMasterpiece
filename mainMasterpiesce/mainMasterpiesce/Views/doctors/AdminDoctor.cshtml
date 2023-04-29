@@ -88,11 +88,12 @@
                         <div class="table-responsive">
 
                             @{
+                                string q = Request.QueryString["listType"];
                                 int test = 1;
                             }
 
 
-                            @if (TempData["list"] == "Rejectlist")
+                            @if (TempData["list"] == "Rejectlist"||q== "rejectlist")
                             {
 
                                 test = 0;
@@ -101,6 +102,18 @@
                             else
                             {
                                 test = 1;
+                            }
+
+                            @{ 
+
+
+                                //                                if(q=="rejectlist")
+                                //                                {
+
+                                //                                    test = 0;
+                                //}
+
+
                             }
 
 
@@ -257,7 +270,27 @@ else
 
                                                 <td>
 
-                                                    @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
+
+                                                    @if (test == 0)
+                                                    {
+
+                                                        @Html.ActionLink("Details", "Details", new { id = item.doctorId, listType = "rejectlist" }, new { @class = "btn btn-info" })
+
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
+
+                                                    }
+
+
+
+
+
+
+                                                    @*@Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })*@
                                                     @Html.ActionLink("Delete", "Delete", new { id = item.doctorId }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this item?');" })
 
 

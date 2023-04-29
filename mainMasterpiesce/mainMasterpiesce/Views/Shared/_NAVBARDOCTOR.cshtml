@@ -1,6 +1,10 @@
 ﻿@*@model Tuple<List<mainMasterpiesce.Models.patient>, List<mainMasterpiesce.Models.appointment>>*@
+
+
+
 @{
     Layout = null;
+
 }
 
 <!DOCTYPE html>
@@ -31,7 +35,7 @@
 </head>
 <body>
     <style>
-   /*     .activee {
+        /*     .activee {
             background-color: #15767D;
         }*/
 
@@ -67,10 +71,33 @@
                 </div>
 
                 <div class="nav__link hide">
-                    <a href="~/mainHome/Index" >home</a>
+                    <a href="~/mainHome/Index">home</a>
                     <a href="~/mainHome/About">about</a>
                     <a href="~/mainHome/ConTact">contact</a>
-                    <a href="therapiestlist" class="@(lastSegment == "therapiestlist" ? "active" : "")">therapist list</a>
+                    @{
+                        mainMasterpiesce.Models.AspNetUser us = new mainMasterpiesce.Models.AspNetUser();
+
+
+                    }
+
+                    @if (us.EmailConfirmed)
+                    {
+
+                        <a href="~/DoctorEnrolling/NotAvailable">Schedual time</a>
+                        <a href="~/DoctorEnrolling/DoctorDashboard" style="color:black">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </a>
+
+
+                    }
+
+
+
+
+
+
+
+                    @*<a href="therapiestlist" class="@(lastSegment == "therapiestlist" ? "active" : "")">therapist list</a>*@
 
                     @*<a href="#">psycologist list</a>*@
                     @if (User.Identity.IsAuthenticated)
@@ -88,7 +115,7 @@
                     }
 
                     @*<a href="https://localhost:44388/myAccount/signin">log out</a>
-                        <a href="#"><i class="fa-solid fa-user"></i></a>*@
+        <a href="#"><i class="fa-solid fa-user"></i></a>*@
 
                 </div>
                 <div>

@@ -1,4 +1,6 @@
 ﻿
+@model Tuple<List<mainMasterpiesce.Models.doctor>, List<mainMasterpiesce.Models.specialization>, List<mainMasterpiesce.Models.feedbackwebsite>>
+
 @{
     //ViewBag.Title = "About";
     Layout = "~/Views/Shared/mainLayout.cshtml";
@@ -84,9 +86,9 @@
                 <div class="block text-center">
                     <h6>About Our Website</h6>
 
-                    <a data-fancybox href=" https://www.youtube.com/watch?v=vo4pMVb0R6M;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"><i class="fa fa-play"></i></a>
+                    <a data-fancybox href=" https://www.youtube.com/watch?v=LJ8WcgzeXuoautoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"><i class="fa fa-play"></i></a>
 
-                    @*<a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"><i class="fa fa-play"></i></a>*@
+                    @*<a data-fancybox href="https://www.youtube.com/watch?v=LJ8WcgzeXuo;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"><i class="fa fa-play"></i></a>*@
                 </div>
             </div>
         </div>
@@ -109,270 +111,83 @@
                 </div>
             </div>
             @*111111111111111111111111111*@
-            <div class="col-md-3 col-sm-6">
-                @*individual*@
 
-                <div class="gallery-item">
+            @foreach (var item in Model.Item2)
+            {
 
-                    <div class="box1 img-responsive" style="height:435px;">
-                        <h4 style="padding-top:40px;">Individual therapy</h4>
-                        <img style="margin-bottom:-10px" src="~/Content/images/m1.png" width="200" alt="covering" />
+                <div class="col-md-3 col-sm-6">
+                    @*individual*@
 
+                    <div class="gallery-item">
 
-                        <i style="font-size:50px;color:black;margin-bottom:20px" class="fa fa-play"></i>
-
-                        <p class="osama" style="color:black;text-align:center;margin-left:-20px;margin-bottom:-20px;">
-
-                            form of psychological treatment that involves working one-on-one with a therapist to address personal challenges.
-                            you will have the opportunity to discuss your thoughts, feelings, and experiences in a safe and confidential setting.
-                        </p>
+                        <div class="box1 img-responsive" style="height:435px;">
+                            <h4 style="padding-top:40px;">@item.namespecialization</h4>
+                            <img style="margin-bottom:-10px" src="~/Content/images/@Url.Content(item.picturespecialization)" width="200" alt="covering" />
 
 
+                            <i style="font-size:50px;color:black;margin-bottom:20px" class="fa fa-play"></i>
+
+                            <p class="osama" style="color:black;text-align:center;margin-left:-20px;margin-bottom:-20px;">
+
+                                @item.descriptionspecialization
+                            </p>
+
+
+                        </div>
+
+
+                        @*<img src="~/Content/images/gallery/gallery-01.jpg" class="img-responsive" alt="gallery-image">*@
+                        <a data-fancybox href=" @item.videospecializaion;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"></a>
+                        @*<a data-fancybox="~/Content/images" href="~/Content/images/gallery/gallery-01.jpg"></a>*@
+                        @*<h3> Save time and effort</h3>*@
+                        @*<p>
+
+                                Get your session online. No waiting lists, no transportation hassles
+                            </p>*@
                     </div>
-
-
-                    @*<img src="~/Content/images/gallery/gallery-01.jpg" class="img-responsive" alt="gallery-image">*@
-                    <a data-fancybox href=" https://www.youtube.com/watch?v=vo4pMVb0R6M;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"></a>
-                    @*<a data-fancybox="~/Content/images" href="~/Content/images/gallery/gallery-01.jpg"></a>*@
-                    @*<h3> Save time and effort</h3>*@
-                    @*<p>
-
-                            Get your session online. No waiting lists, no transportation hassles
-                        </p>*@
                 </div>
-            </div>
-
-            @*11111111111111111111111111111111111111111111111111111111111*@
-
-            @*22222222222222222222222222222222222222222222*@
-            <div class="col-md-3 col-sm-6">
-                @*individual*@
-
-                <div class="gallery-item">
-
-                    <div class="box1 img-responsive" style="height:435px;">
-                        <h4 style="padding-top:40px;">Family therapy</h4>
-                        <img style="margin-bottom:-10px" src="~/Content/images/m2.png" width="200" alt="covering" />
 
 
-                        <i style="font-size:50px;color:black;margin-bottom:20px" class="fa fa-play"></i>
-
-                        <p class="osama" style="color:black;text-align:center;margin-left:-20px;margin-bottom:-20px;">
-                            type of therapy that focuses on the dynamics and relationships within a family unit.
-                            It can be useful for families dealing with issues such as parenting challenges, sibling rivalry,increased feelings of connectedness and satisfaction within the family and family dynamics.
-                        </p>
+            }
 
 
-                    </div>
 
-
-                    @*<img src="~/Content/images/gallery/gallery-01.jpg" class="img-responsive" alt="gallery-image">*@
-                    <a data-fancybox href=" https://www.youtube.com/watch?v=vo4pMVb0R6M;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"></a>
-                    @*<a data-fancybox="~/Content/images" href="~/Content/images/gallery/gallery-01.jpg"></a>*@
-                    @*<h3> Save time and effort</h3>*@
-                    @*<p>
-
-                            Get your session online. No waiting lists, no transportation hassles
-                        </p>*@
-                </div>
-            </div>
-
-            @*22222222222222222 finish*@
-            @*333333333333333333 start*@
-            <div class="col-md-3 col-sm-6">
-                @*individual*@
-
-                <div class="gallery-item">
-
-                    <div class="box1 img-responsive" style="height:435px;">
-                        <h4 style="padding-top:40px;">Couple therapy</h4>
-                        <img style="margin-bottom:-10px" src="~/Content/images/m3.png" width="200" alt="covering" />
-
-
-                        <i style="font-size:50px;color:black;margin-bottom:20px" class="fa fa-play"></i>
-
-                        <p class="osama" style="color:black;text-align:center;margin-left:-20px;margin-bottom:-20px;">
-
-                            It can be helpful for couples who are experiencing conflicts, communication problems, or changes in their relationship.
-                            Through a variety of techniques such as communication exercises, problem-solving activities.
-                        </p>
-
-
-                    </div>
-
-
-                    @*<img src="~/Content/images/gallery/gallery-01.jpg" class="img-responsive" alt="gallery-image">*@
-                    <a data-fancybox href=" https://www.youtube.com/watch?v=vo4pMVb0R6M;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"></a>
-                    @*<a data-fancybox="~/Content/images" href="~/Content/images/gallery/gallery-01.jpg"></a>*@
-                    @*<h3> Save time and effort</h3>*@
-                    @*<p>
-
-                            Get your session online. No waiting lists, no transportation hassles
-                        </p>*@
-                </div>
-            </div>
-
-            @*3333333333333333333333333 finish*@
-            @*44444444444444444444444444444444 start*@
-            <div class="col-md-3 col-sm-6">
-                @*individual*@
-
-                <div class="gallery-item">
-
-                    <div class="box1 img-responsive" style="height:435px;">
-                        <h4 style="padding-top:40px;">Conselling therapy</h4>
-                        <img style="margin-bottom:-10px" src="~/Content/images/m4.png" width="200" alt="covering" />
-
-
-                        <i style="font-size:50px;color:black;margin-bottom:20px" class="fa fa-play"></i>
-
-                        <p class="osama" style="color:black;text-align:center;margin-left:-20px;margin-bottom:-20px;">
-
-                            It is often a short-term treatment that focuses on specific problems and aims to provide the individual with coping strategies and skills to improve their overall mental well-being. A trained counselor or psychologist works with the individual to identify and address .
-                        </p>
-
-
-                    </div>
-
-
-                    @*<img src="~/Content/images/gallery/gallery-01.jpg" class="img-responsive" alt="gallery-image">*@
-                    <a data-fancybox href=" https://www.youtube.com/watch?v=vo4pMVb0R6M;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0"></a>
-                    @*<a data-fancybox="~/Content/images" href="~/Content/images/gallery/gallery-01.jpg"></a>*@
-                    @*<h3> Save time and effort</h3>*@
-                    @*<p>
-
-                            Get your session online. No waiting lists, no transportation hassles
-                        </p>*@
-                </div>
-            </div>
-
-            @*444444444444444444444444444 finish*@
 
 
         </div>
     </div>
 </section>
-
-<section class="testimonial-section" style="background: url(~/Content/images/testimonials/1.jpg); margin-top: 100px;margin-bottom:100PX ">
+<section class="testimonial-section" style="background: url(~/Content/images/testimonials/1.jpg); margin-top: 150px; ">
     <div class="container">
         <div class="section-title text-center">
-            <h3 style="color:black">
+            <h3 style="color: #15767D">
                 What Our
-                Patients Says
+                <span style="color: #15767D">Patients Says</span>
             </h3>
         </div>
         <div class="testimonial-carousel">
             <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="~/Content/images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            @*<div class="slide-item">
+            @foreach (var item in Model.Item3.Where(c => c.statee == 1))
+            {
+                <div class="slide-item">
                     <div class="inner-box text-center">
-                        <div class="~/Content/image-box">
+                        <div class="image-box">
                             <figure>
-                                <img src="~/Content/images/testimonials/3.png" alt="">
+                                <img src="~/Content/images/@Url.Content(item.patient.picpatient)" alt="">
                             </figure>
                         </div>
-                        <h6>Amy Adams</h6>
-                        <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
+                        <h6>@item.patient.patientName</h6>
+                        <p>@item.message</p>
                     </div>
-                </div>*@
+                </div>
+            }
+
+            <!--Slide Item-->
+
         </div>
     </div>
 </section>
+<!--End testimonial-section-->
 <!--End testimonial-section-->
 <!-- Contact Section -->
 

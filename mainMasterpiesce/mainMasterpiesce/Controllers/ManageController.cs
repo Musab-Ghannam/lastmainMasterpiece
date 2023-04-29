@@ -228,7 +228,19 @@ namespace mainMasterpiesce.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                if (User.IsInRole("doctor"))
+                {
+
+                    return RedirectToAction("errorpass", "DoctorEnrolling");
+                }
+                else
+                {
+                    return RedirectToAction("errorpass", "DoctorsInfo");
+
+                }
+
+
+            
             }
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)
@@ -238,7 +250,21 @@ namespace mainMasterpiesce.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+
+                if (User.IsInRole("doctor"))
+                {
+
+
+                    return RedirectToAction("ChangePass", "DoctorEnrolling", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+                else
+                {
+
+                    return RedirectToAction("ChangePass", "DoctorsInfo", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+
+
+
             }
             AddErrors(result);
             return View(model);

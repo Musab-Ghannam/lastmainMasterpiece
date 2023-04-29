@@ -77,9 +77,10 @@
                                     </div>
                                 </div>
                                 <div class="dash-widget-info">
-                                    <h6>Today Patient</h6>
-                                    <h3>2</h3>
-                                    <p class="text-muted">06, Nov 2019</p>
+                                    <h6>Today appointments</h6>
+                                    <h3>@ViewBag.patientcountToday </h3>
+                                    <p class="text-muted">@DateTime.Now.ToString("dd/MM/yyyy")</p>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -96,7 +97,7 @@
                                 <div class="dash-widget-info">
                                     <h6>Appoinments</h6>
                                     <h3>@ViewBag.appointmentcount</h3>
-                                    <p class="text-muted">06, Apr 2019</p>
+                                    <p class="text-muted">@DateTime.Now.ToString("dd/MM/yyyy")</p>
                                 </div>
                             </div>
                         </div>

@@ -162,14 +162,19 @@ namespace mainMasterpiesce.Controllers
         {
             int docId = Convert.ToInt32(TempData["Id"]);
 
-
+        
             var doctorr=db.doctors.FirstOrDefault(c=>c.doctorId== docId);
+            
             doctorr.statedoctor = 1;
-
+            doctorr.AspNetUser.PhoneNumberConfirmed= true;//accepted doctor
             db.Entry(doctorr).State = EntityState.Modified;
 
             //emaiiil
+            try
+            {
 
+
+         
             var docName = db.doctors.FirstOrDefault(c => c.doctorId == docId).doctorName;
             var docemail = db.doctors.FirstOrDefault(c => c.doctorId == docId).email;
 
@@ -221,9 +226,13 @@ namespace mainMasterpiesce.Controllers
             // Send the email
             smtp.Send(mail);
 
-
+            }
             //email
+            catch (SmtpException ex)
+            {
 
+
+            }
 
             db.SaveChanges();
             TempData["list"] = "Rejectlist";

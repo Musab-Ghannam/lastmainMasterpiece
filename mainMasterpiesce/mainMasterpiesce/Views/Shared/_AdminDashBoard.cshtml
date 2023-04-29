@@ -241,15 +241,15 @@
                             <li class="@(lastSegment == "feedbacks" ? "active" : "")">
                                 <a href="~/feedbacks/Review"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
                             </li>
-                            <li class="@(lastSegment == "transactionsdoctors" ? "active" : "")">
+                            @*<li class="@(lastSegment == "transactionsdoctors" ? "active" : "")">
                                 <a href="~/transactionsdoctors/DoctorTransaction"><i class="fe fe-activity"></i> <span>Transactions</span></a>
-                            </li>
+                            </li>*@
 
                             <li class="submenu ">
                                 <a href="#"> <i class="fe fe-activity @(lastSegment == "transactionsdoctors" ? "activeic" : "")"></i>  <span class="@(lastSegment == "transactionsdoctors" ? "activeic" : "")"> Transactions</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
-                                    <li class=" @(query == "Acceptlist" ? "active" : "")"><a href="~/transactionsdoctors/Acceptlist">Successed Transaction</a></li>
-                                    <li class=" @(query == "rejectlist" ? "active" : "")"><a href="~/transactionsdoctors/Rejectlist"> Pending Transaction</a></li>
+                                    <li class=" @(query == "Acceptlisttrans" ? "active" : "")"><a href="~/transactionsdoctors/Acceptlist">Successed Transaction</a></li>
+                                    <li class=" @(query == "rejectlisttrans" ? "active" : "")"><a href="~/transactionsdoctors/Rejectlist"> Pending Transaction</a></li>
 
                                 </ul>
                             </li>

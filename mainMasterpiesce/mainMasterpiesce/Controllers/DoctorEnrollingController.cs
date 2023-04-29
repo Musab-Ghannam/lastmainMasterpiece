@@ -25,6 +25,7 @@ using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.Owin;
 
 namespace mainMasterpiesce.Controllers
 {
@@ -70,7 +71,8 @@ namespace mainMasterpiesce.Controllers
         {
             var doctorId = User.Identity.GetUserId();
             var doctor = db.doctors.FirstOrDefault(d => d.Id == doctorId);
-
+            var specializ = db.specializations.ToList();
+            ViewBag.special=specializ;
             dynamic data = new ExpandoObject();
 
             var specializations = db.specializations.ToList();
@@ -115,6 +117,8 @@ namespace mainMasterpiesce.Controllers
                 doctor.locationdoctor = doctor.locationdoctor+'_' + locationLink;
                 doctor.specialization= SPECIALIZATIONNAME;
                 doctor.infodoctor = info;
+                doctor.IBAN = Iban;
+                doctor.AspNetUser.EmailConfirmed= true;
                 doctor.addresss = location;
                 doctor.educationdetails = edu + '_' + University + '_' + yeargrad;
                 if (specializationId != null)
@@ -135,33 +139,33 @@ namespace mainMasterpiesce.Controllers
 
 
                 // Create a new MailMessage object
-                MailMessage mail = new MailMessage();
+                //MailMessage mail = new MailMessage();
 
-                // Set the sender's email address
-                mail.From = new MailAddress("musab.ghannam@outlook.com");
+                //// Set the sender's email address
+                //mail.From = new MailAddress("musab.ghannam@outlook.com");
 
-                // Set the recipient's email address
+                //// Set the recipient's email address
 
-                mail.To.Add(docemail);
+                //mail.To.Add(docemail);
 
-                // Set the subject of the email
-                mail.Subject = "New message from " + "Finding piece";
+                //// Set the subject of the email
+                //mail.Subject = "New message from " + "Finding piece";
 
-                // Set the body of the email
+                //// Set the body of the email
 
-                mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-{docName}, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
+                //mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-{docName}, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
 
-                // Set the body format to HTML
-                mail.IsBodyHtml = true;
+                //// Set the body format to HTML
+                //mail.IsBodyHtml = true;
 
-                // Create a new SmtpClient object
-                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
-                smtp.EnableSsl = true;
+                //// Create a new SmtpClient object
+                //SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                //smtp.UseDefaultCredentials = false;
+                //smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
+                //smtp.EnableSsl = true;
 
-                // Send the email
-                smtp.Send(mail);
+                //// Send the email
+                //smtp.Send(mail);
 
 
                 //email
@@ -185,7 +189,7 @@ namespace mainMasterpiesce.Controllers
 
 
             //data.doctor = doctors;
-        
+
 
             return View("EnrollDoctor", data);
 
@@ -209,6 +213,38 @@ namespace mainMasterpiesce.Controllers
 
             var patientcount = db.appointments.Where(c=>c.doctorId==doctorId).Select(l=>l.patientId).Distinct().Count();
 
+         
+
+            var datestring = db.appointments
+                           .Where(a => a.doctorId == doctorId)
+                           .Select(a => new { a.starttime })
+                           .ToList();
+
+            var currentDate = DateTime.Now;
+
+            var patientCountToday = datestring
+                                        .Where(a => DateTime.TryParseExact(a.starttime, "h:mm ttdd/MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out var appointmentTime) && appointmentTime.Date == currentDate.Date)
+                                        .Count();
+
+            if (patientCountToday == 0) {
+
+                ViewBag.patientcountToday = 0;
+
+            }
+            else
+            {
+
+                ViewBag.patientcountToday = patientCountToday;
+
+            }
+
+         
+
+
+
+            // Get today's date
+            //DateTime today = DateTime.Today;
+            //var patienttoday=db.appointments.Where(c=>c.doctorId==doctorId&&)
 
             var appointmentcount = db.appointments.Where(c => c.doctorId == doctorId).ToList().Count();
 
@@ -263,8 +299,89 @@ namespace mainMasterpiesce.Controllers
 
 
         }
+        public ActionResult ChangePass()
+        {
+            TempData["swal_message"] = "changed Successfully";
 
 
+
+
+
+
+
+
+
+            return RedirectToAction("ChangePassworddoctor");
+        }
+        public ActionResult errorpass()
+        {
+            TempData["swal_message"] = "errorpass";
+
+
+
+            return RedirectToAction("ChangePassworddoctor");
+        }
+
+
+        public ActionResult changepassworddoctor()
+        {
+            if (TempData["swal_message"] == "changed Successfully")
+            {
+
+                TempData["swal_message"] = "You are Password has been changed Successfully";
+
+                ViewBag.title = "Information Updated";
+                ViewBag.icon = "success";
+            }
+
+            if (TempData["swal_message"] == "errorpass")
+            {
+
+                TempData["swal_message"] = "Unfourtunitly there is something wrong please try again";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+            }
+
+            var mainId = User.Identity.GetUserId();
+
+
+
+
+            var doctorId = db.doctors?.FirstOrDefault(x => x.Id == mainId)?.doctorId;
+
+            var appointment = db.appointments.Where(c => c.doctorId == doctorId).ToList();
+            var doct = db.doctors.Where(c => c.Id == mainId).ToList();
+
+
+            var patientcount = db.appointments.Where(c => c.doctorId == doctorId).Select(l => l.patientId).Distinct().Count();
+
+
+            var appointmentcount = db.appointments.Where(c => c.doctorId == doctorId).ToList().Count();
+
+            ViewBag.appointmentcount = appointmentcount;
+
+
+            ViewBag.patientcount = patientcount;
+
+
+      
+
+
+
+
+
+
+
+            var feedback = db.feedbacks.Where(c => c.doctorId == doctorId).ToList();
+
+
+            var model = Tuple.Create(doct, appointment, feedback);
+
+            return View(model);
+
+
+
+        }
 
         public ActionResult DoctorDashSetting()
         {
@@ -330,7 +447,7 @@ namespace mainMasterpiesce.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult> EditDoctor([Bind(Include = "doctorId,Id,locationdoctor,doctorName,email,phoneNumber,qualiification,specialization,startedate,earningDoctortotal,AmountsDue,IBAN,Gender,infodoctor,pricePerHour,ratingdoctor,ratingdoctor,ratingint,experience,birthday,addresss,educationdetails")] doctor doctor, string docname, string email, string phonenumb, string birth, string gender, string Iban, string info, string address, string locationLink, string city, string country, string price, string special, HttpPostedFileBase profpic)
+        public async Task<ActionResult> EditDoctor([Bind(Include = "doctorId,Id,locationdoctor,doctorName,email,phoneNumber,qualiification,specialization,startedate,earningDoctortotal,AmountsDue,IBAN,Gender,infodoctor,pricePerHour,ratingdoctor,ratingdoctor,ratingint,experience,birthday,addresss,educationdetails")] doctor doctor, string docname, string email, string phonenumb, string birth, string gender, string Iban, string info, string address, string locationLink, string city, string country, string price, string special,string Degree,string college,string yeargrad, HttpPostedFileBase profpic)
         {
             var AspId = User.Identity.GetUserId();
             var doctorr = db.doctors.FirstOrDefault(c => c.Id == AspId);
@@ -342,7 +459,11 @@ namespace mainMasterpiesce.Controllers
                 doctorr.locationdoctor = city + ',' + country + '_' + locationLink;
                 isUpdated = true;
             }
-
+            if (doctorr.educationdetails != Degree + '_' + college + '_' + yeargrad)
+            {
+                doctorr.educationdetails = Degree + '_' + college + '_' + yeargrad;
+                isUpdated = true;
+            }
             if (doctorr.doctorName != docname)
             {
                 doctorr.doctorName = docname;
@@ -395,7 +516,9 @@ namespace mainMasterpiesce.Controllers
             if (doctorr.AspNetUser.Email != email)
             {
                 doctorr.AspNetUser.Email = email;
+                doctorr.AspNetUser.UserName = email;
                 doctorr.email = email;
+                
                 isUpdated = true;
             }
 
@@ -403,7 +526,7 @@ namespace mainMasterpiesce.Controllers
             {
                 string path = Server.MapPath("~/Content/images/") + profpic.FileName;
                 profpic.SaveAs(path);
-                doctorr.picdoctor = profpic.FileName;
+                doctorr.picdoctor = "~/Content/images/" + profpic.FileName;
                 isUpdated = true;
             }
 
@@ -448,7 +571,7 @@ namespace mainMasterpiesce.Controllers
 
 
             ViewBag.patientcount = patientcount;
-            var feedback = db.feedbacks.ToList();
+            var feedback = db.feedbacks.Where(c => c.doctorId == doctorId).ToList();
 
 
 
@@ -472,7 +595,7 @@ namespace mainMasterpiesce.Controllers
             {
 
                 // Define the sweet alert message and options
-                string sweetAlertMessage = "Are you sure you want to display this comment?";
+                string sweetAlertMessage = "Are you sure you want to display this Review?";
                 string sweetAlertTitle = "Confirm Block";
                 string sweetAlertIcon = "warning";
                 string sweetAlertCancelButton = "Cancel";
@@ -538,7 +661,7 @@ namespace mainMasterpiesce.Controllers
 
 
             ViewBag.patientcount = patientcount;
-            var feedback = db.feedbacks.ToList();
+            var feedback = db.feedbacks.Where(c=>c.doctorId== doctorId).ToList();
 
 
 
@@ -562,7 +685,7 @@ namespace mainMasterpiesce.Controllers
             {
 
                 // Define the sweet alert message and options
-                string sweetAlertMessage = "Are you sure you want to display this comment?";
+                string sweetAlertMessage = "Are you sure you want to display this Review?";
                 string sweetAlertTitle = "Confirm Block";
                 string sweetAlertIcon = "warning";
                 string sweetAlertCancelButton = "Cancel";
@@ -592,7 +715,7 @@ namespace mainMasterpiesce.Controllers
             {
 
                 // Define the sweet alert message and options
-                string sweetAlertMessage = "Are you sure you want to disappear this doctor?";
+                string sweetAlertMessage = "Are you sure you want to disappear this Review?";
         string sweetAlertTitle = "Confirm Block";
         string sweetAlertIcon = "warning";
         string sweetAlertCancelButton = "Cancel";

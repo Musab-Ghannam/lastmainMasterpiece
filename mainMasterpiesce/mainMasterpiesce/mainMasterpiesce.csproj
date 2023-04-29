@@ -1591,6 +1591,9 @@
     <Content Include="Views\AspNetUserRoles\Edit.cshtml" />
     <Content Include="Views\AspNetUserRoles\Index.cshtml" />
     <Content Include="Views\DoctorEnrolling\PendingReviews.cshtml" />
+    <Content Include="Views\DoctorsInfo\ChangePasswordpatient.cshtml" />
+    <Content Include="Views\Shared\_coypatientprofile.cshtml" />
+    <Content Include="Views\DoctorEnrolling\changepassworddoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

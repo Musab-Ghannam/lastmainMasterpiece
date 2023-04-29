@@ -108,7 +108,7 @@
                                     <div class="card-body">
                                         <div class="booking-doc-info">
                                             <a href="doctor-profile.html" class="booking-doc-img">
-                                                <img src="~/Content/images/dr2.png" alt="User Image">
+                                                <img src="@Url.Content(Model.doctor[0].picdoctor)" alt="User Image">
                                             </a>
 
                                             <div class="booking-info">
@@ -116,77 +116,28 @@
                                                 <div class="rating">
 
                                                     @{
-                                                        Decimal ratingdecimal = Convert.ToDecimal(Model.doctor[0].ratingdoctor);
-
-                                                        int ratingint = Convert.ToInt32(Math.Truncate(ratingdecimal));
-
-
-                                                        string splitrating = Convert.ToString(@Model.doctor[0].ratingdoctor);
-                                                        string[] secondsectionrating = splitrating.Split('.');
+                                                     
 
 
 
 
-                                                        for (int i = 0; i < ratingint; i++)
+                                                        for (int i = 0; i < Model.doctor[0].ratingint; i++)
                                                         {
                                                             <span class="fas fa-star" style=" color: gold;"> </span>
                                                         }
 
 
 
-
-
-                                                        int secondrating = Convert.ToInt32(secondsectionrating[1]);
-
-
-                                                        if (secondrating <= 9)
+                                                        for (int i = 0; i < 5 - Model.doctor[0].ratingint; i++)
                                                         {
-
-                                                            int secondfinal = secondrating * 10;
-
-
-
-
-
-
-                                                            if (secondfinal >= 25 && secondrating <= 50)
-                                                            {
-
-
-
-                                                                <span class="fas fa-star-half-alt" style="color: gold;"></span>
-                                                            }
-                                                            else if (secondfinal > 50)
-                                                            {
-
-                                                                <span class="fas fa-star" style=" color: gold;"> </span>
-                                                            }
-
-
+                                                            <i class="fas fa-star"></i>
                                                         }
-                                                        else if (secondrating > 9)
-                                                        {
-                                                            if (secondrating >= 25 && secondrating <= 50)
-                                                            {
 
 
 
-                                                                <span class="fas fa-star-half-alt" style="color: gold;"></span>
-                                                            }
-                                                            if (secondrating > 50 && secondrating <= 75)
-                                                            {
-
-                                                                <span class="fas fa-star" style=" color: gold;"> </span>
-                                                            }
-
-                                                            if (secondrating > 75)
-                                                            {
-
-                                                                <span class="fas fa-star" style=" color: gold;"> </span>
-                                                            }
 
 
-                                                        }
+
                                                     }
 
 
@@ -200,7 +151,7 @@
 
 
 
-                                                    <span class="d-inline-block average-rating">@Model.doctor[0].ratingdoctor</span>
+                                                    <span class="d-inline-block average-rating">@Model.doctor[0].ratingint</span>
                                                 </div>
                                                 <p class="text-muted mb-0">
                                                     <i class="fas fa-map-marker-alt"></i>
@@ -463,14 +414,14 @@
                                                                                                     }
 
 
-                                                                                            }
+                                                                                                }
 
 
 
-                                                                                            if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
-                                                                                            {
-                                                                                                if (!ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                if (!string.IsNullOrEmpty(ViewBag.notavailabletile))
                                                                                                 {
+                                                                                                    if (!ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') || ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
+                                                                                                    {
 
 
 
@@ -489,7 +440,7 @@
 
 
                                                                                                 if (ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ','))
-                                                                                            {
+                                                                                                {
 
 
                                                                                                     <input type="submit" value="@formm" name="btnn" id="myInput" class="days timing new" style="margin-top: 20PX; background-color: #20BBBD;color:white" disabled />
@@ -500,7 +451,7 @@
 
 
                                                                                                 else if (!ViewBag.notavailabletile.Contains(formm + ViewBag.currentday.Substring(0, 5) + '.') && !ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !User.IsInRole("doctor"))
-                                                                                            {
+                                                                                                {
 
 
                                                                                                     <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX " />
@@ -509,7 +460,7 @@
 
 
                                                                                                 else if (!ViewBag.btn.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && !ViewBag.slotdatabase.Contains(formm + ViewBag.currentday.Substring(0, 5) + ',') && User.IsInRole("doctor"))
-                                                                                            {
+                                                                                                {
 
 
                                                                                                     <input id="testt" type="submit" value="@formm" name="btnn" class="days timing new @ViewBag.inputClass" style="margin-top:20PX " disabled />
@@ -836,10 +787,27 @@
                                 <!-- /Schedule Widget -->
                                 <!-- Submit Section -->
                                 <div class="submit-section proceed-btn text-right">
-                                    <a href="~/DoctorsInfo/checkout?id=@Model.doctor[0].doctorId" class="btn btn-primary submit-btn" style="background-color:#20BBBD">@Session["allprice"]$ Proceed to Pay</a>
+
+                                    @if (Convert.ToInt16(Session["count"]) > 0)
+                                    {
+
+                                        <a href="~/DoctorsInfo/checkout?id=@Model.doctor[0].doctorId" class="btn btn-primary submit-btn" style="background-color:#20BBBD">@Session["allprice"]$ Proceed to Pay</a>
+
+
+                                    }
+                                    else if (Convert.ToInt16(Session["count"]) == 0)
+                                    {
+
+                                        <a href="~/DoctorsInfo/zeropayment?id=@Model.doctor[0].doctorId" class="btn btn-primary submit-btn" style="background-color:#20BBBD">@Session["allprice"]$ Proceed to Pay</a>
+
+                                  
+
+                                    }
+
+
 
                                     @*<h1>@ViewBag.youhaveit</h1>
-                                        <h1>"FFF"</h1>*@
+        <h1>"FFF"</h1>*@
                                 </div>
                                 <!-- /Submit Section -->
 
@@ -861,126 +829,126 @@
 
                 <!-- /Page Content -->
                 <!-- Footer -->
-            <footer class="footer" style="background-color: #15767D ">
+                <footer class="footer" style="background-color: #15767D " >
 
-                <!-- Footer Top -->
-                <div class="footer-top">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
+                    <!-- Footer Top -->
+                    <div class="footer-top">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6">
 
-                                <!-- Footer Widget -->
-                                <div class="footer-widget footer-about">
-                                    <div class="footer-logo">
-                                        <img src="assets/img/footer-logo.png" alt="logo">
-                                    </div>
-                                    <div class="footer-about-content">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                            incididunt ut labore et dolore magna aliqua.
-                                        </p>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
-                                                </li>
-                                            </ul>
+                                    <!-- Footer Widget -->
+                                    <div class="footer-widget footer-about">
+                                        <div class="footer-logo">
+                                            @*<img src="assets/img/footer-logo.png" alt="logo">*@
+                                            <a href="~/mainHome/Index" class=""><img src="~/Content/images/logo.png" width="80" alt="logo" style="padding:0px !important;margin-left:50px !important" /></a>
+                                        </div>
+                                        <div class="footer-about-content">
+                                            <p>
+                                                Welcome to Finding Peace, a revolutionary psychological website .
+                                            </p>
+                                            <div class="social-icon">
+                                                <ul>
+                                                    <li>
+                                                        <a href="https://web.facebook.com/musab.alghannam.3" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://twitter.com/MusabGhann7856" target="_blank"><i class="fab fa-twitter"></i> </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://www.linkedin.com/in/musab-ghannam-0a8284253" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://www.instagram.com/musab_ghannam/" target="_blank"><i class="fab fa-instagram"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="https://dribbble.com/musabghannam" target="_blank"><i class="fab fa-dribbble"></i> </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- /Footer Widget -->
+
                                 </div>
-                                <!-- /Footer Widget -->
 
-                            </div>
+                                <div class="col-lg-3 col-md-6 footer-widget footer-about-content ">
 
-                            <div class="col-lg-3 col-md-6 footer-widget footer-about-content ">
+                                    <!-- Footer Widget -->
+                                    <div class="footer-widget footer-menu">
+                                        <h2 class="footer-title">For Patients</h2>
 
-                                <!-- Footer Widget -->
-                                <div class="footer-widget footer-menu">
-                                    <h2 class="footer-title">For Patients</h2>
+                                        <ul>
+                                            <li><a href="~/mainHome/Index"><i class="fas fa-angle-double-right"></i> Home page</a></li>
+                                            <li>
+                                                <a href="~/mainHome/About">
+                                                    <i class="fas fa-angle-double-right"></i> About Us
+                                                </a>
+                                            </li>
+                                            <li><a href="~/mainHome/ConTact"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <!-- /Footer Widget -->
+
+                                </div>
+                                <div class="col-lg-3 col-md-6 footer-menu footer-widget">
+
+                                    <h2 class="footer-title">Links</h2>
 
                                     <ul>
-                                        <li><a href="~/mainHome/Index"><i class="fas fa-angle-double-right"></i> Home page</a></li>
+                                        <li style="">
+                                            <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
+                                        </li>
+                                        <li style="">
+                                            <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
+                                        </li>
                                         <li>
-                                            <a href="~/mainHome/About">
-                                                <i class="fas fa-angle-double-right"></i> About Us
+                                            <a href="~/Account/Login">
+                                                <i class="fas fa-angle-double-right"></i>
+                                                Log in
                                             </a>
                                         </li>
-                                        <li><a href="~/mainHome/ConTact"><i class="fas fa-angle-double-right"></i> Contact Us</a></li>
-
                                     </ul>
+
+
+
+
                                 </div>
-                                <!-- /Footer Widget -->
-
-                            </div>
-                            <div class="col-lg-3 col-md-6 footer-menu footer-widget">
-
-                                <h2 class="footer-title">Links</h2>
-
-                                <ul>
-                                    <li style="">
-                                        <a href="~/Account/Register"><i class="fas fa-angle-double-right"></i> Register</a>
-                                    </li>
-                                    <li style="">
-                                        <a href="~/DoctorsInfo/alldoctors"><i class="fas fa-angle-double-right"></i> Therapist List</a>
-                                    </li>
-                                    <li>
-                                        <a href="~/Account/Login">
-                                            <i class="fas fa-angle-double-right"></i>
-                                            Log in
-                                        </a>
-                                    </li>
-                                </ul>
 
 
+                                <div class="col-lg-3 col-md-6">
 
-
-                            </div>
-
-
-                            <div class="col-lg-3 col-md-6">
-
-                                <!-- Footer Widget -->
-                                <div class="footer-widget footer-contact">
-                                    <h2 class="footer-title">Contact Us</h2>
-                                    <div class="footer-contact-info">
-                                        <div class="footer-address">
-                                            <span><i class="fas fa-map-marker-alt"></i></span>
-                                            <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                    <!-- Footer Widget -->
+                                    <div class="footer-widget footer-contact">
+                                        <h2 class="footer-title">Contact Us</h2>
+                                        <div class="footer-contact-info">
+                                            <div class="footer-address">
+                                                <span><i class="fas fa-map-marker-alt"></i></span>
+                                                <p> 3556 Beech Street, San Francisco,<br> California, CA 94108 </p>
+                                            </div>
+                                            <p>
+                                                <i class="fas fa-phone-alt"></i>
+                                                +1 315 369 5943
+                                            </p>
+                                            <p class="mb-0">
+                                                <i class="fas fa-envelope"></i>
+                                                doccure@example.com
+                                            </p>
                                         </div>
-                                        <p>
-                                            <i class="fas fa-phone-alt"></i>
-                                            +1 315 369 5943
-                                        </p>
-                                        <p class="mb-0">
-                                            <i class="fas fa-envelope"></i>
-                                            doccure@example.com
-                                        </p>
                                     </div>
+                                    <!-- /Footer Widget -->
+
                                 </div>
-                                <!-- /Footer Widget -->
 
                             </div>
-
                         </div>
                     </div>
-                </div>
-                <!-- /Footer Top -->
-                <!-- Footer Bottom -->
-                <!-- /Footer Bottom -->
+                    <!-- /Footer Top -->
+                    <!-- Footer Bottom -->
+                    <!-- /Footer Bottom -->
 
-            </footer>
+                </footer>
                 <!-- /Footer -->
 
             </div>
@@ -998,7 +966,7 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-        @if (TempData["swal_message"] != null&& TempData["swal_message"] != "Thank You for your feedback"&& TempData["swal_message"] != "please Add Feedback before submit")
+        @if (TempData["swal_message"] != null && TempData["swal_message"] != "Thank You for your feedback" && TempData["swal_message"] != "please Add Feedback before submit")
         {
             <script>
         Swal.fire({
@@ -1050,7 +1018,7 @@
     </script>
 }
 
-@if (TempData["swal_message"] == "Thank You for your feedback")
+@if (TempData["swal_message"] == "Since no time slot has been selected, may I please request further clarification or direction on how to proceed")
 {
     <script>
         Swal.fire({
@@ -1061,7 +1029,7 @@
             allowOutsideClick: false, // prevent clicking outside the dialog to close it
             allowEscapeKey: false // prevent pressing the escape key to close it
         }).then(function () {
-       window.location.href = window.location.pathname;
+            window.location.href =  "@Url.Action("booking", "DoctorsInfo")";;
         });
     </script>
 }

@@ -11,24 +11,19 @@
 
 
     .class2 {
-        background-image: url('../../content/images/psycm.png')!important;
-      
+        background-image: url('../../content/images/psycm.png') !important;
     }
-    @@media(min-device-width:0px) and (max-device-width:400px){
 
-        #searrch img{
+    @@media(min-device-width:0px) and (max-device-width:400px) {
 
-            width:280px!important;
-
+        #searrch img {
+            width: 280px !important;
         }
+
         #platform {
             width: 280px !important;
         }
-        
     }
-
- 
-
 </style>
 
 
@@ -61,7 +56,33 @@
         @{
             if (User.Identity.IsAuthenticated)
             {
-                <a href="~/DoctorsInfo/therapiestlist"> <input type="submit" value="Get Started" id="start" class="rightt" name="INFO" /></a>
+                if (User.IsInRole("doctor"))
+                {
+
+
+
+                    <a href="~/DoctorEnrolling/DoctorDashboard"> <input type="submit" value="Get Started" id="start" class="rightt" name="INFO" /></a>
+
+                }
+                else if (User.IsInRole("Admin"))
+                {
+
+                    <a href="~/ADMINDashboard/AdminDashboard"> <input type="submit" value="Get Started" id="start" class="rightt" name="INFO" /></a>
+
+                }
+
+
+
+
+
+
+
+                else
+                {
+                    <a href="~/DoctorsInfo/therapiestlist"> <input type="submit" value="Get Started" id="start" class="rightt" name="INFO" /></a>
+
+                }
+
 
 
             }
@@ -72,6 +93,8 @@
                 </a>
             }
 
+
+
         }
 
         <div class="started">
@@ -81,9 +104,46 @@
                 <p class="priv ">online private session</p>
 
                 <div class="icon">
-                    <a href="~/DoctorsInfo/therapiestlist">   <i class="fa-solid fa-video"></i><span id="video"> video</span></a>
+                    @if (User.IsInRole("doctor"))
+                    {
 
-                    <a href="~/DoctorsInfo/therapiestlist">  <i class="fa-solid fa-microphone"></i><span id="Audio"> Audio</span></a>
+
+
+                        <a href="~/DoctorEnrolling/DoctorDashboard">   <i class="fa-solid fa-video"></i><span id="video"> video</span></a>
+
+
+
+                        <a href="~/DoctorEnrolling/DoctorDashboard">  <i class="fa-solid fa-microphone"></i><span id="Audio"> Audio</span></a>
+
+
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+
+
+
+
+                        <a href="~/ADMINDashboard/AdminDashboard">   <i class="fa-solid fa-video"></i><span id="video"> video</span></a>
+
+
+
+                        <a href="~/ADMINDashboard/AdminDashboard">  <i class="fa-solid fa-microphone"></i><span id="Audio"> Audio</span></a>
+
+                    }
+
+
+
+
+
+
+                    else
+                    {
+                        <a href="~/DoctorsInfo/therapiestlist">   <i class="fa-solid fa-video"></i><span id="video"> video</span></a>
+
+                        <a href="~/DoctorsInfo/therapiestlist">  <i class="fa-solid fa-microphone"></i><span id="Audio"> Audio</span></a>
+
+                    }
+
                 </div>
 
 
@@ -92,9 +152,43 @@
                 <p class="priv " style="margin-bottom:60px"></p>
 
                 <div class="iconphone">
-                    <a href="~/DoctorsInfo/therapiestlist">   <i class="fa-solid fa-video"></i><span id="videophone"> video</span></a>
+                    @if (User.IsInRole("doctor"))
+                    {
 
-                    <a href="~/DoctorsInfo/therapiestlist">  <i class="fa-solid fa-microphone"></i><span id="Audiophone"> Audio</span></a>
+
+
+                        <a href="~/DoctorEnrolling/DoctorDashboard">   <i class="fa-solid fa-video"></i><span id="videophone"> video</span></a>
+
+
+
+                        <a href="~/DoctorEnrolling/DoctorDashboard">  <i class="fa-solid fa-microphone"></i><span id="Audiophone"> Audio</span></a>
+
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+
+
+                        <a href="~/ADMINDashboard/AdminDashboard">   <i class="fa-solid fa-video"></i><span id="videophone"> video</span></a>
+
+
+
+                        <a href="~/ADMINDashboard/AdminDashboard">  <i class="fa-solid fa-microphone"></i><span id="Audiophone"> Audio</span></a>
+                    }
+
+
+
+
+
+
+                    else
+                    {
+
+                        <a href="~/DoctorsInfo/therapiestlist">   <i class="fa-solid fa-video"></i><span id="videophone"> video</span></a>
+
+                        <a href="~/DoctorsInfo/therapiestlist">  <i class="fa-solid fa-microphone"></i><span id="Audiophone"> Audio</span></a>
+
+                    }
+
                 </div>
             </div>
 
@@ -128,7 +222,30 @@
 
                     @item.descriptionspecialization
                 </p>
-                <input type="submit" value="Get Started" class="startt" />
+                @if (User.IsInRole("doctor"))
+                {
+
+
+
+                    <a href="~/DoctorEnrolling/DoctorDashboard">   <input type="submit" value="Get Started" class="startt" /></a>
+
+
+                }
+                else if (User.IsInRole("Admin"))
+                {
+
+
+                    <a href="~/ADMINDashboard/AdminDashboard">   <input type="submit" value="Get Started" class="startt" /></a>
+                }
+
+
+
+
+                else
+                {
+                    <input type="submit" value="Get Started" class="startt" />
+                }
+
 
             </div>
         }
@@ -151,8 +268,14 @@
     </div>
 
     @*try*@
+    @if (!User.IsInRole("Admin") && !User.IsInRole("doctor"))
+    {
 
-    @RenderPage("~/Views/Shared/tryme.cshtml")
+        @RenderPage("~/Views/Shared/tryme.cshtml")
+
+    }
+
+
 
     @*try*@
 
@@ -204,15 +327,15 @@
 
     <section class="testimonial-section" style="background: url(~/Content/images/testimonials/1.jpg); margin-top: 150px; ">
         <div class="container">
-            <div class="section-title text-center" >
-                <h3 style="color: #15767D" >
+            <div class="section-title text-center">
+                <h3 style="color: #15767D">
                     What Our
                     <span style="color: #15767D">Patients Says</span>
                 </h3>
             </div>
             <div class="testimonial-carousel">
                 <!--Slide Item-->
-                @foreach (var item in Model.Item3.Where(c=>c.statee==1))
+                @foreach (var item in Model.Item3.Where(c => c.statee == 1))
                 {
                     <div class="slide-item">
                         <div class="inner-box text-center">
@@ -228,7 +351,7 @@
                 }
 
                 <!--Slide Item-->
-    
+
             </div>
         </div>
     </section>
@@ -237,16 +360,17 @@
     <section class="appoinment-section section">
         <div class="container">
             <div class="row" style="display:flex;justify-content:space-between">
-                <div class="col-md-6 col-sm-12 col-xs-12" style="position:relative" id="searrch">    <img src="~/Content/images/searchfind.png" width="320" style="align-items:center;display:flex;justify-content:center" />
-                
-                <p style="color: #15767D;font-weight:bold;position:absolute;top:18%;left:25%;font-size:17px">Finding Piece</p>
+                <div class="col-md-6 col-sm-12 col-xs-12" style="position:relative" id="searrch">
+                    <img src="~/Content/images/searchfind.png" width="320" style="align-items:center;display:flex;justify-content:center" />
+
+                    <p style="color: #15767D;font-weight:bold;position:absolute;top:18%;left:25%;font-size:17px">Finding Piece</p>
 
 
-                <p style="width:320px;margin-top:10px;font-weight:bold;font-size:15px" id="platform">
+                    <p style="width:320px;margin-top:10px;font-weight:bold;font-size:15px" id="platform">
 
-                    " With our convenient online platform, you can connect with a therapist from the comfort of your own home and begin the healing process. Let us help you find peace within yourself and improve your overall well-being."
-                </p>
-                </div> 
+                        " With our convenient online platform, you can connect with a therapist from the comfort of your own home and begin the healing process. Let us help you find peace within yourself and improve your overall well-being."
+                    </p>
+                </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="section-title">
                         <h3 style="margin-bottom:40px">Add FeedBack</h3>
@@ -277,7 +401,7 @@
 
 
             </div>
-            </div>
+        </div>
     </section>
     <!-- End Contact Section -->
 </div>
@@ -317,6 +441,24 @@
 
 
 @if (TempData["swal_message"] == "please Add Feedback before submit")
+{
+    <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+            allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+        }).then(function () {
+            window.location.href =  "@Url.Action("Index", "mainHome")";;
+        });
+    </script>
+}
+
+
+
+@if (TempData["swal_message"] == "We are soryy you can not Add Feedback beacause you are Adminstration")
 {
     <script>
         Swal.fire({

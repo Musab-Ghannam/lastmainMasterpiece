@@ -39,13 +39,13 @@
                                     <dd>
                                         @Model.DOctorName
                                     </dd>
-                                    <dt >
-                                       Doctor Photo
+                                    <dt>
+                                        Doctor Photo
                                     </dt>
 
                                     <dd>
-                                       
-                                        <img src="@Url.Content(@Model.doctor.picdoctor)" alt="@Model.doctor.picdoctor"  width="100"/>
+
+                                        <img src="@Url.Content(@Model.doctor.picdoctor)" alt="@Model.doctor.picdoctor" width="100" />
                                     </dd>
 
 
@@ -59,25 +59,47 @@
                                         @Html.DisplayFor(model => model.amount)
                                     </dd>
 
-                           
+
 
                                     <dt>
                                         @Html.DisplayNameFor(model => model.status)
-                                    </dt>
-
-                                    <dd>
-                                        @if (Model.status == "1")
-                                        {
+                                    </dt>@{ 
 
 
-                                            <span class="badge badge-pill bg-danger-light">Pending</span>
-                                        }
-                                        else if (Model.status == "2")
-                                        {
 
-                                            <span class="badge badge-pill bg-success inv-badge">Paid</span>
-                                        }
-                                    </dd>
+                                        string query = Request.QueryString["listType"];
+
+
+                                    }
+                       
+                                <dd>
+                                    @if (query == "rejectlisttrans")
+                                    {
+
+
+                                        <span class="badge badge-pill bg-danger-light">Pending</span>
+
+
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-pill bg-success inv-badge">Paid</span>
+
+                                    }
+
+
+                                    @*@if (Model.status == "1")
+                                    {
+
+
+                                        <span class="badge badge-pill bg-danger-light">Pending</span>
+                                    }
+                                    else if (Model.status == "2")
+                                    {
+
+                                        <span class="badge badge-pill bg-success inv-badge">Paid</span>
+                                    }*@
+                                </dd>
 
 
 
@@ -87,12 +109,24 @@
 
                                     <dd>
 
-                                        @if (Model.Tansactiontime.HasValue)
+                                        @if (query == "rejectlisttrans")
+                                        {
+
+                                            <p>Not Sending Yet</p>
+                                        }
+                                        else if (Model.Tansactiontime.HasValue)
+                                        {
+                                            @Model.Tansactiontime.Value.ToString("dd-MM-yyyy")
+
+                                        }
+
+
+                                        @*@if (Model.Tansactiontime.HasValue)
                                         {
 
                                             @Model.Tansactiontime.Value.ToString("dd-MM-yyyy")
 
-                                        }
+                                        }*@
                                     </dd>
 
 
@@ -100,8 +134,26 @@
                                 </dl>
                             </div>
                             <p>
-                          
-                                @Html.ActionLink("Back to List", "DoctorTransaction", null, new { @class = "btn btn-secondary" })
+
+                                @if (query == "rejectlisttrans")
+                                {
+
+                                    @Html.ActionLink("Back to List", "DoctorTransaction", new { listType = "rejectlisttrans" }, new { @class = "btn btn-secondary" })
+
+
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.doctorId, listType = "rejectlist" }, new { @class = "btn btn-info" })*@
+
+
+                                }
+                                else
+                                {
+
+                                    @Html.ActionLink("Back to List", "DoctorTransaction", null, new { @class = "btn btn-secondary" })
+
+                                }
+
+
+
                             </p>
                             </div>
 </div></div>

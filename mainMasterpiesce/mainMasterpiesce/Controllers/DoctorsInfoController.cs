@@ -30,6 +30,7 @@ using System.Net;
 using System.Web.Helpers;
 using System.Web.Services.Description;
 using System.Xml.Linq;
+using static mainMasterpiesce.Controllers.ManageController;
 
 namespace mainMasterpiesce.Controllers
 {
@@ -38,30 +39,17 @@ namespace mainMasterpiesce.Controllers
         // GET: DoctorsInfo
         FindingpeaceEntities1 doc=new FindingpeaceEntities1();
 
-        //public ActionResult alldoctors(string therapistName, int? specializationsearch)
-        //{
-        //    var alldoctors = doc.doctors.ToList();
-        //    var specialization = doc.specializations.ToList();
-
-        //    if (therapistName != null)
-        //    {
-        //        var searchDoctor = doc.doctors.Where(c => c.doctorName.Contains(therapistName)).ToList();
-
-        //        return View(Tuple.Create(searchDoctor, specialization));
-        //    }
-        //    else if (specializationsearch.HasValue)
-        //    {
-        //        var searchDoctor = doc.doctors.Where(c => c.specializationId == specializationsearch.Value).ToList();
-
-        //        return View(Tuple.Create(searchDoctor, specialization));
-        //    }
-        //    else
-        //    {
-        //        return View(Tuple.Create(alldoctors, specialization));
-        //    }
-        //}
+       
         public ActionResult therapiestlist(string therapistName, string specializationsearch, string Male, string rating, string therapytype, string desc)
         {
+            var avgfeedback = doc.feedbacks.GroupBy(c => c.doctorId).Select(g => new { doctorId = g.Key, avgrating = g.Average(c => c.rating) });
+
+
+            foreach (var item in avgfeedback)
+            {
+                ViewBag.avg += item;
+
+            }
             string url = Request.Url.AbsoluteUri;
             ViewBag.url = url;// get the absolute URL of the current request
             string[] segments = url.Split('/'); // split the URL into segments
@@ -125,7 +113,7 @@ namespace mainMasterpiesce.Controllers
             var accepteddoctors = doc.doctors.Where(c => c.statedoctor == 1).ToList();
             if (desc != null && desc == "highest")
             {
-                var highestrate = doc.doctors.Where(c => c.statedoctor == 1).OrderByDescending(c => c.ratingdoctor).ToList();
+                var highestrate = doc.doctors.Where(c => c.statedoctor == 1).OrderByDescending(c => c.ratingint).ToList();
 
 
                 return View(Tuple.Create(highestrate, specialization));
@@ -305,7 +293,12 @@ namespace mainMasterpiesce.Controllers
 
         public ActionResult alldoctors(string therapistName, string specializationsearch,string Male,string rating,string therapytype,string desc)
         {
-         
+            var avgfeedback = doc.feedbacks.GroupBy(c => c.doctorId).Select(g => new { doctorId = g.Key, avgrating = g.Average(c => c.rating) });
+
+            foreach (var item in avgfeedback)
+            {
+                ViewBag.avg += item;
+            }
 
 
 
@@ -372,15 +365,7 @@ namespace mainMasterpiesce.Controllers
 
 
 
-                //return View(Tuple.Create(ratingdoctor, specialization));
-                //foreach (var item in ratingdoctor)
-                //{
-                //    //if (Convert.ToInt32(rating) ==Math.Round(Convert.ToDecimal(item.ratingdoctor)))
-                //    //{
-                //        int ratingIntt = Convert.ToInt32(rating);
-                //         decimal RATINGDOCROUD =Math.Round(Convert.ToDecimal(item.ratingdoctor));
-                //    if(ratingIntt == Convert.ToInt32(RATINGDOCROUD)) {
-
+  
 
 
 
@@ -461,7 +446,7 @@ namespace mainMasterpiesce.Controllers
             return View(Tuple.Create(alldoctors, specialization));
         }
 
-        public ActionResult AddFeedback(int doctorId, [Bind(Include = "feedbackId,doctorId,patientId,rating,comment,title, statefeedback")] feedback feedback, string ADD,string rating,string title,string yourfeedback)
+        public ActionResult AddFeedback(int doctorId, [Bind(Include = "feedbackId,doctorId,patientId,rating,comment,title, statefeedback,ratingint")] feedback feedback,doctor doctorr, string ADD,string rating,string title,string yourfeedback)
         {
 
             string ASPid = User.Identity.GetUserId();
@@ -495,15 +480,31 @@ namespace mainMasterpiesce.Controllers
             using (var db = new FindingpeaceEntities1())
             {
                 db.feedbacks.Add(feedback);
-                db.SaveChanges();
+
+
+                    TempData["feed"] = "singledoc";
+
+                    db.SaveChanges();
                 }
             }
 
-            //int std = 5;
-            //double fill = Convert.ToDouble(db.Students.FirstOrDefault(a => a.Student_ID == std).Wallet);
-            //double total = fill + money;
-            //db.Students.FirstOrDefault(a => a.Student_ID == std).Wallet = total;
-            //db.SaveChanges();
+            var avgfeedback = doc.feedbacks.GroupBy(c => c.doctorId).Select(g => new { doctorId = g.Key, avgrating = g.Average(c => c.rating) });
+
+            using (var db = new FindingpeaceEntities1())
+            {
+                foreach (var avg in avgfeedback)
+                {
+                    var doctor = db.doctors.FirstOrDefault(d => d.doctorId == avg.doctorId);
+                    if (doctor != null)
+                    {
+                        doctor.ratingint = Convert.ToInt32(avg.avgrating);
+                        db.Entry(doctor).State = EntityState.Modified;
+                    }
+                }
+                db.SaveChanges();
+            }
+
+
             return RedirectToAction("singledoctor", new { id = doctorId });
         }
 
@@ -521,7 +522,12 @@ namespace mainMasterpiesce.Controllers
             return PartialView("_comment", model);
         }
 
-     
+        public ActionResult showallfeedback(int? doctorId)
+        {
+            TempData["allfedback"] = "allfeedback";
+
+            return RedirectToAction("singledoctor", new { id = doctorId });
+        }
 
     public ActionResult singledoctor(int?id)
         {
@@ -543,11 +549,21 @@ namespace mainMasterpiesce.Controllers
             int Iscommentexistinfeedback = 0;
 
 
+                if (TempData["feed"] == "singledoc")
+                {
+
+
+                    TempData["swal_message"] = "Thank You for your feedback";
+                    ViewBag.title = "Success";
+                    ViewBag.icon = "success";
 
 
 
+                }
 
-            int Isexis = 0;
+
+
+                int Isexis = 0;
             foreach (var item in appointmentexist)
             {
                 Isexis++;//have apointment ok
@@ -599,7 +615,7 @@ namespace mainMasterpiesce.Controllers
 
 
             var SingleDoctor = doc.doctors.Where(c => c.doctorId == id).ToList();
-            var feedback = doc.feedbacks.Where(c => c.doctorId == id).ToList();
+            var feedback = doc.feedbacks.Where(c => c.doctorId == id&&c.statefeedback==1).ToList();
           
             if (SingleDoctor != null)
             {
@@ -654,8 +670,16 @@ namespace mainMasterpiesce.Controllers
         {
             return View();
         }
-     
-        
+
+        public ActionResult zeropayment(int?id)
+        {
+            TempData["zeropayment"] = "zeropayment";
+
+            return RedirectToAction("booking", new { id = id });
+        }
+
+
+
         public ActionResult booking(int?id,string day,string selectedSlot,string btnn,string close,string valueToRemove)    
         {
             //feedback
@@ -671,35 +695,13 @@ namespace mainMasterpiesce.Controllers
             TempData["lasrseg"] = "booking";
             TempData["beforlast"] = beforlast;
 
-            if (TempData["swal_message"] == "Thank You for your feedback")
-            {
-                TempData["swal_message"] = "Thank You for your feedback";
-                ViewBag.title = "info";
-                ViewBag.icon = "success";
-
-
-
-            }
-
-            if (TempData["swal_message"] == "Please log in to add Feedback.")
+       if (TempData["zeropayment"] == "zeropayment")
             {
 
-                TempData["swal_message"] = "Please log in to add Feedback.";
+
+                TempData["swal_message"] = "Since no time slot has been selected, may I please request further clarification or direction on how to proceed";
                 ViewBag.title = "Warning";
                 ViewBag.icon = "warning";
-                ViewBag.redirectUrl = Url.Action("Login", "Account");
-
-            }
-
-
-            if (TempData["swal_message"] == "please Add Feedback before submit")
-            {
-                TempData["swal_message"] = "please Add Feedback before submit";
-                ViewBag.title = "Warning";
-                ViewBag.icon = "warning";
-                ViewBag.redirectUrl = Url.Action("Login", "Account");
-
-
             }
 
 
@@ -760,18 +762,14 @@ namespace mainMasterpiesce.Controllers
        
             bool flagsession = true;
 
-            //if (Session["day"] != null)
-            //{
-            //    flagsession = false;
-            //}
+          
             
           
             bool flag = false;
             if (day == null && Session["day"]!=null)
             {
 
-                //ViewBag.currentday = DateTime.Now.AddDays(count ).ToString("dd/MM/yy");
-                ////ViewBag.currentday = DateTime.Now.ToString("dddd");
+           
 
         day= Session["day"].ToString();
                 //flag = true;
@@ -781,7 +779,7 @@ namespace mainMasterpiesce.Controllers
             {
 
                 ViewBag.currentday = DateTime.Now.AddDays(count).ToString("dd/MM/yy");
-                //ViewBag.currentday = DateTime.Now.ToString("dddd");
+      
 
 
                 flag = true;
@@ -1153,30 +1151,7 @@ namespace mainMasterpiesce.Controllers
 
 
 
-        //public ActionResult AddFeedback(int doctorId, [Bind(Include = "feedbackId,doctorId,patientId,rating,comment,title, statefeedback")] feedback feedback, string ADD, string rating, string title, string yourfeedback)
-        //{
-        //    string ASPid = User.Identity.GetUserId();
-        //    var Mainid = doc.patients.FirstOrDefault(c => c.Id == ASPid).PatiantId;
-
-
-
-        //    int ratingintfeedback = Convert.ToInt32(rating);
-
-
-        //    feedback.title = title;
-        //    feedback.comment = yourfeedback;
-        //    feedback.rating = ratingintfeedback;
-        //    feedback.patientId = Mainid;
-        //    feedback.doctorId = doctorId;
-        //    feedback.feedbacktime = DateTime.Now;
-        //    feedback.statefeedback = 0;
-
-        //    using (var db = new FindingpeaceEntities())
-        //    {
-        //        db.feedbacks.Add(feedback);
-        //        db.SaveChanges();
-        //    }
-
+   
 
 
 
@@ -1205,27 +1180,28 @@ namespace mainMasterpiesce.Controllers
 
             var AspId = User.Identity.GetUserId();
 
+            var patientId=doc.patients.FirstOrDefault(c=>c.Id==AspId).PatiantId;
             var doctors = doc.doctors.Where(c => c.doctorId == id).ToList();
-
+            var patientinf=doc.patients.FirstOrDefault(c=>c.PatiantId== patientId);
+            var patientinfoo = doc.patients.Where(c => c.PatiantId == patientId).ToList();
             var appointmentt = doc.appointments.Where(c => c.doctorId == id).ToList();
             var pricedoctor = doc.doctors.FirstOrDefault(c => c.doctorId == id).pricePerHour;
-            //var patient = doc.patients.FirstOrDefault(c => c.Id == AspId).PatiantId;
-            //var doctorId = doc.doctors.FirstOrDefault(c => c.doctorId == id).doctorId;
 
+            var asppatient = doc.AspNetUsers.Where(c => c.Id == AspId).ToList();
             dynamic data = new ExpandoObject();
-
-
+        
             data.doctor = doctors;
             data.appoint = appointmentt;
 
             data.price = pricedoctor;
-            
+            data.patientinfoo= patientinfoo;
+            data.asppatient = asppatient;
             Session["doctorId"] = null;
 
             return View(data);
         }
   
-        public ActionResult ConfirmBooking(int id, [Bind(Include = "apointmentId,patientId,doctorId,starttime,endtime,doctornotes, patientnotes,apointmentprice,rating,medication,dosage,dosagefrequency,medicationinstructions,confirmappointment")] appointment appoint, string card_name)
+        public ActionResult ConfirmBooking(int id, [Bind(Include = "apointmentId,patientId,doctorId,starttime,endtime,doctornotes, patientnotes,apointmentprice,rating,medication,dosage,dosagefrequency,medicationinstructions,confirmappointment")] appointment appoint, string card_name,string acceptt)
         {
 
             string slots = Session["btnValues"].ToString();
@@ -1239,145 +1215,176 @@ namespace mainMasterpiesce.Controllers
             List<string> starttimeemaile = new List<string>();
 
             var AspId = User.Identity.GetUserId();
-
+            var patientId = doc.patients.FirstOrDefault(c => c.Id == AspId).PatiantId;
             var doctors = doc.doctors.Where(c => c.doctorId == id).ToList();
 
             var appointmentt = doc.appointments.Where(c => c.doctorId == id).ToList();
             var pricedoctor = doc.doctors.FirstOrDefault(c => c.doctorId == id).pricePerHour;
             var patient = doc.patients.FirstOrDefault(c => c.Id == AspId).PatiantId;
-            //var doctorId = doc.doctors.FirstOrDefault(c => c.doctorId == id).doctorId;
+            var patientinfoo = doc.patients.Where(c => c.PatiantId == patientId).ToList();
+            var asppatient = doc.AspNetUsers.Where(c => c.Id == AspId).ToList();
 
             dynamic data = new ExpandoObject();
 
-
+            data.patientinfoo = patientinfoo;
             data.doctor = doctors;
             data.appoint = appointmentt;
-
+            data.asppatient = asppatient;
             data.price = pricedoctor;
-            
 
-            for (int i = 0; i < (tableslots.Length)-1; i++)
+            if (acceptt != null && card_name != null && Convert.ToInt16(Session["count"]) > 0)
             {
-                appoint.patientId = patient;
-                appoint.doctorId = id;
 
-                appoint.starttime = tableslots[i].ToString();
-                starttimeemaile.Add(appoint.starttime+"/2023");
 
-                string stringtimeemail = string.Join(";", starttimeemaile);
-
-                if (!string.IsNullOrEmpty(tableslots[i]))
+                for (int i = 0; i < (tableslots.Length) - 1; i++)
                 {
-                    //string startTime = tableslots[i];
-                    //int hours = int.Parse(startTime.Substring(0, 2));
-                    //int endHours = hours + 1;
-                    //string endTime = endHours.ToString().PadLeft(2, '0') + startTime.Substring(2);
-                 
-                    if (@tableslots[i][1].ToString()==":")
-                    {
+                    appoint.patientId = patient;
+                    appoint.doctorId = id;
 
-                        int endtime = Convert.ToInt32(tableslots[i][0].ToString()) + 1;
-                        appoint.endtime = endtime.ToString() + (tableslots[i].ToString()).Substring(1, 11);
+                    appoint.starttime = tableslots[i].ToString();
+                    starttimeemaile.Add(appoint.starttime + "/2023");
 
-                    }else if (@tableslots[i][1].ToString().Contains('2'))
+                    string stringtimeemail = string.Join(";", starttimeemaile);
+
+                    if (!string.IsNullOrEmpty(tableslots[i]))
                     {
+                        //string startTime = tableslots[i];
+                        //int hours = int.Parse(startTime.Substring(0, 2));
+                        //int endHours = hours + 1;
+                        //string endTime = endHours.ToString().PadLeft(2, '0') + startTime.Substring(2);
+
+                        if (@tableslots[i][1].ToString() == ":")
+                        {
+
+                            int endtime = Convert.ToInt32(tableslots[i][0].ToString()) + 1;
+                            appoint.endtime = endtime.ToString() + (tableslots[i].ToString()).Substring(1, 11);
+
+                        }
+                        else if (@tableslots[i][1].ToString().Contains('2'))
+                        {
 
 
 
                             int endtime = 1;
-                        appoint.endtime =  (tableslots[i].ToString()).Replace("12", "1");
+                            appoint.endtime = (tableslots[i].ToString()).Replace("12", "1");
 
-                        //int endtime =1;
-                        //appoint.endtime = endtime.ToString()+ " :00 PM " + (tableslots[i].ToString()).Substring(7, 11);
+                            //int endtime =1;
+                            //appoint.endtime = endtime.ToString()+ " :00 PM " + (tableslots[i].ToString()).Substring(7, 11);
 
+                        }
+                        else
+                        {
+                            int endtime = Convert.ToInt32(tableslots[i][1].ToString()) + 1;
+
+                            if (tableslots[i][1].ToString() == "1")
+                            {
+
+                                appoint.endtime = (tableslots[i].ToString()).Replace("11", "12");
+
+                            }
+                            else if (tableslots[i][1].ToString() == "0")
+                            {
+
+
+
+                                appoint.endtime = (tableslots[i].ToString()).Replace("10", "11");
+
+                            }
+
+                        }
+
+                        // rest of your code here
                     }
-                    else 
+
+
+                    //int endtime = Convert.ToInt32((tableslots[i].ToString())[0]) + 1;
+
+                    appoint.BookingDate = DateTime.Now;
+                    appoint.confirmappointment = 0;
+                    appoint.apointmentprice = Convert.ToInt16(pricedoctor);
+
+                    var patientName = doc.patients.FirstOrDefault(c => c.Id == AspId).patientName;
+
+                    var patientemil = doc.patients.FirstOrDefault(c => c.Id == AspId).patientemail;
+
+                    using (var db = new FindingpeaceEntities1())
                     {
-                        int endtime = Convert.ToInt32(tableslots[i][1].ToString()) + 1;
-                      
-                        if (tableslots[i][1].ToString() == "1")
-                        {
-
-                            appoint.endtime = (tableslots[i].ToString()).Replace("11", "12");
-
-                        }
-                        else if(tableslots[i][1].ToString() == "0")
-                        {
+                        db.appointments.Add(appoint);
 
 
 
-                            appoint.endtime = (tableslots[i].ToString()).Replace("10", "11");
+                        TempData["swal_message"] = $"Dear-{patientName}, Your appointment has been confirmed. We look forward to seeing you soon. In the meantime, feel free to explore our website and find ways to bring more peace into your life.";
 
-                        }
+                        ViewBag.title = "success";
+                        ViewBag.icon = "success";
+                        ViewBag.redirectUrl = Url.Action("successfullyBooking", new { id = id });
 
+                        //emaiiil
+
+
+                        // Create a new MailMessage object
+                        //MailMessage mail = new MailMessage();
+
+                        //// Set the sender's email address
+                        //mail.From = new MailAddress("mosabghannam@outlook.com");
+
+                        //// Set the recipient's email address
+
+                        //mail.To.Add(patientemil);
+
+                        //// Set the subject of the email
+                        //mail.Subject = "New message from " + "Finding piece";
+
+                        //// Set the body of the email
+
+                        //mail.Body = $"Dear-{patientName}, Your appointment(s) have been confirmed for the following time(s):{stringtimeemail} . We look forward to seeing you soon. In the meantime, feel free to explore our website and find ways to bring more peace into your life.";
+                        //// Set the body format to HTML
+                        //mail.IsBodyHtml = true;
+
+                        //// Create a new SmtpClient object
+                        //SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                        //smtp.UseDefaultCredentials = false;
+                        //smtp.Credentials = new NetworkCredential("mosabghannam@outlook.com", "124816326455@Mo");
+                        //smtp.EnableSsl = true;
+
+                        //// Send the email
+                        //smtp.Send(mail);
+
+
+                        //email
+
+
+
+                        db.SaveChanges();
                     }
-                     
-                    // rest of your code here
-                }
-
-
-                //int endtime = Convert.ToInt32((tableslots[i].ToString())[0]) + 1;
-
-  appoint.BookingDate= DateTime.Now;
-                appoint.confirmappointment = 0;
-                appoint.apointmentprice = Convert.ToInt16(pricedoctor);
-
-                var patientName = doc.patients.FirstOrDefault(c => c.Id == AspId).patientName;
-
-                var patientemil = doc.patients.FirstOrDefault(c => c.Id == AspId).patientemail;
-         
-                using (var db = new FindingpeaceEntities1())
-                {
-                    db.appointments.Add(appoint);
-
-
-
-                    TempData["swal_message"] = $"Dear-{patientName}, Your appointment has been confirmed. We look forward to seeing you soon. In the meantime, feel free to explore our website and find ways to bring more peace into your life.";
-
-                    ViewBag.title = "success";
-                    ViewBag.icon = "success";
-                    ViewBag.redirectUrl = Url.Action("successfullyBooking", new { id =id });
-
-                    //emaiiil
-
-
-                    // Create a new MailMessage object
-                    //MailMessage mail = new MailMessage();
-
-                    //// Set the sender's email address
-                    //mail.From = new MailAddress("mosabghannam@outlook.com");
-
-                    //// Set the recipient's email address
-
-                    //mail.To.Add(patientemil);
-
-                    //// Set the subject of the email
-                    //mail.Subject = "New message from " + "Finding piece";
-
-                    //// Set the body of the email
-
-                    //mail.Body = $"Dear-{patientName}, Your appointment(s) have been confirmed for the following time(s):{stringtimeemail} . We look forward to seeing you soon. In the meantime, feel free to explore our website and find ways to bring more peace into your life.";
-                    //// Set the body format to HTML
-                    //mail.IsBodyHtml = true;
-
-                    //// Create a new SmtpClient object
-                    //SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
-                    //smtp.UseDefaultCredentials = false;
-                    //smtp.Credentials = new NetworkCredential("mosabghannam@outlook.com", "124816326455@Mo");
-                    //smtp.EnableSsl = true;
-
-                    //// Send the email
-                    //smtp.Send(mail);
-
-
-                    //email
-
-
-
-                    db.SaveChanges();
                 }
             }
+            else if (acceptt == null && card_name != null)
+            {
+                TempData["swal_message"] = "Please check the Terms and Conditions checkbox";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
 
+
+
+
+
+                //var patientinf = doc.patients.FirstOrDefault(c => c.PatiantId == patientId);
+
+
+
+                //ViewBag.patientName = patientinf.patientName;
+
+                //ViewBag.patientEmail = patientinf.patientemail;
+
+
+                //ViewBag.patientPhHONE = patientinf?.AspNetUser?.PhoneNumber;
+
+                //ViewBag.Patientstartdate = patientinf?.startedate.Value.ToString("dd/MM/yyyy");
+
+
+            }
+           
 
 
             return View("checkout", data);
@@ -1400,7 +1407,7 @@ namespace mainMasterpiesce.Controllers
 
 
             var AspId = User.Identity.GetUserId();
-
+            var patientId = doc.patients.FirstOrDefault(c => c.Id == AspId).PatiantId;
             var doctors = doc.doctors.Where(c => c.doctorId == id).ToList();
 
             var appointmentt = doc.appointments.Where(c => c.doctorId == id).ToList();
@@ -1483,21 +1490,22 @@ namespace mainMasterpiesce.Controllers
                 }
 
             }
-    
+
+  
 
 
 
-
-                return View(Tuple.Create(patientInfo,appointmentt));
+            return View(Tuple.Create(patientInfo,appointmentt));
         }
         [HttpPost]
 
-        public async Task<ActionResult>  Edit(int? id, [Bind(Include = "patientId,Id,locationpatent,picpatient,patientName, patientemail,startedate,wallet,Gender,Email,birthday,locationdetails")] patient patient, string userName,string Email,string city,string country,string birthday, HttpPostedFileBase profpic)
+        public async Task<ActionResult>  Edit(int? id, [Bind(Include = "patientId,Id,locationpatent,picpatient,patientName, patientemail,startedate,wallet,Gender,Email,birthday,locationdetails")] patient patient, string userName,string Email,string city,string country,string birthday,string phone, HttpPostedFileBase profpic)
         {
 
 
-           
 
+         
+            DateTime.TryParse(birthday, out DateTime parsedBirthday);
 
 
 
@@ -1509,10 +1517,10 @@ namespace mainMasterpiesce.Controllers
             var AspId= User.Identity.GetUserId();
 
             var user = doc.patients.FirstOrDefault(c => c.Id == AspId);
-            var birth=Convert.ToDateTime(birthday);
+            //var birth=Convert.ToDateTime(birthday);
             var locc = user.locationdetails.Split(',');
             user.patientName= userName;
-            user.birthday = birth;
+            user.birthday = parsedBirthday;
             locc[1] = city;
             if (country != "")
             {
@@ -1541,10 +1549,14 @@ namespace mainMasterpiesce.Controllers
 
 
 
+           user.AspNetUser.PhoneNumber= phone;
             user.locationdetails = string.Join(",", locc);
             user.Email = Email;
+            user.patientemail = Email;
             user.AspNetUser.Email = Email;
+            user.AspNetUser.UserName = Email;
             doc.Entry(user).State = EntityState.Modified;
+            TempData["editpatient"] = "editpatient";
             doc.SaveChanges();
             // continue with the method logic
             return RedirectToAction("Profilesetting", new { id = id });
@@ -1565,10 +1577,102 @@ namespace mainMasterpiesce.Controllers
             //var pricedoctor = doc.doctors.FirstOrDefault(c => c.doctorId == id).pricePerHour;
             var patient = doc.patients.FirstOrDefault(c => c.Id == AspId).PatiantId;
 
+            if (TempData["editpatient"] == "editpatient")
+            {
+                TempData["swal_message"] = "Your information has been updated successfully.";
+
+                ViewBag.title = "Information Updated";
+                ViewBag.icon = "success";
+
+
+
+            }
 
             return View(Tuple.Create(patientInfo, appointmentt));
         }
 
+        //   [HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<PartialViewResult> _Oprofileuser(ChangePasswordViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
+        //    var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+        //    if (result.Succeeded)
+        //    {
+        //        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //        if (user != null)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //        }
+        //        return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+        //    }
+        //    AddErrors(result);
+        //    return View(model);
+        //}
+
+        public ActionResult ChangePass()
+        {
+            TempData["swal_message"] = "changed Successfully";
+
+            
+
+
+
+
+
+
+
+            return RedirectToAction("ChangePasswordpatient");
+        }
+        public ActionResult errorpass()
+        {
+            TempData["swal_message"] = "errorpass";
+
+
+
+            return RedirectToAction("ChangePasswordpatient");
+        }
+
+
+        public ActionResult ChangePasswordpatient()
+        {
+            if(TempData["swal_message"] == "changed Successfully")
+            {
+
+                TempData["swal_message"] = "You are Password has been changed Successfully";
+
+                ViewBag.title = "Information Updated";
+                ViewBag.icon = "success";
+            }
+
+            if (TempData["swal_message"] == "errorpass")
+            {
+
+                TempData["swal_message"] = "Unfourtunitly there is something wrong please try again";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+            }
+
+
+
+            var AspId = User.Identity.GetUserId();
+            var patientId = doc.patients.FirstOrDefault(c => c.Id == AspId).PatiantId;
+            //var doctors = doc.doctors.Where(c => c.doctorId == id).ToList();
+            var patientInfo = doc.patients.Where(c => c.Id == AspId).ToList();
+            var appointmentt = doc.appointments
+                          .Where(c => c.patientId == patientId)
+                          .OrderBy(c => c.starttime)
+                          .ToList();
+            //var pricedoctor = doc.doctors.FirstOrDefault(c => c.doctorId == id).pricePerHour;
+            var patient = doc.patients.FirstOrDefault(c => c.Id == AspId).PatiantId;
+
+
+
+           return View(Tuple.Create(patientInfo, appointmentt));
+        }
 
         public ActionResult FeedBackWEBsite( [Bind(Include = "id,patientId,name,email,message,created_at")]  feedbackwebsite feedbackk, string massage, string add, string title, string yourfeedback)
         {

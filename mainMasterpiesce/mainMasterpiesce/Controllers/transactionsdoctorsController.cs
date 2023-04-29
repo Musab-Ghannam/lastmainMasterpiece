@@ -149,31 +149,25 @@ namespace mainMasterpiesce.Controllers
 
 
             }
-            var checktime = db.transactionsdoctors.OrderBy(c=>c.Tansactiontime).FirstOrDefault();
-
-            if(checktime != null)
+            //var checktime = db.transactionsdoctors.OrderBy(c=>c.Tansactiontime).FirstOrDefault();
+            var checktime = db.transactionsdoctors.OrderByDescending(c=>c.Tansactiontime).FirstOrDefault();
+            if (checktime != null)
             {
 
                 TimeSpan? timeDifference = DateTime.Now - checktime.Tansactiontime;
-                ViewBag.DEFER = timeDifference.Value.Days + timeDifference.Value.Hours / 24;
-            }
-if (ViewBag.DEFER >= 7)
-            {
-                ViewBag.welc = "ok";
-            }
-            else
-            {
-                ViewBag.welc = "No";
+                ViewBag.DEFER = timeDifference.Value.Days + (timeDifference.Value.Hours / 24);
 
+                ViewBag.exact = checktime.Tansactiontime.Value.Date.ToString("dd/MM/yyyy");
             }
+
 
 
 
                 if (Send != null)
             {
 
-
-
+                TempData["list"] = "rejectlisttrans";
+               
                 int countapoint = 0;
 
 
@@ -183,8 +177,31 @@ if (ViewBag.DEFER >= 7)
                  .Select(g => new { DoctorId = g.Key, TotalAppointmentPrice = g.Sum(a => a.apointmentprice) })
                  .ToList();
 
+
+                if (countapoint > 0 && ViewBag.DEFER < 7)
+                {
+                    TempData["list"] = "Rejectlist";
+                    TempData["swal_message"] = "Please note that transactions can only be initiated after a minimum of 7 days from your last transaction for optimal care. Thank you for your understanding.";
+                    ViewBag.title = "Warning";
+                    ViewBag.icon = "warning";
+                    
+
+               
+
+
+                }
+
+
                 foreach (var appointment in doctorAppointmentSum)
                 {
+                    if (ViewBag.DEFER < 7)
+                    {
+                        break;
+                    }
+
+
+
+
                     countapoint++;
                     var transaction = db.transactionsdoctors
                         .SingleOrDefault(t => t.status == "1" && t.doctorId == appointment.DoctorId);
@@ -198,15 +215,31 @@ if (ViewBag.DEFER >= 7)
 
                     var appconfirm = db.appointments.Where(c => c.confirmappointment == 1).ToList();
 
+
+
+
+
+
+
                     foreach (var item in appconfirm)
                     {
+                      
+
+
                         item.confirmappointment = 2;
 
                     }
 
 
                 }
-                if (countapoint > 0)
+
+
+
+
+
+
+
+                if (countapoint > 0&& ViewBag.DEFER>=7)
                 {
 
                     TempData["swal_message"] = $" We are delighted to inform you that the transaction for the doctors has been successfully completed. Thank you for your cooperation and promptness in this process";
@@ -217,13 +250,15 @@ if (ViewBag.DEFER >= 7)
 
                     db.SaveChanges();
                 }
-                else
+                else if(countapoint ==0)
                 {
                     TempData["swal_message"] = "We would like to inform you that there are no pending transactions to be sent at this time. If you have any questions or require further assistance, please do not hesitate to contact us. Thank you for your attention to this matter";
                     ViewBag.title = "Warning";
                     ViewBag.icon = "warning";
 
                 }
+
+     
 
            
 
@@ -268,18 +303,18 @@ if (ViewBag.DEFER >= 7)
         public ActionResult Acceptlist([Bind(Include = "status")] transactionsdoctor transacytiondoc, string Accept)
         {
 
-            TempData["list"] = "Acceptlist";
+            TempData["list"] = "Acceptlisttrans";
 
-            return RedirectToAction("DoctorTransaction", new { listType = "Acceptlist" });
+            return RedirectToAction("DoctorTransaction", new { listType = "Acceptlisttrans" });
 
         }
         public ActionResult Rejectlist([Bind(Include = "status")] transactionsdoctor transactiondoc, string Accept)
         {
 
-            TempData["list"] = "Rejectlist";
+            TempData["list"] = "Rejectlisttrans";
 
 
-            return RedirectToAction("DoctorTransaction", new { listType = "rejectlist" });
+            return RedirectToAction("DoctorTransaction", new { listType = "rejectlisttrans" });
 
 
         }

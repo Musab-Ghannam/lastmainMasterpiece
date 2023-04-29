@@ -1,4 +1,7 @@
-﻿@model mainMasterpiesce.Models.RegisterViewModel
+﻿
+
+
+@model mainMasterpiesce.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
     Layout = null;
@@ -11,6 +14,29 @@
     <script src="https://kit.fontawesome.com/cd43dd9542.js" crossorigin="anonymous"></script>
     <link href="~/Content/css/signup.css" rel="stylesheet" />
     <style>
+        .file-input-label {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #f2f2f2;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+
+            .file-input-label i {
+                margin-right: 8px;
+                font-size: 14px;
+            }
+
+        #file-name {
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 14px;
+            color: #666;
+        }
 
         #navbar {
             z-index: 1000000;
@@ -154,10 +180,10 @@
 
                                 <div class="info">
                                     <label>Your Name</label>
-                                    <input type="text" id="lname" name="lname" required class="now">
+                                    <input type="text" id="lname" name="lname" required class="now" oninput="UserName(this)">
 
                                 </div>
-
+                                <p id="error_message3" style="color:red;font-size:17px"></p>
                                 <div class="info">
 
                                     <label>E-mail Address</label>
@@ -176,10 +202,11 @@
                                 <div class="info">
                                     <label>phone Number</label>
                                     <div class="lock">
-                                        <input type="text" id="phone" name="phone" class="now">
+                                        <input type="text" id="phone" name="phone" class="now" required oninput="CardName(this)">
                                         <i class="fa-solid fa-mobile-screen"></i>
                                     </div>
                                 </div>
+                                <p id="error_phone" style="color:red;font-size:18px"></p>
                                 <div class="info">
                                     <label>Password</label>
 
@@ -207,7 +234,10 @@
                                     <label>Birthday</label>
 
                                     <div class="lock">
-                                        <input type="date" class="Email-address" id="birthdate" name="birthdate" />
+                                        <input type="date" class="Email-address" id="birthdate" name="birthdate" oninput="limitingage(this)"/>
+
+                                 
+
 
 
 
@@ -215,12 +245,12 @@
 
 
                                 </div>
-
+                                <p id="error_message2" style="color:red;font-weight:normal;font-size:16px"></p>
                                 <div class="info">
                                     <label>Country</label>
 
                                     <div class="lock">
-                                     
+
 
                                         <select id="countriesDropdown" class="Email-address" name="country"></select>
 
@@ -233,14 +263,14 @@
                                     <label>City</label>
 
                                     <div class="lock">
-                                        <input type="text" class="Email-address" id="city" name="city" placeholder="" />
+                                        <input type="text" class="Email-address" id="city" name="city" placeholder=""  oninput="UserName(this)"/>
 
 
                                     </div>
 
 
                                 </div>
-
+                                <p id="error_city" style="color:red;font-size:17px"></p>
 
                                 @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
 
@@ -250,7 +280,7 @@
                                         <label>Gender: </label>
 
                                         <div class="lock">
-                                            <input type="radio" id="male" name="male" value="male">
+                                            <input type="radio" id="male" name="male" value="male" required>
                                             <label for="male">Male</label>
                                             <input type="radio" id="female" name="male" value="female">
                                             <label for="female">Female</label>
@@ -260,7 +290,13 @@
                                     </div>
 
                                     <div class="lock">
-                                        <input type="file" name="pic" style="border:none" id="pic" />
+                                        @*<input type="file" name="pic" style="border:none" id="pic" required />*@
+                                        <label for="pic" class="file-input-label">
+                                            <i class="fas fa-upload fa-sm"></i>
+                                            <span>Select a photo</span>
+                                        </label>
+                                        <input type="file" accept="image/*" name="pic" style="display:none" id="pic" required />
+                                        <p id="file-name"></p>
 
 
 
@@ -269,23 +305,6 @@
 
 
 
-                                @*<div class="info">
-                <div>
-                    <label>Gender: </label>
-
-                    <div class="lock">
-                        <input type="radio" id="male" name="male" value="male">
-                        <label for="male">Male</label>
-                        <input type="radio" id="female" name="male" value="female">
-                        <label for="female">Female</label>
-                    </div>
-
-
-                </div>
-
-                <input type="file" name="pic" style="border:none" />
-
-            </div>*@
 
 
                                 <div class="sub" style="margin-top:-30px">
@@ -299,7 +318,7 @@
                                 already have an acount?<a href="Login" id="whats">  Login</a>
                             </div>
                             <p id="already-registered">you already registered</p>
-        
+
 
 
                         </div>
@@ -360,25 +379,135 @@
 
         if (selectedCountryHref) {
             // Populate the cities dropdown list for the selected country
-         fetch(selectedCountryHref + 'cities/')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // log the data to the console
-    // Loop through the list of cities and add each city name to the dropdown list
-    data._embedded['city:search-results'].forEach(city => {
-      const option = document.createElement('option');
-      option.value = city.href;
-      option.text = city.name;
-      citiesDropdown.appendChild(option);
+            fetch(selectedCountryHref + 'cities/')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // log the data to the console
+                    // Loop through the list of cities and add each city name to the dropdown list
+                    data._embedded['city:search-results'].forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city.href;
+                        option.text = city.name;
+                        citiesDropdown.appendChild(option);
+                    });
+                })
+                .catch(error => console.error(error));
+        }
     });
-  })
-  .catch(error => console.error(error));
+    function limitingage(input) {
+        var birthdate = new Date(input.value);
+        var year = birthdate.getFullYear();
+
+        if (isNaN(year)) {
+            // Clear the error message and enable the submit button
+            document.getElementById("error_message2").textContent = "";
+            document.getElementById("reg").disabled = false;
+            return;
+        }
+
+        if (year < 1950 || year >= 2005) {
+            // Disable the submit button
+            document.getElementById("reg").disabled = true;
+            // Display an error message
+            document.getElementById("error_message2").textContent = "The age should be more than 18 years old.";
+        } else {
+            // Enable the submit button
+            document.getElementById("reg").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message2").textContent = "";
+        }
+    }
+
+    function UserName(input) {
+
+        if (input.value.length > 12) {
+            input.value = input.value.slice(0, 9);
+        }
+        if (input.value.length < 4) {
+            // Disable the submit button
+            document.getElementById("reg").disabled = true;
+            // Or display an error message
+            document.getElementById("error_message3").textContent = "this field should be at least 4 CHARACHTERS.";
+        } else {
+            // Enable the submit button
+            document.getElementById("reg").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message3").textContent = "";
+        }
+    }
+
+
+
+
+    function UserName(input) {
+
+        if (input.value.length > 20) {
+            input.value = input.value.slice(0, 9);
+        }
+        if (input.value.length < 4) {
+            // Disable the submit button
+            document.getElementById("reg").disabled = true;
+            // Or display an error message
+            document.getElementById("error_city").textContent = "this field should be at least 4 CHARACHTERS.";
+        } else {
+            // Enable the submit button
+            document.getElementById("reg").disabled = false;
+            // Clear the error message
+            document.getElementById("error_city").textContent = "";
+        }
+    }
+
+    function CardName(input) {
+
+        if (input.value.length > 17) {
+            input.value = input.value.slice(0, 17);
+        }
+        if (isNaN(input.value)) {
+            // Prevent non-numeric characters from being entered
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        if (input.value.length < 10) {
+            // Disable the submit button
+            document.getElementById("reg").disabled = true;
+            // Or display an error message
+            document.getElementById("error_phone").textContent = "this field should be at least 10 digits";
+        } else {
+            // Enable the submit button
+            document.getElementById("reg").disabled = false;
+            // Clear the error message
+            document.getElementById("error_phone").textContent = "";
+        }
+    }
+
+
+
+
+    const fileInput = document.getElementById('pic');
+    const fileNameDisplay = document.getElementById('file-name');
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        fileNameDisplay.textContent = file.name;
+        const fileType = file.type;
+        const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+
+        if (!acceptedImageTypes.includes(fileType)) {
+            alert('Please select an image file (GIF, JPEG, or PNG)');
+            fileNameDisplay.textContent = '';
+            fileInput.value = '';
         }
     });
 
 
-    
 
+
+
+    //const fileInput = document.getElementById("pic");
+    //const fileName = document.getElementById("file-name");
+
+    //fileInput.addEventListener("change", function (event) {
+    //    const file = event.target.files[0];
+    //    fileName.textContent = file.name;
+    //});
 </script>
 
 

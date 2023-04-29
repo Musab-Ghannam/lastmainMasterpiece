@@ -57,7 +57,7 @@
                                             <div style="">
 
 
-                                                <select class="form-control" id="specializationsearch" name="specializationId">
+                                                <select class="form-control" id="specializationsearch" name="specializationId" required>
                                                     <option name="specializationId" value="@Model.Specializations[0].specializationId">-- Select a specialization --</option>
 
                                                     @foreach (var specialization in Model.Specializations)
@@ -75,52 +75,62 @@
                                             </div>
                                             <div style="width:47%">
 
-                                                <input name="edu" type="text" placeholder="your education" class="form-control" style="text-align:center;" required />
+                                                <input name="edu" type="text" placeholder="your education" class="form-control" style="text-align:center;" required oninput="education(this)" />
 
 
-                                                @*@Html.ValidationMessageFor(model => model.IBAN, "", new { @class = "text-danger" })*@
+                                                @*@Html.ValidationMessageFor(model => Model.doc[0].IBAN, "", new { @class = "text-danger" })*@
 
 
                                             </div>
 
                                         </div>
+
+                                        <p id="error_messageed" style="color:darkred"></p>
                                         <div style="display:flex;justify-content:space-between">
 
-                                            <input type="text" name="location" placeholder="Address" class="form-control" style="text-align:center;width:47%;margin-top:20px" required />
+                                            <input type="text" name="location" placeholder="Address" class="form-control" style="text-align:center;width:47%;margin-top:20px" required oninput="AddressInput(this)" />
                                             <input type="text" name="locationLink" placeholder="location_Link " class="form-control" style="text-align:center;width:47%;margin-top:20px" required />
 
 
                                         </div>
+                                        <p id="error_messageAddrees" style="color:darkred"></p>
                                         <div style="display:flex;justify-content:space-between">
 
-                                            <input type="number" name="price" placeholder="price per hour" class="form-control" style="text-align:center;width:47%;margin-top:30px" required />
-                                            <input type="text" name="qualif" placeholder="qualification " class="form-control" style="text-align:center;width:47%;margin-top:30px" required />
-
-
-                                        </div>
-                                        <div style="display:flex;justify-content:space-between">
-
-                                            <input type="text" name="Iban" placeholder="IBAN" class="form-control" style="text-align:center;width:47%;margin-top:30px" required />
-                                            <input type="number" name="exp" placeholder="number of experience" class="form-control" style="text-align:center;width:47%;margin-top:30px" required />
-
-
-                                        </div>
-                                        <div style="display:flex;justify-content:space-between">
-
-                                            <input type="text" name="University" placeholder="University" class="form-control" style="text-align:center;width:47%;margin-top:30px" required />
-                                            <input type="text" name="yeargrad" placeholder="Year of graduted" class="form-control" style="text-align:center;width:47%;margin-top:30px" required />
+                                            <input type="number" name="price" placeholder="price per hour" class="form-control" style="text-align:center;width:47%;margin-top:30px" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" />
+                                            <input type="text" name="qualif" placeholder="qualification " class="form-control" style="text-align:center;width:47%;margin-top:30px" required oninput="qualificInput(this)" />
 
 
                                         </div>
 
+                                        <p id="error_messagequalific" style="color:darkred"></p>
                                         <div style="display:flex;justify-content:space-between">
 
-                                            <textarea name="info" placeholder="tell me about you" class="form-control" style="text-align:center;align-items:center;margin-top:35px;display:flex;justify-content:center" rows="4" required></textarea>
+                                            <input type="text" name="Iban" placeholder="IBAN" class="form-control" style="text-align:center;width:47%;margin-top:30px" required oninput="handleSearchInput(this)" />
+
+
+                                            <input type="number" name="exp" placeholder="number of experience" class="form-control" style="text-align:center;width:47%;margin-top:30px" required oninput="handleexpireInput(this)" />
+
+
+                                        </div>
+                                        <p id="error_message" style="color:darkred"></p>
+                                        <p id="error_message1" style="color:darkred"></p>
+                                        <div style="display:flex;justify-content:space-between">
+
+                                            <input type="text" name="University" placeholder="University" class="form-control" style="text-align:center;width:47%;margin-top:30px" required oninput="universityInput(this)" />
+                                            <input type="text" name="yeargrad" placeholder="Year of graduted" class="form-control" style="text-align:center;width:47%;margin-top:30px" required oninput="year(this)" />
+
+
+                                        </div>
+                                        <p id="error_messageuniv" style="color:darkred"></p>
+                                        <p id="error_messageyear" style="color:darkred"></p>
+                                        <div style="display:flex;justify-content:space-between">
+
+                                            <textarea name="info" placeholder="tell me about you" class="form-control" style="text-align:center;align-items:center;margin-top:35px;display:flex;justify-content:center" rows="4" required oninput="yourself(this)"></textarea>
 
 
 
                                         </div>
-
+                                        <p id="error_messageyou" style="color:darkred"></p>
                                         <div class="col-md-6 mb-3">
 
                                             <div class="form-outline">
@@ -171,7 +181,7 @@
                                                 </h6>
                                                 <div class="col-md-10">
                                                     <label>Personal Id</label>
-                                                    <input type="file" name="PersonalIdFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                                    <input type="file" name="PersonalIdFile1" id="PersonalIdFile1"  class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
                                                     @*<input type="file" name="Pic1" class="form-control-file" accept="image/*" required />*@
                                                     @*@Html.EditorFor(model => model.Pic, new { htmlAttributes = new { @class = "form-control" } })*@
                                                     @*@Html.ValidationMessageFor(model => model.Pic, "", new { @class = "text-danger" })*@
@@ -186,7 +196,10 @@
                                                 </h6>
                                                 <div class="col-md-10">
                                                     <label>Certification</label>
-                                                    <input type="file" name="Certification" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+
+                                                    @*<input type="file" name="Certification" class="form-control-file" id="certification" required />*@
+
+                                                    <input type="file" name="Certification" class="form-control-file" id="certification" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
                                                     @*@Html.ValidationMessageFor(model => model.PersonalIdFile, "", new { @class = "text-danger" })*@
                                                 </div>
 
@@ -205,7 +218,7 @@
                                                 </h6>
                                                 <div class="col-md-10">
                                                     <label>Birth file</label>
-                                                    <input type="file" name="BirthFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                                    <input type="file" name="BirthFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
                                                     @*@Html.ValidationMessageFor(model => model.CertificateFile, "", new { @class = "text-danger" })*@
                                                 </div>
 
@@ -218,7 +231,7 @@
                                                 </h6>
                                                 <div class="col-md-10">
                                                     <label>Experience </label>
-                                                    <input type="file" name="ExperienceFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                                    <input type="file" name="ExperienceFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
                                                     @*@Html.ValidationMessageFor(model => model.BirthFile, "", new { @class = "text-danger" })*@
                                                 </div>
 
@@ -244,13 +257,14 @@
                                     </div>
                                     <div class="d-flex justify-content-end pt-3">
                                         <div class=" col-md-6">
-                                            <input type="submit" value="Submit" class="btn button11 btn-lg col-md-6" style="background-color:#20BBBD" />
+                                            <input type="submit" value="Submit" class="btn button11 btn-lg col-md-6" style="background-color:#20BBBD" id="submit_button"/>
                                         </div>
                                         @*<input type="submit" value="Submit" class="btn btn-light btn-lg col-md-6" />*@
-                                        <div class=" col-md-6">
-                                            <a href="/mainHome/Index" class="btn button11 btn-lg" style="color: black; background-color: #20BBBD; ">Home</a>
-                                            @*@Html.ActionLink("Home", "Index", new {@class="btn btn-light btn-lg"})*@
-                                        </div>
+                                    <div class=" col-md-6">
+                                        <a href="/mainHome/Index" class="btn button11 btn-lg" style="color: black; background-color: #20BBBD; ">Home</a>
+
+                                      
+                                    </div>
 
                                     </div>
 
@@ -281,3 +295,239 @@
     }
 
 }
+<script>
+
+
+    function handleSearchInput(input) {
+        if (input.value.length > 24) {
+            input.value = input.value.slice(0, 16);
+        }
+     
+        if (input.value.length < 23) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_message").textContent = "IBan should be at least 23 digits.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message").textContent = "";
+        }
+    }
+    function AddressInput(input) {
+        if (input.value.length > 15) {
+            input.value = input.value.slice(0, 16);
+        }
+        if (/\d|\-|\./.test(input.value)) {
+            // Prevent non-alphabetic characters from being entered
+            input.value = input.value.replace(/[\d\-\.]/g, '');
+        }
+        if (input.value.length < 4) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_messageAddrees").textContent = "Addrees should be at least 4 digits.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_messageAddrees").textContent = "";
+        }
+    }
+    function qualificInput(input) {
+        if (input.value.length > 20) {
+            input.value = input.value.slice(0, 20);
+        }
+        if (/\d|\-|\./.test(input.value)) {
+            // Prevent non-alphabetic characters from being entered
+            input.value = input.value.replace(/[\d\-\.]/g, '');
+        }
+        if (input.value.length < 4) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_messagequalific").textContent = "qualification  should be at least 4 digits.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_messagequalific").textContent = "";
+        }
+    }
+
+
+    function universityInput(input) {
+        if (input.value.length > 20) {
+            input.value = input.value.slice(0, 20);
+        }
+        if (/\d|\-|\./.test(input.value)) {
+            // Prevent non-alphabetic characters from being entered
+            input.value = input.value.replace(/[\d\-\.]/g, '');
+        }
+        if (input.value.length < 4) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_messageuniv").textContent = "University  should be at least 4 charachters.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_messageuniv").textContent = "";
+        }
+    }
+    function handleexpireInput(input) {
+        if (input.value.length > 2) {
+            input.value = input.value.slice(0, 2);
+        }
+        if (isNaN(input.value)) {
+            // Prevent non-numeric characters from being entered
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        //if (input.value.length < 2) {
+        //    // Disable the submit button
+        //    document.getElementById("submit_button").disabled = true;
+        //    // Or display an error message
+        //    document.getElementById("error_message1").textContent = "experience should be at least 2 digits.";
+        //} else {
+        //    // Enable the submit button
+        //    document.getElementById("submit_button").disabled = false;
+        //    // Clear the error message
+        //    document.getElementById("error_message1").textContent = "";
+        //}
+    }
+    function education(input) {
+        if (input.value.length > 10) {
+            input.value = input.value.slice(0, 10);
+        }
+        if (/\d|\-|\./.test(input.value)) {
+            // Prevent non-alphabetic characters from being entered
+            input.value = input.value.replace(/[\d\-\.]/g, '');
+        }
+        if (input.value.length < 5) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_messageed").textContent = "Education should be at least 5 characters.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_messageed").textContent = "";
+        }
+    }
+
+    function handleexpireInput(input) {
+        if (input.value.length > 2) {
+            input.value = input.value.slice(0, 2);
+        }
+        if (isNaN(input.value)) {
+            // Prevent non-numeric characters from being entered
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        if (input.value.length < 2) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_message1").textContent = "Expiration date should be at least 2 digits.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_message1").textContent = "";
+        }
+    }
+
+
+    function year(input) {
+
+        if (input.value.length > 4) {
+            input.value = input.value.slice(0, 4);
+        }
+        if (isNaN(input.value)) {
+
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+        if (input.value.length < 4 || input.value > 2018 || input.value < 1965 ) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_messageyear").textContent = "the year should be at least 4 digits and should be between 1965 and 2018.";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_messageyear").textContent = "";
+        }
+    }
+
+
+    function yourself(input) {
+        if (input.value.length > 250) {
+            input.value = input.value.slice(0, 250);
+        }
+
+        if (input.value.length < 40) {
+            // Disable the submit button
+            document.getElementById("submit_button").disabled = true;
+            // Or display an error message
+            document.getElementById("error_messageyou").textContent = "this field should be at least 40 charachters and maximum 250 charachters";
+        } else {
+            // Enable the submit button
+            document.getElementById("submit_button").disabled = false;
+            // Clear the error message
+            document.getElementById("error_messageyou").textContent = "";
+        }
+    }
+
+
+
+
+
+    // Get the file input element
+    const certificationInput = document.getElementById("certification");
+
+    // Add an event listener to the input element
+    certificationInput.addEventListener("change", function () {
+        // Get the selected file
+        const file = certificationInput.files[0];
+
+        // Get the file type
+        const fileType = file.type;
+
+        // Check if the file type is not pdf or doc or docx
+        if (fileType !== "application/pdf" && fileType !== "application/msword" && fileType !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            // Alert the user
+            alert("Only PDF, DOC, and DOCX files are allowed.");
+
+            // Clear the file input
+            certificationInput.value = "";
+        }
+    });
+
+    var fileInput = document.querySelector('.form-control-file');
+    // Add an event listener to the input element
+    fileInput.addEventListener("change", function () {
+        // Get the selected file
+        const file = fileInput.files[0];
+
+        // Get the file type
+        const fileType = file.type;
+
+        // Check if the file type is not pdf or doc or docx
+        if (fileType !== "application/pdf" && fileType !== "application/msword" && fileType !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+            // Alert the user
+            alert("Only PDF, DOC, and DOCX files are allowed.");
+
+            // Clear the file input
+            fileInput.value = "";
+        }
+    });
+
+
+
+
+
+
+</script>

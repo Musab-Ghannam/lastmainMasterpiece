@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <div class="change-avatar">
                                 <div class="profile-img">
-                                    <img src="~/Content/images/@Model.Item1[0].picdoctor" alt="User Image">
+                                    <img src="@Url.Content(@Model.Item1[0].picdoctor)" alt="User Image">
 
                                 </div>
                                 <div class="upload-img">
@@ -129,24 +129,24 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label">State / Province</label>
                             <input type="text" class="form-control">
                         </div>
-                    </div>
+                    </div>*@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label">Country</label>
                             <input type="text" class="form-control" name="country" value="@Model.Item1[0].locationdoctor.Split('_')[0].Split(',')[1]">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label">Postal Code</label>
                             <input type="text" class="form-control">
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -220,19 +220,19 @@
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label>Degree</label>
-                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[0]">
+                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[0]" name="Degree">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label>College/Institute</label>
-                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[1]">
+                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[1]" name="college">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="form-group">
                                         <label>Year of Completion</label>
-                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[2]">
+                                        <input type="text" class="form-control" value="@Model.Item1[0].educationdetails.Split('_')[2]" name="yeargrad">
                                     </div>
                                 </div>
                             </div>

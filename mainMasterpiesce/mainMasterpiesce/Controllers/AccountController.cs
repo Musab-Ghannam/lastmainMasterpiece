@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-
+using Lw;
 
 namespace mainMasterpiesce.Controllers
 {
@@ -65,7 +65,20 @@ namespace mainMasterpiesce.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (TempData["waitt"] == "wait")
+            {
+
+                TempData["swal_message"] = $"You cannot block this doctor. To block a doctor, they must have more than 10 appointments with a rating less than 2. Please try again.";
+                ViewBag.title = "warning";
+                ViewBag.icon = "warning";
+                ViewBag.massagee = "You cannot block this doctor. To block a doctor, they must have more than 10 appointments with a rating less than 2. Please try again.";
+              return View();
+
+            }
             ViewBag.ReturnUrl = returnUrl;
+         
+
+
             return View();
         }
 
@@ -80,11 +93,26 @@ namespace mainMasterpiesce.Controllers
             {
                 return View(model);
             }
-
+          
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             var user = await UserManager.FindByEmailAsync(model.Email);
+
+            //test
+           if(user != null && await UserManager.IsInRoleAsync(user.Id, "doctor") && user.EmailConfirmed && !user.PhoneNumberConfirmed)
+            {
+                TempData["waitt"] = "wait";
+                return RedirectToAction("Login", "Account");
+
+            }
+
+            if (user.EmailConfirmed)
+            {//send all info about this doctor
+
+            }
+
+        
             switch (result)
             {
                 case SignInStatus.Success:
@@ -94,8 +122,13 @@ namespace mainMasterpiesce.Controllers
                     {
                         return RedirectToAction("Index", "appointments");
                     }
+                    //if (user != null && await UserManager.IsInRoleAsync(user.Id, "doctor") && user.EmailConfirmed&& !user.PhoneNumberConfirmed)
+                    //{
 
-                    if (user != null && await UserManager.IsInRoleAsync(user.Id, "doctor"))
+
+                    //    return RedirectToAction("Login", "Account");
+                    //}
+                    if (user != null && await UserManager.IsInRoleAsync(user.Id, "doctor")&& !user.EmailConfirmed&& !user.PhoneNumberConfirmed)
                     {
                         return RedirectToAction("EnrollDoctor", "DoctorEnrolling");
                     }
@@ -406,10 +439,20 @@ namespace mainMasterpiesce.Controllers
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
+
+
+
+
+
+
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? View("Error") : View();
+            return code == null ? View("Error") : View("ResetPassword", new ResetPasswordViewModel { Code = code });
+
+
         }
+
+
 
         //
         // POST: /Account/ResetPassword
@@ -559,9 +602,13 @@ namespace mainMasterpiesce.Controllers
             return View(model);
         }
 
-        public ActionResult LogOfff()
+        public ActionResult LogOfff(int? w)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            if (w!=null)
+            {//if doctor waiting accept
+                return RedirectToAction("Login", "Account");
+            }
             return RedirectToAction("Index", "mainHome");
         }
         // POST: /Account/LogOff

@@ -11,7 +11,8 @@ namespace mainMasterpiesce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class doctor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,11 +27,14 @@ namespace mainMasterpiesce.Models
     
         public int doctorId { get; set; }
         public string Id { get; set; }
+    
         public string locationdoctor { get; set; }
+
         public string doctorName { get; set; }
         public string email { get; set; }
         public string phoneNumber { get; set; }
         public string qualiification { get; set; }
+
         public string specialization { get; set; }
         public Nullable<System.DateTime> startedate { get; set; }
         public string idCardfile { get; set; }
@@ -48,6 +52,7 @@ namespace mainMasterpiesce.Models
         public Nullable<double> ratingdoctor { get; set; }
         public Nullable<int> ratingint { get; set; }
         public string experience { get; set; }
+
         public Nullable<System.DateTime> birthday { get; set; }
         public string addresss { get; set; }
         public string educationdetails { get; set; }

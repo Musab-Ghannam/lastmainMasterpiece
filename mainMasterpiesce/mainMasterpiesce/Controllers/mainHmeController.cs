@@ -70,8 +70,16 @@ namespace mainMasterpiesce.Controllers
 
 
             }
+            if (TempData["swal_message"] == "We are soryy you can not Add Feedback beacause you are Adminstration")
+            {
 
 
+                TempData["swal_message"] = "We are soryy you can not Add Feedback beacause you are Adminstration";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+            }
+       
 
             var feedbacks = doct.feedbackwebsites.ToList();
 
@@ -120,34 +128,42 @@ namespace mainMasterpiesce.Controllers
         [HttpPost]
         public ActionResult SendEmail(string name, string email, string phone, string message)
         {
-            // Create a new MailMessage object
-            MailMessage mail = new MailMessage();
+            try
+            {
+                // Create a new MailMessage object
+                MailMessage mail = new MailMessage();
 
-            // Set the sender's email address
-            mail.From = new MailAddress("mosabg613@outlook.com");
+                // Set the sender's email address
+                mail.From = new MailAddress("mosabg613@outlook.com");
 
-            // Set the recipient's email address
+                // Set the recipient's email address
 
-            string emaill= "mosabg613@gmail.com";
-            mail.To.Add(emaill);
+                string emaill = "mosabg613@gmail.com";
+                mail.To.Add(emaill);
 
-            // Set the subject of the email
-            mail.Subject = "New message from " + name;
+                // Set the subject of the email
+                mail.Subject = "New message from " + name;
 
-            // Set the body of the email
-            mail.Body ="Email: "+email+ "<br><br>"+ "Phone: " + phone + "<br><br>" + message;
+                // Set the body of the email
+                mail.Body = "Email: " + email + "<br><br>" + "Phone: " + phone + "<br><br>" + message;
 
-            // Set the body format to HTML
-            mail.IsBodyHtml = true;
+                // Set the body format to HTML
+                mail.IsBodyHtml = true;
 
-            // Create a new SmtpClient object
-            SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("mosabg613@outlook.com", "124816326455@Mo");
-            smtp.EnableSsl = true;
+                // Create a new SmtpClient object
+                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("mosabg613@outlook.com", "124816326455@Mo");
+                smtp.EnableSsl = true;
 
-            // Send the email
-            smtp.Send(mail);
+                // Send the email
+                smtp.Send(mail);
+            }
+            catch (SmtpException ex)
+            {
+
+
+            }
             TempData["swal_message"] = "Thank You for your feedback";
             // Redirect the user to a confirmation page
             return RedirectToAction("ConTact");
@@ -156,14 +172,15 @@ namespace mainMasterpiesce.Controllers
       
         public ActionResult About()
         {
-     
+            var feedbacks = doct.feedbackwebsites.ToList();
 
-       
+            var specilization = doct.specializations.ToList();
+
+            var doctors = doct.doctors.ToList();
 
 
 
-
-            return View();
+            return View(Tuple.Create(doctors, specilization, feedbacks));
         }
 
         public ActionResult test()
@@ -187,7 +204,14 @@ namespace mainMasterpiesce.Controllers
             string beforlast = segments[segments.Length - 2];
             ViewBag.Last = lastSegment;
             ViewBag.befLast = beforlast;
+            if (User.IsInRole("Admin"))
+            {
 
+                TempData["swal_message"] = "We are soryy you can not Add Feedback beacause you are Adminstration";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+            }
 
             if (User.IsInRole("doctor"))
             {
@@ -207,6 +231,12 @@ namespace mainMasterpiesce.Controllers
                     using (var db = new FindingpeaceEntities1())
                     {
                         db.feedbackwebsites.Add(feedbackk);
+
+
+                        TempData["swal_message"] = "Thank You for your feedback";
+                        ViewBag.title = "Warning";
+                        ViewBag.icon = "warning";
+                    
                         db.SaveChanges();
 
 
@@ -255,7 +285,7 @@ namespace mainMasterpiesce.Controllers
                         TempData["swal_message"] = "Thank You for your feedback";
                         ViewBag.title = "Warning";
                         ViewBag.icon = "warning";
-                        ViewBag.redirectUrl = Url.Action("Login", "Account");
+         
 
 
 
@@ -280,7 +310,7 @@ namespace mainMasterpiesce.Controllers
 
 
             }
-            else
+            else if(!User.Identity.IsAuthenticated) 
             {
 
 

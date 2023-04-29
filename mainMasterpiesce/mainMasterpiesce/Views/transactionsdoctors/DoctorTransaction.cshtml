@@ -11,28 +11,57 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@section Content {
-    <form action="DoctorTransaction">
-        <input type="text" class="form-control" placeholder="Search here" name="search">
-        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-}
+
+
+
+
 
 
 
 @{
     string test; }
 
-@if (TempData["list"] == "Acceptlist")
-{
 
-    test = "2";
-
-}
-else
+@if (TempData["list"] == "rejectlisttrans")
 {
     test = "1";
 }
+else
+{
+    test = "2";
+
+}
+
+@{
+    string q = Request.QueryString["listType"];
+
+
+    if (q == "rejectlisttrans")
+    {
+
+        test = "1";
+    }
+
+
+    if (q == "Acceptlisttrans")
+    {
+
+        test = "2";
+    }
+}
+
+@if (test == "2")
+{
+    @section Content {
+        <form action="DoctorTransaction">
+            <input type="text" class="form-control" placeholder="Search here" name="search">
+            <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    }
+
+}
+
+
 
 <div class="page-wrapper">
     <div class="content container-fluid">
@@ -126,9 +155,22 @@ else
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="actions">
+                                                        @if (test == "1")
+                                                        {
+
+                                                            @Html.ActionLink("Details", "Details", new { id = item.doctorId, listType = "rejectlisttrans" }, new { @class = "btn btn-info" })
 
 
-                                                        @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
+                                                        }
+                                                        else
+                                                        {
+
+                                                            @Html.ActionLink("Details", "Details", new { id = item.doctorId }, new { @class = "btn btn-info" })
+
+                                                        }
+
+
+
 
 
                                                     </div>
@@ -137,8 +179,17 @@ else
                                         }
                                     </tbody>
                                 </table>
-                      
-                                <p>     ccccc @ViewBag.welc     @ViewBag.DEFER</p>
+                                @if (test == "1")
+                                {
+
+                                    <p>Last transaction was<strong> @ViewBag.DEFER</strong>  Days ago at @ViewBag.exact   </p>
+
+                                    <p>you can't transcate before <strong>7</strong> Days from last transaction</p>
+                                }
+
+
+
+
 
                                 @using (Html.BeginForm("DoctorTransaction", "transactionsdoctors", FormMethod.Post))
                                 {
@@ -197,7 +248,28 @@ else
 
 
         }).then(function () {
-            window.location.href = "/transactionsdoctors/DoctorTransaction";
+            window.location.href = "/transactionsdoctors/DoctorTransaction?listType=rejectlisttrans";
+
+        });;
+                </script>
+            }
+
+
+
+            @if (TempData["swal_message"] == "Please note that transactions can only be initiated after a minimum of 7 days from your last transaction for optimal care. Thank you for your understanding.")
+            {
+                <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = "/transactionsdoctors/DoctorTransaction?listType=rejectlisttrans";
 
         });;
                 </script>

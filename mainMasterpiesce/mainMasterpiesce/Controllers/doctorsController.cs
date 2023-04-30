@@ -15,6 +15,7 @@ using System.Net.Mail;
 
 namespace mainMasterpiesce.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class doctorsController : Controller
     {
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();
@@ -228,7 +229,7 @@ namespace mainMasterpiesce.Controllers
 
             }
             //email
-            catch (SmtpException ex)
+            catch (Exception ex)
             {
 
 
@@ -257,6 +258,11 @@ namespace mainMasterpiesce.Controllers
 
 
             //emaiiil
+            try
+            {
+
+
+        
 
             var docName = db.doctors.FirstOrDefault(c => c.doctorId == docId).doctorName;
             var docemail = db.doctors.FirstOrDefault(c => c.doctorId == docId).email;
@@ -303,10 +309,14 @@ namespace mainMasterpiesce.Controllers
             // Send the email
             smtp.Send(mail);
 
-
+            }
             //email
 
+            catch (Exception ex)
+            {
 
+
+            }
 
 
 
@@ -490,8 +500,18 @@ namespace mainMasterpiesce.Controllers
             doctor doctor = db.doctors.Find(id);
             var doctorappointment = db.appointments.Where(c => c.doctorId == id);
             var doctornotavailable = db.NotAvailableTimes.Where(c => c.doctorId == id);
+            var transacdoctor = db.transactionsdoctors.Where(c => c.doctorId == id);
 
-                if (doctorappointment.Any())
+
+            if (transacdoctor.Any())
+            {
+
+                ModelState.AddModelError("", "Cannot delete this doctor because there are transactions associated with it.");
+                return View(doctor);
+
+            }
+
+            if (doctorappointment.Any())
             {
 
                 ModelState.AddModelError("", "Cannot delete this doctor because there are patients associated with it.");
@@ -509,7 +529,12 @@ namespace mainMasterpiesce.Controllers
             db.doctors.Remove(doctor);
 
             //emaiiil
+            try
+            {
 
+
+
+        
             var docName = db.doctors.FirstOrDefault(c => c.doctorId == id).doctorName;
             var docemail = db.doctors.FirstOrDefault(c => c.doctorId == id).email;
 
@@ -554,12 +579,19 @@ namespace mainMasterpiesce.Controllers
 
             // Send the email
             smtp.Send(mail);
-
-
+            
+                   }
             //email
+            catch (Exception ex)
+            {
 
 
-            db.SaveChanges();
+            }
+
+    //email
+
+
+    db.SaveChanges();
             return RedirectToAction("AdminDoctor");
         }
 

@@ -15,6 +15,7 @@
         align-items: center !important;
         justify-content: center !important;
     }
+
     .form-control {
         padding: 0 !important
     }
@@ -152,7 +153,7 @@
                                             <div class="form-outline">
                                                 <h6>@*@Html.LabelFor(model => model.Grad, "High School Grade", htmlAttributes: (new { @class = "control-label" }))*@</h6>
                                                 <div>
-                                       
+
 
                                                 </div>
                                             </div>
@@ -163,7 +164,7 @@
                                                     @*@Html.LabelFor(model => model.PhoneNumber, "Phone Number", htmlAttributes: new { @class = "control-label" })*@
                                                 </h6>
                                                 <div>
-                                      
+
 
                                                 </div>
                                             </div>
@@ -181,7 +182,7 @@
                                                 </h6>
                                                 <div class="col-md-10">
                                                     <label>Personal Id</label>
-                                                    <input type="file" name="PersonalIdFile1" id="PersonalIdFile1"  class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
+                                                    <input type="file" name="PersonalIdFile1" id="PersonalIdFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
                                                     @*<input type="file" name="Pic1" class="form-control-file" accept="image/*" required />*@
                                                     @*@Html.EditorFor(model => model.Pic, new { htmlAttributes = new { @class = "form-control" } })*@
                                                     @*@Html.ValidationMessageFor(model => model.Pic, "", new { @class = "text-danger" })*@
@@ -218,7 +219,7 @@
                                                 </h6>
                                                 <div class="col-md-10">
                                                     <label>Birth file</label>
-                                                    <input type="file" name="BirthFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
+                                                    <input type="file" name="BirthFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
                                                     @*@Html.ValidationMessageFor(model => model.CertificateFile, "", new { @class = "text-danger" })*@
                                                 </div>
 
@@ -231,7 +232,7 @@
                                                 </h6>
                                                 <div class="col-md-10">
                                                     <label>Experience </label>
-                                                    <input type="file" name="ExperienceFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required/>
+                                                    <input type="file" name="ExperienceFile1" class="form-control-file" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
                                                     @*@Html.ValidationMessageFor(model => model.BirthFile, "", new { @class = "text-danger" })*@
                                                 </div>
 
@@ -257,14 +258,14 @@
                                     </div>
                                     <div class="d-flex justify-content-end pt-3">
                                         <div class=" col-md-6">
-                                            <input type="submit" value="Submit" class="btn button11 btn-lg col-md-6" style="background-color:#20BBBD" id="submit_button"/>
+                                            <input type="submit" value="Submit" class="btn button11 btn-lg col-md-6" style="background-color:#20BBBD" id="submit_button" />
                                         </div>
                                         @*<input type="submit" value="Submit" class="btn btn-light btn-lg col-md-6" />*@
-                                    <div class=" col-md-6">
-                                        <a href="/mainHome/Index" class="btn button11 btn-lg" style="color: black; background-color: #20BBBD; ">Home</a>
+                                        <div class=" col-md-6">
+                                            <a href="/mainHome/Index" class="btn button11 btn-lg" style="color: black; background-color: #20BBBD; ">Home</a>
 
-                                      
-                                    </div>
+
+                                        </div>
 
                                     </div>
 
@@ -274,11 +275,11 @@
                     </div>
                 </div>
             </div>
-    </div>
+    </div>}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-    if (TempData["swal_message"] != null)
+    @if (TempData["swal_message"] != null && TempData["swal_message"] != $"please complete your request in this form" && TempData["swal_message"] != "Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.")
     {
-<script>
+        <script>
         Swal.fire({
             title: "@ViewBag.title",
             text: "@TempData["swal_message"]",
@@ -291,243 +292,292 @@
         }).then(function () {
             window.location.href = "@ViewBag.redirectUrl";
         });;
-</script>
+        </script>
     }
 
-}
+
+    @if ( TempData["swal_message"] == "Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.")
+    {
 <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
 
 
-    function handleSearchInput(input) {
-        if (input.value.length > 24) {
-            input.value = input.value.slice(0, 16);
-        }
-     
-        if (input.value.length < 23) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_message").textContent = "IBan should be at least 23 digits.";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_message").textContent = "";
-        }
-    }
-    function AddressInput(input) {
-        if (input.value.length > 15) {
-            input.value = input.value.slice(0, 16);
-        }
-        if (/\d|\-|\./.test(input.value)) {
-            // Prevent non-alphabetic characters from being entered
-            input.value = input.value.replace(/[\d\-\.]/g, '');
-        }
-        if (input.value.length < 4) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_messageAddrees").textContent = "Addrees should be at least 4 digits.";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_messageAddrees").textContent = "";
-        }
-    }
-    function qualificInput(input) {
-        if (input.value.length > 20) {
-            input.value = input.value.slice(0, 20);
-        }
-        if (/\d|\-|\./.test(input.value)) {
-            // Prevent non-alphabetic characters from being entered
-            input.value = input.value.replace(/[\d\-\.]/g, '');
-        }
-        if (input.value.length < 4) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_messagequalific").textContent = "qualification  should be at least 4 digits.";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_messagequalific").textContent = "";
-        }
-    }
-
-
-    function universityInput(input) {
-        if (input.value.length > 20) {
-            input.value = input.value.slice(0, 20);
-        }
-        if (/\d|\-|\./.test(input.value)) {
-            // Prevent non-alphabetic characters from being entered
-            input.value = input.value.replace(/[\d\-\.]/g, '');
-        }
-        if (input.value.length < 4) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_messageuniv").textContent = "University  should be at least 4 charachters.";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_messageuniv").textContent = "";
-        }
-    }
-    function handleexpireInput(input) {
-        if (input.value.length > 2) {
-            input.value = input.value.slice(0, 2);
-        }
-        if (isNaN(input.value)) {
-            // Prevent non-numeric characters from being entered
-            input.value = input.value.replace(/[^0-9]/g, '');
-        }
-        //if (input.value.length < 2) {
-        //    // Disable the submit button
-        //    document.getElementById("submit_button").disabled = true;
-        //    // Or display an error message
-        //    document.getElementById("error_message1").textContent = "experience should be at least 2 digits.";
-        //} else {
-        //    // Enable the submit button
-        //    document.getElementById("submit_button").disabled = false;
-        //    // Clear the error message
-        //    document.getElementById("error_message1").textContent = "";
-        //}
-    }
-    function education(input) {
-        if (input.value.length > 10) {
-            input.value = input.value.slice(0, 10);
-        }
-        if (/\d|\-|\./.test(input.value)) {
-            // Prevent non-alphabetic characters from being entered
-            input.value = input.value.replace(/[\d\-\.]/g, '');
-        }
-        if (input.value.length < 5) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_messageed").textContent = "Education should be at least 5 characters.";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_messageed").textContent = "";
-        }
-    }
-
-    function handleexpireInput(input) {
-        if (input.value.length > 2) {
-            input.value = input.value.slice(0, 2);
-        }
-        if (isNaN(input.value)) {
-            // Prevent non-numeric characters from being entered
-            input.value = input.value.replace(/[^0-9]/g, '');
-        }
-        if (input.value.length < 2) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_message1").textContent = "Expiration date should be at least 2 digits.";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_message1").textContent = "";
-        }
-    }
-
-
-    function year(input) {
-
-        if (input.value.length > 4) {
-            input.value = input.value.slice(0, 4);
-        }
-        if (isNaN(input.value)) {
-
-            input.value = input.value.replace(/[^0-9]/g, '');
-        }
-        if (input.value.length < 4 || input.value > 2018 || input.value < 1965 ) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_messageyear").textContent = "the year should be at least 4 digits and should be between 1965 and 2018.";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_messageyear").textContent = "";
-        }
-    }
-
-
-    function yourself(input) {
-        if (input.value.length > 250) {
-            input.value = input.value.slice(0, 250);
-        }
-
-        if (input.value.length < 40) {
-            // Disable the submit button
-            document.getElementById("submit_button").disabled = true;
-            // Or display an error message
-            document.getElementById("error_messageyou").textContent = "this field should be at least 40 charachters and maximum 250 charachters";
-        } else {
-            // Enable the submit button
-            document.getElementById("submit_button").disabled = false;
-            // Clear the error message
-            document.getElementById("error_messageyou").textContent = "";
-        }
-    }
-
-
-
-
-
-    // Get the file input element
-    const certificationInput = document.getElementById("certification");
-
-    // Add an event listener to the input element
-    certificationInput.addEventListener("change", function () {
-        // Get the selected file
-        const file = certificationInput.files[0];
-
-        // Get the file type
-        const fileType = file.type;
-
-        // Check if the file type is not pdf or doc or docx
-        if (fileType !== "application/pdf" && fileType !== "application/msword" && fileType !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-            // Alert the user
-            alert("Only PDF, DOC, and DOCX files are allowed.");
-
-            // Clear the file input
-            certificationInput.value = "";
-        }
-    });
-
-    var fileInput = document.querySelector('.form-control-file');
-    // Add an event listener to the input element
-    fileInput.addEventListener("change", function () {
-        // Get the selected file
-        const file = fileInput.files[0];
-
-        // Get the file type
-        const fileType = file.type;
-
-        // Check if the file type is not pdf or doc or docx
-        if (fileType !== "application/pdf" && fileType !== "application/msword" && fileType !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
-            // Alert the user
-            alert("Only PDF, DOC, and DOCX files are allowed.");
-
-            // Clear the file input
-            fileInput.value = "";
-        }
-    });
-
-
-
-
-
-
+        }).then(function () {
+            window.location.href = "/Account/LogOfff";
+        });;
 </script>
+    }
+
+
+
+
+
+
+
+
+
+    @if (TempData["swal_message"] == $"please complete your request in this form")
+    {
+        <script>
+        Swal.fire({
+            title: "@ViewBag.title",
+            text: "@TempData["swal_message"]",
+            icon: "@ViewBag.icon",
+
+             allowOutsideClick: false, // prevent clicking outside the dialog to close it
+            allowEscapeKey: false // prevent pressing the escape key to close it
+
+
+        }).then(function () {
+            window.location.href = location.pathname
+        });;
+        </script>
+    }
+
+
+
+
+
+
+    <script>
+
+
+        function handleSearchInput(input) {
+            if (input.value.length > 24) {
+                input.value = input.value.slice(0, 16);
+            }
+
+            if (input.value.length < 23) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_message").textContent = "IBan should be at least 23 digits.";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_message").textContent = "";
+            }
+        }
+        function AddressInput(input) {
+            if (input.value.length > 15) {
+                input.value = input.value.slice(0, 16);
+            }
+            if (/\d|\-|\./.test(input.value)) {
+                // Prevent non-alphabetic characters from being entered
+                input.value = input.value.replace(/[\d\-\.]/g, '');
+            }
+            if (input.value.length < 4) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_messageAddrees").textContent = "Addrees should be at least 4 digits.";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_messageAddrees").textContent = "";
+            }
+        }
+        function qualificInput(input) {
+            if (input.value.length > 20) {
+                input.value = input.value.slice(0, 20);
+            }
+            if (/\d|\-|\./.test(input.value)) {
+                // Prevent non-alphabetic characters from being entered
+                input.value = input.value.replace(/[\d\-\.]/g, '');
+            }
+            if (input.value.length < 4) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_messagequalific").textContent = "qualification  should be at least 4 digits.";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_messagequalific").textContent = "";
+            }
+        }
+
+
+        function universityInput(input) {
+            if (input.value.length > 20) {
+                input.value = input.value.slice(0, 20);
+            }
+            if (/\d|\-|\./.test(input.value)) {
+                // Prevent non-alphabetic characters from being entered
+                input.value = input.value.replace(/[\d\-\.]/g, '');
+            }
+            if (input.value.length < 4) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_messageuniv").textContent = "University  should be at least 4 charachters.";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_messageuniv").textContent = "";
+            }
+        }
+        function handleexpireInput(input) {
+            if (input.value.length > 2) {
+                input.value = input.value.slice(0, 2);
+            }
+            if (isNaN(input.value)) {
+                // Prevent non-numeric characters from being entered
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+            //if (input.value.length < 2) {
+            //    // Disable the submit button
+            //    document.getElementById("submit_button").disabled = true;
+            //    // Or display an error message
+            //    document.getElementById("error_message1").textContent = "experience should be at least 2 digits.";
+            //} else {
+            //    // Enable the submit button
+            //    document.getElementById("submit_button").disabled = false;
+            //    // Clear the error message
+            //    document.getElementById("error_message1").textContent = "";
+            //}
+        }
+        function education(input) {
+            if (input.value.length > 10) {
+                input.value = input.value.slice(0, 10);
+            }
+            if (/\d|\-|\./.test(input.value)) {
+                // Prevent non-alphabetic characters from being entered
+                input.value = input.value.replace(/[\d\-\.]/g, '');
+            }
+            if (input.value.length < 5) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_messageed").textContent = "Education should be at least 5 characters.";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_messageed").textContent = "";
+            }
+        }
+
+        function handleexpireInput(input) {
+            if (input.value.length > 2) {
+                input.value = input.value.slice(0, 2);
+            }
+            if (isNaN(input.value)) {
+                // Prevent non-numeric characters from being entered
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+            if (input.value.length < 2) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_message1").textContent = "Expiration date should be at least 2 digits.";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_message1").textContent = "";
+            }
+        }
+
+
+        function year(input) {
+
+            if (input.value.length > 4) {
+                input.value = input.value.slice(0, 4);
+            }
+            if (isNaN(input.value)) {
+
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+            if (input.value.length < 4 || input.value > 2018 || input.value < 1965) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_messageyear").textContent = "the year should be at least 4 digits and should be between 1965 and 2018.";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_messageyear").textContent = "";
+            }
+        }
+
+
+        function yourself(input) {
+            if (input.value.length > 250) {
+                input.value = input.value.slice(0, 250);
+            }
+
+            if (input.value.length < 40) {
+                // Disable the submit button
+                document.getElementById("submit_button").disabled = true;
+                // Or display an error message
+                document.getElementById("error_messageyou").textContent = "this field should be at least 40 charachters and maximum 250 charachters";
+            } else {
+                // Enable the submit button
+                document.getElementById("submit_button").disabled = false;
+                // Clear the error message
+                document.getElementById("error_messageyou").textContent = "";
+            }
+        }
+
+
+
+
+
+        // Get the file input element
+        const certificationInput = document.getElementById("certification");
+
+        // Add an event listener to the input element
+        certificationInput.addEventListener("change", function () {
+            // Get the selected file
+            const file = certificationInput.files[0];
+
+            // Get the file type
+            const fileType = file.type;
+
+            // Check if the file type is not pdf or doc or docx
+            if (fileType !== "application/pdf" && fileType !== "application/msword" && fileType !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                // Alert the user
+                alert("Only PDF, DOC, and DOCX files are allowed.");
+
+                // Clear the file input
+                certificationInput.value = "";
+            }
+        });
+
+        var fileInput = document.querySelector('.form-control-file');
+        // Add an event listener to the input element
+        fileInput.addEventListener("change", function () {
+            // Get the selected file
+            const file = fileInput.files[0];
+
+            // Get the file type
+            const fileType = file.type;
+
+            // Check if the file type is not pdf or doc or docx
+            if (fileType !== "application/pdf" && fileType !== "application/msword" && fileType !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                // Alert the user
+                alert("Only PDF, DOC, and DOCX files are allowed.");
+
+                // Clear the file input
+                fileInput.value = "";
+            }
+        });
+
+
+
+
+
+
+    </script>

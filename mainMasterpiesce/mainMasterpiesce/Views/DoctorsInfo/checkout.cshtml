@@ -213,7 +213,7 @@
                                     <!-- Booking Doctor Info -->
                                     <div class="booking-doc-info">
                                         <a href="doctor-profile.html" class="booking-doc-img">
-                                            <img src="~/Content/images/dr2.png" alt="User Image">
+                                            <img src="@Url.Content(Model.doctor[0].picdoctor)" alt="User Image">
                                         </a>
                                         <div class="booking-info">
                                             <h4><a href="doctor-profile.html">@Model.doctor[0].doctorName</a></h4>
@@ -233,71 +233,24 @@
 
 
 
-                                            <div class="rating">
-                                                @{for (int i = 0; i < ratingint; i++)
-                                                    {
-                                                        <span class="fas fa-star" style=" color: gold;"> </span>
-                                                    }
+                                        <div class="rating">
+
+                                           @for (int i = 0; i < Model.doctor[0].ratingint; i++)
+                                            {
+                                            <span class="fas fa-star" style=" color: gold;"> </span>
+                                            }
 
 
 
+                                            @for (int i = 0; i < 5 - Model.doctor[0].ratingint; i++)
+                                            {
+                                            <i class="fas fa-star"></i>
+                                            }
+
+                                            <span class="d-inline-block average-rating">@Model.doctor[0].ratingint</span>
 
 
-                                                    int secondrating = Convert.ToInt32(secondsectionrating[1]);
-
-
-                                                    if (secondrating <= 9)
-                                                    {
-
-                                                        int secondfinal = secondrating * 10;
-
-
-
-
-
-
-                                                        if (secondfinal >= 25 && secondrating <= 50)
-                                                        {
-
-
-
-                                                            <span class="fas fa-star-half-alt" style="color: gold;"></span>
-                                                        }
-                                                        else if (secondfinal > 50)
-                                                        {
-
-                                                            <span class="fas fa-star" style=" color: gold;"> </span>
-                                                        }
-
-
-                                                    }
-                                                    else if (secondrating > 9)
-                                                    {
-                                                        if (secondrating >= 25 && secondrating <= 50)
-                                                        {
-
-
-
-                                                            <span class="fas fa-star-half-alt" style="color: gold;"></span>
-                                                        }
-                                                        if (secondrating > 50 && secondrating <= 75)
-                                                        {
-
-                                                            <span class="fas fa-star" style=" color: gold;"> </span>
-                                                        }
-
-                                                        if (secondrating > 75)
-                                                        {
-
-                                                            <span class="fas fa-star" style=" color: gold;"> </span>
-                                                        }
-                                                    }
-                                                }
-
-                                                <span class="d-inline-block average-rating">@Model.doctor[0].ratingdoctor</span>
-
-
-                                            </div>
+                                        </div>
 
 
 

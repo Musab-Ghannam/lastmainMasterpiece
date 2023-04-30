@@ -68,10 +68,10 @@ namespace mainMasterpiesce.Controllers
             if (TempData["waitt"] == "wait")
             {
 
-                TempData["swal_message"] = $"You cannot block this doctor. To block a doctor, they must have more than 10 appointments with a rating less than 2. Please try again.";
+                TempData["swal_message"] = $"Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.";
                 ViewBag.title = "warning";
                 ViewBag.icon = "warning";
-                ViewBag.massagee = "You cannot block this doctor. To block a doctor, they must have more than 10 appointments with a rating less than 2. Please try again.";
+                ViewBag.massagee = "Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.";
               return View();
 
             }
@@ -106,13 +106,19 @@ namespace mainMasterpiesce.Controllers
                 return RedirectToAction("Login", "Account");
 
             }
+            try
+            {
+                if (user.EmailConfirmed)
+                {//send all info about this doctor
 
-            if (user.EmailConfirmed)
-            {//send all info about this doctor
+                }
+
 
             }
+            catch(Exception ex) { }
 
-        
+
+
             switch (result)
             {
                 case SignInStatus.Success:

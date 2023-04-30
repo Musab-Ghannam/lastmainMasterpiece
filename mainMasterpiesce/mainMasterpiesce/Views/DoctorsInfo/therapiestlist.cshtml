@@ -316,7 +316,7 @@
                                                 <div class="clini-infos">
                                                     <ul>
                                                         @*<li><i class="far fa-thumbs-up"></i> 98%</li>*@
-                                                        <li><i class="far fa-comment"></i> @item.feedbacks.Where(c => c.doctorId == item.doctorId).Count() Feedback</li>
+                                                        <li><i class="far fa-comment"></i> @item.feedbacks.Where(c => c.doctorId == item.doctorId&&item.statedoctor==1&&c.statefeedback==1).Count() Feedback</li>
                                                         <li><i class="fas fa-map-marker-alt"></i>  @item.locationdoctor.Split('_')[0]</li>
                                                         <li>
                                                             <i class="far fa-money-bill-alt"></i> @item.pricePerHour JD

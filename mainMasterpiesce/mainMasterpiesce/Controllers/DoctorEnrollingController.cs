@@ -29,6 +29,7 @@ using Microsoft.Owin;
 
 namespace mainMasterpiesce.Controllers
 {
+    [Authorize(Roles = "doctor")]
     public class DoctorEnrollingController : Controller
     {
        
@@ -39,7 +40,28 @@ namespace mainMasterpiesce.Controllers
      
         public ActionResult EnrollDoctor()
         {
-          
+
+
+
+            if (TempData["compltesubmitting"] == "compltesubmitting")
+            {
+                TempData["swal_message"] = $"please complete your request in this form";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+
+            }
+
+            if (TempData["compltesubmitting"] == "waituntilaccept")
+            {
+                TempData["swal_message"] = "Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+
+
+            }
+
             var mainId=User.Identity.GetUserId();
             dynamic data = new ExpandoObject();
 
@@ -61,7 +83,34 @@ namespace mainMasterpiesce.Controllers
         }
 
 
+        public ActionResult sendmassage()
+        {
+            //if (TempData["compltesubmitting"] == "compltesubmitting")
+            //{
+            //    TempData["swal_message"] = $"please complete your request in this form";
+            //    ViewBag.title = "Warning";
+            //    ViewBag.icon = "Warning";
 
+
+            //}
+
+            //if (TempData["compltesubmitting"] == "waituntilaccept")
+            //{
+            //    TempData["swal_message"] = "Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.";
+            //    ViewBag.title = "Warning";
+            //    ViewBag.icon = "Warning";
+
+
+
+            //}
+
+        
+
+            return RedirectToAction("EnrollDoctor");
+
+
+
+        }
 
 
 
@@ -69,6 +118,7 @@ namespace mainMasterpiesce.Controllers
         [HttpPost]
         public ActionResult EnrollDoctor([Bind(Include = "Id,locationdoctor,doctorName,email,phoneNumber,qualiification,specialization,startedate,idCardfile,picdoctor,certificationfile,PersonalIdFile,CertificateFile,birthfile,specializationId,statedoctor,earningDoctortotal,AmountsDue,IBAN,Gender,infodoctor,pricePerHour,ratingdoctor,ratingint")] doctor doctorr, string location, string locationLink, string price, string qualif, string Iban, string exp, string info, int specializationId,string yeargrad,string University,string edu, HttpPostedFileBase PersonalIdFile1, HttpPostedFileBase Certification, HttpPostedFileBase BirthFile1, HttpPostedFileBase ExperienceFile1)
         {
+           
             var doctorId = User.Identity.GetUserId();
             var doctor = db.doctors.FirstOrDefault(d => d.Id == doctorId);
             var specializ = db.specializations.ToList();
@@ -81,6 +131,11 @@ namespace mainMasterpiesce.Controllers
             data.doc = doct;
             if (ModelState.IsValid)
             {
+                try
+                {
+
+
+             
                 if (PersonalIdFile1 != null)
                 {
                     //string fileName = Path.GetFileName(image.FileName);
@@ -110,7 +165,16 @@ namespace mainMasterpiesce.Controllers
                     string path = Server.MapPath("~/FormalFile/") + BirthFile1.FileName;
                     BirthFile1.SaveAs(path);
                     doctor.birthfile = BirthFile1.FileName;
+                    }
                 }
+                catch(Exception ex)
+                {
+
+
+                }
+
+
+
                 var SPECIALIZATIONNAME = db.specializations.FirstOrDefault(C => C.specializationId == specializationId).namespecialization;
                 doctor.pricePerHour = Convert.ToInt16(price);
                 doctor.qualiification = qualif;
@@ -138,35 +202,49 @@ namespace mainMasterpiesce.Controllers
                 //emaiiil
 
 
-                // Create a new MailMessage object
-                //MailMessage mail = new MailMessage();
+                //Create a new MailMessage object
+                try
+                {
 
-                //// Set the sender's email address
-                //mail.From = new MailAddress("musab.ghannam@outlook.com");
 
-                //// Set the recipient's email address
 
-                //mail.To.Add(docemail);
+               
+               MailMessage mail = new MailMessage();
 
-                //// Set the subject of the email
-                //mail.Subject = "New message from " + "Finding piece";
+                // Set the sender's email address
+                mail.From = new MailAddress("musab.ghannam@outlook.com");
 
-                //// Set the body of the email
+                // Set the recipient's email address
 
-                //mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-{docName}, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
+                mail.To.Add(docemail);
 
-                //// Set the body format to HTML
-                //mail.IsBodyHtml = true;
+                // Set the subject of the email
+                mail.Subject = "New message from " + "Finding piece";
 
-                //// Create a new SmtpClient object
-                //SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
-                //smtp.UseDefaultCredentials = false;
-                //smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
-                //smtp.EnableSsl = true;
+                // Set the body of the email
 
-                //// Send the email
-                //smtp.Send(mail);
+                mail.Body = $"<b>Welcome to Finding Peace!</b><br/><br/>Dr-{docName}, your registration has been submitted and is waiting for approval. You will receive an email notification when your account has been accepted.";
 
+                // Set the body format to HTML
+                mail.IsBodyHtml = true;
+
+                // Create a new SmtpClient object
+                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("musab.ghannam@outlook.com", "124816326455@Mo");
+                smtp.EnableSsl = true;
+
+                // Send the email
+                smtp.Send(mail);
+                }
+                catch(Exception ex) { 
+
+
+
+
+                
+                
+                }
 
                 //email
 
@@ -199,6 +277,9 @@ namespace mainMasterpiesce.Controllers
 
         public ActionResult DoctorDashboard()
         {
+           
+
+
             string zoomLink = Session["link"] as string;
             var mainId = User.Identity.GetUserId();
 
@@ -293,10 +374,47 @@ namespace mainMasterpiesce.Controllers
 
 
             var model = Tuple.Create(doct, appointment, feedback);
+            var IssubmitEnrolling = db.AspNetUsers.FirstOrDefault(c => c.Id == mainId).EmailConfirmed;
+            var Isaccepted = db.AspNetUsers.FirstOrDefault(c => c.Id == mainId).PhoneNumberConfirmed;
+            
 
+            if(!IssubmitEnrolling && !Isaccepted)
+            {
+
+                TempData["swal_message"] = $"please complete your request in this form";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+                TempData["compltesubmitting"] = "compltesubmitting";
+
+                return RedirectToAction("EnrollDoctor", "DoctorEnrolling");
+
+            }
+
+
+         
+            else if(IssubmitEnrolling && !Isaccepted)
+            {
+                TempData["swal_message"] = "Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+
+
+
+                TempData["compltesubmitting"] = "waituntilaccept";
+                return RedirectToAction("EnrollDoctor", "DoctorEnrolling");
+          
+            }
+
+
+
+            if (IssubmitEnrolling && Isaccepted)
+            {
+                return View(model);
+
+            }
             return View(model);
-
-
 
         }
         public ActionResult ChangePass()
@@ -863,6 +981,8 @@ namespace mainMasterpiesce.Controllers
 
         }
 
+
+        [Authorize(Roles = "doctor")]
         public ActionResult NotAvailable(string day,string btnn,string valueToRemove,string wholeday,string senddata, string selectnotavailabale)
         {
 
@@ -1140,8 +1260,51 @@ namespace mainMasterpiesce.Controllers
 
             var model = Tuple.Create(doct, appointment, feedback);
 
-            return View(model);
 
+            var IssubmitEnrolling = db.AspNetUsers.FirstOrDefault(c => c.Id == mainId).EmailConfirmed;
+            var Isaccepted = db.AspNetUsers.FirstOrDefault(c => c.Id == mainId).PhoneNumberConfirmed;
+
+
+            if (!IssubmitEnrolling && !Isaccepted)
+            {
+
+                TempData["swal_message"] = $"please complete your request in this form";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+                TempData["compltesubmitting"] = "compltesubmitting";
+
+                return RedirectToAction("EnrollDoctor", "DoctorEnrolling");
+
+            }
+
+
+
+            else if (IssubmitEnrolling && !Isaccepted)
+            {
+                TempData["swal_message"] = "Dear Doctor,Please be advised that your documentation is currently being reviewed by our team. Once your documentation has been accepted, you will receive an email from us confirming your acceptance.Thank you for your patience and we wish you the best of luck.";
+                ViewBag.title = "Warning";
+                ViewBag.icon = "warning";
+
+
+
+
+                TempData["compltesubmitting"] = "waituntilaccept";
+                return RedirectToAction("EnrollDoctor", "DoctorEnrolling");
+
+            }
+
+
+
+
+            if(IssubmitEnrolling && Isaccepted)
+            {
+
+                return View(model);
+            }
+
+
+            return View(model);
 
 
         }

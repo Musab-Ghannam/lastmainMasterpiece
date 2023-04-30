@@ -10,6 +10,7 @@ using mainMasterpiesce.Models;
 
 namespace mainMasterpiesce.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class patientsController : Controller
     {
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();

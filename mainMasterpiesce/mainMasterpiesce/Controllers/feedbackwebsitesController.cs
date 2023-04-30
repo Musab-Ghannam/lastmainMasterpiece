@@ -10,11 +10,42 @@ using mainMasterpiesce.Models;
 
 namespace mainMasterpiesce.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class feedbackwebsitesController : Controller
     {
         private FindingpeaceEntities1 db = new FindingpeaceEntities1();
 
         // GET: feedbackwebsites
+
+        public ActionResult Acceptlist([Bind(Include = "statee")] feedbackwebsite feed, string Accept)
+        {
+
+            TempData["list"] = "Acceptlistfeed";
+
+            return RedirectToAction("feedbackweb", new { listType = "Acceptlistfeed" });
+
+        }
+        public ActionResult Rejectlist([Bind(Include = "statee")] feedbackwebsite feed, string Accept)
+        {
+
+            TempData["list"] = "rejectlistfeed";
+
+
+            return RedirectToAction("feedbackweb", new { listType = "rejectlistfeed" });
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
         public ActionResult feedbackweb(string Accept,string Block,string search)
         {
             if (Accept != null)

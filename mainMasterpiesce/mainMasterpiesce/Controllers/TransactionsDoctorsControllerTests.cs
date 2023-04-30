@@ -12,6 +12,7 @@ using NUnit.Framework;
 using Lw.Data.Entity;
 
 [TestFixture]
+[Authorize(Roles = "Admin")]
 public class TransactionsDoctorsControllerTests
 {
     [Test]

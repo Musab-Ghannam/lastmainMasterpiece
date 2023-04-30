@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace mainMasterpiesce.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ADMINDashboardController : Controller
     {
         FindingpeaceEntities1 db=new FindingpeaceEntities1();

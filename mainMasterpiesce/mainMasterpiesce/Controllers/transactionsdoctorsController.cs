@@ -19,6 +19,7 @@ using Lw.Data;
 
 namespace mainMasterpiesce.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class transactionsdoctorsController : Controller
     {
         public IDbContext DbContext { get; set; }

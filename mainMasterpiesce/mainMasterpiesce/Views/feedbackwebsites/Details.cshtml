@@ -5,7 +5,9 @@
     Layout = "~/Views/Shared/_AdminDashBoard.cshtml";
 }
 
-
+@{ 
+    string q = Request.QueryString["listType"];
+}
 <div class="page-wrapper">
     <div class="content container-fluid">
 
@@ -115,7 +117,19 @@
                             </div>
                             <p>
 
-                                @Html.ActionLink("Back to List", "feedbackweb", null, new { @class = "btn btn-secondary" })
+                                @if (q == "rejectlistfeed")
+                                {
+
+
+                                    @Html.ActionLink("Back to List", "feedbackweb", new { listType = "rejectlistfeed" }, new { @class = "btn btn-secondary" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Back to List", "feedbackweb", null, new { @class = "btn btn-secondary" })
+
+                                }
+
+                            
                             </p>
                             </div>
 </div>

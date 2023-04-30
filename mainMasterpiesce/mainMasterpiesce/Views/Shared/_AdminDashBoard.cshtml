@@ -235,15 +235,26 @@
 
 
 
-                            <li class="@(lastSegment == "feedbackwebsites" ? "active" : "")">
+                            @*<li class="@(lastSegment == "feedbackwebsites" ? "active" : "")">
                                 <a href="~/feedbackwebsites/feedbackweb"><i class="fa-regular fa-comment"></i><span>FeedBacks</span></a>
+                            </li>*@
+
+                            <li class="submenu ">
+                                <a href="#"> <i class="fa-regular fa-comment @(lastSegment == "feedbackwebsites" ? "activeic" : "")"></i>  <span class="@(lastSegment == "feedbackwebsites" ? "activeic" : "")"> Feedback</span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li class=" @(query == "Acceptlistfeed" ? "active" : "")"><a href="~/feedbackwebsites/Acceptlist">Accepted Feedback</a></li>
+                                    <li class=" @(query == "rejectlistfeed" ? "active" : "")"><a href="~/feedbackwebsites/Rejectlist"> Pending Feedback</a></li>
+
+                                </ul>
                             </li>
+
+
                             <li class="@(lastSegment == "feedbacks" ? "active" : "")">
                                 <a href="~/feedbacks/Review"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
                             </li>
                             @*<li class="@(lastSegment == "transactionsdoctors" ? "active" : "")">
-                                <a href="~/transactionsdoctors/DoctorTransaction"><i class="fe fe-activity"></i> <span>Transactions</span></a>
-                            </li>*@
+            <a href="~/transactionsdoctors/DoctorTransaction"><i class="fe fe-activity"></i> <span>Transactions</span></a>
+        </li>*@
 
                             <li class="submenu ">
                                 <a href="#"> <i class="fe fe-activity @(lastSegment == "transactionsdoctors" ? "activeic" : "")"></i>  <span class="@(lastSegment == "transactionsdoctors" ? "activeic" : "")"> Transactions</span> <span class="menu-arrow"></span></a>

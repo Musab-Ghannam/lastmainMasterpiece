@@ -7,12 +7,36 @@
 
 <script src="https://kit.fontawesome.com/cd43dd9542.js" crossorigin="anonymous"></script>
 
-@section Content {
-    <form action="feedbackweb">
-        <input type="text" class="form-control" placeholder="Search here" name="search">
-        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-    </form>
+@{
+    string q = Request.QueryString["listType"];
+    int test = 1;
 }
+
+
+@if (TempData["list"] == "rejectlistfeed" || q == "rejectlistfeed")
+{
+
+    test = 0;
+
+}
+else
+{
+    test = 1;
+}
+
+@if (test == 1)
+{
+
+    @section Content {
+        <form action="feedbackweb">
+            <input type="text" class="form-control" placeholder="Search here" name="search">
+            <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    }
+
+}
+
+
 <div class="page-wrapper">
     <div class="content container-fluid">
 
@@ -20,10 +44,22 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-7 col-auto">
-                    <h3 class="page-title">Feedbacks</h3>
+                    @if (test == 1)
+                    {
+
+
+                        <h3 class="page-title">Accepted Feedbacks</h3>
+
+
+                    }
+                    else
+                    {
+
+                        <h3 class="page-title">Pending Feedbacks</h3>
+
+                    }
+
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">FeedBACKS</li>
                     </ul>
                 </div>
                 <div class="col-sm-5 col">
@@ -57,7 +93,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @foreach (var item in Model.Where(c => c.statee == test))
                                     {
 
 
@@ -103,11 +139,31 @@
                                             @using (Html.BeginForm("feedbackweb", "feedbackwebsites", new { id = item.id }, FormMethod.Post))
                                             {
 
+
+
                                                 <td>
+                                                    @if (test == 0)
+                                                    {
 
-                                                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" })
 
-                                                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+
+                                                        @Html.ActionLink("Details", "Details", new { id = item.id, listType = "rejectlistfeed" }, new { @class = "btn btn-info" })
+
+
+                                                        @Html.ActionLink("Delete", "Delete", new { id = item.id, listType = "rejectlistfeed" }, new { @class = "btn btn-danger" })
+
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.ActionLink("Details", "Details", new { id = item.id, listType = "Acceptlistfeed" }, new { @class = "btn btn-info" })
+
+                                                        @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+                                                    }
+
+
+
+
 
 
 

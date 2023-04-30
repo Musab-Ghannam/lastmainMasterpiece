@@ -151,9 +151,9 @@
                                                 //if(start>DateTime.Now)
 
 
-                                                @*<span>@x</span>*@
+                                              
                                             }
-                                            @*@timeperiod*@
+                                      
 
                                         </p>
                                         <div class="rating">
@@ -187,51 +187,9 @@
                                                 @*int secondrating = Convert.ToInt32(secondsectionrating[1]);
 
 
-            if (secondrating <= 9)
-            {
-
-                int secondfinal = secondrating * 10;
-
-
-
-
-
-
-                if (secondfinal >= 25 && secondrating <= 50)
-                {
-
-
-
-                    <span class="fas fa-star-half-alt" style="color: gold;"></span>
-                }
-                else if (secondfinal > 50)
-                {
-
-                    <span class="fas fa-star" style=" color: gold;"> </span>
-                }
-
-
-            }
-            else if (secondrating > 9)
-            {
-                if (secondrating >= 25 && secondrating <= 50)
-                {
-
-
-
-                    <span class="fas fa-star-half-alt" style="color: gold;"></span>
-                }
-                if (secondrating > 50 && secondrating <= 75)
-                {
-
-                    <span class="fas fa-star" style=" color: gold;"> </span>
-                }
-
-                if (secondrating > 75)
-                {
-
-                    <span class="fas fa-star" style=" color: gold;"> </span>
-                }
+    
+       
+              
 
 
             }*@
@@ -254,28 +212,7 @@
                                                 <i class="fas fa-map-marker-alt" onclick="window.open('@locationlink', '_blank');"></i> @regionName - <a style="color: #20BBBD" href="javascript:void(0);" onclick="window.open('@locationlink', '_blank');">Get Directions</a>
 
                                             </p>
-                                            @*<ul class="clinic-gallery">
-                <li>
-                    <a href="~/doc/assets/img/features/feature-01.jpg" data-fancybox="gallery">
-                        <img src="~/doc/assets/img/features/feature-01.jpg" alt="Feature">
-                    </a>
-                </li>
-                <li>
-                    <a href="~/doc/assets/img/features/feature-02.jpg" data-fancybox="gallery">
-                        <img src="~/doc/assets/img/features/feature-02.jpg" alt="Feature Image">
-                    </a>
-                </li>
-                <li>
-                    <a href="~/doc/assets/img/features/feature-03.jpg" data-fancybox="gallery">
-                        <img src="~/doc/assets/img/features/feature-03.jpg" alt="Feature">
-                    </a>
-                </li>
-                <li>
-                    <a href="~/doc/assets/img/features/feature-04.jpg" data-fancybox="gallery">
-                        <img src="~/doc/assets/img/features/feature-04.jpg" alt="Feature">
-                    </a>
-                </li>
-            </ul>*@
+                              
                                         </div>
                                         <div class="clinic-services">
                                             @*<span>Dental Fillings</span>
@@ -286,8 +223,19 @@
                                 <div class="doc-info-right">
                                     <div class="clini-infos">
                                         <ul>
-                                            <li><i class="far fa-thumbs-up"></i> 99%</li>
-                                            <li><i class="far fa-comment"></i> 35 Feedback</li>
+                                            <li><i class="far fa-thumbs-up"></i>@Model.Item1[0].AspNetUser.Id </li>
+                                            <li>
+                                                <i class="far fa-comment"></i>
+                                          @{ 
+                                              int count = 0;
+                                          }
+
+
+
+
+                                               @Model.Item2.Count()
+
+                                            </li>
                                             <li><i class="fas fa-map-marker-alt"></i> @regionName</li>
                                             <li><i class="far fa-money-bill-alt"></i> $@Model.Item1[0].pricePerHour per hour </li>
                                         </ul>

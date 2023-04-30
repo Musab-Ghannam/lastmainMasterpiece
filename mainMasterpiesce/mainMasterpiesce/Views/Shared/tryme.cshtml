@@ -47,9 +47,9 @@
             <div class="owl-item">
                 <div class="card">
 
-                    <div class="img-card">
+                    <div class="img-card"  >
                         <img src="@Url.Content(@item.picdoctor)"
-                             alt="@item.picdoctor" />
+                             alt="@item.picdoctor" width="50" style="height: 265px;" />
                         <div class="rating">
 
                             <i class="fa-sharp fa-solid fa-star"></i>
@@ -61,12 +61,12 @@
                         @*Dr. Omar Ali Alqam is a psychiatric and addiction specialist who holds a Jordanian board in psychiatry and is a member of the Jordanian Psychiatric Association.*@
                         @item.infodoctor
                     </div>
-                    <div class="name" style="font-size:15px">
-                        <a href="~/DoctorsInfo/singledoctor?id=@item.doctorId">  DR-@item.doctorName</a>
+                    <div class="name" style="font-size:12px">
+                        <a href="~/DoctorsInfo/singledoctor?id=@item.doctorId" style="font-size:14px">  DR-@item.doctorName</a>
                     </div>
                 </div>
             </div>
-            if (x >= 6)
+            if (x >= 8)
             {
                 break;
             }

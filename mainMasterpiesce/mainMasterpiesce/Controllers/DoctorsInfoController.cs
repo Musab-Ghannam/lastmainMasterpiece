@@ -42,6 +42,10 @@ namespace mainMasterpiesce.Controllers
        
         public ActionResult therapiestlist(string therapistName, string specializationsearch, string Male, string rating, string therapytype, string desc)
         {
+
+            TempData["Removedata"] = "Remove";
+
+
             var avgfeedback = doc.feedbacks.GroupBy(c => c.doctorId).Select(g => new { doctorId = g.Key, avgrating = g.Average(c => c.rating) });
 
 
@@ -90,11 +94,11 @@ namespace mainMasterpiesce.Controllers
 
 
             }
-        
 
 
 
 
+            //var feedbackcoumt = doc.feedbacks.Where(c => c.statefeedback == 1).Count();
 
 
 
@@ -136,12 +140,6 @@ namespace mainMasterpiesce.Controllers
 
             }
 
-            //if (specializationsearch != null)
-            //{
-            //    var searchspaecialization = doc.doctors.Where(c => c.specializationId == Convert.ToInt16(specializationsearch)).ToList();
-
-            //    return View(Tuple.Create(searchspaecialization, specialization));
-            //}
             //male=
             if (Male != null && Male == Convert.ToString(1) && rating == null && therapytype == null)
             {
@@ -171,14 +169,7 @@ namespace mainMasterpiesce.Controllers
 
 
 
-                //return View(Tuple.Create(ratingdoctor, specialization));
-                //foreach (var item in ratingdoctor)
-                //{
-                //    //if (Convert.ToInt32(rating) ==Math.Round(Convert.ToDecimal(item.ratingdoctor)))
-                //    //{
-                //        int ratingIntt = Convert.ToInt32(rating);
-                //         decimal RATINGDOCROUD =Math.Round(Convert.ToDecimal(item.ratingdoctor));
-                //    if(ratingIntt == Convert.ToInt32(RATINGDOCROUD)) {
+       
 
 
 
@@ -531,6 +522,7 @@ namespace mainMasterpiesce.Controllers
 
     public ActionResult singledoctor(int?id)
         {
+            TempData["Removedata"] = "Remove";
             string ASPid = User.Identity.GetUserId();
             var patient = doc?.patients?.FirstOrDefault(c => c.Id == ASPid);
             if (patient != null)
@@ -637,11 +629,16 @@ namespace mainMasterpiesce.Controllers
 
 
 
+            //pppp
 
+        
+            //Session["btnValues"] = string.Empty;
 
+            //Session["count"] = string.Empty;
 
-
-
+            //Session.Remove("btnValues");
+            //ViewBag.btn = string.Empty;
+            //Session.Remove("count");
 
             Session["countarrow"] =0;
             Session["count"] = 0;
@@ -683,6 +680,22 @@ namespace mainMasterpiesce.Controllers
         public ActionResult booking(int?id,string day,string selectedSlot,string btnn,string close,string valueToRemove)    
         {
             //feedback
+            if (TempData["Removedata"] == "Remove")
+            {
+           
+
+           
+
+                Session["btnValues"] = string.Empty;
+
+                ViewBag.btn = string.Empty;
+                Session["count"] = 0;
+
+                ViewBag.btn = ""; // make the string empty
+                var btnValues = ViewBag.btn.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+
+
+            }
 
 
             string url = Request.Url.AbsoluteUri;
@@ -1443,6 +1456,7 @@ namespace mainMasterpiesce.Controllers
             return RedirectToAction("patientProfile");
         }
 
+        [Authorize(Roles = "patient")]
         public ActionResult patientProfile(int? id)
         {
 
@@ -1563,6 +1577,7 @@ namespace mainMasterpiesce.Controllers
             
         }
 
+        [Authorize(Roles = "patient")]
         public ActionResult Profilesetting(int? id)
         {
 
@@ -1636,7 +1651,7 @@ namespace mainMasterpiesce.Controllers
             return RedirectToAction("ChangePasswordpatient");
         }
 
-
+        [Authorize(Roles = "patient")]
         public ActionResult ChangePasswordpatient()
         {
             if(TempData["swal_message"] == "changed Successfully")
